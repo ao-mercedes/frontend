@@ -46,22 +46,28 @@ export const ScrollGuide: React.FC<{ device: Device }> = ({device}) => {
                 className={`${scrollGuideKeyframeClassName}`}
                 style={{
                     zIndex: 1000,
-                    opacity: 0.8,
-                    backgroundColor: COLORS.CHARCOAL_SLATE,
                     display: "flex",
                     position: "absolute",
-                    borderRadius: "50%",
                     height: scrollGuideLength,
                     width: scrollGuideLength,
                     justifyContent: "center",
                     alignItems: "center",
                 }}>
+        <div className="ao-scroll-guide-bg" style={{
+            display: "flex",
+            borderRadius: "50%",
+            opacity: 0.8,
+            backgroundColor: COLORS.CHARCOAL_SLATE,
+            height: "100%", width: "100%", position: "fixed"
+        }}>
+        </div>
         <div style={{
             width: "80%",
             height: "80%",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center"
+            zIndex: 1000,
+            alignItems: "center",
         }}>
             <Typography.Title level={3} style={{
                 textAlign: "center",

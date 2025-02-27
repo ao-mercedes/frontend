@@ -1,13 +1,13 @@
 import "./index.css";
 
-import ScrollGuide from "./_scrollGuide.tsx";
-
 import img_mastheadback from '../../assets/Body1/masthead_back_img.jpg';
 import img_mastheadbackmobile from '../../assets/Body1/mobile_masthead_back_img.jpg';
 import img_mastheadring from '../../assets/Body1/masthead_ring.svg';
 import img_mastheadfront from '../../assets/Body1/masthead_fore_img.png';
 import img_mastheadfrontmobile from '../../assets/Body1/mobile_masthead_fore_img.png';
 import img_mastheadringrotate from '../../assets/Body1/masthead_ring_rotate.svg';
+
+import ScrollGuide from "./_scrollGuide.tsx";
 
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 

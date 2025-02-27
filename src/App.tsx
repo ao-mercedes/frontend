@@ -5,7 +5,7 @@ import Body1 from "./layoutComponents/Body1";
 import {Device} from "./utils/constants/constants.ts";
 
 
-import {ConfigProvider, Layout} from "antd";
+import {ConfigProvider, Layout, Modal} from "antd";
 import {useEffect, useState} from "react";
 import {useMediaQuery} from 'react-responsive';
 import * as React from "react";
@@ -56,6 +56,7 @@ const useDevice = () => {
     return device;
 };
 
+
 function App() {
     const device = useDevice();
 
@@ -74,6 +75,9 @@ function App() {
                 }}
             >
                 <Layout>
+                    <Modal className="ao-modal">
+                        <div>modal</div>
+                    </Modal>
                     <Body1 props={{
                         device: device
                     }}>content</Body1>
