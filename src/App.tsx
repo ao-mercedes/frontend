@@ -11,12 +11,12 @@ import {useMediaQuery} from 'react-responsive';
 import * as React from "react";
 
 
-const Body2: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body2 oa-body">{children}</div>;
-const Body3: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body3 oa-body">{children}</div>;
-const Body4: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body4 oa-body">{children}</div>;
-const Body5: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body5 oa-body">{children}</div>;
-const Body6: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body6 oa-body">{children}</div>;
-const Body7: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body6 oa-body">{children}</div>;
+const Body2: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body2 ao-body">{children}</div>;
+const Body3: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body3 ao-body">{children}</div>;
+const Body4: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body4 ao-body">{children}</div>;
+const Body5: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body5 ao-body">{children}</div>;
+const Body6: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body6 ao-body">{children}</div>;
+const Body7: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body6 ao-body">{children}</div>;
 const {Footer} = Layout;
 
 const DEVICE_SIZE_BREAKPOINT = {
@@ -49,7 +49,6 @@ function App() {
         }
 
         setDevice(() => {
-            console.log(_device);
             return _device;
         });
 
