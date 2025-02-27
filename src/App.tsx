@@ -2,11 +2,12 @@ import './font-face.css';
 import './App.css';
 
 import Body1 from "./layoutComponents/Body1";
+import {defaultTheme} from "./layoutComponents/themeDefault.ts";
 
 
-import {ConfigProvider, Drawer, Layout,} from "antd";
-import * as React from "react";
+import {ConfigProvider, Layout,} from "antd";
 import {useDevice} from "./hooks/useDevice.ts";
+// import HamburgerNavigationMenu from "./layoutComponents/HamburgerNavigationMenu";
 
 
 const Body2: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body2 ao-body">{children}</div>;
@@ -26,25 +27,16 @@ const DEVICE_SIZE_BREAKPOINT = {
 
 function App() {
     const device = useDevice(DEVICE_SIZE_BREAKPOINT);
-
     return (
         <>
             <ConfigProvider
-                theme={{
-                    token: {
-                        fontSizeHeading1: 55,
-                        fontSizeHeading2: 50,
-                        fontSizeHeading3: 30,
-                        fontSizeHeading4: 24,
-                        fontSizeHeading5: 20,
-                        fontFamily: "'Visby CF', 'sans-serif'",
-                    },
-                }}
+                theme={defaultTheme()}
             >
+                {/*<div className={"ao-hamburger-navigation-menu"} style={{}}>*/}
+                {/*    <HamburgerNavigationMenu/>*/}
+                {/*</div>*/}
                 <Layout>
-                    <Drawer className="ao-modal" open={true}>
-                        <div>asdfasdfasfdasdf</div>
-                    </Drawer>
+
                     <Body1 props={{
                         device: device
                     }}>content</Body1>
