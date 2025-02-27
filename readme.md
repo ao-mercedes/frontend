@@ -1,4 +1,4 @@
 # mercedes (frontend)
 
 # Development
-![Refer to contributing](./contributing.md)
+[Refer to contributing](./contributing.md)
