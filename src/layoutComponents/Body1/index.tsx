@@ -34,16 +34,17 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
     }, [showScrollGuide]);
 
     const ringStyle = device == Device.mobile ? {
-        zIndex: 0,
+        // zIndex: 0,
         transform: "scale(1.4) translateX(-10%) translateY(10%)",
         width: '80%',
         height: '100%'
     } : {
         zIndex: 0,
         transform: "scale(1.4) translateY(-10%)",
-        width: 'auto',
+        width: '100%',
         height: '100%'
     };
+
 
     const ringFullComponent = <img
         style={{...ringStyle, position: "absolute"}}
@@ -51,8 +52,7 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
 
     const ringRotateComponent = <img
         id={device == Device.mobile ? "ring-rotate-mobile" : "ring-rotate-default"}
-        className="rotate"
-        style={{...ringStyle, position: "absolute"}}
+        style={{...ringStyle, zIndex: 1000, position: "absolute"}}
         src={img_mastheadringrotate} alt={""}></img>;
 
     let titleTransformOffset = "";
@@ -101,14 +101,15 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
         <img style={{...imgWidthAndHeight}}
              src={device == Device.mobile ? img_mastheadbackmobile : img_mastheadback} alt={""}></img>
         {/*rings*/}
-        <div style={{
+        <div className={"ao-body1-rings"} style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             padding: "10px",
             position: "absolute",
             width: '100%',
-            height: '100%'
+            height: '100%',
+            overflow: "hidden",
         }}>
             {ringFullComponent}
             {ringRotateComponent}
