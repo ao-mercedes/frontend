@@ -19,6 +19,21 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
     const {device} = props;
 
     const [showScrollGuide, setShouldScrollGuide] = useState(false);
+
+    const enableScrollGuide = () => {
+        console.log("scroll");
+        setShouldScrollGuide(true);
+    };
+    useEffect(() => {
+        console.log(`showScrollGuide ${showScrollGuide}`);
+        if (!showScrollGuide) {
+            window.addEventListener('scroll', enableScrollGuide);
+        }
+        return () => {
+            window.removeEventListener('scroll', enableScrollGuide);
+        };
+    }, [showScrollGuide]);
+
     const ringStyle = device == Device.mobile ? {
         zIndex: 0,
         transform: "scale(1.4) translateX(-10%) translateY(10%)",
@@ -53,7 +68,7 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
     if (device == Device.mobile) {
         titleFontSize = "3.1rem";
     } else if (device == Device.tablet) {
-        titleFontSize = "2.5rem";
+        titleFontSize = "2.8rem";
     } else if (device == Device.desktop) {
         titleFontSize = "7rem";
     }
@@ -67,40 +82,41 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
         imgWidthAndHeight = {width: '100vw', height: '100vh'};
     }
 
-    let scrollGuideWidthAndHeight = {};
+    let scrollGuideLength = "";
     if (device == Device.mobile) {
-        scrollGuideWidthAndHeight = {
-            width: '320px',
-            height: '320px',
-            transform: "translateY(65%)"
-        };
+        scrollGuideLength = '320px';
     } else if (device == Device.tablet) {
-        scrollGuideWidthAndHeight = {
-            width: '400px',
-            height: '400px',
-            transform: "translateY(65%)"
-        };
+        scrollGuideLength = '360px';
     } else if (device == Device.desktop) {
-        scrollGuideWidthAndHeight = {
-            width: '900px',
-            height: '900px',
-            transform: "translateY(45%)"
-        };
+        scrollGuideLength = '900px';
+    }
+    let scrollGuideTextFontSize = "5.5rem";
+    if (device == Device.mobile) {
+        scrollGuideTextFontSize = "5.5rem";
+    } else if (device == Device.tablet) {
+        scrollGuideTextFontSize = "2rem";
+    } else if (device == Device.desktop) {
+        scrollGuideTextFontSize = "5.5rem";
     }
 
-    const enableScrollGuide = () => {
-        console.log("scroll");
-        setShouldScrollGuide(true);
-    };
-    useEffect(() => {
-        console.log(`showScrollGuide ${showScrollGuide}`);
-        if (!showScrollGuide) {
-            window.addEventListener('scroll', enableScrollGuide);
-        }
-        return () => {
-            window.removeEventListener('scroll', enableScrollGuide);
-        };
-    }, [showScrollGuide]);
+    let scrollGuideArrowStyle = {};
+
+    if (device == Device.mobile) {
+        scrollGuideArrowStyle = {width: "55px", bottom: 80};
+    } else if (device == Device.tablet) {
+        scrollGuideArrowStyle = {width: "80px", bottom: 30};
+    } else if (device == Device.desktop) {
+        scrollGuideArrowStyle = {width: "160px", bottom: 80};
+    }
+
+    let scrollGuideKeyframeClassName = "ao-scroll-guide-tablet";
+    if (device == Device.mobile) {
+        scrollGuideKeyframeClassName = "ao-scroll-guide-mobile";
+    } else if (device == Device.tablet) {
+        scrollGuideKeyframeClassName = "ao-scroll-guide-tablet";
+    } else if (device == Device.desktop) {
+        scrollGuideKeyframeClassName = "ao-scroll-guide-desktop";
+    }
     return <div
         id="ao-body1-container"
         style={{
@@ -116,6 +132,7 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
 
         {showScrollGuide &&
             <div id="ao-scroll-guide"
+                 className={`${scrollGuideKeyframeClassName}`}
                  style={{
                      zIndex: 1000,
                      opacity: 0.8,
@@ -123,10 +140,10 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
                      display: "flex",
                      position: "absolute",
                      borderRadius: "50%",
-                     ...scrollGuideWidthAndHeight,
+                     height: scrollGuideLength,
+                     width: scrollGuideLength,
                      justifyContent: "center",
                      alignItems: "center",
-
                  }}>
                 <div style={{
                     width: "80%",
@@ -137,18 +154,18 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
                 }}>
                     <Typography.Title level={3} style={{
                         textAlign: "center",
-                        fontSize: "5.5rem",
                         display: 'flex',
-                        color: COLORS.PURE_WHITE
+                        color: COLORS.PURE_WHITE,
+                        fontSize: scrollGuideTextFontSize,
                     }}>
                         A luxurious upgrade that packs plenty of firepower
                     </Typography.Title>
                 </div>
                 <img
                     style={{
-                        zIndex: 0, position: "absolute", bottom: 80,
-                        width: "140px",  /* Set desired width */
-                        height: "auto"  /* Maintain aspect ratio */
+                        zIndex: 0, position: "absolute",
+                        height: "auto",
+                        ...scrollGuideArrowStyle,
                     }}
                     src={img_arrowdown} alt={""}></img>
             </div>}

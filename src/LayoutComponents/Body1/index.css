@@ -23,3 +23,27 @@
         transform: scale(1.4) translateX(-10%) translateY(10%) rotate(360deg);
     }
 }
+
+
+@keyframes keyframe-ao-scroll-guide {
+    from {
+        transform: translateY(100%);
+    }
+}
+
+.ao-scroll-guide-tablet {
+    transform: translateY(45%);
+    animation: keyframe-ao-scroll-guide 0.8s ease-in forwards;
+}
+
+
+.ao-scroll-guide-desktop {
+    transform: translateY(45%);
+    animation: keyframe-ao-scroll-guide 0.8s ease-in forwards;
+}
+
+
+.ao-scroll-guide-mobile {
+    transform: translateY(65%);
+    animation: keyframe-ao-scroll-guide 0.8s ease-in forwards;
+}
