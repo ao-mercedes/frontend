@@ -6,12 +6,12 @@ import img_mastheadring from '../../assets/Body1/masthead_ring.svg';
 import img_mastheadfront from '../../assets/Body1/masthead_fore_img.png';
 import img_mastheadfrontmobile from '../../assets/Body1/mobile_masthead_fore_img.png';
 import img_mastheadringrotate from '../../assets/Body1/masthead_ring_rotate.svg';
-import img_arrowdown from '../../assets/Body1/main-arrow-down.svg';
 
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
 import {Typography} from "antd";
 import {useEffect, useState} from "react";
+import ScrollGuide from "./_scrollGuide.tsx";
 
 // TODO
 // [ ] alts for images sources
@@ -83,41 +83,7 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
         imgWidthAndHeight = {width: '100vw', height: '100vh'};
     }
 
-    let scrollGuideLength = "";
-    if (device == Device.mobile) {
-        scrollGuideLength = '320px';
-    } else if (device == Device.tablet) {
-        scrollGuideLength = '360px';
-    } else if (device == Device.desktop) {
-        scrollGuideLength = '900px';
-    }
 
-    let scrollGuideTextFontSize = "5.5rem";
-    if (device == Device.mobile) {
-        scrollGuideTextFontSize = "2rem";
-    } else if (device == Device.tablet) {
-        scrollGuideTextFontSize = "2rem";
-    } else if (device == Device.desktop) {
-        scrollGuideTextFontSize = "5.5rem";
-    }
-
-    let scrollGuideArrowStyle = {};
-    if (device == Device.mobile) {
-        scrollGuideArrowStyle = {width: "3.5rem", bottom: 28};
-    } else if (device == Device.tablet) {
-        scrollGuideArrowStyle = {width: "5rem", bottom: 30};
-    } else if (device == Device.desktop) {
-        scrollGuideArrowStyle = {width: "10rem", bottom: 80};
-    }
-
-    let scrollGuideKeyframeClassName = "ao-scroll-guide-tablet";
-    if (device == Device.mobile) {
-        scrollGuideKeyframeClassName = "ao-scroll-guide-mobile";
-    } else if (device == Device.tablet) {
-        scrollGuideKeyframeClassName = "ao-scroll-guide-tablet";
-    } else if (device == Device.desktop) {
-        scrollGuideKeyframeClassName = "ao-scroll-guide-desktop";
-    }
     return <div
         id="ao-body1-container"
         style={{
@@ -131,44 +97,7 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
         }}
     >
         {showScrollGuide &&
-            <div id="ao-scroll-guide"
-                 className={`${scrollGuideKeyframeClassName}`}
-                 style={{
-                     zIndex: 1000,
-                     opacity: 0.8,
-                     backgroundColor: COLORS.CHARCOAL_SLATE,
-                     display: "flex",
-                     position: "absolute",
-                     borderRadius: "50%",
-                     height: scrollGuideLength,
-                     width: scrollGuideLength,
-                     justifyContent: "center",
-                     alignItems: "center",
-                 }}>
-                <div style={{
-                    width: "80%",
-                    height: "80%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center"
-                }}>
-                    <Typography.Title level={3} style={{
-                        textAlign: "center",
-                        display: 'flex',
-                        color: COLORS.PURE_WHITE,
-                        fontSize: scrollGuideTextFontSize,
-                    }}>
-                        A luxurious upgrade that packs plenty of firepower
-                    </Typography.Title>
-                </div>
-                <img
-                    style={{
-                        zIndex: 0, position: "absolute",
-                        height: "auto",
-                        ...scrollGuideArrowStyle,
-                    }}
-                    src={img_arrowdown} alt={""}></img>
-            </div>}
+            <ScrollGuide device={Device.mobile}/>}
         {/*underlying background*/}
         <img style={{...imgWidthAndHeight}}
              src={device == Device.mobile ? img_mastheadbackmobile : img_mastheadback} alt={""}></img>
