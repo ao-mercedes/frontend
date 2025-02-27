@@ -21,11 +21,9 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
     const [showScrollGuide, setShouldScrollGuide] = useState(false);
 
     const enableScrollGuide = () => {
-        console.log("scroll");
         setShouldScrollGuide(true);
     };
     useEffect(() => {
-        console.log(`showScrollGuide ${showScrollGuide}`);
         if (!showScrollGuide) {
             window.addEventListener('scroll', enableScrollGuide);
         }
@@ -97,7 +95,7 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
         }}
     >
         {showScrollGuide &&
-            <ScrollGuide device={Device.mobile}/>}
+            <ScrollGuide device={device}/>}
         {/*underlying background*/}
         <img style={{...imgWidthAndHeight}}
              src={device == Device.mobile ? img_mastheadbackmobile : img_mastheadback} alt={""}></img>
