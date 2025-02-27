@@ -7,7 +7,7 @@ import {defaultTheme} from "./layoutComponents/themeDefault.ts";
 
 import {ConfigProvider, Layout,} from "antd";
 import {useDevice} from "./hooks/useDevice.ts";
-// import HamburgerNavigationMenu from "./layoutComponents/HamburgerNavigationMenu";
+import HamburgerNavigationMenu from "./layoutComponents/HamburgerNavigationMenu";
 
 
 const Body2: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body2 ao-body">{children}</div>;
@@ -32,9 +32,14 @@ function App() {
             <ConfigProvider
                 theme={defaultTheme()}
             >
-                {/*<div className={"ao-hamburger-navigation-menu"} style={{}}>*/}
-                {/*    <HamburgerNavigationMenu/>*/}
-                {/*</div>*/}
+                <div className={"ao-hamburger-navigation-menu-wrapper"} style={{
+                    position: "fixed",
+                    top: 0,
+                    right: 0,
+                    zIndex: 1000,
+                }}>
+                    <HamburgerNavigationMenu device={device}/>
+                </div>
                 <Layout>
 
                     <Body1 props={{

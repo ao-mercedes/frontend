@@ -6,20 +6,22 @@
     - [ ] Modal pin top right
     - [ ] Mobile
         - [ ] Horizontal Bar
-            - [ ] RARROW <- WA <- IG <- TG <- FB <- TWITTER <- PIVOT
+            - [ ] `RARROW <- [WA <- IG <- TG <- FB <- TWITTER] <- PIVOT`
         - [ ] Icon Color: White
-        - [ ] Tablet
-            - [ ] Vertical Bar
-            ```
-                PIVOT
-                WA
-                IG
-                TG
-                FB
-                TWITTER
-                UARROW
-            ```
-            - [ ] Icon Color: Black
-        - [ ] Desktop
-            - [ ] Bar same as Tablet
-            - [ ] Icon Color: Black
+    - [ ] Tablet
+        - [ ] Vertical Bar
+        ```
+            PIVOT
+            -
+            WA
+            IG
+            TG
+            FB
+            TWITTER
+            -
+            UARROW
+        ```
+        - [ ] Icon Color: Black
+    - [ ] Desktop
+        - [ ] Bar same as Tablet
+        - [ ] Icon Color: Black
