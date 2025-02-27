@@ -25,8 +25,8 @@ const DEVICE_SIZE_BREAKPOINT = {
     desktop: {width: 2960}, // 2960 x 1440
 };
 
+const useDevice = () => {
 
-function App() {
     const [device, setDevice] = useState(Device.mobile);
     const hasReachedDesktopWidth = useMediaQuery({
         query: `(min-width: ${DEVICE_SIZE_BREAKPOINT.desktop.width}px)`,
@@ -53,6 +53,12 @@ function App() {
         });
 
     }, [hasReachedDesktopWidth, hasReachedTabletWidth, hasReachedMobileWidth]);
+
+    return device;
+};
+
+function App() {
+    const device = useDevice();
 
     return (
         <>
