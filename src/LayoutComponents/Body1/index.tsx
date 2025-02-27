@@ -64,6 +64,7 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
     } else if (device == Device.desktop) {
         titleTransformOffset = "translateY(70%)";
     }
+
     let titleFontSize = "";
     if (device == Device.mobile) {
         titleFontSize = "3.1rem";
@@ -90,9 +91,10 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
     } else if (device == Device.desktop) {
         scrollGuideLength = '900px';
     }
+
     let scrollGuideTextFontSize = "5.5rem";
     if (device == Device.mobile) {
-        scrollGuideTextFontSize = "5.5rem";
+        scrollGuideTextFontSize = "2rem";
     } else if (device == Device.tablet) {
         scrollGuideTextFontSize = "2rem";
     } else if (device == Device.desktop) {
@@ -100,13 +102,12 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
     }
 
     let scrollGuideArrowStyle = {};
-
     if (device == Device.mobile) {
-        scrollGuideArrowStyle = {width: "55px", bottom: 80};
+        scrollGuideArrowStyle = {width: "3.5rem", bottom: 28};
     } else if (device == Device.tablet) {
-        scrollGuideArrowStyle = {width: "80px", bottom: 30};
+        scrollGuideArrowStyle = {width: "5rem", bottom: 30};
     } else if (device == Device.desktop) {
-        scrollGuideArrowStyle = {width: "160px", bottom: 80};
+        scrollGuideArrowStyle = {width: "10rem", bottom: 80};
     }
 
     let scrollGuideKeyframeClassName = "ao-scroll-guide-tablet";
@@ -129,7 +130,6 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
             height: '100%',
         }}
     >
-
         {showScrollGuide &&
             <div id="ao-scroll-guide"
                  className={`${scrollGuideKeyframeClassName}`}
