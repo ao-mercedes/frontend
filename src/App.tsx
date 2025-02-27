@@ -2,13 +2,11 @@ import './font-face.css';
 import './App.css';
 
 import Body1 from "./layoutComponents/Body1";
-import {Device} from "./utils/constants/constants.ts";
 
 
-import {ConfigProvider, Layout, Modal} from "antd";
-import {useEffect, useState} from "react";
-import {useMediaQuery} from 'react-responsive';
+import {ConfigProvider, Drawer, Layout,} from "antd";
 import * as React from "react";
+import {useDevice} from "./hooks/useDevice.ts";
 
 
 const Body2: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body2 ao-body">{children}</div>;
@@ -25,40 +23,9 @@ const DEVICE_SIZE_BREAKPOINT = {
     desktop: {width: 2960}, // 2960 x 1440
 };
 
-const useDevice = () => {
-    const [device, setDevice] = useState(Device.mobile);
-    const hasReachedDesktopWidth = useMediaQuery({
-        query: `(min-width: ${DEVICE_SIZE_BREAKPOINT.desktop.width}px)`,
-    });
-
-    const hasReachedTabletWidth = useMediaQuery({
-        query: `(min-width: ${DEVICE_SIZE_BREAKPOINT.tablet.width}px)`,
-    });
-
-    const hasReachedMobileWidth = useMediaQuery({
-        query: `(min-width: ${DEVICE_SIZE_BREAKPOINT.mobile.width}px)`,
-    });
-
-    useEffect(() => {
-        let _device = Device.mobile;
-        if (hasReachedDesktopWidth) {
-            _device = Device.desktop;
-        } else if (hasReachedTabletWidth) {
-            _device = Device.tablet;
-        }
-
-        setDevice(() => {
-            return _device;
-        });
-
-    }, [hasReachedDesktopWidth, hasReachedTabletWidth, hasReachedMobileWidth]);
-
-    return device;
-};
-
 
 function App() {
-    const device = useDevice();
+    const device = useDevice(DEVICE_SIZE_BREAKPOINT);
 
     return (
         <>
@@ -75,9 +42,9 @@ function App() {
                 }}
             >
                 <Layout>
-                    <Modal className="ao-modal">
-                        <div>modal</div>
-                    </Modal>
+                    <Drawer className="ao-modal" open={true}>
+                        <div>asdfasdfasfdasdf</div>
+                    </Drawer>
                     <Body1 props={{
                         device: device
                     }}>content</Body1>
