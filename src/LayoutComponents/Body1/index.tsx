@@ -1,12 +1,13 @@
-import {Device} from "../../utils/constants/constants.ts";
-
 import "./index.css";
-import mastheadback from '../../assets/Body1/masthead_back_img.jpg';
-import mastheadbackmobile from '../../assets/Body1/mobile_masthead_back_img.jpg';
-import mastheadring from '../../assets/Body1/masthead_ring.svg';
-import mastheadfront from '../../assets/Body1/masthead_fore_img.png';
-import mastheadfrontmobile from '../../assets/Body1/mobile_masthead_fore_img.png';
-import mastheadringrotate from '../../assets/Body1/masthead_ring_rotate.svg';
+
+import img_mastheadback from '../../assets/Body1/masthead_back_img.jpg';
+import img_mastheadbackmobile from '../../assets/Body1/mobile_masthead_back_img.jpg';
+import img_mastheadring from '../../assets/Body1/masthead_ring.svg';
+import img_mastheadfront from '../../assets/Body1/masthead_fore_img.png';
+import img_mastheadfrontmobile from '../../assets/Body1/mobile_masthead_fore_img.png';
+import img_mastheadringrotate from '../../assets/Body1/masthead_ring_rotate.svg';
+
+import {Device} from "../../utils/constants/constants.ts";
 
 import {Typography} from "antd";
 
@@ -29,13 +30,13 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
 
     const ringFullComponent = <img
         style={{...ringStyle, position: "absolute"}}
-        src={mastheadring} alt={""}></img>;
+        src={img_mastheadring} alt={""}></img>;
 
     const ringRotateComponent = <img
         id={device == Device.mobile ? "ring-rotate-mobile" : "ring-rotate-default"}
         className="rotate"
         style={{...ringStyle, position: "absolute"}}
-        src={mastheadringrotate} alt={""}></img>;
+        src={img_mastheadringrotate} alt={""}></img>;
 
     let titleTransformOffset = "";
     if (device == Device.mobile) {
@@ -75,7 +76,7 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
         }}>
         {/*underlying background*/}
         <img style={{...imgWidthAndHeight}}
-             src={device == Device.mobile ? mastheadbackmobile : mastheadback} alt={""}></img>
+             src={device == Device.mobile ? img_mastheadbackmobile : img_mastheadback} alt={""}></img>
         {/*rings*/}
         <div style={{
             display: "flex",
@@ -92,7 +93,7 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
         {/*overlapping background*/}
         <img
             style={{zIndex: 0, position: "absolute", ...imgWidthAndHeight}}
-            src={device == Device.mobile ? mastheadfrontmobile : mastheadfront} alt={""}></img>
+            src={device == Device.mobile ? img_mastheadfrontmobile : img_mastheadfront} alt={""}></img>
         <div className="oa-title"
              style={{
                  position: "absolute",
