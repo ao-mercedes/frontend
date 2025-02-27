@@ -1,3 +1,9 @@
+/*global overwrites*/
+body {
+    margin: 0;
+}
+
+
 .oa-body {
     border: 2px solid red;
 }
