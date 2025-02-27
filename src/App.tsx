@@ -1,7 +1,7 @@
 import './font-face.css';
 import './App.css';
 
-import Body1 from "./LayoutComponents/Body1";
+import Body1 from "./layoutComponents/Body1";
 import {Device} from "./utils/constants/constants.ts";
 
 
@@ -26,7 +26,6 @@ const DEVICE_SIZE_BREAKPOINT = {
 };
 
 const useDevice = () => {
-
     const [device, setDevice] = useState(Device.mobile);
     const hasReachedDesktopWidth = useMediaQuery({
         query: `(min-width: ${DEVICE_SIZE_BREAKPOINT.desktop.width}px)`,

@@ -1,5 +1,7 @@
 import "./index.css";
 
+import ScrollGuide from "./_scrollGuide.tsx";
+
 import img_mastheadback from '../../assets/Body1/masthead_back_img.jpg';
 import img_mastheadbackmobile from '../../assets/Body1/mobile_masthead_back_img.jpg';
 import img_mastheadring from '../../assets/Body1/masthead_ring.svg';
@@ -11,7 +13,6 @@ import {COLORS, Device} from "../../utils/constants/constants.ts";
 
 import {Typography} from "antd";
 import {useEffect, useState} from "react";
-import ScrollGuide from "./_scrollGuide.tsx";
 
 // TODO
 // [ ] alts for images sources
@@ -142,5 +143,3 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
 
 
 export default Body1;
-
-
