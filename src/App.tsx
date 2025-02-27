@@ -1,32 +1,29 @@
-import {useState} from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
+import {Layout} from "antd";
+
+const {Footer} = Layout;
+
+const Body1: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body1 oa-body">{children}</div>;
+const Body2: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body2 oa-body">{children}</div>;
+const Body3: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body3 oa-body">{children}</div>;
+const Body4: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body4 oa-body">{children}</div>;
+const Body5: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body5 oa-body">{children}</div>;
+const Body6: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body6 oa-body">{children}</div>;
+const Body7: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body6 oa-body">{children}</div>;
 
 function App() {
-    const [count, setCount] = useState(0);
     return (
         <>
-            <div>
-                <a href="https://vite.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo"/>
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img src={reactLogo} className="logo react" alt="React logo"/>
-                </a>
-            </div>
-            <h1>Vite + React</h1>
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
+            <Layout>
+                <Body1>content</Body1>
+                <Body2>content</Body2>
+                <Body3>content</Body3>
+                <Body4>content</Body4>
+                <Body5>content</Body5>
+                <Body6>content</Body6>
+                <Body7>content</Body7>
+                <Footer>footer</Footer>
+            </Layout>
         </>
     );
 }
