@@ -32,6 +32,7 @@ const CircularCarousel: React.FC = () => {
         // Cleanup the observer on unmount
         return () => {
             if (carouselWrapperRef.current) {
+                // eslint-disable-next-line react-hooks/exhaustive-deps
                 observer.unobserve(carouselWrapperRef.current);
             }
         };
