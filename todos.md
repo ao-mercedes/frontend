@@ -64,3 +64,11 @@
                 - [ ] Interaction
                 - [ ] Margin
         - [ ] Wireframe + add background
+
+# Issues
+
+- [x] [Issue-0001] Circle Marker Obstructing Clicks
+    - ClassName Ref: `focus-center-circle-mark-wrapper` \
+      On `Body2`'s `Carousel`, the circle marker is blocking mouse clicks on Carousel Dots.
+      This is due to circle marker having an absolute position.
+    - Fixed with `pointer-events: none` on `focus-center-circle-mark-wrapper`

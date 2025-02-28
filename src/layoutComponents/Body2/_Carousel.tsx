@@ -240,6 +240,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
                         width: "100%",
                         height: "100%",
                         justifyContent: "center",
+                        pointerEvents: "none",
                         alignItems: "center",
                         transform: "translateY(-10%) translateX(0%)",
                         zIndex: 1000,
