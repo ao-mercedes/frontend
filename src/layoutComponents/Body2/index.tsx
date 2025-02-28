@@ -4,7 +4,7 @@ import {PageA4} from "../pageSize.tsx";
 import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 import {useEffect, useState} from "react";
 import {FirstPitch} from "../../assets/textual/firstpitch.ts";
-import {Divider, Typography} from "antd";
+import {Typography} from "antd";
 
 
 // TODO
