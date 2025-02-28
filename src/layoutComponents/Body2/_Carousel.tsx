@@ -1,5 +1,7 @@
 import "./_Carousel.css"; // Import custom styles for animation
 
+import img_right_arrow from "../../assets/Body2/carousel-arrow-right.svg";
+import img_left_arrow from "../../assets/Body2/carousel-arrow-left.svg";
 
 import {COLORS} from "../../utils/constants/constants.ts";
 
@@ -80,6 +82,32 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
         });
     };
 
+    const setFocusToCurrentNeighbour = (direction: string) => {
+        setItems(
+            (items) => {
+                if (direction != "right" && direction != "left") {
+                    return items;
+                }
+
+                const currFocusIdx = items.findIndex((item) => item.metadata.isFocused);
+                if (currFocusIdx == -1) {
+                    return items;
+                }
+
+                const offset = direction == "right" ? 1 : -1;
+                const newFocusIndex = (items.length + items.findIndex((item) => item.metadata.isFocused) + offset) % items.length;
+                return items.map((item, index) => {
+                    return {
+                        ...item,
+                        metadata: {
+                            ...item.metadata,
+                            isFocused: newFocusIndex == index,
+                        }
+                    };
+                });
+            }
+        );
+    };
 
     const itemsCount = items.length;
 
@@ -126,21 +154,17 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
     const carouselWrapperRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        // Create an Intersection Observer instance
         const observer = new IntersectionObserver(
             ([entry]) => {
-                // If the element is in view, set visibility to true
                 setStartTransitionStep1(entry.isIntersecting);
             },
-            {threshold: 0.5} // 50% of the element must be visible to trigger
+            {threshold: 0.5}
         );
 
-        // Start observing the element
         if (carouselWrapperRef.current) {
             observer.observe(carouselWrapperRef.current);
         }
 
-        // Cleanup the observer on unmount
         return () => {
             if (carouselWrapperRef.current) {
                 // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -181,6 +205,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
     const carouselTransitionStep1 = startStep1Transition ? `transform ${step1DurationSeconds}s ease-in` : "";
     console.log(`[]itemcount: ${itemsCount}`);
     console.log(`[]exteriorFocusImage: ${exteriorFocusImage}`);
+
 
     return (
         <div className="carousel-container"
@@ -316,53 +341,124 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
                     </div>
                 }
 
-
-                <div className="carousel-overlay" style={{
-                    display: "flex", position: "absolute",
-                    height: "100%", width: "100%",
-                    // background: COLORS.GOLDEN_AMBER,
-                    transform: startStep1Transition ? "translateX(0) rotate(0)" : "translateX(-200%) rotate(-270deg)",
-                    transition: carouselTransitionStep1,
-                }}>
-                    <div className="carousel-dots-wrapper" style={{
-                        display: "flex",
-                        height: "100%",
-                        width: "100%",
-                        // background: "red",
-                        position: "relative",
-                        justifyContent: "center",
+                {
+                    <div className="carousel-dots-overlay" style={{
+                        display: "flex", position: "absolute",
+                        height: "100%", width: "100%",
+                        // background: COLORS.GOLDEN_AMBER,
+                        transform: startStep1Transition ? "translateX(0) rotate(0)" : "translateX(-200%) rotate(-270deg)",
+                        transition: carouselTransitionStep1,
                     }}>
-                        <div className="carousel-dots-panel" style={{
+                        <div className="carousel-dots-wrapper" style={{
                             display: "flex",
-                            position: "absolute",
-                            alignItems: "flex-end",
-                            bottom: "40px",
+                            height: "100%",
+                            width: "100%",
+                            // background: "red",
+                            position: "relative",
                             justifyContent: "center",
-                            zIndex: 1000,
                         }}>
-                            <div className="carousel-dots" style={{display: "flex", flexDirection: "row"}}>
-                                {items?.map((dotItem) => {
-                                    return <div key={dotItem.data_id}
-                                                className={`carousel-dot`}
-                                                onClick={() => {
-                                                    console.log(`clicked dotItem.data_id: ${dotItem.data_id}`);
-                                                    setFocusByDataId(dotItem.data_id);
-                                                }}
-                                                style={{
-                                                    background: COLORS.PURE_WHITE,
-                                                    display: "flex",
-                                                    height: "25px",
-                                                    width: "25px",
-                                                    margin: "0px 10px 0 10px",
-                                                    alignItems: "center",
-                                                    borderRadius: "50%",
-                                                    justifyContent: "center",
-                                                }}></div>;
-                                })}
+                            <div className="carousel-dots-panel" style={{
+                                display: "flex",
+                                position: "absolute",
+                                alignItems: "flex-end",
+                                bottom: "40px",
+                                justifyContent: "center",
+                                zIndex: 1000,
+                            }}>
+                                <div className="carousel-dots" style={{display: "flex", flexDirection: "row"}}>
+                                    {items?.map((dotItem) => {
+                                        return <div key={dotItem.data_id}
+                                                    className={`carousel-dot`}
+                                                    onClick={() => {
+                                                        console.log(`clicked dotItem.data_id: ${dotItem.data_id}`);
+                                                        setFocusByDataId(dotItem.data_id);
+                                                    }}
+                                                    style={{
+                                                        background: COLORS.PURE_WHITE,
+                                                        display: "flex",
+                                                        height: "25px",
+                                                        width: "25px",
+                                                        margin: "0px 10px 0 10px",
+                                                        alignItems: "center",
+                                                        borderRadius: "50%",
+                                                        justifyContent: "center",
+                                                    }}></div>;
+                                    })}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                }
+                {
+                    <div className={"ao-body2-carousel-arrows"}
+                         style={{
+                             display: "flex",
+                             width: "95%",
+                             position: "absolute",
+                             justifyContent: "space-between",
+                             alignItems: "center",
+                             zIndex: 1000,
+                         }}>
+                        <div className="ao-body2-carousel-arrow-left-wrapper"
+                             style={{
+                                 display: "flex",
+                                 width: "100%",
+                                 height: "100%",
+                                 justifyContent: "center",
+                                 alignItems: "center",
+                                 zIndex: 1000,
+                             }}>
+                            <div className="ao-body2-carousel-arrow-left"
+                                 style={{
+                                     display: "flex",
+                                     width: "100%",
+                                     height: "100%",
+                                     alignItems: "center",
+                                     justifyContent: "flex-start",
+                                     zIndex: 1000,
+                                 }}>
+                                <img style={{
+                                    display: "flex", justifyContent: "center", alignItems: "center",
+                                }}
+                                     src={img_left_arrow} alt={""} onClick={() => {
+                                    setFocusToCurrentNeighbour("left");
+                                }}/>
+                            </div>
+                        </div>
+                        <div className="ao-body2-carousel-arrow-right-wrapper"
+                             style={{
+                                 display: "flex",
+                                 width: "100%",
+                                 height: "100%",
+                                 justifyContent: "center",
+                                 alignItems: "right",
+                                 zIndex: 500,
+                             }}
+                        >
+                            <div className="ao-body2-carousel-arrow-right"
+                                 style={{
+                                     display: "flex",
+                                     width: "100%",
+                                     height: "100%",
+                                     justifyContent: "flex-end",
+                                     alignItems: "center",
+                                     zIndex: 500,
+                                 }}
+                            >
+                                <img style={{
+                                    display: "flex", justifyContent: "center", alignItems: "center",
+                                }}
+                                     src={img_right_arrow} alt={""} onClick={() => {
+                                    setFocusToCurrentNeighbour("right");
+                                }}/>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+
             </div>
         </div>
     );
