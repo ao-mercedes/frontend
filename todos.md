@@ -72,3 +72,16 @@
       On `Body2`'s `Carousel`, the circle marker is blocking mouse clicks on Carousel Dots.
       This is due to circle marker having an absolute position.
     - Fixed with `pointer-events: none` on `focus-center-circle-mark-wrapper`
+
+- [x] [Issue-0002] On leaving viewport, animated carousel image dissapears and excessive rerenders.
+    - In `Body2`, when at least 50% of the carousel placeholder is in viewport (intersection), the car image scrolls
+      in. \
+      If the intersection becomes less 50%, the car image dissapears because
+      `setStartTransitionStep1(entry.isIntersecting)` restarts animation on leave. looks not very appealing.
+    - Fixed with
+
+```
+                if (entry.isIntersecting) {
+                    setStartTransitionStep1(entry.isIntersecting);
+                }
+```

@@ -39,6 +39,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
     const [items, setItems] = useState<ItemDataWithMetadata[]>([]);
 
     useEffect(() => {
+        console.log(`[Mount] CircularCarousel() useEffect() <- data: ${data?.length ?? 0} items`);
+
         setItems(() => {
             if (data == undefined) {
                 return [];
@@ -156,19 +158,21 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                setStartTransitionStep1(entry.isIntersecting);
+                if (entry.isIntersecting) {
+                    setStartTransitionStep1(entry.isIntersecting);
+                }
             },
             {threshold: 0.5}
         );
 
-        if (carouselWrapperRef.current) {
-            observer.observe(carouselWrapperRef.current);
+        const currRef = carouselWrapperRef.current;
+        if (currRef) {
+            observer.observe(currRef);
         }
 
         return () => {
-            if (carouselWrapperRef.current) {
-                // eslint-disable-next-line react-hooks/exhaustive-deps
-                observer.unobserve(carouselWrapperRef.current);
+            if (currRef) {
+                observer.unobserve(currRef);
             }
         };
     }, []);
@@ -205,7 +209,6 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
     const carouselTransitionStep1 = startStep1Transition ? `transform ${step1DurationSeconds}s ease-in` : "";
     console.log(`[]itemcount: ${itemsCount}`);
     console.log(`[]exteriorFocusImage: ${exteriorFocusImage}`);
-
 
     return (
         <div className="carousel-container"
@@ -282,7 +285,6 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
                 }
                 {
                     <div className="carousel-outer-bubble-wrapper" style={{
-
                         display: "flex",
                         position: "absolute",
                         width: "min-content",
