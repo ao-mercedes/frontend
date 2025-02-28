@@ -1,23 +1,33 @@
-export interface IImageClient {
-    getImage(): string;
+import img_carousel1 from '../../../assets/Body2/carousel-1.png';
+import img_carousel2 from '../../../assets/Body2/carousel-2.png';
+import img_carousel3 from '../../../assets/Body2/carousel-3.png';
+import img_carousel4 from '../../../assets/Body2/carousel-4.png';
 
-    getImageSize(): { width: number; height: number };
+export interface IImageClient {
+    getImage(label: string): string;
 }
 
 export class ImageClient implements IImageClient {
-    private image: string = '';
-    private imageSize: { width: number; height: number } = {width: 0, height: 0};
+    private images: {
+        [key: string]: string;
+    };
 
     constructor() {
         console.log('new ImageClient');
+        this.images = {
+            "img_bonnet": img_carousel1,
+            "img_exhaust": img_carousel2,
+            "img_wheel": img_carousel3,
+            "img_side_profile": img_carousel4
+        };
     }
 
-    public getImage(): string {
-        console.log('topography');
-        return this.image;
-    }
-
-    public getImageSize(): { width: number; height: number } {
-        return this.imageSize;
+    public getImage(label: string): string {
+        console.log('getImage: ' + label + '');
+        const img = this.images[label];
+        if (img === undefined || img === null) {
+            return img_carousel1; // default
+        }
+        return img;
     }
 }

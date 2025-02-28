@@ -1,4 +1,20 @@
-export const FirstPitch = () => {
+export interface ExteriorDescriptionData {
+    label: string;
+    text: string;
+    credit: string;
+    imgRef: string;
+}
+
+export interface FirstPitchData {
+    DateCreated: string;
+    Author: string;
+    Designer: string;
+    Paragraphs: string[];
+    ExteriorDescriptions: ExteriorDescriptionData[];
+}
+
+
+export const FirstPitch = (): FirstPitchData => {
     return {
         DateCreated: "03 APRIL 2023, 3:37 PM",
         Author: "JEREMY CHUA",
@@ -26,7 +42,7 @@ export const FirstPitch = () => {
                 label: "wheel",
                 text: "Red brake callipers draw your attention to the large cross drilled rotors peering out behind the 21 inch wheels.",
                 credit: "PHOTO: sgCarMart",
-                imgRef: "wheel"
+                imgRef: "img_wheel"
             },
             {
                 label: "side_profile",
