@@ -4,7 +4,7 @@ import {PageA4} from "../pageSize.tsx";
 import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 import {useEffect, useState} from "react";
 import {FirstPitch} from "../../assets/textual/firstpitch.ts";
-import {Typography} from "antd";
+import {Divider, Typography} from "antd";
 
 
 // TODO
@@ -25,28 +25,29 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
         }
     }, [imageClient]);
 
-    const headerFontSize = "18px";
+    const headerBylineFontSize = "18px";
+    const headerDateFontSize = "14px";
 
     return <PageA4 device={device} style={{
         backgroundColor: COLORS.CHARCOAL_SLATE,
     }}>
         <div className="ao-body2-container"
              style={{
-                 paddingTop: "35px",
+                 marginTop: "35px",
                  display: "flex", flexDirection: "column", alignItems: "center"
              }}>
             <div className="body2-header"
                  style={{
-                     paddingLeft: "10px",
-                     paddingRight: "10px",
                      width: "100%",
+                     paddingLeft: "20px",
+                     paddingRight: "20px",
                      display: "flex",
-                     flexDirection: "row",
+                     flexDirection: "column",
                      alignItems: "center",
-                     justifyContent: "space-evenly",
                  }}>
                 <div style={{
                     display: "flex",
+                    width: "100%",
                     flex: 1,
                     justifyContent: "space-around",
                     flexDirection: "row",
@@ -54,31 +55,60 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
                 }}>
                     <div style={{display: "flex", gap: "10px"}}>
                         <Typography.Text
-                            style={{fontSize: headerFontSize, color: COLORS.WALNUT_BROWN, fontWeight: "600"}}>
+                            style={{fontSize: headerBylineFontSize, color: COLORS.WALNUT_BROWN, fontWeight: "600"}}>
                             {"TEXT"}
                         </Typography.Text>
                         <Typography.Text
-                            style={{fontSize: headerFontSize, color: COLORS.BURNISHED_GOLD, fontWeight: "600"}}>
+                            style={{fontSize: headerBylineFontSize, color: COLORS.BURNISHED_GOLD, fontWeight: "600"}}>
                             {pitch?.Author ?? ""}
                         </Typography.Text></div>
                     <div style={{display: "flex", gap: "10px"}}>
                         <Typography.Text
-                            style={{fontSize: headerFontSize, color: COLORS.WALNUT_BROWN, fontWeight: "600"}}>
+                            style={{fontSize: headerBylineFontSize, color: COLORS.WALNUT_BROWN, fontWeight: "600"}}>
                             {"DESIGN"}
                         </Typography.Text>
                         <Typography.Text
-                            style={{fontSize: headerFontSize, color: COLORS.BURNISHED_GOLD, fontWeight: "600"}}>
+                            style={{fontSize: headerBylineFontSize, color: COLORS.BURNISHED_GOLD, fontWeight: "600"}}>
                             {`${pitch?.Designer ?? ""}`}
                         </Typography.Text></div>
                 </div>
+                <Divider type="horizontal"
+                         style={{
+                             borderColor: COLORS.MOSSY_OLIVE,
+                             width: "100%",
+                             marginTop: "10px",
+                             marginBottom: "10px",
+                         }}/>
+                <div style={{
+                    display: "flex",
+                    width: "100%",
+                    flex: 1,
+                    justifyContent: "space-around",
+                    flexDirection: "row",
+                    alignItems: "center"
+                }}>
+                    <Typography.Text
+                        style={{
+                            color: COLORS.MOSSY_OLIVE,
+                            fontSize: headerDateFontSize,
+                            fontWeight: "600",
+                        }}>
+                        {`Published on ${pitch?.DateCreated ?? ''}`}
+                    </Typography.Text>
+                </div>
             </div>
 
-            <div className="body2-content">
+            <div className="body2-content"
+                 style={{display: "flex", flexDirection: "column", alignItems: "center", marginTop: "30px"}}>
                 <div className="body2-content-text">
                     {
                         pitch?.Paragraphs.map((paragraph, index) => {
                             return <Typography.Paragraph key={index}
-                                                         style={{color: COLORS.PURE_WHITE}}>{paragraph}</Typography.Paragraph>;
+                                                         style={{
+                                                             fontSize: "20px",
+                                                             fontWeight: "500",
+                                                             color: COLORS.PURE_WHITE
+                                                         }}>{paragraph}</Typography.Paragraph>;
                         })
                     }
                 </div>

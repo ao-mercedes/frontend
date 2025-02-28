@@ -1,5 +1,20 @@
 @font-face {
     font-family: 'Visby CF';
+    src: url('./assets/fonts/Fontspring-DEMO-visbycf-light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Visby CF';
+    src: url('./assets/fonts/Fontspring-DEMO-visbycf-medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Visby CF';
     src: url('./assets/fonts/visbycf-demibold.otf') format('opentype');
     font-weight: 600;
     font-style: normal;
@@ -16,12 +31,5 @@
     font-family: 'Visby CF';
     src: url('./assets/fonts/visbycf-extrabold.otf') format('opentype');
     font-weight: 800;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Visby CF';
-    src: url('./assets/fonts/Fontspring-DEMO-visbycf-light.otf') format('opentype');
-    font-weight: 300;
     font-style: normal;
 }

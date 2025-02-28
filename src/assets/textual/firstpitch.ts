@@ -1,5 +1,6 @@
 export const FirstPitch = () => {
     return {
+        DateCreated: "03 APRIL 2023, 3:37 PM",
         Author: "JEREMY CHUA",
         Designer: "CJ. FOO",
         Paragraphs: ["The iconic SL has been transformed from 'super-light' to 'superb luxurious, and in SL55 form, packs plenty of firepower, too.",
