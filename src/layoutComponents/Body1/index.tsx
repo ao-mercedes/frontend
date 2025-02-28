@@ -7,7 +7,7 @@ import img_mastheadfront from '../../assets/Body1/masthead_fore_img.png';
 import img_mastheadfrontmobile from '../../assets/Body1/mobile_masthead_fore_img.png';
 import img_mastheadringrotate from '../../assets/Body1/masthead_ring_rotate.svg';
 
-import ScrollGuide from "./_scrollGuide.tsx";
+import _ScrollGuide from "./_scrollGuide.tsx";
 
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
@@ -16,9 +16,7 @@ import {useEffect, useState} from "react";
 
 // TODO
 // [ ] alts for images sources
-export const Body1: React.FC<{ props: { device: Device }, children: React.ReactNode }> = ({props,}) => {
-    const {device} = props;
-
+export const Body1: React.FC<{ device: Device }> = ({device}) => {
     const [showScrollGuide, setShouldScrollGuide] = useState(false);
 
     const enableScrollGuide = () => {
@@ -96,7 +94,7 @@ export const Body1: React.FC<{ props: { device: Device }, children: React.ReactN
         }}
     >
         {showScrollGuide &&
-            <ScrollGuide device={device}/>}
+            <_ScrollGuide device={device}/>}
         {/*underlying background*/}
         <img style={{...imgWidthAndHeight}}
              src={device == Device.mobile ? img_mastheadbackmobile : img_mastheadback} alt={""}></img>

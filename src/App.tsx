@@ -8,9 +8,9 @@ import {defaultTheme} from "./layoutComponents/themeDefault.ts";
 import {ConfigProvider, Layout,} from "antd";
 import {useDevice} from "./hooks/useDevice.ts";
 import HamburgerNavigationMenu from "./layoutComponents/HamburgerNavigationMenu";
+import Body2 from "./layoutComponents/Body2";
 
 
-const Body2: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body2 ao-body">{children}</div>;
 const Body3: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body3 ao-body">{children}</div>;
 const Body4: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body4 ao-body">{children}</div>;
 const Body5: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body5 ao-body">{children}</div>;
@@ -41,11 +41,8 @@ function App() {
                     <HamburgerNavigationMenu device={device}/>
                 </div>
                 <Layout>
-
-                    <Body1 props={{
-                        device: device
-                    }}>content</Body1>
-                    <Body2>content</Body2>
+                    <Body1 device={device}/>
+                    <Body2 device={device}/>
                     <Body3>content</Body3>
                     <Body4>content</Body4>
                     <Body5>content</Body5>

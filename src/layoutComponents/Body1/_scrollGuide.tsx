@@ -1,12 +1,11 @@
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
+import {titleScrollGuideText} from "../../assets/textual/intro.ts";
 import img_arrowdown from "../../assets/Body1/main-arrow-down.svg";
 
-import * as React from "react";
 import {Typography} from "antd";
 
-
-export const ScrollGuide: React.FC<{ device: Device }> = ({device}) => {
+export const _ScrollGuide: React.FC<{ device: Device }> = ({device}) => {
     let scrollGuideLength = "";
     if (device == Device.mobile) {
         scrollGuideLength = '320px';
@@ -75,7 +74,7 @@ export const ScrollGuide: React.FC<{ device: Device }> = ({device}) => {
                 color: COLORS.PURE_WHITE,
                 fontSize: scrollGuideTextFontSize,
             }}>
-                A luxurious upgrade that packs plenty of firepower
+                {titleScrollGuideText}
             </Typography.Title>
         </div>
         <img
@@ -88,4 +87,4 @@ export const ScrollGuide: React.FC<{ device: Device }> = ({device}) => {
     </div>;
 };
 
-export default ScrollGuide;
+export default _ScrollGuide;

@@ -28,13 +28,12 @@
     - [x] Desktop
         - [x] Bar same as Tablet
         - [x] Icon Color: Black
-        -
 
 # Changelog 28 February 2025
 
 - [ ] Body2 - First Pitch
     - [ ] Download images and text content
-    - [ ] Components (From top to bottom)
+    - [ ] Components (From top to bottom) - Mobile
         - [ ] Container flex
             - [ ] Byline
             - [ ] Pitch Information
@@ -43,4 +42,25 @@
                     - [ ] Pin to after Pitch Information
                 - [ ] Animated, Transit on scroll
                 - [ ] Interaction
-    - [ ] Wireframe + add background
+                - [ ] Margin
+    - [ ] Components (From top to bottom) - Tablet
+        - [ ] Container flex
+            - [ ] Byline
+            - [ ] Pitch Information
+            - [ ] Carousel
+                - [ ] Static Component
+                    - [ ] Pin to after Pitch Information
+                - [ ] Animated, Transit on scroll
+                - [ ] Interaction
+                - [ ] Margin
+    - [ ] Components (From top to bottom) - Desktop
+        - [ ] Container flex
+            - [ ] Byline
+            - [ ] Pitch Information
+            - [ ] Carousel
+                - [ ] Static Component
+                    - [ ] Pin to after Pitch Information
+                - [ ] Animated, Transit on scroll
+                - [ ] Interaction
+                - [ ] Margin
+        - [ ] Wireframe + add background
