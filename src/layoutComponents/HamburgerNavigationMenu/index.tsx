@@ -21,10 +21,27 @@ interface HamburgerNavigationMenuProps {
     device?: Device
 }
 
+interface Options {
+    topLevelDirection: React.CSSProperties['flexDirection'];
+    optionsDirection: React.CSSProperties['flexDirection'];
+    optionsWidth: React.CSSProperties['width'];
+    optionsHeight: React.CSSProperties['width'];
+    optionsIconColor: React.CSSProperties['color'];
+    defaultPadding: string;
+    useBlackIcons: boolean;
+    length: React.CSSProperties['width'];
+    rotateArrow: boolean;
+    borderRadius: string;
+}
+
 /*
+    HamburgerNavigationMenu
+    Component for the menu bar pinned at the top right.
+
     Mobile
     Horizontal Bar
-    RARROW <- [WA <- IG <- TG <- FB <- TWITTER] <- PIVOT
+    Top Level: RARROW <- [WA <- IG <- TG <- FB <- TWITTER] <- PIVOT
+    Options (middle portion): [WA <- IG <- TG <- FB <- TWITTER]
 
     Tablet/Desktop
     Vertical Bar
@@ -38,33 +55,39 @@ interface HamburgerNavigationMenuProps {
         -
         UARROW
 */
-export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) => {
 
+// FIXME abit messy.
+export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
-    let opts: {
-        topLevelDirection: React.CSSProperties['flexDirection'],
-        optionsDirection: React.CSSProperties['flexDirection'],
-        optionsWidth: React.CSSProperties['width'],
-        optionsHeight: React.CSSProperties['width'],
-        optionsIconColor: React.CSSProperties['color'],
-        useBlackIcons: boolean,
-        length: React.CSSProperties['width'],
-        rotateArrow: boolean,
-        borderRadius: string,
-    } = {
+    let options: Options = {
         topLevelDirection: 'column',
         optionsDirection: 'column',
-        length: '10px',
-        optionsHeight: '10px',
-        optionsWidth: '10px',
+        length: '0px',
+        optionsHeight: '0px',
+        optionsWidth: '0px',
         rotateArrow: false,
-        borderRadius: "50% 0% 0% 50%",
+        borderRadius: "0% 0% 0% 0%",
         useBlackIcons: false,
         optionsIconColor: "",
+        defaultPadding: "0px",
     };
-    if (device == Device.desktop || device == Device.tablet) {
-        opts = {
+    if (device == Device.desktop) {
+        options = {
+            defaultPadding: "20px",
+            topLevelDirection: 'column',
+            optionsDirection: 'column',
+            optionsWidth: '90px',
+            optionsHeight: '100%',
+            length: '90px',
+            useBlackIcons: true,
+            borderRadius: "0% 0% 50% 50%",
+            rotateArrow: false,
+            optionsIconColor: "",
+        };
+    } else if (device == Device.tablet) {
+        options = {
+            defaultPadding: "10px",
             topLevelDirection: 'column',
             optionsDirection: 'column',
             optionsWidth: '40px',
@@ -76,7 +99,8 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
             optionsIconColor: "",
         };
     } else if (device == Device.mobile) {
-        opts = {
+        options = {
+            defaultPadding: "10px",
             topLevelDirection: 'row-reverse',
             useBlackIcons: false,
             optionsIconColor: "",
@@ -98,12 +122,19 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
             paddingTop: "8px",
             paddingBottom: "8px",
         };
-    } else if (device == Device.tablet || device == Device.desktop) {
+    } else if (device == Device.tablet) {
         shareOptionStyle = {
             display: "flex",
             paddingRight: "8px",
             paddingTop: "4px",
             paddingLeft: "8px",
+        };
+    } else if (device == Device.desktop) {
+        shareOptionStyle = {
+            display: "flex",
+            paddingRight: "18px",
+            paddingTop: "14px",
+            paddingLeft: "18px",
         };
     }
 
@@ -121,7 +152,7 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
         return <div key={`${item.label}`} className={`ao-hamburger-navigation-menu-share-options ${item.label}`}
                     onClick={() => setIsExpanded(true)}
                     style={{...shareOptionStyle}}>
-            <img src={opts.useBlackIcons ? item.iconUrlBlack : item.iconUrl} alt={""}
+            <img src={options.useBlackIcons ? item.iconUrlBlack : item.iconUrl} alt={""}
                  style={{
                      width: "100%", height: "100%",
                  }}/>
@@ -130,13 +161,13 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
 
     return <>
         <div className={'ao-hamburger-navigation-menu'}
-             style={{display: "flex", flexDirection: opts.topLevelDirection}}>
+             style={{display: "flex", flexDirection: options.topLevelDirection}}>
             <div className={'ao-hamburger-navigation-menu-pivot'} style={{
                 display: "flex",
-                width: opts.length,
+                width: options.length,
                 backgroundColor: COLORS.STEEL_BLUE,
-                height: opts.length,
-                padding: "10px",
+                height: options.length,
+                padding: options.defaultPadding,
                 boxSizing: "border-box",
                 flexShrink: 0,
             }}>
@@ -152,51 +183,49 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
                          style={{
                              display: "flex",
                              backgroundColor: COLORS.STEEL_BLUE,
-                             flexDirection: opts.optionsDirection,
+                             flexDirection: options.optionsDirection,
                              boxSizing: "border-box",
                              paddingTop: "0px",
                              paddingBottom: "0px",
-                             width: opts.optionsWidth,
-                             height: opts.optionsHeight,
+                             width: options.optionsWidth,
+                             height: options.optionsHeight,
                          }}>
                         {shareOptionsComponents}
                     </div>
                     <div className={'ao-hamburger-navigation-menu-action-hide-share-options'}
                          onClick={() => {
-                             console.log("hide");
                              setIsExpanded(false);
                          }}
                          style={{
                              display: "flex",
-                             width: opts.length,
-                             height: opts.length,
-                             padding: "10px",
+                             flexShrink: 0,
+                             width: options.length,
+                             height: options.length,
+                             padding: options.defaultPadding,
                              boxSizing: "border-box",
                              backgroundColor: COLORS.STEEL_BLUE,
-                             borderRadius: opts.borderRadius,
+                             borderRadius: options.borderRadius,
                          }}>
                         <img src={icon_nav_arrow_up} alt={""}
                              style={{
                                  width: "100%", height: "100%",
-                                 transform: opts.rotateArrow ? "rotate(90deg)" : "rotate(0deg)"
+                                 transform: options.rotateArrow ? "rotate(90deg)" : "rotate(0deg)"
                              }}/>
                     </div>
                 </> :
                 <>
-
                     <div className={'ao-hamburger-navigation-menu-action-open-share-options'}
                          onClick={() => {
-                             console.log("show");
                              setIsExpanded(true);
                          }}
                          style={{
                              display: "flex",
-                             width: opts.length,
-                             height: opts.length,
-                             padding: "10px",
+                             width: options.length,
+                             height: options.length,
+                             padding: options.defaultPadding,
                              boxSizing: "border-box",
                              backgroundColor: COLORS.STEEL_BLUE,
-                             borderRadius: opts.borderRadius,
+                             borderRadius: options.borderRadius,
                          }}>
                         <img src={icon_nav_share} alt={""}
                              style={{
