@@ -6,6 +6,7 @@ import img_mastheadring from '../../assets/Body1/masthead_ring.svg';
 import img_mastheadfront from '../../assets/Body1/masthead_fore_img.png';
 import img_mastheadfrontmobile from '../../assets/Body1/mobile_masthead_fore_img.png';
 import img_mastheadringrotate from '../../assets/Body1/masthead_ring_rotate.svg';
+import {title} from "../../assets/textual/intro.ts";
 
 import _ScrollGuide from "./_scrollGuide.tsx";
 
@@ -37,7 +38,6 @@ export const Body1: React.FC<{ device: Device }> = ({device}) => {
         width: '80%',
         height: '100%'
     } : {
-        zIndex: 0,
         transform: "scale(1.4) translateY(-10%)",
         width: '100%',
         height: '100%'
@@ -50,7 +50,7 @@ export const Body1: React.FC<{ device: Device }> = ({device}) => {
 
     const ringRotateComponent = <img
         id={device == Device.mobile ? "ring-rotate-mobile" : "ring-rotate-default"}
-        style={{...ringStyle, zIndex: 1000, position: "absolute"}}
+        style={{...ringStyle, zIndex: 500, position: "absolute"}}
         src={img_mastheadringrotate} alt={""}></img>;
 
     let titleTransformOffset = "";
@@ -121,6 +121,7 @@ export const Body1: React.FC<{ device: Device }> = ({device}) => {
                  position: "absolute",
                  paddingTop: "60px",
                  flexDirection: "column",
+                 zIndex: 1000,
                  display: "flex",
                  width: "100%",
                  transform: titleTransformOffset,
@@ -135,7 +136,7 @@ export const Body1: React.FC<{ device: Device }> = ({device}) => {
                                   width: "100%",
                                   wordBreak: "break-word",
                                   color: COLORS.CHARCOAL_SLATE
-                              }}>{"Mercedes-Benz\u200B SL55 AMG"}</Typography.Title>
+                              }}>{title}</Typography.Title>
         </div>
     </div>;
 };
