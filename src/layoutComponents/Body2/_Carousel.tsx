@@ -262,13 +262,12 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
                     <div className="carousel-focus-center-circle-mark-wrapper" style={{
                         display: "flex",
                         position: "absolute",
-                        width: "100%",
-                        height: "100%",
-                        justifyContent: "center",
+                        width: "min-content",
+                        height: "min-content",
                         pointerEvents: "none",
-                        alignItems: "center",
-                        transform: "translateY(-10%) translateX(0%)",
                         zIndex: 1000,
+                        top: "55px",
+                        left: "140px",
                     }}>
                         <div className="carousel-focus-center-circle-mark" style={{
                             display: "flex",
@@ -276,25 +275,22 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
                             width: "18px",
                             height: "18px",
                             borderRadius: "50%",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            position: "absolute",
+                            position: "relative",
                         }}>
                         </div>
                     </div>
                 }
                 {
                     <div className="carousel-outer-bubble-wrapper" style={{
+
                         display: "flex",
                         position: "absolute",
-                        width: "100%",
-                        height: "100%",
-                        // transform: "translateY(-10%) translateX(0%)",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        transform: startStep2Transition ? "translateY(-40%) translateX(30%)" : "translateY(-10%) translateX(0%)",
-                        animation: startStep2Transition ? `ao-carousel-second-transition-mobile ${step2DurationSeconds}s ease-in` : "",
+                        width: "min-content",
+                        height: "min-content",
+                        pointerEvents: "none",
                         zIndex: 1000,
+                        top: "-90px",
+                        left: "225px",
                     }}>
                         <div className="carousel-outer-bubble" style={{
                             display: "flex",
@@ -304,7 +300,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
                             borderRadius: "50%",
                             alignItems: "center",
                             justifyContent: "center",
-                            position: "absolute",
+                            position: "relative",
                             animation: startStep2Transition ? `ao-carousel-second-transition-mobile-bubble ${step2DurationSeconds}s ease-in` : "",
                         }}>
 
