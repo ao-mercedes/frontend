@@ -10,8 +10,13 @@ const CircularCarousel: React.FC = () => {
 
     const [startStep1Transition, setStartTransitionStep1] =
         useState(false);
+    const [stoppedStep1Transition, setStopTransitionStep1] =
+        useState(false);
+
+
     const [startStep2Transition, setStartTransitionStep2] =
         useState(false);
+
     const carouselWrapperRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -38,16 +43,26 @@ const CircularCarousel: React.FC = () => {
         };
     }, []);
 
-    const step1DurationSeconds = 4;
+    const step1DurationSeconds = 1;
     useEffect(() => {
         if (startStep1Transition) {
             setTimeout(() => {
-                setStartTransitionStep2(true);
+                console.log("stopStep1Transition");
+                setStopTransitionStep1(true);
             }, step1DurationSeconds * 1000);
         }
     }, [startStep1Transition]);
 
+
+    useEffect(() => {
+        if (stoppedStep1Transition) {
+            console.log("startStep2Transition");
+            setStartTransitionStep2(true);
+        }
+    }, [stoppedStep1Transition]); // Dependency on `stoppedStep1Transition`
+
     const carouselTransitionStep1 = startStep1Transition ? `transform ${step1DurationSeconds}s ease-in` : "";
+    // const carouselTransitionStep2 = startStep2Transition ? `transform ${step1DurationSeconds}s ease-in` : "";
 
     return (
         <div className="carousel-container"
@@ -100,16 +115,18 @@ const CircularCarousel: React.FC = () => {
                     height: "90%"
                 }}
                      src={img_carousel} alt={""}></img>
-                <div style={{
-                    display: "flex",
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                    transform: "translateY(40%) translateX(50%)",
-                    zIndex: 1000,
-                }}>
-                    {startStep2Transition &&
-                        <>
+                {stoppedStep1Transition &&
+                    <>
+                        <div className="carousel-focus-center-circle-mark-wrapper" style={{
+                            display: "flex",
+                            position: "absolute",
+                            width: "100%",
+                            height: "100%",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            transform: "translateY(-10%) translateX(0%)",
+                            zIndex: 1000,
+                        }}>
                             <div className="carousel-focus-center-circle-mark" style={{
                                 display: "flex",
                                 background: COLORS.PURE_WHITE,
@@ -120,20 +137,41 @@ const CircularCarousel: React.FC = () => {
                                 justifyContent: "center",
                                 position: "absolute",
                             }}>
-
                             </div>
+                        </div>
+                    </>}
+
+
+                {
+                    <>
+                        <div className="carousel-outer-bubble-wrapper" style={{
+                            display: "flex",
+                            position: "absolute",
+                            width: "100%",
+                            height: "100%",
+                            // transform: "translateY(-10%) translateX(0%)",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            transform: startStep2Transition ? "translateY(-40%) translateX(30%)" : "translateY(-10%) translateX(0%)",
+                            animation: startStep2Transition ? "ao-carousel-second-transition-mobile 4s ease-in" : "",
+                            zIndex: 1000,
+                        }}>
                             <div className="carousel-outer-bubble" style={{
                                 display: "flex",
-                                background: COLORS.BURNISHED_GOLD,
-                                width: "18px",
-                                height: "18px",
+                                background: startStep2Transition ? COLORS.STEEL_BLUE : "", // COLORS.STEEL_BLUE
+                                width: startStep2Transition ? "200px" : "18px",
+                                height: startStep2Transition ? "200px" : "18px",
                                 borderRadius: "50%",
                                 alignItems: "center",
                                 justifyContent: "center",
-                            }}></div>
-                        </>
-                    }
-                </div>
+                                position: "absolute",
+                                animation: startStep2Transition ? "ao-carousel-second-transition-mobile-bubble 4s ease-in" : "",
+                            }}>
+                            </div>
+                        </div>
+                    </>}
+
+
                 <div className="carousel-overlay" style={{
                     display: "flex", position: "absolute",
                     height: "100%", width: "100%",
