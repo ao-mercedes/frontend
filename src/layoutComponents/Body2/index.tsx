@@ -5,6 +5,7 @@ import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 import {useEffect, useState} from "react";
 import {FirstPitch} from "../../assets/textual/firstpitch.ts";
 import {Divider, Typography} from "antd";
+import CircularCarousel from "./_Carousel.tsx";
 
 
 // TODO
@@ -28,15 +29,14 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
     const headerBylineFontSize = "18px";
     const headerDateFontSize = "14px";
 
-    return <PageA4 device={device} style={{
-        backgroundColor: COLORS.CHARCOAL_SLATE,
-    }}>
-        <div className="ao-body2-container"
-             style={{
-                 marginTop: "35px",
-                 display: "flex", flexDirection: "column", alignItems: "center"
-             }}>
-            <div className="body2-header"
+    return <div className="ao-body2-container" style={{backgroundColor: COLORS.CHARCOAL_SLATE,}}><PageA4 device={device}
+                                                                                                         style={{}}>
+        <div
+            style={{
+                marginTop: "35px",
+                display: "flex", flexDirection: "column", alignItems: "center"
+            }}>
+            <div className="ao-body2-header"
                  style={{
                      width: "100%",
                      paddingLeft: "20px",
@@ -97,10 +97,9 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
                     </Typography.Text>
                 </div>
             </div>
-
-            <div className="body2-content"
+            <div className="ao-body2-content-paragraphs-container"
                  style={{display: "flex", flexDirection: "column", alignItems: "center", marginTop: "30px"}}>
-                <div className="body2-content-text">
+                <div className="ao-body2-content-paragraphs">
                     {
                         pitch?.Paragraphs.map((paragraph, index) => {
                             return <Typography.Paragraph key={index}
@@ -113,8 +112,14 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
                     }
                 </div>
             </div>
+
         </div>
-    </PageA4>;
+    </PageA4>
+        <div className="ao-body2-carousel-container"
+             style={{width: "100%", display: "flex"}}>
+            <CircularCarousel/>
+        </div>
+    </div>;
 };
 
 
