@@ -36,7 +36,7 @@ function App() {
                     position: "fixed",
                     top: 0,
                     right: 0,
-                    zIndex: 1000,
+                    zIndex: 99999,
                 }}>
                     <HamburgerNavigationMenu device={device}/>
                 </div>

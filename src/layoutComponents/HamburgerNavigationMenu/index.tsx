@@ -1,14 +1,19 @@
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
-import nav_arrow_up from "../../assets/Navbar/nav-arrow-up.svg";
-import nav_share from "../../assets/Navbar/nav-share.svg";
-import nav_hamburger from "../../assets/Navbar/nav-hamburger.svg";
+import icon_nav_arrow_up from "../../assets/Navbar/nav-arrow-up.svg";
+import icon_nav_share from "../../assets/Navbar/nav-share.svg";
+import icon_nav_hamburger from "../../assets/Navbar/nav-hamburger.svg";
+import icon_nav_telegram from "../../assets/Navbar/nav-telegram.svg";
+import icon_nav_whatsapp from "../../assets/Navbar/nav-whatsapp.svg";
+import icon_nav_facebook from "../../assets/Navbar/nav-facebook.svg";
+import icon_nav_twitter from "../../assets/Navbar/nav-twitter.svg";
+import icon_nav_instagram from "../../assets/Navbar/nav-instagram.svg";
 
-import nav_telegram from "../../assets/Navbar/nav-telegram.svg";
-import nav_whatsapp from "../../assets/Navbar/nav-whatsapp.svg";
-import nav_facebook from "../../assets/Navbar/nav-facebook.svg";
-import nav_twitter from "../../assets/Navbar/nav-twitter.svg";
-import nav_instagram from "../../assets/Navbar/nav-instagram.svg";
+import icon_nav_telegram_black from "../../assets/Navbar/nav-telegram-black.svg";
+import icon_nav_whatsapp_black from "../../assets/Navbar/nav-whatsapp-black.svg";
+import icon_nav_facebook_black from "../../assets/Navbar/nav-facebook-black.svg";
+import icon_nav_twitter_black from "../../assets/Navbar/nav-twitter-black.svg";
+import icon_nav_instagram_black from "../../assets/Navbar/nav-instagram-black.svg";
 
 import {useState} from "react";
 
@@ -34,14 +39,16 @@ interface HamburgerNavigationMenuProps {
         UARROW
 */
 export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) => {
-    const [isExpanded, setIsExpanded] = useState(false);
 
+    const [isExpanded, setIsExpanded] = useState(false);
 
     let opts: {
         topLevelDirection: React.CSSProperties['flexDirection'],
         optionsDirection: React.CSSProperties['flexDirection'],
         optionsWidth: React.CSSProperties['width'],
         optionsHeight: React.CSSProperties['width'],
+        optionsIconColor: React.CSSProperties['color'],
+        useBlackIcons: boolean,
         length: React.CSSProperties['width'],
         rotateArrow: boolean,
         borderRadius: string,
@@ -53,6 +60,8 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
         optionsWidth: '10px',
         rotateArrow: false,
         borderRadius: "50% 0% 0% 50%",
+        useBlackIcons: false,
+        optionsIconColor: "",
     };
     if (device == Device.desktop || device == Device.tablet) {
         opts = {
@@ -61,12 +70,16 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
             optionsWidth: '40px',
             optionsHeight: '100%',
             length: '40px',
+            useBlackIcons: true,
             borderRadius: "0% 0% 50% 50%",
             rotateArrow: false,
+            optionsIconColor: "",
         };
     } else if (device == Device.mobile) {
         opts = {
             topLevelDirection: 'row-reverse',
+            useBlackIcons: false,
+            optionsIconColor: "",
             optionsDirection: 'row',
             optionsHeight: '40px',
             optionsWidth: '100%',
@@ -75,29 +88,41 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
             rotateArrow: true,
         };
     }
-    // shareOptions
-    // shareOptions.label should be unique
-    const shareOptions: { label: string, iconUrl: string }[] = [
-        {label: "TG", iconUrl: nav_telegram},
-        {label: "WA", iconUrl: nav_whatsapp},
-        {label: "FB", iconUrl: nav_facebook},
-        {label: "TT", iconUrl: nav_twitter},
-        {label: "IG", iconUrl: nav_instagram},
+
+
+    let shareOptionStyle = {};
+    if (device == Device.mobile) {
+        shareOptionStyle = {
+            display: "flex",
+            paddingRight: "4px",
+            paddingTop: "8px",
+            paddingBottom: "8px",
+        };
+    } else if (device == Device.tablet || device == Device.desktop) {
+        shareOptionStyle = {
+            display: "flex",
+            paddingRight: "8px",
+            paddingTop: "4px",
+            paddingLeft: "8px",
+        };
+    }
+
+    // shareOptionsProps
+    // shareOptionsProps.label should be unique
+    const shareOptionsProps: { label: string, iconUrl: string, iconUrlBlack: string }[] = [
+        {label: "WA", iconUrl: icon_nav_whatsapp, iconUrlBlack: icon_nav_whatsapp_black},
+        {label: "IG", iconUrl: icon_nav_instagram, iconUrlBlack: icon_nav_instagram_black},
+        {label: "TG", iconUrl: icon_nav_telegram, iconUrlBlack: icon_nav_telegram_black},
+        {label: "FB", iconUrl: icon_nav_facebook, iconUrlBlack: icon_nav_facebook_black},
+        {label: "TT", iconUrl: icon_nav_twitter, iconUrlBlack: icon_nav_twitter_black},
     ];
 
-    const shareOptionsComponents = shareOptions.map((item) => {
-        return <div className={`ao-hamburger-navigation-menu-share-options ${item.label}`}
+    const shareOptionsComponents = shareOptionsProps.map((item) => {
+        return <div key={`${item.label}`} className={`ao-hamburger-navigation-menu-share-options ${item.label}`}
                     onClick={() => setIsExpanded(true)}
-                    style={{
-                        display: "flex",
-                        paddingRight: "4px",
-                        paddingTop: "8px",
-                        paddingBottom: "8px",
-                        // backgroundColor: COLORS.GOLDEN_AMBER,
-                    }}>
-            <img src={item.iconUrl} alt={""}
+                    style={{...shareOptionStyle}}>
+            <img src={opts.useBlackIcons ? item.iconUrlBlack : item.iconUrl} alt={""}
                  style={{
-                     // backgroundColor: COLORS.MOSSY_OLIVE,
                      width: "100%", height: "100%",
                  }}/>
         </div>;
@@ -115,7 +140,7 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
                 boxSizing: "border-box",
                 flexShrink: 0,
             }}>
-                <img src={nav_hamburger} alt={""}
+                <img src={icon_nav_hamburger} alt={""}
                      style={{
                          width: "100%", height: "100%",
                      }}/>
@@ -134,22 +159,13 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
                              width: opts.optionsWidth,
                              height: opts.optionsHeight,
                          }}>
-                        {/*<div className={'ao-hamburger-navigation-menu-share-sss'}*/}
-                        {/*     style={{*/}
-                        {/*         display: "flex",*/}
-                        {/*         backgroundColor: COLORS.CHARCOAL_SLATE,*/}
-                        {/*         flexDirection: opts.optionsDirection,*/}
-                        {/*         boxSizing: "border-box",*/}
-                        {/*         paddingTop: "10px",*/}
-                        {/*         paddingBottom: "10px",*/}
-                        {/*         width: "auto",*/}
-                        {/*         height: "100%",*/}
-                        {/*     }}>*/}
                         {shareOptionsComponents}
-                        {/*</div>*/}
                     </div>
                     <div className={'ao-hamburger-navigation-menu-action-hide-share-options'}
-                         onClick={() => setIsExpanded(false)}
+                         onClick={() => {
+                             console.log("hide");
+                             setIsExpanded(false);
+                         }}
                          style={{
                              display: "flex",
                              width: opts.length,
@@ -159,7 +175,7 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
                              backgroundColor: COLORS.STEEL_BLUE,
                              borderRadius: opts.borderRadius,
                          }}>
-                        <img src={nav_arrow_up} alt={""}
+                        <img src={icon_nav_arrow_up} alt={""}
                              style={{
                                  width: "100%", height: "100%",
                                  transform: opts.rotateArrow ? "rotate(90deg)" : "rotate(0deg)"
@@ -169,7 +185,10 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
                 <>
 
                     <div className={'ao-hamburger-navigation-menu-action-open-share-options'}
-                         onClick={() => setIsExpanded(true)}
+                         onClick={() => {
+                             console.log("show");
+                             setIsExpanded(true);
+                         }}
                          style={{
                              display: "flex",
                              width: opts.length,
@@ -179,7 +198,7 @@ export const HamburgerNavigationMenu = ({device}: HamburgerNavigationMenuProps) 
                              backgroundColor: COLORS.STEEL_BLUE,
                              borderRadius: opts.borderRadius,
                          }}>
-                        <img src={nav_share} alt={""}
+                        <img src={icon_nav_share} alt={""}
                              style={{
                                  width: "80%", height: "100%",
                              }}/>
