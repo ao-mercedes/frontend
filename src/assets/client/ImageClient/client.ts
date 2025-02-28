@@ -8,20 +8,12 @@ export class ImageClient implements IImageClient {
     private image: string = '';
     private imageSize: { width: number; height: number } = {width: 0, height: 0};
 
-    constructor(image
-                :
-                string, imageSize
-                :
-                {
-                    width: number;
-                    height: number
-                }
-    ) {
-        this.image = image;
-        this.imageSize = imageSize;
+    constructor() {
+        console.log('new ImageClient');
     }
 
     public getImage(): string {
+        console.log('topography');
         return this.image;
     }
 

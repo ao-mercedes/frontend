@@ -1,7 +1,7 @@
 export const FirstPitch = () => {
     return {
         Author: "JEREMY CHUA",
-        Design: "CJ.FOO",
+        Designer: "CJ. FOO",
         Paragraphs: ["The iconic SL has been transformed from 'super-light' to 'superb luxurious, and in SL55 form, packs plenty of firepower, too.",
             "Electric cars, EVs, zero emissions, sustainability, eco-friendliness. We're constantly bombarded with terms like these that we're literally drowning in eco-consciousness. Internal combustion engines and fossil fuels are bad and must be phased out.",
             "The intentions are good, but they are becoming suffocating. Ever-tightening emission regulations have quietened the voices of high-performance machines. Driving and admiring 'traditional' sports cars feels like a crime. But every now and then, a car like the Mercedes-Benz SL comes along.",

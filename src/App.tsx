@@ -1,15 +1,15 @@
 import './font-face.css';
 import './App.css';
 
-import Body1 from "./layoutComponents/Body1";
 import {defaultTheme} from "./layoutComponents/themeDefault.ts";
 
+import Body1 from "./layoutComponents/Body1";
+import Body2 from "./layoutComponents/Body2";
+import HamburgerNavigationMenu from "./layoutComponents/HamburgerNavigationMenu";
+
+import {useDevice} from "./hooks/useDevice.ts";
 
 import {ConfigProvider, Layout,} from "antd";
-import {useDevice} from "./hooks/useDevice.ts";
-import HamburgerNavigationMenu from "./layoutComponents/HamburgerNavigationMenu";
-import Body2 from "./layoutComponents/Body2";
-
 
 const Body3: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body3 ao-body">{children}</div>;
 const Body4: React.FC<{ children: React.ReactNode }> = ({children}) => <div className="body4 ao-body">{children}</div>;

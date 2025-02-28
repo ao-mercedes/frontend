@@ -18,3 +18,10 @@
     font-weight: 800;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Visby CF';
+    src: url('./assets/fonts/Fontspring-DEMO-visbycf-light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
