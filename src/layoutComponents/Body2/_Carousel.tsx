@@ -353,7 +353,6 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
                             display: "flex",
                             height: "100%",
                             width: "100%",
-                            // background: "red",
                             position: "relative",
                             justifyContent: "center",
                         }}>
@@ -365,7 +364,12 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
                                 justifyContent: "center",
                                 zIndex: 1000,
                             }}>
-                                <div className="carousel-dots" style={{display: "flex", flexDirection: "row"}}>
+                                <div className="carousel-dots-row" style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                }}>
                                     {items?.map((dotItem) => {
                                         return <div key={dotItem.data_id}
                                                     className={`carousel-dot`}
@@ -374,10 +378,10 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
                                                         setFocusByDataId(dotItem.data_id);
                                                     }}
                                                     style={{
-                                                        background: COLORS.PURE_WHITE,
+                                                        background: focusedItem?.data_id == dotItem.data_id ? COLORS.GOLDEN_AMBER : COLORS.PURE_WHITE,
                                                         display: "flex",
-                                                        height: "25px",
-                                                        width: "25px",
+                                                        height: focusedItem?.data_id == dotItem.data_id ? "35px" : "25px",
+                                                        width: focusedItem?.data_id == dotItem.data_id ? "35px" : "25px",
                                                         margin: "0px 10px 0 10px",
                                                         alignItems: "center",
                                                         borderRadius: "50%",
@@ -391,6 +395,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({data, imageClient}) 
 
                 }
                 {
+                    stoppedStep1Transition &&
                     <div className={"ao-body2-carousel-arrows"}
                          style={{
                              display: "flex",
