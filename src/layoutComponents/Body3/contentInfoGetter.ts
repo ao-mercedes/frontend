@@ -12,7 +12,7 @@ export const _getContents = (shouldGetFirstOnly: boolean) => {
             url: img_porsche,
             alt: "Porsche",
             caption: "Porsche 911",
-            entry: "right",
+            captionAlignment: "right",
         },
     };
     if (shouldGetFirstOnly) {
