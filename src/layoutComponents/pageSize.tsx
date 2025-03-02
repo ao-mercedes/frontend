@@ -21,6 +21,7 @@ export const PageA4: React.FC<PageA4Props> = (props) => {
         display: "flex",
         paddingRight: hPadding,
         paddingLeft: hPadding,
+        justifyContent: "center",
         ...pStyle,
     };
     return <div style={style}> {children}</div>;

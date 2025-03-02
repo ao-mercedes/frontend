@@ -18,7 +18,7 @@ const paragraphFontSizes: { [device in Device]: string } = {
 const headerHorizontalPaddings: { [device in Device]: string } = {
     [Device.mobile]: "20px",
     [Device.tablet]: "160px",
-    [Device.desktop]: "20px",
+    [Device.desktop]: "1000px",
 };
 
 const headerBylineFontSizes: { [device in Device]: string } = {
