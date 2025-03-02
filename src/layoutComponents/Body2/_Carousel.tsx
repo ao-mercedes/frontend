@@ -593,7 +593,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                         className={"ao-body2-carousel-arrows"}
                         style={{
                             display: "flex",
-                            width: "95%",
+                            width: "100%",
                             position: "absolute",
                             justifyContent: "space-between",
                             alignItems: "center",
