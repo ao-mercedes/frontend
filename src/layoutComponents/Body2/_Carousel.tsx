@@ -8,6 +8,7 @@ import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 
 import {useEffect, useMemo, useRef, useState} from "react";
 import {Typography} from "antd";
+import * as React from "react";
 
 
 const lengths = {
@@ -33,6 +34,12 @@ const dotLengthOptionsByDevice = {
     [Device.mobile]: {default: "25px", focused: "25px"},
     [Device.tablet]: {default: "12px", focused: "16px"},
     [Device.desktop]: {default: "15px", focused: "20px"},
+};
+
+const arrowScales = {
+    [Device.mobile]: 1,
+    [Device.tablet]: 1,
+    [Device.desktop]: 3,
 };
 
 
@@ -112,6 +119,52 @@ const _outerBubbleOffsets: circleOffsetsT = {
         "side_profile": {x: "395px", y: "250px"},
 
     }
+};
+
+
+interface ArrowComponentProps {
+    onClick: () => void;
+    scale: number;
+    img: string;
+    leansRight: boolean;
+}
+
+const ArrowComponent: React.FC<ArrowComponentProps> = ({onClick, scale, img, leansRight}) => {
+    return <div
+        className="ao-body2-carousel-arrow-wrapper"
+        style={{
+            display: "flex",
+            width: "100%",
+            height: "100%",
+            justifyContent: "center",
+            alignItems: "right",
+            zIndex: 500,
+        }}
+    >
+        <div
+            className="ao-body2-carousel-arrow"
+            style={{
+                display: "flex",
+                width: "100%",
+                height: "100%",
+                justifyContent: leansRight ? "flex-end" : "flex-start",
+                alignItems: "center",
+                zIndex: 500,
+            }}
+        >
+            <img
+                style={{
+                    scale: scale,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+                src={img}
+                alt={""}
+                onClick={onClick}
+            />
+        </div>
+    </div>;
 };
 
 const calcOuterBubbleOffsets = (device: Device, label: string | undefined) => {
@@ -354,7 +407,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
 
 
     const dotLengthOptions = dotLengthOptionsByDevice[device] ?? {default: "10px", focused: "10px"};
-
+    const arrowScale = arrowScales[device] ?? 1;
     return (
         <div
             className="carousel-container"
@@ -600,78 +653,18 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                             zIndex: 1000,
                         }}
                     >
-                        <div
-                            className="ao-body2-carousel-arrow-left-wrapper"
-                            style={{
-                                display: "flex",
-                                width: "100%",
-                                height: "100%",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                zIndex: 1000,
-                            }}
-                        >
-                            <div
-                                className="ao-body2-carousel-arrow-left"
-                                style={{
-                                    display: "flex",
-                                    width: "100%",
-                                    height: "100%",
-                                    alignItems: "center",
-                                    justifyContent: "flex-start",
-                                    zIndex: 1000,
-                                }}
-                            >
-                                <img
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                    }}
-                                    src={img_left_arrow}
-                                    alt={""}
-                                    onClick={() => {
-                                        setFocusToCurrentNeighbour("left");
-                                    }}
-                                />
-                            </div>
-                        </div>
-                        <div
-                            className="ao-body2-carousel-arrow-right-wrapper"
-                            style={{
-                                display: "flex",
-                                width: "100%",
-                                height: "100%",
-                                justifyContent: "center",
-                                alignItems: "right",
-                                zIndex: 500,
-                            }}
-                        >
-                            <div
-                                className="ao-body2-carousel-arrow-right"
-                                style={{
-                                    display: "flex",
-                                    width: "100%",
-                                    height: "100%",
-                                    justifyContent: "flex-end",
-                                    alignItems: "center",
-                                    zIndex: 500,
-                                }}
-                            >
-                                <img
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                    }}
-                                    src={img_right_arrow}
-                                    alt={""}
-                                    onClick={() => {
-                                        setFocusToCurrentNeighbour("right");
-                                    }}
-                                />
-                            </div>
-                        </div>
+                        <ArrowComponent scale={arrowScale} onClick={
+                            () => {
+                                setFocusToCurrentNeighbour("left");
+                            }
+                        } img={img_left_arrow} leansRight={false}/>
+
+                        <ArrowComponent scale={arrowScale} onClick={
+                            () => {
+                                setFocusToCurrentNeighbour("right");
+                            }
+                        } img={img_right_arrow} leansRight={true}/>
+
                     </div>
                 )}
             </div>
