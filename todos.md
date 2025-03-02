@@ -89,7 +89,7 @@
 
 - [ ] [Issue-0003] Lines are not working
     - branch:
-      `commit 6107cf85633c2d608e50a36cad58f089927522c8 (HEAD -> body2-carousel-lines, origin/body2-carousel-lines)`
+      `(body2-carousel-lines)`
     - svg lines are not in the correct position. need to research
         1. how to set starting x an y
         2. calculate x offset L, y offset W, direction
@@ -97,5 +97,5 @@
 
 ```
             (L = 10, W = 0, direction = right)
-    (x,y) --------- (x+L,y+W,right)
+    (x,y) --------------------------------------------- (x+L,y+W,right)
 ```
