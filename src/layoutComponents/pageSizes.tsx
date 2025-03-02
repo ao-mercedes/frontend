@@ -4,7 +4,7 @@ interface PageA4Props {
 }
 
 
-export const PageA4: React.FC<PageA4Props> = (props) => {
+export const UnbrokenPage: React.FC<PageA4Props> = (props) => {
     const {children, style: pStyle} = props;
 
 

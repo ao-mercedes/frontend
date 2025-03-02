@@ -60,7 +60,6 @@ const ContentComponent: React.FC<_ContentProps> = ({
             }
         };
     }, []);
-    console.log(` showImage ${showImage}`);
 
     return <div className="ao-body3-pedigree-car-content" key={index}
                 style={{display: "flex", width: "100%", flexDirection: itemsFlexDirection}}>

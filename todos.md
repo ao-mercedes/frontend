@@ -72,16 +72,14 @@
 
 - [ ] Body3 - Pedigree
     - [ ] Mobile
-        - [ ] Header
-        - [ ] Content: Porsche
-            - [ ] Text
-            - [ ] Image
-        - [ ] Content: Mercedes
-            - [ ] Text
-            - [ ] Image
-        - [ ] BottomGuide
-            - [ ] Text
-            - [ ] Animation
+        - [x] Header
+        - [x] Content: Porsche
+            - [x] Text
+            - [x] Image
+        - [x] Omit Content: Mercedes
+        - [x] BottomGuide
+            - [x] Text
+            - [x] Animation
     - [ ] Tablet
         - [ ] Header
         - [ ] Content: Porsche

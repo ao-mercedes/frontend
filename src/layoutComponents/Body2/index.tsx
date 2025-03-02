@@ -1,6 +1,6 @@
 import "./index.css";
 import {COLORS, Device, horizontalPaddings} from "../../utils/constants/constants.ts";
-import {PageA4} from "../pageSizes.tsx";
+import {UnbrokenPage} from "../pageSizes.tsx";
 import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 import {useEffect, useState} from "react";
 import {FirstPitch} from "../../assets/textual/firstpitch.ts";
@@ -91,7 +91,7 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
             className="ao-body2-container"
             style={{backgroundColor: COLORS.CHARCOAL_SLATE}}
         >
-            <PageA4 style={{
+            <UnbrokenPage style={{
                 paddingLeft: horizontalPaddings[device],
                 paddingRight: horizontalPaddings[device],
             }}>
@@ -194,7 +194,7 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
                         </div>
                     </div>
                 </div>
-            </PageA4>
+            </UnbrokenPage>
             <div
                 className="ao-body2-carousel-container"
                 style={{width: "100%", display: "flex"}}
