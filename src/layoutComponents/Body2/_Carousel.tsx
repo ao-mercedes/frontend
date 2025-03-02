@@ -56,7 +56,7 @@ const _circleLaserOffsets: circleOffsetsT = {
     [Device.tablet]: {
         "bonnet": {x: "260px", y: "260px"},
         "exhaust": {x: "120px", y: "290px"},
-        "wheel": {x: "0px", y: "0px"},
+        "wheel": {x: "168px", y: "213px"},
         "side_profile": {x: "0px", y: "0px"},
     },
     [Device.desktop]: {
