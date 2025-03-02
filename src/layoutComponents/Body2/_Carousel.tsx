@@ -17,24 +17,11 @@ const lengths = {
 };
 
 
-interface ItemData {
-    bubbleBottomText: string;
-    bubbleTopText: string;
-    imgUrl: string;
-    label: string;
-    data_id: number;
-}
-
-
-interface ItemMetadata {
-    isFocused: boolean;
-    index: number;
-}
-
-interface ItemDataWithMetadata extends ItemData {
-    metadata: ItemMetadata;
-}
-
+const laserSizes = {
+    [Device.mobile]: "18px",
+    [Device.tablet]: "18px",
+    [Device.desktop]: "20px",
+};
 
 type circleLaserOffsetsT = {
     [device in Device]: {
@@ -53,7 +40,7 @@ const _circleLaserOffsets: circleLaserOffsetsT = {
         "side_profile": {x: "140px", y: "55px"},
     },
     [Device.tablet]: {
-        "bonnet": {x: "250px", y: "150px"},
+        "bonnet": {x: "260px", y: "260px"},
         "exhaust": {x: "0px", y: "0px"},
         "wheel": {x: "0px", y: "0px"},
         "side_profile": {x: "0px", y: "0px"},
@@ -88,6 +75,25 @@ const calcCarouselCircleLaserOffsets = (device: Device, label: string | undefine
 
     return byIndex ? byIndex : defaultOffsets;
 };
+
+
+interface ItemData {
+    bubbleBottomText: string;
+    bubbleTopText: string;
+    imgUrl: string;
+    label: string;
+    data_id: number;
+}
+
+
+interface ItemMetadata {
+    isFocused: boolean;
+    index: number;
+}
+
+interface ItemDataWithMetadata extends ItemData {
+    metadata: ItemMetadata;
+}
 
 
 interface CircularCarouselProps {
@@ -276,6 +282,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
         setCircleLaserOffsets(_circleLaserOffsets);
     }, [device, focusedItem]);
 
+
+    const laserSize = laserSizes[device] ?? "18px";
     return (
         <div
             className="carousel-container"
@@ -359,8 +367,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                 style={{
                                     display: "flex",
                                     background: COLORS.PURE_WHITE,
-                                    width: "18px",
-                                    height: "18px",
+                                    width: laserSize,
+                                    height: laserSize,
                                     borderRadius: "50%",
                                     position: "absolute",
                                 }}
@@ -385,8 +393,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                 style={{
                                     display: "flex",
                                     background: startStep2Transition ? COLORS.STEEL_BLUE : "", // COLORS.STEEL_BLUE
-                                    width: startStep2Transition ? "200px" : "18px",
-                                    height: startStep2Transition ? "200px" : "18px",
+                                    width: startStep2Transition ? "200px" : laserSize,
+                                    height: startStep2Transition ? "200px" : laserSize,
                                     borderRadius: "50%",
                                     alignItems: "center",
                                     justifyContent: "center",
