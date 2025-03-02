@@ -49,6 +49,13 @@ const arrowScales = {
 };
 
 
+const arrowsContainerWidths = {
+    [Device.mobile]: "100%",
+    [Device.tablet]: "100%",
+    [Device.desktop]: "96%",
+};
+
+
 type circleOffsetsT = {
     [device in Device]: {
         [index: /*carousel items position*/ string]: {
@@ -415,6 +422,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
 
     const dotLengthOptions = dotLengthOptionsByDevice[device] ?? {default: "10px", focused: "10px"};
     const arrowScale = arrowScales[device] ?? 1;
+    const arrowsContainerWidth = arrowsContainerWidths[device] ?? "96%";
     return (
         <div
             className="carousel-container"
@@ -653,7 +661,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                         className={"ao-body2-carousel-arrows"}
                         style={{
                             display: "flex",
-                            width: "100%",
+                            width: arrowsContainerWidth,
                             position: "absolute",
                             justifyContent: "space-between",
                             alignItems: "center",
