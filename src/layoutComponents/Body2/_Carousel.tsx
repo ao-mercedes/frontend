@@ -24,21 +24,23 @@ const laserSizes = {
 };
 
 const outerBubbleSizes = {
-    [Device.mobile]: "200x",
-    [Device.tablet]: "250px",
+    [Device.mobile]: "200px",
+    [Device.tablet]: "255px",
     [Device.desktop]: "20px",
 };
 
-type circleLaserOffsetsT = {
+
+type circleOffsetsT = {
     [device in Device]: {
-        [index: string]: {
+        [index: /*carousel items position*/ string]: {
             x: string;
             y: string;
         };
     };
 };
 
-const _circleLaserOffsets: circleLaserOffsetsT = {
+const defaultCircleLaserOffsets = {x: "0", y: "0"};
+const _circleLaserOffsets: circleOffsetsT = {
     [Device.mobile]: {
         "bonnet": {x: "140px", y: "55px"},
         "exhaust": {x: "140px", y: "55px"},
@@ -59,8 +61,6 @@ const _circleLaserOffsets: circleLaserOffsetsT = {
     }
 };
 
-const defaultCircleLaserOffsets = {x: "0", y: "0"};
-
 const calcCarouselCircleLaserOffsets = (device: Device, label: string | undefined) => {
     console.log(`calcCarouselCircleLaserOffsets ${device} ${label}}`);
     const defaultOffsets = defaultCircleLaserOffsets;
@@ -80,6 +80,34 @@ const calcCarouselCircleLaserOffsets = (device: Device, label: string | undefine
 
 
     return byIndex ? byIndex : defaultOffsets;
+};
+
+
+const defaultOuterBubbleOffets = {x: "0", y: "0"};
+const _outerBubbleOffsets: {
+    [device in Device]: {
+        x: string;
+        y: string;
+    }
+} = {
+    [Device.mobile]: {x: "225px", y: "-90px"},
+    [Device.tablet]: {x: "395px", y: "-50px"},
+    [Device.desktop]: {x: "140px", y: "55px"},
+};
+
+const calcOuterBubbleOffsets = (device: Device, label: string | undefined) => {
+    console.log(`calcOuterBubbleOffsets ${device} ${label}}`);
+    const defaultOffsets = defaultOuterBubbleOffets;
+    if (label == undefined) {
+        return defaultOffsets;
+    }
+    const offsets = _outerBubbleOffsets[device];
+    if (offsets == null) {
+        return defaultOffsets;
+
+    }
+
+    return offsets;
 };
 
 
@@ -281,11 +309,16 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
         : "";
 
     const [circleLaserOffsets, setCircleLaserOffsets] = useState(defaultCircleLaserOffsets);
+    const [outerBubbleOffsets, setOuterBubbleOffsets] = useState(defaultOuterBubbleOffets);
 
     useEffect(() => {
         const _circleLaserOffsets = calcCarouselCircleLaserOffsets(device, focusedItem?.label);
         console.log(`_circleLaserOffsets ${JSON.stringify(_circleLaserOffsets)}`);
         setCircleLaserOffsets(_circleLaserOffsets);
+
+        const outerBubbleOffsets = calcOuterBubbleOffsets(device, focusedItem?.label);
+        console.log(`outerBubbleOffsets ${JSON.stringify(outerBubbleOffsets)}`);
+        setOuterBubbleOffsets(outerBubbleOffsets);
     }, [device, focusedItem]);
 
 
@@ -390,8 +423,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                 height: "min-content",
                                 pointerEvents: "none",
                                 zIndex: 1000,
-                                top: startStep2Transition ? "-90px" : circleLaserOffsets.y,
-                                left: startStep2Transition ? "225px" : circleLaserOffsets.x,
+                                top: startStep2Transition ? outerBubbleOffsets.y : circleLaserOffsets.y,
+                                left: startStep2Transition ? outerBubbleOffsets.x : circleLaserOffsets.x,
                                 transition: "top 2s ease-in, left 2s ease-in",
                             }}
                         >
@@ -399,8 +432,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                 className="carousel-outer-bubble"
                                 style={{
                                     display: "flex",
-                                    background: startStep2Transition ? COLORS.STEEL_BLUE : "", // COLORS.STEEL_BLUE
-                                    width: startStep2Transition ? outerBubbleSize : laserSize,
+                                    background: startStep2Transition ? COLORS.STEEL_BLUE : "",
+                                    width: startStep2Transition ? outerBubbleSize : laserSize, // expand size from laser to final.
                                     height: startStep2Transition ? outerBubbleSize : laserSize,
                                     borderRadius: "50%",
                                     alignItems: "center",
