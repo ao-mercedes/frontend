@@ -1,5 +1,5 @@
 import "./index.css";
-import {COLORS, Device} from "../../utils/constants/constants.ts";
+import {COLORS, Device, horizontalPaddings} from "../../utils/constants/constants.ts";
 import {PageA4} from "../pageSizes.tsx";
 import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 import {useEffect, useState} from "react";
@@ -45,12 +45,6 @@ const carouselPaddingBottoms: { [device in Device]: string } = {
     [Device.desktop]: "80px",
 };
 
-
-const HorizontalPadding = {
-    [Device.mobile]: "60px",
-    [Device.tablet]: "100px",
-    [Device.desktop]: "650px",
-};
 
 // TODO
 // [ ] alts for images sources
@@ -98,8 +92,8 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
             style={{backgroundColor: COLORS.CHARCOAL_SLATE}}
         >
             <PageA4 style={{
-                paddingLeft: HorizontalPadding[device],
-                paddingRight: HorizontalPadding[device],
+                paddingLeft: horizontalPaddings[device],
+                paddingRight: horizontalPaddings[device],
             }}>
                 <div
                     style={{

@@ -147,3 +147,14 @@
 - [ ] TODO, change `items: []ItemData` -> `items: {data: []ItemData, focusIdx: number}`, then check if next focus is the
   same
   as `items.focusIdx`
+
+- [ ] [Issue-0007] Large Chunk on Build
+
+when running `pnpm build`, the warning appears:
+
+```
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+```
