@@ -29,7 +29,7 @@
         - [x] Bar same as Tablet
         - [x] Icon Color: Black
 
-# Changelog 28 February 2025
+# Changelog 28 February 2025 - 2 March 2025
 
 - [ ] Body2 - First Pitch
     - [ ] Download images and text content
@@ -67,6 +67,43 @@
                 - [x] Margins
                 - [ ] Lines
     - [x] Wireframe + add background
+
+# Changelog 28 February 2025 - 2 March 2025
+
+- [ ] Body3 - Pedigree
+    - [ ] Mobile
+        - [ ] Header
+        - [ ] Content: Porsche
+            - [ ] Text
+            - [ ] Image
+        - [ ] Content: Mercedes
+            - [ ] Text
+            - [ ] Image
+        - [ ] BottomGuide
+            - [ ] Text
+            - [ ] Animation
+    - [ ] Tablet
+        - [ ] Header
+        - [ ] Content: Porsche
+            - [ ] Text
+            - [ ] Image
+        - [ ] Content: Mercedes
+            - [ ] Text
+            - [ ] Image
+        - [ ] BottomGuide
+            - [ ] Text
+            - [ ] Animation
+    - [ ] Desktop
+        - [ ] Header
+        - [ ] Content: Porsche
+            - [ ] Text
+            - [ ] Image
+        - [ ] Content: Mercedes
+            - [ ] Text
+            - [ ] Image
+        - [ ] BottomGuide
+            - [ ] Text
+            - [ ] Animation
 
 # Issues
 
