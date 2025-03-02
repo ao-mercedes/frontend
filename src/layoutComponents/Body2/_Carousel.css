@@ -1,17 +1,15 @@
-@keyframes ao-carousel-second-transition-mobile {
-  0% {
-    /*transform: translateY(-10%) translateX(0%);*/
-    opacity: 0;
-  }
-}
+/*@keyframes ao-carousel-second-transition-mobile {*/
+/*    0% {*/
+/*        !*transform: translateY(-10%) translateX(0%);*!*/
+/*        opacity: 0;*/
+/*    }*/
+/*}*/
 
-@keyframes ao-carousel-second-transition-mobile-bubble {
-  0% {
-    scale: 0;
-  }
-  100% {
-    scale: 1;
-    height: 200px;
-    width: 200px;
-  }
-}
+/*@keyframes ao-carousel-second-transition-mobile-bubble {*/
+/*    0% {*/
+/*        scale: 0;*/
+/*    }*/
+/*    100% {*/
+/*        scale: 1;*/
+/*    }*/
+/*}*/

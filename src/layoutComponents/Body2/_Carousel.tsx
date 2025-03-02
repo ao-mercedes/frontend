@@ -5,9 +5,10 @@ import img_left_arrow from "../../assets/Body2/carousel-arrow-left.svg";
 
 import {COLORS} from "../../utils/constants/constants.ts";
 
+import {ImageClient} from "../../assets/client/ImageClient/client.ts";
+
 import {useEffect, useMemo, useRef, useState} from "react";
 import {Typography} from "antd";
-import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 
 interface ItemData {
     bubbleBottomText: string;
@@ -96,7 +97,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                 return items;
             }
 
-            const offset = direction == "right" ? 1 : -1;
+            const offset = direction == "right" ? 1 :/*left*/ -1;
             const newFocusIndex =
                 (items.length +
                     items.findIndex((item) => item.metadata.isFocused) +
@@ -262,102 +263,100 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                     src={exteriorFocusImage ?? undefined}
                     alt={""}
                 ></img>
-                {stoppedStep1Transition && (
-                    <div
-                        className="carousel-focus-center-circle-mark-wrapper"
-                        style={{
-                            display: "flex",
-                            position: "absolute",
-                            width: "min-content",
-                            height: "min-content",
-                            pointerEvents: "none",
-                            zIndex: 1000,
-                            top: "55px",
-                            left: "140px",
-                        }}
-                    >
+                {stoppedStep1Transition &&
+                    <>
                         <div
-                            className="carousel-focus-center-circle-mark"
+                            className="carousel-circle-laser-wrapper"
                             style={{
                                 display: "flex",
-                                background: COLORS.PURE_WHITE,
-                                width: "18px",
-                                height: "18px",
-                                borderRadius: "50%",
-                                position: "relative",
-                            }}
-                        ></div>
-                    </div>
-                )}
-                {
-                    <div
-                        className="carousel-outer-bubble-wrapper"
-                        style={{
-                            display: "flex",
-                            position: "absolute",
-                            width: "min-content",
-                            height: "min-content",
-                            pointerEvents: "none",
-                            zIndex: 1000,
-                            top: "-90px",
-                            left: "225px",
-                        }}
-                    >
-                        <div
-                            className="carousel-outer-bubble"
-                            style={{
-                                display: "flex",
-                                background: startStep2Transition ? COLORS.STEEL_BLUE : "", // COLORS.STEEL_BLUE
-                                width: startStep2Transition ? "200px" : "18px",
-                                height: startStep2Transition ? "200px" : "18px",
-                                borderRadius: "50%",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                position: "relative",
-                                animation: startStep2Transition
-                                    ? `ao-carousel-second-transition-mobile-bubble ${step2DurationSeconds}s ease-in`
-                                    : "",
+                                position: "absolute",
+                                width: "min-content",
+                                height: "min-content",
+                                pointerEvents: "none",
+                                zIndex: 1000,
+                                top: "55px",
+                                left: "140px",
                             }}
                         >
                             <div
-                                className="carousel-outer-bubble-textuals"
+                                className="carousel-circle-laser-mark"
                                 style={{
                                     display: "flex",
-                                    flexDirection: "column",
+                                    background: COLORS.PURE_WHITE,
+                                    width: "18px",
+                                    height: "18px",
+                                    borderRadius: "50%",
+                                    position: "absolute",
+                                }}
+                            ></div>
+                        </div>
+                        <div
+                            className="carousel-outer-bubble-wrapper"
+                            style={{
+                                display: "flex",
+                                position: "absolute",
+                                width: "min-content",
+                                height: "min-content",
+                                pointerEvents: "none",
+                                zIndex: 1000,
+                                top: startStep2Transition ? "-90px" : "55px",
+                                left: startStep2Transition ? "225px" : "140px",
+                                transition: "top 2s ease-in, left 2s ease-in",
+                            }}
+                        >
+                            <div
+                                className="carousel-outer-bubble"
+                                style={{
+                                    display: "flex",
+                                    background: startStep2Transition ? COLORS.STEEL_BLUE : "", // COLORS.STEEL_BLUE
+                                    width: startStep2Transition ? "200px" : "18px",
+                                    height: startStep2Transition ? "200px" : "18px",
+                                    borderRadius: "50%",
                                     alignItems: "center",
                                     justifyContent: "center",
-                                    width: "70%",
-                                    height: "70%",
+                                    position: "relative",
+                                    transition: "width 2s ease-in, height 2s ease-in",
                                 }}
                             >
-                                <Typography.Text
+                                <div
+                                    className="carousel-outer-bubble-textuals"
                                     style={{
-                                        fontSize: "0.8rem",
-                                        lineHeight: "0.8rem",
-                                        textAlign: "center",
-                                        display: stopStep2Transition ? "flex" : "none",
-                                        color: COLORS.PURE_WHITE,
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        width: "70%",
+                                        height: "70%",
                                     }}
                                 >
-                                    {focusedItem && focusedItem.bubbleTopText}
-                                </Typography.Text>
-                                <Typography.Text
-                                    style={{
-                                        marginTop: "35px",
-                                        fontSize: "0.8rem",
-                                        lineHeight: "0.8rem",
-                                        textAlign: "center",
-                                        display: stopStep2Transition ? "flex" : "none",
-                                        color: COLORS.PURE_WHITE,
-                                    }}
-                                >
-                                    {focusedItem && focusedItem.bubbleBottomText}
-                                </Typography.Text>
+                                    <Typography.Text
+                                        style={{
+                                            fontSize: "0.8rem",
+                                            lineHeight: "0.8rem",
+                                            textAlign: "center",
+                                            display: stopStep2Transition ? "flex" : "none",
+                                            color: COLORS.PURE_WHITE,
+                                        }}
+                                    >
+                                        {focusedItem && focusedItem.bubbleTopText}
+                                    </Typography.Text>
+                                    <Typography.Text
+                                        style={{
+                                            marginTop: "35px",
+                                            fontSize: "0.8rem",
+                                            lineHeight: "0.8rem",
+                                            textAlign: "center",
+                                            display: stopStep2Transition ? "flex" : "none",
+                                            color: COLORS.PURE_WHITE,
+                                        }}
+                                    >
+                                        {focusedItem && focusedItem.bubbleBottomText}
+                                    </Typography.Text>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </>
                 }
-
                 {
                     <div
                         className="carousel-dots-overlay"

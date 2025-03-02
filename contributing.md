@@ -1,5 +1,5 @@
 # Contributing Guide
 
-# Package manager
+## Package manager
 
-use `pnpm install`
+use `pnpm install`.
