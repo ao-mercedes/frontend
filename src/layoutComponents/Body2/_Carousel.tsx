@@ -27,7 +27,7 @@ const laserSizes = {
 const outerBubbleSizes = {
     [Device.mobile]: "200px",
     [Device.tablet]: "255px",
-    [Device.desktop]: "20px",
+    [Device.desktop]: "480px",
 };
 
 const borderRingPcts = {
@@ -53,6 +53,17 @@ const arrowsContainerWidths = {
     [Device.mobile]: "100%",
     [Device.tablet]: "100%",
     [Device.desktop]: "96%",
+};
+
+const outerBubbleFontSizes = {
+    [Device.mobile]: "0.8rem",
+    [Device.tablet]: "0.8rem%",
+    [Device.desktop]: "1.6rem",
+};
+const outerBubbleTextLineHeights = {
+    [Device.mobile]: "0.8rem",
+    [Device.tablet]: "0.8rem",
+    [Device.desktop]: "1.8rem",
 };
 
 
@@ -130,7 +141,6 @@ const _outerBubbleOffsets: circleOffsetsT = {
         "exhaust": {x: "395px", y: "-50px"},
         "wheel": {x: "395px", y: "-50px"},
         "side_profile": {x: "395px", y: "250px"},
-
     }
 };
 
@@ -189,7 +199,6 @@ const calcOuterBubbleOffsets = (device: Device, label: string | undefined) => {
     const byDevice = _outerBubbleOffsets[device];
     if (byDevice == null || byDevice[label] == null) {
         return defaultOffsets;
-
     }
 
     const byIndex = byDevice[label];
@@ -423,6 +432,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
     const dotLengthOptions = dotLengthOptionsByDevice[device] ?? {default: "10px", focused: "10px"};
     const arrowScale = arrowScales[device] ?? 1;
     const arrowsContainerWidth = arrowsContainerWidths[device] ?? "96%";
+    const outerBubbleFontSize = outerBubbleFontSizes[device] ?? "0.8rem";
+    const outerBubbleTextLineHeight = outerBubbleTextLineHeights[device] ?? "0.8rem";
     return (
         <div
             className="carousel-container"
@@ -554,8 +565,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                 >
                                     <Typography.Text
                                         style={{
-                                            fontSize: "0.8rem",
-                                            lineHeight: "0.8rem",
+                                            fontSize: outerBubbleFontSize,
+                                            lineHeight: outerBubbleTextLineHeight,
                                             textAlign: "center",
                                             display: stoppedStep2Transition ? "flex" : "none",
                                             color: COLORS.PURE_WHITE,
@@ -566,8 +577,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                     <Typography.Text
                                         style={{
                                             marginTop: "35px",
-                                            fontSize: "0.8rem",
-                                            lineHeight: "0.8rem",
+                                            fontSize: outerBubbleFontSize,
+                                            lineHeight: outerBubbleTextLineHeight,
                                             textAlign: "center",
                                             display: stoppedStep2Transition ? "flex" : "none",
                                             color: COLORS.PURE_WHITE,
