@@ -180,7 +180,7 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
                 className="ao-body2-carousel-container"
                 style={{width: "100%", display: "flex"}}
             >
-                <CircularCarousel data={carouselItemsData} imageClient={imageClient}/>
+                <CircularCarousel device={device} data={carouselItemsData} imageClient={imageClient}/>
             </div>
         </div>
     );

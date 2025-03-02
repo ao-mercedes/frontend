@@ -1,9 +1,8 @@
 import "./_Carousel.css"; // Import custom styles for animation
-
 import img_right_arrow from "../../assets/Body2/carousel-arrow-right.svg";
 import img_left_arrow from "../../assets/Body2/carousel-arrow-left.svg";
 
-import {COLORS} from "../../utils/constants/constants.ts";
+import {COLORS, Device} from "../../utils/constants/constants.ts";
 
 import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 
@@ -18,10 +17,6 @@ interface ItemData {
     data_id: number;
 }
 
-interface CircularCarouselProps {
-    data?: ItemData[];
-    imageClient?: ImageClient | null;
-}
 
 interface ItemMetadata {
     isFocused: boolean;
@@ -32,9 +27,71 @@ interface ItemDataWithMetadata extends ItemData {
     metadata: ItemMetadata;
 }
 
+
+type circleLaserOffsetsT = {
+    [device in Device]: {
+        [index: string]: {
+            x: string;
+            y: string;
+        };
+    };
+};
+
+const _circleLaserOffsets: circleLaserOffsetsT = {
+    [Device.mobile]: {
+        "bonnet": {x: "140px", y: "55px"},
+        "exhaust": {x: "140px", y: "55px"},
+        "wheel": {x: "140px", y: "55px"},
+        "side_profile": {x: "140px", y: "55px"},
+    },
+    [Device.tablet]: {
+        "bonnet": {x: "250px", y: "150px"},
+        "exhaust": {x: "0px", y: "0px"},
+        "wheel": {x: "0px", y: "0px"},
+        "side_profile": {x: "0px", y: "0px"},
+    },
+    [Device.desktop]: {
+        "bonnet": {x: "0px", y: "0px"},
+        "exhaust": {x: "0px", y: "0px"},
+        "wheel": {x: "0px", y: "0px"},
+        "side_profile": {x: "0px", y: "0px"},
+    }
+};
+
+const defaultCircleLaserOffsets = {x: "0", y: "0"};
+
+const calcCarouselCircleLaserOffsets = (device: Device, label: string | undefined) => {
+    console.log(`calcCarouselCircleLaserOffsets ${device} ${label}}`);
+    const defaultOffsets = defaultCircleLaserOffsets;
+    if (label == undefined) {
+        return defaultOffsets;
+    }
+    const byDevice = _circleLaserOffsets[device];
+    if (byDevice == null || byDevice[label] == null) {
+        return defaultOffsets;
+
+    }
+
+    const byIndex = byDevice[label];
+    if (byIndex == null) {
+        return defaultOffsets;
+    }
+
+
+    return byIndex ? byIndex : defaultOffsets;
+};
+
+
+interface CircularCarouselProps {
+    data?: ItemData[];
+    imageClient?: ImageClient | null;
+    device: Device;
+}
+
 const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                                                data,
                                                                imageClient,
+                                                               device,
                                                            }) => {
     // Focus Update
     // update all items -> update focus item -> update img
@@ -172,7 +229,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
         };
     }, []);
 
-    const step1DurationSeconds = 3;
+    const step1DurationSeconds = 1;
     const step2DurationSeconds = 2;
     useEffect(() => {
         if (startStep1Transition) {
@@ -199,6 +256,14 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
     const carouselTransitionStep1 = startStep1Transition
         ? `transform ${step1DurationSeconds}s ease-in`
         : "";
+
+    const [circleLaserOffsets, setCircleLaserOffsets] = useState(defaultCircleLaserOffsets);
+
+    useEffect(() => {
+        const _circleLaserOffsets = calcCarouselCircleLaserOffsets(device, focusedItem?.label);
+        console.log(`_circleLaserOffsets ${JSON.stringify(_circleLaserOffsets)}`);
+        setCircleLaserOffsets(_circleLaserOffsets);
+    }, [device, focusedItem]);
 
     return (
         <div
@@ -274,8 +339,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                 height: "min-content",
                                 pointerEvents: "none",
                                 zIndex: 1000,
-                                top: "55px",
-                                left: "140px",
+                                top: circleLaserOffsets.y,
+                                left: circleLaserOffsets.x,
                             }}
                         >
                             <div
@@ -299,8 +364,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                 height: "min-content",
                                 pointerEvents: "none",
                                 zIndex: 1000,
-                                top: startStep2Transition ? "-90px" : "55px",
-                                left: startStep2Transition ? "225px" : "140px",
+                                top: startStep2Transition ? "-90px" : circleLaserOffsets.y,
+                                left: startStep2Transition ? "225px" : circleLaserOffsets.x,
                                 transition: "top 2s ease-in, left 2s ease-in",
                             }}
                         >
