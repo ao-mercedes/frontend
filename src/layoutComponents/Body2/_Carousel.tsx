@@ -200,6 +200,45 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
         ? `transform ${step1DurationSeconds}s ease-in`
         : "";
 
+
+    const div1Ref = useRef<HTMLDivElement | null>(null);
+    const div2Ref = useRef<HTMLDivElement | null>(null);
+    const [lineCoords, setLineCoords] = useState({x1Offset: 0, x1: 0, y1: 0, x2: 0, y2: 0});
+
+    useEffect(() => {
+        if (stopStep2Transition) {
+            if (div1Ref.current && div2Ref.current) {
+                const rect1 = div1Ref.current.getBoundingClientRect();
+                const rect2 = div2Ref.current.getBoundingClientRect();
+
+                setLineCoords({
+                    // x1: rect1.left,
+                    // y1: rect1.top,
+                    // x2: rect2.left,
+                    // y2: rect2.top,
+                    //
+                    // x1: rect1.x,
+                    // y1: rect1.y,
+                    // x2: rect2.x,
+                    // y2: rect2.y,
+                    x1: 0,
+                    x1Offset: rect1.width,
+                    y1: 0,
+                    x2: rect2.x - rect1.x,
+                    y2: rect2.y - rect1.y,
+
+
+                    // //
+                    // x1: rect1.left + rect1.width / 2,
+                    // y1: rect1.top + rect1.height / 2,
+                    // x2: rect2.left + rect2.width / 2,
+                    // y2: rect2.top + rect2.height / 2,
+                });
+            }
+        }
+    }, [stopStep2Transition]);
+
+
     return (
         <div
             className="carousel-container"
@@ -266,6 +305,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                 {stoppedStep1Transition &&
                     <>
                         <div
+                            ref={div1Ref}
                             className="carousel-circle-laser-wrapper"
                             style={{
                                 display: "flex",
@@ -290,7 +330,46 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                 }}
                             ></div>
                         </div>
+                        {/*LINES - start*/}
+
                         <div
+                            className="carousel-lines"
+                            style={{
+                                display: "flex",
+                                position: "absolute",
+                                width: "min-content",
+                                height: "min-content",
+                                pointerEvents: "none",
+                                zIndex: 1001,
+                                top: "55px",
+                                left: "140px" + lineCoords.x1Offset,
+                            }}
+                        >
+                            <svg
+                                style={{
+                                    overflow: "visible",
+                                    position: "relative",
+                                    width: "min-content",
+                                    height: "min-content",
+                                    pointerEvents: "none",
+
+                                }}
+                            >
+                                <line
+                                    x1={lineCoords.x1}
+                                    y1={lineCoords.y1}
+                                    x2={lineCoords.x2}
+                                    y2={lineCoords.y2}
+                                    stroke={"white"}
+                                    strokeWidth={"5px"}
+                                />
+                            </svg>
+                        </div>
+
+
+                        {/*LINES - end*/}
+                        <div
+                            ref={div2Ref}
                             className="carousel-outer-bubble-wrapper"
                             style={{
                                 display: "flex",
