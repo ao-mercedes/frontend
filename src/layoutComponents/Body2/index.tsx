@@ -7,6 +7,23 @@ import {FirstPitch} from "../../assets/textual/firstpitch.ts";
 import {Divider, Typography} from "antd";
 import CircularCarousel from "./_Carousel.tsx";
 
+
+const paragraphFontSizes: { [device in Device]: string } = {
+    [Device.mobile]: "20px",
+    [Device.tablet]: "14px",
+    [Device.desktop]: "20px",
+};
+
+const headerBylineFontSizes: { [device in Device]: string } = {
+    [Device.mobile]: "18px",
+    [Device.tablet]: "20px",
+    [Device.desktop]: "20px",
+};
+const headerDateFontSizes: { [device in Device]: string } = {
+    [Device.mobile]: "14px",
+    [Device.tablet]: "20px",
+    [Device.desktop]: "20px",
+};
 // TODO
 // [ ] alts for images sources
 export const Body2: React.FC<{ device: Device }> = ({device}) => {
@@ -27,8 +44,9 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
         }
     }, [imageClient]);
 
-    const headerBylineFontSize = "18px";
-    const headerDateFontSize = "14px";
+    const headerBylineFontSize = headerBylineFontSizes[device] ?? "18px";
+    const headerDateFontSize = headerDateFontSizes[device] ?? "14px";
+    const paragraphFontSize = paragraphFontSizes[device] ?? "20px";
 
     const extDescriptions =
         pitch && pitch.ExteriorDescriptions ? pitch.ExteriorDescriptions : [];
@@ -41,6 +59,7 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
             data_id: index,
         };
     });
+
 
     return (
         <div
@@ -163,7 +182,7 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
                                     <Typography.Paragraph
                                         key={index}
                                         style={{
-                                            fontSize: "20px",
+                                            fontSize: paragraphFontSize,
                                             fontWeight: "500",
                                             color: COLORS.PURE_WHITE,
                                         }}
