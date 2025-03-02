@@ -23,6 +23,12 @@ const laserSizes = {
     [Device.desktop]: "20px",
 };
 
+const outerBubbleSizes = {
+    [Device.mobile]: "200x",
+    [Device.tablet]: "250px",
+    [Device.desktop]: "20px",
+};
+
 type circleLaserOffsetsT = {
     [device in Device]: {
         [index: string]: {
@@ -284,6 +290,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
 
 
     const laserSize = laserSizes[device] ?? "18px";
+    const outerBubbleSize = outerBubbleSizes[device] ?? "200px";
     return (
         <div
             className="carousel-container"
@@ -393,8 +400,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                 style={{
                                     display: "flex",
                                     background: startStep2Transition ? COLORS.STEEL_BLUE : "", // COLORS.STEEL_BLUE
-                                    width: startStep2Transition ? "200px" : laserSize,
-                                    height: startStep2Transition ? "200px" : laserSize,
+                                    width: startStep2Transition ? outerBubbleSize : laserSize,
+                                    height: startStep2Transition ? outerBubbleSize : laserSize,
                                     borderRadius: "50%",
                                     alignItems: "center",
                                     justifyContent: "center",
