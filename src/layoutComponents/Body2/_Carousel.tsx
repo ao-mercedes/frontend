@@ -9,6 +9,14 @@ import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 import {useEffect, useMemo, useRef, useState} from "react";
 import {Typography} from "antd";
 
+
+const lengths = {
+    [Device.mobile]: "420px",
+    [Device.tablet]: "510px",
+    [Device.desktop]: "420px",
+};
+
+
 interface ItemData {
     bubbleBottomText: string;
     bubbleTopText: string;
@@ -201,7 +209,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
         return;
     }, [imageClient, items, requestImage]);
 
-    const length = "420px";
+
+    const length = lengths[device] ?? "420px";
 
     const [startStep1Transition, setStartTransitionStep1] = useState(false);
     const [stoppedStep1Transition, setStopTransitionStep1] = useState(false);
