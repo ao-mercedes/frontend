@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {FirstPitch} from "../../assets/textual/firstpitch.ts";
 import {Divider, Typography} from "antd";
 import CircularCarousel from "./_Carousel.tsx";
+import ByLineComponent from "./_Byline.tsx";
 
 
 const paragraphFontSizes: { [device in Device]: string } = {
@@ -14,16 +15,30 @@ const paragraphFontSizes: { [device in Device]: string } = {
     [Device.desktop]: "20px",
 };
 
+const headerHorizontalPaddings: { [device in Device]: string } = {
+    [Device.mobile]: "20px",
+    [Device.tablet]: "160px",
+    [Device.desktop]: "20px",
+};
+
 const headerBylineFontSizes: { [device in Device]: string } = {
     [Device.mobile]: "18px",
-    [Device.tablet]: "20px",
+    [Device.tablet]: "14px",
     [Device.desktop]: "20px",
 };
+
 const headerDateFontSizes: { [device in Device]: string } = {
     [Device.mobile]: "14px",
-    [Device.tablet]: "20px",
+    [Device.tablet]: "12px",
     [Device.desktop]: "20px",
 };
+
+const carouselPaddingTops: { [device in Device]: string } = {
+    [Device.mobile]: "120px",
+    [Device.tablet]: "70px",
+    [Device.desktop]: "20px",
+};
+
 // TODO
 // [ ] alts for images sources
 export const Body2: React.FC<{ device: Device }> = ({device}) => {
@@ -44,9 +59,12 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
         }
     }, [imageClient]);
 
+    /* FIXME update state on device change only. */
     const headerBylineFontSize = headerBylineFontSizes[device] ?? "18px";
     const headerDateFontSize = headerDateFontSizes[device] ?? "14px";
     const paragraphFontSize = paragraphFontSizes[device] ?? "20px";
+    const headerHorizontalPadding = headerHorizontalPaddings[device] ?? "20px";
+    const carouselPaddingTop = carouselPaddingTops[device] ?? "20px";
 
     const extDescriptions =
         pitch && pitch.ExteriorDescriptions ? pitch.ExteriorDescriptions : [];
@@ -79,8 +97,8 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
                         className="ao-body2-header"
                         style={{
                             width: "100%",
-                            paddingLeft: "20px",
-                            paddingRight: "20px",
+                            paddingLeft: headerHorizontalPadding,
+                            paddingRight: headerHorizontalPadding,
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "center",
@@ -97,44 +115,14 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
                             }}
                         >
                             <div style={{display: "flex", gap: "10px"}}>
-                                <Typography.Text
-                                    style={{
-                                        fontSize: headerBylineFontSize,
-                                        color: COLORS.WALNUT_BROWN,
-                                        fontWeight: "600",
-                                    }}
-                                >
-                                    {"TEXT"}
-                                </Typography.Text>
-                                <Typography.Text
-                                    style={{
-                                        fontSize: headerBylineFontSize,
-                                        color: COLORS.BURNISHED_GOLD,
-                                        fontWeight: "600",
-                                    }}
-                                >
-                                    {pitch?.Author ?? ""}
-                                </Typography.Text>
+                                <ByLineComponent fontWeight={"600"} fontSize={headerBylineFontSize} tKey={"TEXT"}
+                                                 tValue={pitch?.Author ?? ""}/>
                             </div>
+
+
                             <div style={{display: "flex", gap: "10px"}}>
-                                <Typography.Text
-                                    style={{
-                                        fontSize: headerBylineFontSize,
-                                        color: COLORS.WALNUT_BROWN,
-                                        fontWeight: "600",
-                                    }}
-                                >
-                                    {"DESIGN"}
-                                </Typography.Text>
-                                <Typography.Text
-                                    style={{
-                                        fontSize: headerBylineFontSize,
-                                        color: COLORS.BURNISHED_GOLD,
-                                        fontWeight: "600",
-                                    }}
-                                >
-                                    {`${pitch?.Designer ?? ""}`}
-                                </Typography.Text>
+                                <ByLineComponent fontWeight={"600"} fontSize={headerBylineFontSize} tKey={"DESIGN"}
+                                                 tValue={pitch?.Designer ?? ""}/>
                             </div>
                         </div>
                         <Divider
@@ -199,7 +187,8 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
                 className="ao-body2-carousel-container"
                 style={{width: "100%", display: "flex"}}
             >
-                <CircularCarousel device={device} data={carouselItemsData} imageClient={imageClient}/>
+                <CircularCarousel paddingTop={carouselPaddingTop} device={device} data={carouselItemsData}
+                                  imageClient={imageClient}/>
             </div>
         </div>
     );

@@ -86,12 +86,14 @@ interface CircularCarouselProps {
     data?: ItemData[];
     imageClient?: ImageClient | null;
     device: Device;
+    paddingTop: string;
 }
 
 const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                                                data,
                                                                imageClient,
                                                                device,
+                                                               paddingTop,
                                                            }) => {
     // Focus Update
     // update all items -> update focus item -> update img
@@ -269,7 +271,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
         <div
             className="carousel-container"
             style={{
-                paddingTop: "180px",
+                paddingTop: paddingTop,
                 paddingBottom: "150px",
                 width: "100%",
                 display: "flex",
