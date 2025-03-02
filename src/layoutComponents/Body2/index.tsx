@@ -1,6 +1,6 @@
 import "./index.css";
 import {COLORS, Device} from "../../utils/constants/constants.ts";
-import {PageA4} from "../pageSize.tsx";
+import {PageA4} from "../pageSizes.tsx";
 import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 import {useEffect, useState} from "react";
 import {FirstPitch} from "../../assets/textual/firstpitch.ts";
@@ -12,25 +12,25 @@ import ByLineComponent from "./_Byline.tsx";
 const paragraphFontSizes: { [device in Device]: string } = {
     [Device.mobile]: "20px",
     [Device.tablet]: "14px",
-    [Device.desktop]: "20px",
+    [Device.desktop]: "32px",
 };
 
 const headerHorizontalPaddings: { [device in Device]: string } = {
     [Device.mobile]: "20px",
     [Device.tablet]: "160px",
-    [Device.desktop]: "1000px",
+    [Device.desktop]: "150px",
 };
 
 const headerBylineFontSizes: { [device in Device]: string } = {
     [Device.mobile]: "18px",
     [Device.tablet]: "14px",
-    [Device.desktop]: "20px",
+    [Device.desktop]: "26px",
 };
 
 const headerDateFontSizes: { [device in Device]: string } = {
     [Device.mobile]: "14px",
     [Device.tablet]: "12px",
-    [Device.desktop]: "20px",
+    [Device.desktop]: "22px",
 };
 
 const carouselPaddingTops: { [device in Device]: string } = {
@@ -43,6 +43,13 @@ const carouselPaddingBottoms: { [device in Device]: string } = {
     [Device.mobile]: "150px",
     [Device.tablet]: "65px",
     [Device.desktop]: "20px",
+};
+
+
+const HorizontalPadding = {
+    [Device.mobile]: "60px",
+    [Device.tablet]: "100px",
+    [Device.desktop]: "650px",
 };
 
 // TODO
@@ -85,13 +92,15 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
         };
     });
 
-
     return (
         <div
             className="ao-body2-container"
             style={{backgroundColor: COLORS.CHARCOAL_SLATE}}
         >
-            <PageA4 device={device} style={{}}>
+            <PageA4 style={{
+                paddingLeft: HorizontalPadding[device],
+                paddingRight: HorizontalPadding[device],
+            }}>
                 <div
                     style={{
                         marginTop: "35px",
@@ -169,9 +178,11 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
                             flexDirection: "column",
                             alignItems: "center",
                             marginTop: "30px",
+                            width: "100%",
                         }}
                     >
-                        <div className="ao-body2-content-paragraphs">
+                        <div className="ao-body2-content-paragraphs"
+                             style={{display: "flex", width: "100%", flexDirection: "column"}}>
                             {pitch?.Paragraphs.map((paragraph, index) => {
                                 return (
                                     <Typography.Paragraph
