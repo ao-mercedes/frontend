@@ -9,6 +9,7 @@ import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 import {useEffect, useMemo, useRef, useState} from "react";
 import {Typography} from "antd";
 import * as React from "react";
+import _Arrow from "./_Arrow.tsx";
 
 
 const lengths = {
@@ -145,51 +146,6 @@ const _outerBubbleOffsets: circleOffsetsT = {
     }
 };
 
-
-interface ArrowComponentProps {
-    onClick: () => void;
-    scale: number;
-    img: string;
-    leansRight: boolean;
-}
-
-const ArrowComponent: React.FC<ArrowComponentProps> = ({onClick, scale, img, leansRight}) => {
-    return <div
-        className="ao-body2-carousel-arrow-wrapper"
-        style={{
-            display: "flex",
-            width: "100%",
-            height: "100%",
-            justifyContent: "center",
-            alignItems: "right",
-            zIndex: 500,
-        }}
-    >
-        <div
-            className="ao-body2-carousel-arrow"
-            style={{
-                display: "flex",
-                width: "100%",
-                height: "100%",
-                justifyContent: leansRight ? "flex-end" : "flex-start",
-                alignItems: "center",
-                zIndex: 500,
-            }}
-        >
-            <img
-                style={{
-                    scale: scale,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-                src={img}
-                alt={""}
-                onClick={onClick}
-            />
-        </div>
-    </div>;
-};
 
 const calcOuterBubbleOffsets = (device: Device, label: string | undefined) => {
     console.log(`calcOuterBubbleOffsets ${device} ${label}}`);
@@ -680,13 +636,13 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                             zIndex: 1000,
                         }}
                     >
-                        <ArrowComponent scale={arrowScale} onClick={
+                        <_Arrow scale={arrowScale} onClick={
                             () => {
                                 setFocusToCurrentNeighbour("left");
                             }
                         } img={img_left_arrow} leansRight={false}/>
 
-                        <ArrowComponent scale={arrowScale} onClick={
+                        <_Arrow scale={arrowScale} onClick={
                             () => {
                                 setFocusToCurrentNeighbour("right");
                             }
