@@ -205,7 +205,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
             className="carousel-container"
             style={{
                 paddingTop: "180px",
-                paddingBottom: "100px",
+                paddingBottom: "150px",
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
@@ -416,14 +416,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                                             ? COLORS.GOLDEN_AMBER
                                                             : COLORS.PURE_WHITE,
                                                     display: "flex",
-                                                    height:
-                                                        focusedItem?.data_id == dotItem.data_id
-                                                            ? "35px"
-                                                            : "25px",
-                                                    width:
-                                                        focusedItem?.data_id == dotItem.data_id
-                                                            ? "35px"
-                                                            : "25px",
+                                                    height: "25px",
+                                                    width: "25px",
                                                     margin: "0px 10px 0 10px",
                                                     alignItems: "center",
                                                     borderRadius: "50%",
