@@ -89,31 +89,50 @@ const calcCarouselCircleLaserOffsets = (device: Device, label: string | undefine
 };
 
 
-const defaultOuterBubbleOffets = {x: "0", y: "0"};
-const _outerBubbleOffsets: {
-    [device in Device]: {
-        x: string;
-        y: string;
+const defaultOuterBubbleOffsets = {x: "0", y: "0"};
+const _outerBubbleOffsets: circleOffsetsT = {
+    [Device.mobile]: {
+        "bonnet": {x: "225px", y: "-90px"},
+        "exhaust": {x: "225px", y: "-90px"},
+        "wheel": {x: "225px", y: "-90px"},
+        "side_profile": {x: "225px", y: "-90px"},
+
+    },
+    [Device.tablet]:
+        {
+            "bonnet": {x: "395px", y: "-50px"},
+            "exhaust": {x: "-120px", y: "290px"},
+            "wheel": {x: "395px", y: "-50px"},
+            "side_profile": {x: "395px", y: "-50px"},
+        },
+    [Device.desktop]: {
+        "bonnet": {x: "395px", y: "-50px"},
+        "exhaust": {x: "395px", y: "-50px"},
+        "wheel": {x: "395px", y: "-50px"},
+        "side_profile": {x: "395px", y: "-50px"},
+
     }
-} = {
-    [Device.mobile]: {x: "225px", y: "-90px"},
-    [Device.tablet]: {x: "395px", y: "-50px"},
-    [Device.desktop]: {x: "140px", y: "55px"},
 };
 
 const calcOuterBubbleOffsets = (device: Device, label: string | undefined) => {
     console.log(`calcOuterBubbleOffsets ${device} ${label}}`);
-    const defaultOffsets = defaultOuterBubbleOffets;
+    const defaultOffsets = defaultOuterBubbleOffsets;
     if (label == undefined) {
         return defaultOffsets;
     }
-    const offsets = _outerBubbleOffsets[device];
-    if (offsets == null) {
+    const byDevice = _outerBubbleOffsets[device];
+    if (byDevice == null || byDevice[label] == null) {
         return defaultOffsets;
 
     }
 
-    return offsets;
+    const byIndex = byDevice[label];
+    if (byIndex == null) {
+        return defaultOffsets;
+    }
+
+
+    return byIndex ? byIndex : defaultOffsets;
 };
 
 
@@ -263,7 +282,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
     const [startStep1Transition, setStartTransitionStep1] = useState(false);
     const [stoppedStep1Transition, setStopTransitionStep1] = useState(false);
     const [startStep2Transition, setStartTransitionStep2] = useState(false);
-    const [stopStep2Transition, setStopTransitionStep2] = useState(false);
+    const [stoppedStep2Transition, setStopTransitionStep2] = useState(false);
     const carouselWrapperRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -317,7 +336,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
         : "";
 
     const [circleLaserOffsets, setCircleLaserOffsets] = useState(defaultCircleLaserOffsets);
-    const [outerBubbleOffsets, setOuterBubbleOffsets] = useState(defaultOuterBubbleOffets);
+    const [outerBubbleOffsets, setOuterBubbleOffsets] = useState(defaultOuterBubbleOffsets);
 
     useEffect(() => {
         const _circleLaserOffsets = calcCarouselCircleLaserOffsets(device, focusedItem?.label);
@@ -437,7 +456,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                 zIndex: 1000,
                                 top: startStep2Transition ? outerBubbleOffsets.y : circleLaserOffsets.y,
                                 left: startStep2Transition ? outerBubbleOffsets.x : circleLaserOffsets.x,
-                                transition: "top 2s ease-in, left 2s ease-in",
+                                transition: stoppedStep2Transition ? "" : "top 2s ease-in, left 2s ease-in",
                             }}
                         >
                             <div
@@ -451,7 +470,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                     alignItems: "center",
                                     justifyContent: "center",
                                     position: "relative",
-                                    transition: "width 2s ease-in, height 2s ease-in",
+                                    transition: stoppedStep2Transition ? "" : "width 2s ease-in, height 2s ease-in",
                                 }}
                             >
                                 <div
@@ -470,7 +489,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                             fontSize: "0.8rem",
                                             lineHeight: "0.8rem",
                                             textAlign: "center",
-                                            display: stopStep2Transition ? "flex" : "none",
+                                            display: stoppedStep2Transition ? "flex" : "none",
                                             color: COLORS.PURE_WHITE,
                                         }}
                                     >
@@ -482,7 +501,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                             fontSize: "0.8rem",
                                             lineHeight: "0.8rem",
                                             textAlign: "center",
-                                            display: stopStep2Transition ? "flex" : "none",
+                                            display: stoppedStep2Transition ? "flex" : "none",
                                             color: COLORS.PURE_WHITE,
                                         }}
                                     >
