@@ -42,7 +42,7 @@ const carouselPaddingTops: { [device in Device]: string } = {
 const carouselPaddingBottoms: { [device in Device]: string } = {
     [Device.mobile]: "150px",
     [Device.tablet]: "65px",
-    [Device.desktop]: "20px",
+    [Device.desktop]: "80px",
 };
 
 
