@@ -158,7 +158,9 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                     </div>
                 </div>
             </UnbrokenPage>
-            <div style={{
+            <div ref={contentDivRef}/>
+
+            <div className={"ao-body3-footer"} style={{
                 display: "flex",
                 position: "relative",
                 height: "max-content",
