@@ -162,7 +162,7 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                 display: "flex",
                 position: "relative",
                 height: "max-content",
-                marginTop: "30px"
+                marginTop: "70px"
             }}>
                 <div style={{
                     display: "flex",
