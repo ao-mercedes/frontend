@@ -14,13 +14,13 @@ import {useEffect, useRef} from "react";
 
 const paragraphFontSizes: { [device in Device]: string } = {
     [Device.mobile]: "20px",
-    [Device.tablet]: "14px",
+    [Device.tablet]: "25px",
     [Device.desktop]: "32px",
 };
 
 const headerFontSizes = {
     [Device.mobile]: "48px",
-    [Device.tablet]: "20px",
+    [Device.tablet]: "60px",
     [Device.desktop]: "20px",
 };
 
@@ -37,9 +37,9 @@ const headerFontWeights = {
 };
 
 const headerColors = {
-    [Device.mobile]: COLORS.CHARCOAL_SLATE,
+    [Device.mobile]: COLORS.MOSSY_OLIVE,
     [Device.tablet]: COLORS.CHARCOAL_SLATE,
-    [Device.desktop]: COLORS.MOSSY_OLIVE,
+    [Device.desktop]: COLORS.CHARCOAL_SLATE,
 };
 
 const marginTops = {
