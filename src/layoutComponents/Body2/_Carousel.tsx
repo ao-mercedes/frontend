@@ -30,6 +30,12 @@ const outerBubbleSizes = {
     [Device.desktop]: "20px",
 };
 
+const borderRingPcts = {
+    [Device.mobile]: "90%",
+    [Device.tablet]: "90%",
+    [Device.desktop]: "87%",
+};
+
 const dotLengthOptionsByDevice = {
     [Device.mobile]: {default: "25px", focused: "25px"},
     [Device.tablet]: {default: "12px", focused: "16px"},
@@ -404,6 +410,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
 
     const laserSize = laserSizes[device] ?? "18px";
     const outerBubbleSize = outerBubbleSizes[device] ?? "200px";
+    const borderRingPct = borderRingPcts[device] ?? "90%";
 
 
     const dotLengthOptions = dotLengthOptionsByDevice[device] ?? {default: "10px", focused: "10px"};
@@ -454,8 +461,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                         alignItems: "center",
                         background: COLORS.CHARCOAL_SLATE,
                         borderRadius: "50%",
-                        width: "90%",
-                        height: "90%",
+                        width: borderRingPct,
+                        height: borderRingPct,
                         position: "absolute",
                     }}
                 ></div>
@@ -465,8 +472,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                             ? "translateX(0) rotate(0)"
                             : "translateX(-200%) rotate(-270deg)",
                         transition: carouselTransitionStep1,
-                        width: "90%",
-                        height: "90%",
+                        width: borderRingPct,
+                        height: borderRingPct,
                     }}
                     src={exteriorFocusImage ?? undefined}
                     alt={""}
