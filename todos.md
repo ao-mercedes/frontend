@@ -99,3 +99,11 @@
             (L = 10, W = 0, direction = right)
     (x,y) --------------------------------------------- (x+L,y+W,right)
 ```
+
+= [ ] [Issue-0006] Same state rerendering
+
+- Component `Body2.Carousel`
+- [ ] When the focused item and the next focus item is the same, an unnecessary trigger of `setFocusItem` is executed.
+- [ ] TODO, change `items: []ItemData` -> `items: {data: []ItemData, focusIdx: number}`, then check if next focus is the
+  same
+  as `items.focusIdx`

@@ -138,7 +138,7 @@ const _outerBubbleOffsets: circleOffsetsT = {
             "side_profile": {x: "395px", y: "250px"},
         },
     [Device.desktop]: {
-        "bonnet": {x: "395px", y: "-50px"},
+        "bonnet": {x: "920px", y: "-150px"},
         "exhaust": {x: "395px", y: "-50px"},
         "wheel": {x: "395px", y: "-50px"},
         "side_profile": {x: "395px", y: "250px"},
