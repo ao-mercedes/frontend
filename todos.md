@@ -35,35 +35,36 @@
     - [ ] Download images and text content
     - [ ] Components (From top to bottom) - Mobile
         - [ ] Container flex
-            - [ ] Byline
-            - [ ] Pitch Information
-            - [ ] Carousel
-                - [ ] Static Component
-                    - [ ] Pin to after Pitch Information
-                - [ ] Animated, Transit on scroll
-                - [ ] Interaction
-                - [ ] Margin
+            - [x] Byline
+            - [x] Pitch Information
+            - [x] Carousel
+                - [x] Static Component
+                    - [x] Pin to after Pitch Information
+                - [x] Animation, Transit on scroll
+                - [x] Interaction
+                - [x] Margins
+                - [ ] Lines
     - [ ] Components (From top to bottom) - Tablet
         - [ ] Container flex
-            - [ ] Byline
-            - [ ] Pitch Information
-            - [ ] Carousel
-                - [ ] Static Component
-                    - [ ] Pin to after Pitch Information
-                - [ ] Animated, Transit on scroll
-                - [ ] Interaction
-                - [ ] Margin
+            - [x] Byline
+            - [x] Pitch Information
+            - [x] Carousel
+                - [x] Static Component
+                    - [x] Pin to after Pitch Information
+                - [x] Animation, Transit on scroll
+                - [x] Interaction
+                - [x] Margins
     - [ ] Components (From top to bottom) - Desktop
         - [ ] Container flex
-            - [ ] Byline
-            - [ ] Pitch Information
-            - [ ] Carousel
-                - [ ] Static Component
-                    - [ ] Pin to after Pitch Information
-                - [ ] Animated, Transit on scroll
-                - [ ] Interaction
-                - [ ] Margin
-        - [ ] Wireframe + add background
+            - [x] Byline
+            - [x] Pitch Information
+            - [x] Carousel
+                - [x] Static Component
+                    - [x] Pin to after Pitch Information
+                - [x] Animation, Transit on scroll
+                - [x] Interaction
+                - [x] Margins
+    - [x] Wireframe + add background
 
 # Issues
 
