@@ -21,7 +21,7 @@ const lengths = {
 const laserSizes = {
     [Device.mobile]: "18px",
     [Device.tablet]: "18px",
-    [Device.desktop]: "20px",
+    [Device.desktop]: "30px",
 };
 
 const outerBubbleSizes = {
@@ -60,6 +60,7 @@ const outerBubbleFontSizes = {
     [Device.tablet]: "0.8rem%",
     [Device.desktop]: "1.6rem",
 };
+
 const outerBubbleTextLineHeights = {
     [Device.mobile]: "0.8rem",
     [Device.tablet]: "0.8rem",
@@ -91,10 +92,10 @@ const _circleLaserOffsets: circleOffsetsT = {
         "side_profile": {x: "409px", y: "266px"},
     },
     [Device.desktop]: {
-        "bonnet": {x: "0px", y: "0px"},
-        "exhaust": {x: "0px", y: "0px"},
-        "wheel": {x: "0px", y: "0px"},
-        "side_profile": {x: "0px", y: "0px"},
+        "bonnet": {x: "700px", y: "419px"},
+        "exhaust": {x: "270px", y: "570px"},
+        "wheel": {x: "340px", y: "420px"},
+        "side_profile": {x: "496px", y: "797px"},
     }
 };
 
