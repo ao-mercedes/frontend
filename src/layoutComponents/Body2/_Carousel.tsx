@@ -13,7 +13,7 @@ import {Typography} from "antd";
 const lengths = {
     [Device.mobile]: "420px",
     [Device.tablet]: "510px",
-    [Device.desktop]: "420px",
+    [Device.desktop]: "1000px",
 };
 
 
