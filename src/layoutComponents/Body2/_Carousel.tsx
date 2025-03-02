@@ -29,6 +29,12 @@ const outerBubbleSizes = {
     [Device.desktop]: "20px",
 };
 
+const dotLengthOptionsByDevice = {
+    [Device.mobile]: {default: "25px", focused: "25px"},
+    [Device.tablet]: {default: "12px", focused: "16px"},
+    [Device.desktop]: {default: "15px", focused: "20px"},
+};
+
 
 type circleOffsetsT = {
     [device in Device]: {
@@ -135,6 +141,7 @@ interface CircularCarouselProps {
     imageClient?: ImageClient | null;
     device: Device;
     paddingTop: string;
+    paddingBottom: string;
 }
 
 const CircularCarousel: React.FC<CircularCarouselProps> = ({
@@ -142,6 +149,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                                                imageClient,
                                                                device,
                                                                paddingTop,
+                                                               paddingBottom,
                                                            }) => {
     // Focus Update
     // update all items -> update focus item -> update img
@@ -324,12 +332,16 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
 
     const laserSize = laserSizes[device] ?? "18px";
     const outerBubbleSize = outerBubbleSizes[device] ?? "200px";
+
+
+    const dotLengthOptions = dotLengthOptionsByDevice[device] ?? {default: "10px", focused: "10px"};
+
     return (
         <div
             className="carousel-container"
             style={{
                 paddingTop: paddingTop,
-                paddingBottom: "150px",
+                paddingBottom: paddingBottom,
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
@@ -527,6 +539,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                     }}
                                 >
                                     {items?.map((dotItem) => {
+                                        const isDotFocused = focusedItem?.data_id == dotItem.data_id;
+                                        const dotLength = isDotFocused ? dotLengthOptions.focused : dotLengthOptions.default;
                                         return (
                                             <div
                                                 key={dotItem.data_id}
@@ -536,12 +550,12 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                                 }}
                                                 style={{
                                                     background:
-                                                        focusedItem?.data_id == dotItem.data_id
+                                                        isDotFocused
                                                             ? COLORS.GOLDEN_AMBER
                                                             : COLORS.PURE_WHITE,
                                                     display: "flex",
-                                                    height: "25px",
-                                                    width: "25px",
+                                                    height: dotLength,
+                                                    width: dotLength,
                                                     margin: "0px 10px 0 10px",
                                                     alignItems: "center",
                                                     borderRadius: "50%",

@@ -39,6 +39,12 @@ const carouselPaddingTops: { [device in Device]: string } = {
     [Device.desktop]: "20px",
 };
 
+const carouselPaddingBottoms: { [device in Device]: string } = {
+    [Device.mobile]: "150px",
+    [Device.tablet]: "65px",
+    [Device.desktop]: "20px",
+};
+
 // TODO
 // [ ] alts for images sources
 export const Body2: React.FC<{ device: Device }> = ({device}) => {
@@ -65,6 +71,7 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
     const paragraphFontSize = paragraphFontSizes[device] ?? "20px";
     const headerHorizontalPadding = headerHorizontalPaddings[device] ?? "20px";
     const carouselPaddingTop = carouselPaddingTops[device] ?? "20px";
+    const carouselPaddingBottom = carouselPaddingBottoms[device] ?? "150px";
 
     const extDescriptions =
         pitch && pitch.ExteriorDescriptions ? pitch.ExteriorDescriptions : [];
@@ -187,7 +194,8 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
                 className="ao-body2-carousel-container"
                 style={{width: "100%", display: "flex"}}
             >
-                <CircularCarousel paddingTop={carouselPaddingTop} device={device} data={carouselItemsData}
+                <CircularCarousel paddingBottom={carouselPaddingBottom} paddingTop={carouselPaddingTop} device={device}
+                                  data={carouselItemsData}
                                   imageClient={imageClient}/>
             </div>
         </div>
