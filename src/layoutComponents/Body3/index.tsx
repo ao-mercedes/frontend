@@ -8,7 +8,7 @@ import {PageA4} from "../pageSizes.tsx";
 
 import {Typography} from "antd";
 import * as React from "react";
-import _Contents from "./_Contents.tsx";
+import ContentsComponent from "./contentsComponent.tsx";
 
 
 const paragraphFontSizes: { [device in Device]: string } = {
@@ -47,6 +47,12 @@ const marginTops = {
     [Device.desktop]: "55px",
 };
 
+const imageScales = {
+    [Device.mobile]: 1,
+    [Device.tablet]: 1,
+    [Device.desktop]: 2,
+};
+
 
 export const Body3: React.FC<{ device: Device }> = ({device}) => {
 
@@ -59,6 +65,7 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
     const headerFontSize = headerFontSizes[device] ?? "48px";
     const headerFontWeight = headerFontWeights[device] ?? "700";
     const paragraphMarginTop = paragraphMarginTops[device] ?? "35px";
+    const imageScale = imageScales[device] ?? 1;
     const shouldReverseContentTextAndImage = device == Device.desktop || device == Device.tablet;
 
 
@@ -112,11 +119,11 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                         }}
                     >
                     </div>
-                    <_Contents contents={contents} shouldReverseContentTextAndImage={shouldReverseContentTextAndImage}
-                               paragraphFontSize={paragraphFontSize}></_Contents>
+                    <ContentsComponent contents={contents} imageScale={imageScale}
+                                       shouldReverseContentTextAndImage={shouldReverseContentTextAndImage}
+                                       paragraphFontSize={paragraphFontSize}></ContentsComponent>
                 </div>
             </PageA4>
-
         </div>
     );
 };

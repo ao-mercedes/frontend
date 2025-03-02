@@ -4,6 +4,7 @@ import * as React from "react";
 import {_getContents} from "./contentInfoGetter.ts";
 
 import {Property as CSSProperty} from 'csstype';
+import {useEffect, useRef} from "react";
 
 export interface Content {
     paragraphs: string[]
@@ -23,12 +24,47 @@ interface _ContentProps {
     paragraphFontSize: string;
     itemsFlexDirection: CSSProperty.FlexDirection;
     index: number;
+    imageScale: number;
 }
 
-const _Content: React.FC<_ContentProps> = ({index, itemsFlexDirection, paragraphFontSize, content}) => {
+const ContentComponent: React.FC<_ContentProps> = ({
+                                                       index,
+                                                       itemsFlexDirection,
+                                                       paragraphFontSize,
+                                                       content,
+                                                       imageScale
+                                                   }) => {
+
+    const [showImage, setShowImage] = React.useState(false);
+    const textDivRef = useRef<HTMLDivElement | null>(null);
+
+    // when seen a part of text, start to show image
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setShowImage(entry.isIntersecting);
+                }
+            },
+            {threshold: 1},
+        );
+
+        const currRef = textDivRef.current;
+        if (currRef) {
+            observer.observe(currRef);
+        }
+
+        return () => {
+            if (currRef) {
+                observer.unobserve(currRef);
+            }
+        };
+    }, []);
+    console.log(` showImage ${showImage}`);
+
     return <div className="ao-body3-pedigree-car-content" key={index}
                 style={{display: "flex", width: "100%", flexDirection: itemsFlexDirection}}>
-        <div className="ao-body3-pedigree-car-text"
+        <div ref={textDivRef} className="ao-body3-pedigree-car-text"
              style={{display: "flex", width: "100%", flexDirection: "column"}}>
             {content.paragraphs.map((paragraph, pIdx) => {
                 return <Typography.Paragraph
@@ -49,6 +85,7 @@ const _Content: React.FC<_ContentProps> = ({index, itemsFlexDirection, paragraph
                  display: "flex",
                  justifyContent: "center",
                  width: "100%",
+
              }}>
             <div style={{
                 display: "flex",
@@ -56,16 +93,21 @@ const _Content: React.FC<_ContentProps> = ({index, itemsFlexDirection, paragraph
                 justifyContent: "center",
                 width: "max-content"
             }}>
-                <img style={{position: "relative"}} src={content.image.url}
+                <img style={{
+                    position: "relative",
+                    width: showImage ? "100%" : "0%",
+                    scale: imageScale,
+                    transition: showImage ? "scale 4s, width 4s ease-in, height 2s ease-in" : "",
+                }} src={content.image.url}
                      alt={content.image.alt}>
-
                 </img>
-
                 <div className="ao-body3-pedigree-car-image-caption-wrapper"
                      style={{
                          display: "flex",
-                         width: "100%",
-                         height: "100%",
+                         scale: imageScale,
+                         width: showImage ? "100%" : "0%",
+                         transition: showImage ? "scale 4s, width 4s ease-in, height 2s ease-in" : "",
+                         height: showImage ? "100%" : "0%",
                          position: "absolute",
                          overflow: "hidden",
                          borderRadius: "50%",
@@ -103,17 +145,23 @@ interface _ContentsProps {
     contents: ReturnType<typeof _getContents> // FIXME decouple type from resource getter
     shouldReverseContentTextAndImage: boolean;
     paragraphFontSize: string
+    imageScale: number;
 }
 
-const _Contents: React.FC<_ContentsProps> = ({contents, shouldReverseContentTextAndImage, paragraphFontSize}) => {
+const ContentsComponent: React.FC<_ContentsProps> = ({
+                                                         contents,
+                                                         shouldReverseContentTextAndImage,
+                                                         paragraphFontSize,
+                                                         imageScale
+                                                     }) => {
     return <>
         {contents.map((content, index) => {
             const itemsFlexDirection = (shouldReverseContentTextAndImage && (index % 2 == 1)) ? "column-reverse" : "column";
-            return <_Content content={content} paragraphFontSize={paragraphFontSize}
-                             itemsFlexDirection={itemsFlexDirection} index={index}/>
+            return <ContentComponent imageScale={imageScale} content={content} paragraphFontSize={paragraphFontSize}
+                                     itemsFlexDirection={itemsFlexDirection} index={index}/>
                 ;
         })
         }</>;
 };
 
-export default _Contents;
+export default ContentsComponent;

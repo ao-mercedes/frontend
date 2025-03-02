@@ -371,6 +371,9 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
     const [outerBubbleOffsets, setOuterBubbleOffsets] = useState(defaultOuterBubbleOffsets);
 
     useEffect(() => {
+        if (device == null || focusedItem == undefined) {
+            return;
+        }
         const _circleLaserOffsets = calcCarouselCircleLaserOffsets(device, focusedItem?.label);
         console.log(`_circleLaserOffsets ${JSON.stringify(_circleLaserOffsets)}`);
         setCircleLaserOffsets(_circleLaserOffsets);
