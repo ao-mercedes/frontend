@@ -57,7 +57,7 @@ const _circleLaserOffsets: circleOffsetsT = {
         "bonnet": {x: "260px", y: "260px"},
         "exhaust": {x: "120px", y: "290px"},
         "wheel": {x: "168px", y: "213px"},
-        "side_profile": {x: "0px", y: "0px"},
+        "side_profile": {x: "409px", y: "266px"},
     },
     [Device.desktop]: {
         "bonnet": {x: "0px", y: "0px"},
@@ -102,14 +102,14 @@ const _outerBubbleOffsets: circleOffsetsT = {
         {
             "bonnet": {x: "395px", y: "-50px"},
             "exhaust": {x: "-120px", y: "290px"},
-            "wheel": {x: "395px", y: "-50px"},
-            "side_profile": {x: "395px", y: "-50px"},
+            "wheel": {x: "-130px", y: "-64px"},
+            "side_profile": {x: "395px", y: "250px"},
         },
     [Device.desktop]: {
         "bonnet": {x: "395px", y: "-50px"},
         "exhaust": {x: "395px", y: "-50px"},
         "wheel": {x: "395px", y: "-50px"},
-        "side_profile": {x: "395px", y: "-50px"},
+        "side_profile": {x: "395px", y: "250px"},
 
     }
 };
@@ -456,7 +456,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                                 zIndex: 1000,
                                 top: startStep2Transition ? outerBubbleOffsets.y : circleLaserOffsets.y,
                                 left: startStep2Transition ? outerBubbleOffsets.x : circleLaserOffsets.x,
-                                transition: stoppedStep2Transition ? "" : "top 2s ease-in, left 2s ease-in",
+                                transition: stoppedStep2Transition ? "top 0.5s ease-in, left 0.5s ease-in" : "top 2s ease-in, left 2s ease-in",
                             }}
                         >
                             <div
