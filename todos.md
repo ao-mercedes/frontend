@@ -54,6 +54,7 @@
                 - [x] Animation, Transit on scroll
                 - [x] Interaction
                 - [x] Margins
+                - [ ] Lines
     - [ ] Components (From top to bottom) - Desktop
         - [ ] Container flex
             - [x] Byline
@@ -64,6 +65,7 @@
                 - [x] Animation, Transit on scroll
                 - [x] Interaction
                 - [x] Margins
+                - [ ] Lines
     - [x] Wireframe + add background
 
 # Issues
