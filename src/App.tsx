@@ -6,6 +6,7 @@ import {defaultTheme} from "./layoutComponents/themeDefault.ts";
 import Body1 from "./layoutComponents/Body1";
 import Body2 from "./layoutComponents/Body2";
 import Body3 from "./layoutComponents/Body3";
+import Body4 from "./layoutComponents/Body4";
 import HamburgerNavigationMenu from "./layoutComponents/HamburgerNavigationMenu";
 
 import {useDevice} from "./hooks/useDevice.ts";
@@ -13,9 +14,6 @@ import {useDevice} from "./hooks/useDevice.ts";
 import {ConfigProvider, Layout} from "antd";
 
 
-const Body4: React.FC<{ children: React.ReactNode }> = ({children}) => (
-    <div className="body4 ao-body">{children}</div>
-);
 const Body5: React.FC<{ children: React.ReactNode }> = ({children}) => (
     <div className="body5 ao-body">{children}</div>
 );
@@ -53,7 +51,7 @@ function App() {
                     <Body1 device={device}/>
                     <Body2 device={device}/>
                     <Body3 device={device}/>
-                    <Body4>content</Body4>
+                    <Body4 device={device}/>
                     <Body5>content</Body5>
                     <Body6>content</Body6>
                     <Body7>content</Body7>

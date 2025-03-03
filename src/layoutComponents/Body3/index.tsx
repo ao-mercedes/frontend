@@ -339,7 +339,7 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                     </div>
                 </div>
 
-                <div style={{
+                <div className={"ao-body3-end-border"} style={{
                     display: "flex",
                     backgroundColor: COLORS.GOLDEN_AMBER,
                     position: "absolute",
