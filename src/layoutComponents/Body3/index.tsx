@@ -103,6 +103,56 @@ const footerTextPaddingLefts = {
     [Device.desktop]: "10%",
 };
 
+const contentRowGaps = {
+    [Device.mobile]: "0px",
+    [Device.tablet]: "10px",
+    [Device.desktop]: "100px",
+};
+
+
+const footerWidths = {
+    [Device.mobile]: "95%",
+    [Device.tablet]: "95%",
+    [Device.desktop]: "75%",
+};
+
+const footerPaddingBottoms = {
+    [Device.mobile]: "25px",
+    [Device.tablet]: "25px",
+    [Device.desktop]: "25px",
+};
+
+const footerPaddingTops = {
+    [Device.mobile]: "25px",
+    [Device.tablet]: "25px",
+    [Device.desktop]: "25px",
+};
+
+const footerFontSizes = {
+    [Device.mobile]: "2.3rem",
+    [Device.tablet]: "2.3rem",
+    [Device.desktop]: "5rem",
+};
+
+
+const footerLineHeights = {
+    [Device.mobile]: "2.5rem",
+    [Device.tablet]: "2.5rem",
+    [Device.desktop]: "5rem",
+};
+
+const footerMarginTops = {
+    [Device.mobile]: "70px",
+    [Device.tablet]: "70px",
+    [Device.desktop]: "140px",
+};
+
+const footerClipPaths = {
+    [Device.mobile]: "polygon(0% 0%, 90% 0%, 100% 100%, 0% 100%)",
+    [Device.tablet]: "polygon(0% 0%, 90% 0%, 100% 100%, 0% 100%)",
+    [Device.desktop]: "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)",
+};
+
 
 export const Body3: React.FC<{ device: Device }> = ({device}) => {
     const [showBottomGuide, setShowBottomGuide] = React.useState(false);
@@ -155,6 +205,16 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
     const imageWrapperPaddingLeft = imageWrapperPaddingLefts[device] ?? "0px";
     const footerTextPaddingLeft = footerTextPaddingLefts[device] ?? "15%";
 
+    const contentRowGap = contentRowGaps[device] ?? "15%";
+
+
+    const footerWidth = footerWidths[device] ?? "75%";
+    const footerPaddingBottom = footerPaddingBottoms[device] ?? "25px";
+    const footerPaddingTop = footerPaddingTops[device] ?? "25px";
+    const footerFontSize = footerFontSizes[device] ?? "5rem";
+    const footerLineHeight = footerLineHeights[device] ?? "5rem";
+    const footerMarginTop = footerMarginTops[device] ?? "140px";
+    const footerClipPath = footerClipPaths[device] ?? "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)";
 
     return (
         <div
@@ -213,7 +273,9 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                                            imageWrapperPaddingLeft={imageWrapperPaddingLeft}
                                            captionLineHeight={captionLineHeight}
                                            captionFontSize={captionFontSize}
-                                           imageCaptionTextWidths={imageCaptionTextWidths}></ContentsComponent>
+                                           imageCaptionTextWidths={imageCaptionTextWidths}
+                                           contentRowGap={contentRowGap}
+                        ></ContentsComponent>
 
 
                     </div>
@@ -225,22 +287,22 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                 display: "flex",
                 position: "relative",
                 height: "max-content",
-                marginTop: "70px"
+                marginTop: footerMarginTop,
             }}>
                 <div style={{
                     display: "flex",
-                    width: "95%",
+                    width: footerWidth,
                     justifyContent: "center",
                     overflow: "hidden",
                     transition: "transform 3s ease-in-out, opacity 1s ease-in-out",
                     transform: showBottomGuide ? "translateX(0)" : "translateX(-100%)",
-                    clipPath: "polygon(0% 0%, 90% 0%, 100% 100%, 0% 100%)",
+                    clipPath: footerClipPath,
                     alignItems: "center",
                     height: "fit-content",
                     zIndex: 1000,
                     backgroundColor: COLORS.HIGH_ORANGE,
-                    paddingTop: "25px",
-                    paddingBottom: "25px",
+                    paddingTop: footerPaddingTop,
+                    paddingBottom: footerPaddingBottom,
                 }}>
                     <div style={{
                         paddingLeft: footerTextPaddingLeft,
@@ -255,9 +317,9 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                             alignItems: "center",
                             justifyContent: "center",
                             color: COLORS.PURE_WHITE,
-                            fontSize: "2.3rem",
+                            fontSize: footerFontSize,
                             fontWeight: "500",
-                            lineHeight: "2.5rem",
+                            lineHeight: footerLineHeight,
                             wordBreak: "break-word",
                         }}>
                             Different interior approach

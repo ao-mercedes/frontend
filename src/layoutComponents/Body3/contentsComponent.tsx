@@ -174,7 +174,7 @@ const ContentComponent: React.FC<_ContentProps> = ({
     </div>;
 };
 
-interface _ContentsProps {
+interface ContentsComponentProps {
     contents: ReturnType<typeof _getContents> // FIXME decouple type from resource getter
     shouldReverseContentTextAndImageOnAlternateItems: boolean;
     paragraphFontSize: string;
@@ -186,19 +186,27 @@ interface _ContentsProps {
     captionLineHeight: string;
     captionFontSize: string;
     imageCaptionTextWidths: { [caption: string]: string };
+    contentRowGap: string;
 }
 
-const ContentsComponent: React.FC<_ContentsProps> = ({
-                                                         contents,
-                                                         shouldReverseContentTextAndImageOnAlternateItems,
-                                                         paragraphFontSize, paragraphFontWeight,
-                                                         imageScale, itemColumn,
-                                                         imageWrapperWidth, imageWrapperPaddingLeft,
-                                                         captionLineHeight, captionFontSize, imageCaptionTextWidths
-                                                     }) => {
+const ContentsComponent: React.FC<ContentsComponentProps> = ({
+                                                                 contents,
+                                                                 shouldReverseContentTextAndImageOnAlternateItems,
+                                                                 paragraphFontSize,
+                                                                 paragraphFontWeight,
+                                                                 imageScale,
+                                                                 itemColumn,
+                                                                 imageWrapperWidth,
+                                                                 imageWrapperPaddingLeft,
+                                                                 captionLineHeight,
+                                                                 captionFontSize,
+                                                                 imageCaptionTextWidths,
+                                                                 contentRowGap,
+                                                             }) => {
     const imageMarginTop = itemColumn ? "27px" : "0";
 
-    return <>
+    return <div
+        style={{display: "flex", flexDirection: "column", alignItems: "center", width: "100%", rowGap: contentRowGap}}>
         {contents.map((content, index) => {
 
 
@@ -236,7 +244,7 @@ const ContentsComponent: React.FC<_ContentsProps> = ({
                                      imageTextJustifyContent={imageTextJustifyContent}/>
                 ;
         })
-        }</>;
+        }</div>;
 };
 
 export default ContentsComponent;
