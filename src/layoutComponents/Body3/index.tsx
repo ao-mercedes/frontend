@@ -152,13 +152,13 @@ const footerMarginTops = {
 
 const footerClipPaths = {
     [Device.mobile]: "polygon(0% 0%, 90% 0%, 100% 100%, 0% 100%)",
-    [Device.tablet]: "polygon(0% 0%, 90% 0%, 100% 100%, 0% 100%)",
+    [Device.tablet]: "polygon(0% 0%, 95% 0%, 100% 100%, 0% 100%)",
     [Device.desktop]: "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)",
 };
 
 const rightFooterHeights = {
     [Device.mobile]: "30%",
-    [Device.tablet]: "30%",
+    [Device.tablet]: "40%",
     [Device.desktop]: "40%",
 };
 
