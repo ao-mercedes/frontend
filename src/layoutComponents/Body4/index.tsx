@@ -90,7 +90,14 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const headerHeight = headerHeights[device] ?? "200px";
     const imgWidth = imgWidths[device] ?? "295%";
     const imgTransform = imgTransforms[device] ?? "translateX(-12px) translateY(-12px)";
-    return <div className="ao-body4" style={{display: "flex", flexDirection: "column", width: "100%"}}>
+    return <div className="ao-body4"
+                style={{
+                    display: "flex",
+                    position: "relative",
+                    flexDirection: "column",
+                    width: "100%",
+                    overflow: "hidden"
+                }}>
         <div ref={bodyEntryDiv}/>
         <div className={"ao-body4-header"} style={{
             display: "flex",
