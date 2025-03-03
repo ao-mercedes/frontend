@@ -10,26 +10,65 @@ interface ContentProps {
     imgUrl: string;
     transform: string;
     imgWidth: string;
+    paragraphs: string[];
 }
 
 const Content: React.FC<ContentProps> = ({
                                              imgUrl,
                                              imgWidth,
-                                             transform
+                                             transform,
+                                             paragraphs
                                          }) => {
     return <div className={"ao-body4-content"}
-                style={{display: "flex", overflow: "hidden", flexDirection: "column", width: "100%", height: "1000px"}}>
-        <img src={imgUrl} alt={""}
-             style={{
-                 display: "flex",
-                 justifyContent: "center",
-                 alignItems: "center",
-                 width: imgWidth,
-                 height: "100%",
-                 alignSelf: "center",
-                 transform: transform,
-             }}/>
-
+                style={{
+                    display: "flex",
+                    overflow: "hidden",
+                    flexDirection: "column",
+                    width: "100%",
+                    height: "min-content",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}>
+        <div className={"ao-body4-content-image-wrapper"}
+             style={{display: "flex", overflow: "hidden", flexDirection: "column", width: "100%", height: "1000px"}}>
+            <img src={imgUrl} alt={""}
+                 style={{
+                     display: "flex",
+                     justifyContent: "center",
+                     alignItems: "center",
+                     width: imgWidth,
+                     height: "100%",
+                     alignSelf: "center",
+                     transform: transform,
+                 }}/>
+        </div>
+        <div className={"ao-body4-content-text"} style={{
+            display: "flex",
+            position: "absolute",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "80%",
+            height: "60%",
+            overflow: "hidden",
+            flexDirection: "column",
+            backgroundColor: COLORS.PURE_WHITE,
+            opacity: 0.7,
+            padding: "0% 15% 0% 15%",
+        }}>
+            <div className={"ao-body4-content-text-paragraphs"}
+                 style={{display: "flex", flexDirection: "column", rowGap: "20px"}}>
+                {paragraphs.map((paragraph, index) => {
+                    return <Typography.Text key={index} style={{
+                        color: COLORS.WALNUT_BROWN,
+                        lineHeight: "1.4rem",
+                        fontSize: "1.2rem",
+                        fontWeight: "700",
+                    }}>
+                        {paragraph}
+                    </Typography.Text>;
+                })}
+            </div>
+        </div>
     </div>;
 };
 
@@ -56,6 +95,11 @@ const imgTransforms = {
     [Device.desktop]: "",
 };
 
+
+const contentParagraphs = [
+    ["Yes, there are still screens. But instead of the usual MBUX (Mercedes-Benz User Experience) setup, the 12.3-inch instrument panel is housed under a cowl, reflecting the SL's sporty roots.", "Dominating the dashboard is the\n" +
+    "tablet-like 11.9-inch display, whose tilt angle can adjusted from 12 degrees to degrees at a touch of a button. helps minimise screen glare driving with the top down."],
+];
 
 export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const [showHeader, setShowHeader] = useState(false);
@@ -132,8 +176,11 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
             </div>
         </div>
 
-        <Content imgWidth={imgWidth} imgUrl={img_parallax_interior1} transform={imgTransform}/>
-        {!showFirstOnly && <Content imgWidth={imgWidth} imgUrl={img_parallax_interior2} transform=""/>}
+        <Content paragraphs={contentParagraphs[0]} imgWidth={imgWidth} imgUrl={img_parallax_interior1}
+                 transform={imgTransform}/>
+        {!showFirstOnly &&
+            <Content paragraphs={contentParagraphs[1]} imgWidth={imgWidth} imgUrl={img_parallax_interior2}
+                     transform=""/>}
     </div>;
 };
 
