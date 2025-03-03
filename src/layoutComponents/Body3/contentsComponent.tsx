@@ -129,6 +129,8 @@ const ContentComponent: React.FC<_ContentProps> = ({
                     width: showImage ? "100%" : "0%",
                     scale: showImage ? imageScale : 0,
                     transition: showImage ? "scale 4s, width 4s ease-in, height 2s ease-in" : "",
+                    transformOrigin: "top",
+
                 }} src={content.image.url}
                      alt={content.image.alt}>
                 </img>
@@ -142,7 +144,8 @@ const ContentComponent: React.FC<_ContentProps> = ({
                          position: "absolute",
                          overflow: "hidden",
                          borderRadius: "50%",
-                         paddingTop: "10%"
+                         paddingTop: "10%",
+                         transformOrigin: "top",
                      }}>
                     <div className="ao-body3-pedigree-car-image-caption-text"
                          style={{

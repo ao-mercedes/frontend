@@ -15,13 +15,13 @@ import {useEffect, useRef} from "react";
 const marginTops = {
     [Device.mobile]: "75px",
     [Device.tablet]: "35px",
-    [Device.desktop]: "55px",
+    [Device.desktop]: "90px",
 };
 
 const headerFontSizes = {
     [Device.mobile]: "48px",
     [Device.tablet]: "42px",
-    [Device.desktop]: "20px",
+    [Device.desktop]: "80px",
 };
 
 const headerFontWeights = {
@@ -74,31 +74,33 @@ const imageScales = {
 const imageWrapperWidths = {
     [Device.mobile]: "100%",
     [Device.tablet]: "40%",
-    [Device.desktop]: "100%",
+    [Device.desktop]: "88%",
 };
 
-const captionFontSizes = {
+const imageCaptionFontSizes = {
     [Device.mobile]: "1rem",
     [Device.tablet]: "0.8rem",
-    [Device.desktop]: "100%",
-};
-
-const footerTextPaddingLefts = {
-    [Device.mobile]: "15%",
-    [Device.tablet]: "8%",
-    [Device.desktop]: "10%",
-};
-
-const captionLineHeights = {
-    [Device.mobile]: "2rem",
-    [Device.tablet]: "1.3rem",
     [Device.desktop]: "1rem",
 };
+
+const imageCaptionLineHeights = {
+    [Device.mobile]: "2rem",
+    [Device.tablet]: "1.3rem",
+    [Device.desktop]: "2rem",
+};
+
 
 const imageWrapperPaddingLefts = {
     [Device.mobile]: "0px",
     [Device.tablet]: "30px",
     [Device.desktop]: "30px",
+};
+
+
+const footerTextPaddingLefts = {
+    [Device.mobile]: "15%",
+    [Device.tablet]: "8%",
+    [Device.desktop]: "10%",
 };
 
 
@@ -148,8 +150,8 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
 
     const imageWrapperWidth = imageWrapperWidths[device] ?? 1;
 
-    const captionLineHeight = captionLineHeights[device] ?? "1.5rem";
-    const captionFontSize = captionFontSizes[device] ?? "0.8rem";
+    const captionLineHeight = imageCaptionLineHeights[device] ?? "1.5rem";
+    const captionFontSize = imageCaptionFontSizes[device] ?? "0.8rem";
     const imageWrapperPaddingLeft = imageWrapperPaddingLefts[device] ?? "0px";
     const footerTextPaddingLeft = footerTextPaddingLefts[device] ?? "15%";
 
