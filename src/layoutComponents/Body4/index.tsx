@@ -51,24 +51,35 @@ const Content: React.FC<ContentProps> = ({
                  }}/>
         </div>
         <>
-            <Parallax pages={3}>
-                <ParallaxLayer sticky={{start: 0, end: 2}} style={{...alignCenter, justifyContent: 'flex-start'}}>
-                    <div className={`${styles.card} ${styles.sticky}`}>
-                        <p>I'm a sticky layer</p>
-                    </div>
-                </ParallaxLayer>
+            <Parallax pages={3} style={{
+                display: "flex",
+                position: "absolute",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "90%",
+                opacity: 0.5,
+                backgroundColor: COLORS.TRUE_BLACK,
+                flexDirection: "column",
+                padding: "0% 10% 0% 10%",
+            }}>
 
-                <ParallaxLayer offset={0} speed={1.5} style={{...alignCenter, justifyContent: 'flex-end'}}>
-                    <div className={`${styles.card} ${styles.parallax} ${styles.purple}`}>
-                        <p>I'm not</p>
-                    </div>
-                </ParallaxLayer>
-
-                <ParallaxLayer offset={2.5} speed={1.5} style={{...alignCenter, justifyContent: 'flex-end'}}>
-                    <div className={`${styles.card} ${styles.parallax} ${styles.blue}`}>
+                <ParallaxLayer offset={0} speed={1.5} style={{
+                    display: "flex",
+                    width: "100%",
+                    top: "29%",
+                }}>
+                    <div style={{backgroundColor: "purple", width: "100px", background: "red"}}>
                         <p>Neither am I</p>
                     </div>
                 </ParallaxLayer>
+
+                {/*<ParallaxLayer className={"stickkkie"} sticky={{start: 0, end: 2}}*/}
+                {/*               style={{display: "100%", width: "100%",}}>*/}
+                {/*    <div style={{backgroundColor: "black", width: "100%", opacity: 0.5}}>*/}
+                {/*        <p>I'm a sticky layer</p>*/}
+                {/*    </div>*/}
+                {/*</ParallaxLayer>*/}
+
             </Parallax>
         </>
     </div>;
@@ -269,7 +280,8 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                     height: "min-content",
                 }}>
         <Parallax pages={3} style={{height: "100px"}}>
-            <ParallaxLayer sticky={{start: 0, end: 2}} style={{...alignCenter, justifyContent: 'flex-start'}}>
+            <ParallaxLayer sticky={{start: 0, end: 2}}
+                           style={{...alignCenter, backgroundColor: "black", justifyContent: 'flex-start'}}>
                 <div className={`${styles.card} ${styles.sticky}`}>
                     <p>I'm a sticky layer</p>
                 </div>
