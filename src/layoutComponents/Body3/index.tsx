@@ -20,7 +20,7 @@ const marginTops = {
 
 const headerFontSizes = {
     [Device.mobile]: "48px",
-    [Device.tablet]: "44px",
+    [Device.tablet]: "42px",
     [Device.desktop]: "20px",
 };
 
@@ -31,17 +31,30 @@ const headerFontWeights = {
 };
 
 
+const paragraphMarginTops = {
+    [Device.mobile]: "35px",
+    [Device.tablet]: "35px",
+    [Device.desktop]: "35px",
+};
+
+const imageCaptionTextWidthsByDevice: {
+    [device in Device]: { [caption: string]: string };
+} = {
+    [Device.mobile]: {"Mercedes-Benz SL": "65%", "Porsche 911": "65%"},
+    [Device.tablet]: {"Mercedes-Benz SL": "78%", "Porsche 911": "65%"},
+    [Device.desktop]: {"Mercedes-Benz SL": "65%", "Porsche 911": "65%"},
+};
+
 const paragraphFontSizes: { [device in Device]: string } = {
     [Device.mobile]: "20px",
     [Device.tablet]: "18px",
     [Device.desktop]: "32px",
 };
 
-
-const paragraphMarginTops = {
-    [Device.mobile]: "35px",
-    [Device.tablet]: "35px",
-    [Device.desktop]: "35px",
+const paragraphFontWeights: { [device in Device]: string } = {
+    [Device.mobile]: "600",
+    [Device.tablet]: "500",
+    [Device.desktop]: "32px",
 };
 
 
@@ -58,10 +71,28 @@ const imageScales = {
     [Device.desktop]: 2,
 };
 
-const imageWrapperScales = {
-    [Device.mobile]: 1,
-    [Device.tablet]: 0.8,
-    [Device.desktop]: 0.8,
+const imageWrapperWidths = {
+    [Device.mobile]: "100%",
+    [Device.tablet]: "40%",
+    [Device.desktop]: "100%",
+};
+
+const captionFontSizes = {
+    [Device.mobile]: "1rem",
+    [Device.tablet]: "0.8rem",
+    [Device.desktop]: "100%",
+};
+
+const captionLineHeights = {
+    [Device.mobile]: "2rem",
+    [Device.tablet]: "1.3rem",
+    [Device.desktop]: "1rem",
+};
+
+const imageWrapperPaddingLefts = {
+    [Device.mobile]: "0px",
+    [Device.tablet]: "30px",
+    [Device.desktop]: "30px",
 };
 
 
@@ -98,16 +129,23 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
     const headerFontSize = headerFontSizes[device] ?? "48px";
     const headerFontWeight = headerFontWeights[device] ?? "700";
     const paragraphFontSize = paragraphFontSizes[device] ?? "20px";
+    const paragraphFontWeight = paragraphFontWeights[device] ?? "600";
     const paragraphMarginTop = paragraphMarginTops[device] ?? "35px";
     const imageScale = imageScales[device] ?? 1;
     const shouldReverseContentTextAndImage = device == Device.desktop || device == Device.tablet;
     const contentItemColumn = device == Device.mobile;
+    const imageCaptionTextWidths = imageCaptionTextWidthsByDevice[device] ?? "65%";  // <----- 78%
 
 
     const shouldGetFirstContentOnly = device == Device.mobile;
     const contents = _getContents(shouldGetFirstContentOnly);
 
-    const imageWrapperScale = imageWrapperScales[device] ?? 1;
+    const imageWrapperWidth = imageWrapperWidths[device] ?? 1;
+
+    const captionLineHeight = captionLineHeights[device] ?? "1.5rem"; // mobile: 2
+    const captionFontSize = captionFontSizes[device] ?? "0.8rem"; // mobile: 1
+    const imageWrapperPaddingLeft = imageWrapperPaddingLefts[device] ?? "0px"; // mobile: 1
+
 
     return (
         <div
@@ -158,10 +196,15 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                     >
                     </div>
                     <div ref={contentsDivRef}>
-                        <ContentsComponent imageWrapperScale={imageWrapperScale} itemColumn={contentItemColumn}
+                        <ContentsComponent imageWrapperWidth={imageWrapperWidth} itemColumn={contentItemColumn}
                                            contents={contents} imageScale={imageScale}
                                            shouldReverseContentTextAndImageOnAlternateItems={shouldReverseContentTextAndImage}
-                                           paragraphFontSize={paragraphFontSize}></ContentsComponent>
+                                           paragraphFontSize={paragraphFontSize}
+                                           paragraphFontWeight={paragraphFontWeight}
+                                           imageWrapperPaddingLeft={imageWrapperPaddingLeft}
+                                           captionLineHeight={captionLineHeight}
+                                           captionFontSize={captionFontSize}
+                                           imageCaptionTextWidths={imageCaptionTextWidths}></ContentsComponent>
 
 
                     </div>

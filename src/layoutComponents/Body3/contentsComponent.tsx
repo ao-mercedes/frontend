@@ -22,22 +22,37 @@ export interface Image {
 interface _ContentProps {
     content: Content
     paragraphFontSize: string;
+    paragraphFontWeight: string;
     itemsFlexDirection: CSSProperty.FlexDirection;
     index: number;
     imageScale: number;
-    imageWrapperScale: number;
+    imageWrapperWidth: string;
     imageMarginTop: string;
+    imageWrapperPadding: {
+        direction: string | "left" | "right";
+        value: string
+    };
+    captionLineHeight: string;
+    captionFontSize: string;
+    imageCaptionTextWidth: string;
+    imageTextAutoMarginLeftOrRight: "left" | "right";
+    imageTextJustifyContent: string;
 }
+
 
 const ContentComponent: React.FC<_ContentProps> = ({
                                                        index,
                                                        itemsFlexDirection,
-                                                       paragraphFontSize,
+                                                       paragraphFontSize, paragraphFontWeight,
                                                        content,
                                                        imageScale,
-                                                       imageMarginTop,
-                                                       imageWrapperScale
+                                                       imageMarginTop, imageWrapperWidth, imageWrapperPadding,
+                                                       captionLineHeight, captionFontSize,
+                                                       imageCaptionTextWidth,
+                                                       imageTextAutoMarginLeftOrRight,
+                                                       imageTextJustifyContent,
                                                    }) => {
+
 
     const [showImage, setShowImage] = React.useState(false);
     const textDivRef = useRef<HTMLDivElement | null>(null);
@@ -65,6 +80,18 @@ const ContentComponent: React.FC<_ContentProps> = ({
         };
     }, []);
 
+    const imageTextMargin = imageTextAutoMarginLeftOrRight == "left" ? {
+        marginLeft: "auto",
+    } : imageTextAutoMarginLeftOrRight == "right" ? {
+        marginRight: "auto"
+    } : {};
+
+    const imagePaddingStyle = imageWrapperPadding.direction == "left" ? {
+        paddingLeft: imageWrapperPadding.value,
+
+    } : imageWrapperPadding.direction == "right" ? {
+        paddingRight: imageWrapperPadding.value,
+    } : {};
     return <div className="ao-body3-pedigree-car-content" key={index}
                 style={{display: "flex", width: "100%", flexDirection: itemsFlexDirection}}>
         <div ref={textDivRef} className="ao-body3-pedigree-car-text-wrapper"
@@ -74,7 +101,7 @@ const ContentComponent: React.FC<_ContentProps> = ({
                     key={`content-${index}-p-${pIdx}`}
                     style={{
                         fontSize: paragraphFontSize,
-                        fontWeight: "600",
+                        fontWeight: paragraphFontWeight,
                         color: COLORS.WALNUT_BROWN,
                     }}
                 >
@@ -87,9 +114,9 @@ const ContentComponent: React.FC<_ContentProps> = ({
                  marginTop: imageMarginTop,
                  display: "flex",
                  justifyContent: "center",
-                 width: "100%",
+                 width: imageWrapperWidth,
                  height: "100%",
-                 scale: imageWrapperScale,
+                 ...imagePaddingStyle
              }}>
             <div style={{
                 display: "flex",
@@ -117,22 +144,21 @@ const ContentComponent: React.FC<_ContentProps> = ({
                          borderRadius: "50%",
                          paddingTop: "10%"
                      }}>
-                    <div className="ao-body3-pedigree-car-image-caption-----"
+                    <div className="ao-body3-pedigree-car-image-caption-text"
                          style={{
                              display: "flex",
-                             width: "65%",
-                             marginLeft: "auto",
-                             height: "fit-content",
+                             width: imageCaptionTextWidth,
+                             height: "fit-content", ...imageTextMargin
                          }}>
                         <Button shape="round" style={{
                             display: "flex",
                             color: COLORS.PURE_WHITE,
                             background: COLORS.BURNISHED_GOLD,
-                            fontSize: "1rem",
+                            fontSize: captionFontSize,
+                            lineHeight: captionLineHeight,
                             fontWeight: "600",
-                            lineHeight: "2rem",
                             height: "fit-content",
-                            justifyContent: "start",
+                            justifyContent: imageTextJustifyContent,
                             width: "100%",
                         }}>
                             {content.image.caption}
@@ -148,38 +174,63 @@ const ContentComponent: React.FC<_ContentProps> = ({
 interface _ContentsProps {
     contents: ReturnType<typeof _getContents> // FIXME decouple type from resource getter
     shouldReverseContentTextAndImageOnAlternateItems: boolean;
-    paragraphFontSize: string
+    paragraphFontSize: string;
+    paragraphFontWeight: string;
     imageScale: number;
-    imageWrapperScale: number;
-    itemColumn: boolean; // if content's item display in column
+    imageWrapperWidth: string;
+    itemColumn: boolean; // if content's items display in column
+    imageWrapperPaddingLeft: string;
+    captionLineHeight: string;
+    captionFontSize: string;
+    imageCaptionTextWidths: { [caption: string]: string };
 }
 
 const ContentsComponent: React.FC<_ContentsProps> = ({
                                                          contents,
                                                          shouldReverseContentTextAndImageOnAlternateItems,
-                                                         paragraphFontSize,
-                                                         imageScale,
-                                                         itemColumn,
-                                                         imageWrapperScale
+                                                         paragraphFontSize, paragraphFontWeight,
+                                                         imageScale, itemColumn,
+                                                         imageWrapperWidth, imageWrapperPaddingLeft,
+                                                         captionLineHeight, captionFontSize, imageCaptionTextWidths
                                                      }) => {
     const imageMarginTop = itemColumn ? "27px" : "0";
-
 
     return <>
         {contents.map((content, index) => {
 
 
             const shouldReverse = (shouldReverseContentTextAndImageOnAlternateItems && (index % 2 == 1));
+
             let itemsFlexDirection: CSSProperty.FlexDirection = "row";
             if (itemColumn) {
                 itemsFlexDirection = shouldReverse ? "column-reverse" : "column";
             } else {
                 itemsFlexDirection = shouldReverse ? "row-reverse" : "row";
             }
-            return <ContentComponent imageWrapperScale={imageWrapperScale} imageMarginTop={imageMarginTop}
+            console.log(`content ${content.paragraphs[0]} shouldReverse: ${shouldReverse}, itemsFlexDirection: ${itemsFlexDirection}`);
+
+            const imageCaptionTextWidth = imageCaptionTextWidths[content.image.caption] ?? "100%";
+            const imageTextAutoMarginLeftOrRight = shouldReverse ? "right" : "left";
+            const imageTextJustifyContent = shouldReverse ? "end" : "start";
+
+            const imageWrapperPadding = shouldReverse ? {
+                direction: "right",
+                value: imageWrapperPaddingLeft,
+            } : {
+                direction: "left",
+                value: imageWrapperPaddingLeft,
+            };
+
+            return <ContentComponent imageWrapperWidth={imageWrapperWidth} imageMarginTop={imageMarginTop}
                                      imageScale={imageScale} content={content}
                                      paragraphFontSize={paragraphFontSize}
-                                     itemsFlexDirection={itemsFlexDirection} index={index}/>
+                                     itemsFlexDirection={itemsFlexDirection} index={index}
+                                     paragraphFontWeight={paragraphFontWeight}
+                                     imageWrapperPadding={imageWrapperPadding}
+                                     captionLineHeight={captionLineHeight} captionFontSize={captionFontSize}
+                                     imageCaptionTextWidth={imageCaptionTextWidth}
+                                     imageTextAutoMarginLeftOrRight={imageTextAutoMarginLeftOrRight}
+                                     imageTextJustifyContent={imageTextJustifyContent}/>
                 ;
         })
         }</>;
