@@ -1,10 +1,10 @@
 import {Button, Typography} from "antd";
 import {COLORS} from "../../utils/constants/constants.ts";
-import * as React from "react";
+
 import {_getContents} from "./contentInfoGetter.ts";
 
 import {Property as CSSProperty} from 'csstype';
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 
 export interface Content {
     paragraphs: string[]
@@ -56,7 +56,7 @@ const ContentComponent: React.FC<_ContentProps> = ({
                                                    }) => {
 
 
-    const [showImage, setShowImage] = React.useState(false);
+    const [showImage, setShowImage] = useState(false);
     const textDivRef = useRef<HTMLDivElement | null>(null);
 
     // when seen a part of text, start to show image
@@ -94,7 +94,8 @@ const ContentComponent: React.FC<_ContentProps> = ({
     } : imageWrapperPadding.direction == "right" ? {
         paddingRight: imageWrapperPadding.value,
     } : {};
-    return <div className="ao-body3-pedigree-car-content" key={index}
+
+    return <div className="ao-body3-pedigree-car-content" key={`ao-body3-pedigree-car-content-${index}`}
                 style={{display: "flex", width: "100%", flexDirection: itemsFlexDirection}}>
         <div ref={textDivRef} className="ao-body3-pedigree-car-text-wrapper"
              style={{display: "flex", width: "100%", flexDirection: "column",}}>
@@ -209,8 +210,14 @@ const ContentsComponent: React.FC<ContentsComponentProps> = ({
                                                              }) => {
     const imageMarginTop = itemColumn ? "27px" : "0";
 
-    return <div
-        style={{display: "flex", flexDirection: "column", alignItems: "center", width: "100%", rowGap: contentRowGap}}>
+    return <div className="ao-body3-pedigree-car-contents-wrapper" key={"ao-body3-pedigree-car-contents-wrapper"}
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    width: "100%",
+                    rowGap: contentRowGap
+                }}>
         {contents.map((content, index) => {
 
 
@@ -222,7 +229,6 @@ const ContentsComponent: React.FC<ContentsComponentProps> = ({
             } else {
                 itemsFlexDirection = shouldReverse ? "row-reverse" : "row";
             }
-            console.log(`content ${content.paragraphs[0]} shouldReverse: ${shouldReverse}, itemsFlexDirection: ${itemsFlexDirection}`);
 
             const imageCaptionTextWidth = imageCaptionTextWidths[content.image.caption] ?? "100%";
             const imageTextAutoMarginLeftOrRight = shouldReverse ? "right" : "left";
@@ -235,8 +241,7 @@ const ContentsComponent: React.FC<ContentsComponentProps> = ({
                 direction: "left",
                 value: imageWrapperPaddingLeft,
             };
-
-            return <ContentComponent imageWrapperWidth={imageWrapperWidth} imageMarginTop={imageMarginTop}
+            return <ContentComponent key={index} imageWrapperWidth={imageWrapperWidth} imageMarginTop={imageMarginTop}
                                      imageScale={imageScale} content={content}
                                      paragraphFontSize={paragraphFontSize}
                                      itemsFlexDirection={itemsFlexDirection} index={index}

@@ -1,15 +1,15 @@
 import "./index.css";
 
+
 import {COLORS, Device, horizontalPaddings} from "../../utils/constants/constants.ts";
 
 import {_getContents} from "./contentInfoGetter.ts";
 
+import ContentsComponent from "./contentsComponent.tsx";
 import {UnbrokenPage} from "../pageSizes.tsx";
 
 import {Typography} from "antd";
-import * as React from "react";
-import ContentsComponent from "./contentsComponent.tsx";
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 
 
 const marginTops = {
@@ -164,7 +164,7 @@ const rightFooterHeights = {
 
 
 export const Body3: React.FC<{ device: Device }> = ({device}) => {
-    const [showBottomGuide, setShowBottomGuide] = React.useState(false);
+    const [showBottomGuide, setShowBottomGuide] = useState(false);
     const contentsDivRef = useRef<HTMLDivElement | null>(null);
 
     // when seen a part of text, start to show image
