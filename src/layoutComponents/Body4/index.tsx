@@ -40,7 +40,7 @@ const headerClipPaths = {
     [Device.desktop]: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
 };
 const headerHeights = {
-    [Device.mobile]: "180px",
+    [Device.mobile]: "166px",
     [Device.tablet]: "100px",
     [Device.desktop]: "100px",
 };
