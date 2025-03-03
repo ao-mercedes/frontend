@@ -26,6 +26,7 @@ const Content: React.FC<ContentProps> = ({
                     flexDirection: "column",
                     width: "100%",
                     height: "min-content",
+                    position: "relative",
                     justifyContent: "center",
                     alignItems: "center",
                 }}>
@@ -42,27 +43,46 @@ const Content: React.FC<ContentProps> = ({
                      transform: transform,
                  }}/>
         </div>
-        <div className={"ao-body4-content-text"} style={{
+        <div className={"ao-body4-content-text-wrapper"} style={{
             display: "flex",
             position: "absolute",
             justifyContent: "center",
             alignItems: "center",
-            width: "80%",
-            height: "60%",
+            width: "90%",
+            height: "56%",
+            top: "29%",
             overflow: "hidden",
             flexDirection: "column",
-            backgroundColor: COLORS.PURE_WHITE,
-            opacity: 0.7,
-            padding: "0% 15% 0% 15%",
+            padding: "0% 10% 0% 10%",
         }}>
+            <div className={"ao-body4-content-text-bg"} style={{
+                display: "flex",
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                overflow: "hidden",
+                flexDirection: "column",
+                backgroundColor: COLORS.TRUE_BLACK,
+                opacity: 0.5,
+                zIndex: 0,
+            }}>
+
+            </div>
             <div className={"ao-body4-content-text-paragraphs"}
-                 style={{display: "flex", flexDirection: "column", rowGap: "20px"}}>
+                 style={{
+                     height: "100%",
+                     display: "flex", flexDirection: "column", rowGap: "20px",
+                     zIndex: 1,
+                     paddingTop: "85px",
+                 }}>
                 {paragraphs.map((paragraph, index) => {
                     return <Typography.Text key={index} style={{
-                        color: COLORS.WALNUT_BROWN,
-                        lineHeight: "1.4rem",
+                        color: COLORS.PURE_WHITE,
+                        lineHeight: "1.6rem",
                         fontSize: "1.2rem",
-                        fontWeight: "700",
+
                     }}>
                         {paragraph}
                     </Typography.Text>;
@@ -90,7 +110,7 @@ const imgWidths = {
 };
 
 const imgTransforms = {
-    [Device.mobile]: "translateX(-12px) translateY(-20px)",
+    [Device.mobile]: "translateX(-21px) translateY(-20px)",
     [Device.tablet]: "",
     [Device.desktop]: "",
 };
@@ -98,7 +118,8 @@ const imgTransforms = {
 
 const contentParagraphs = [
     ["Yes, there are still screens. But instead of the usual MBUX (Mercedes-Benz User Experience) setup, the 12.3-inch instrument panel is housed under a cowl, reflecting the SL's sporty roots.", "Dominating the dashboard is the\n" +
-    "tablet-like 11.9-inch display, whose tilt angle can adjusted from 12 degrees to degrees at a touch of a button. helps minimise screen glare driving with the top down."],
+    "tablet-like 11.9-inch display, whose tilt angle can adjusted from 12 degrees to degrees at a touch of a button. It helps minimise screen glare driving with the top down."],
+    ["For the first time in the SL's history, the car has rear seats. They can supposedly accommodate occupants up to 1.5m tall, but the backrests are so upright they seem like they are canted forward.", "Also, strangely absent on the test unit are soft-close doors and 'pushers' that bring the seat belts closer to the front passengers."]
 ];
 
 export const Body4: React.FC<{ device: Device }> = ({device}) => {
