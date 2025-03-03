@@ -37,6 +37,7 @@ interface _ContentProps {
     imageCaptionTextWidth: string;
     imageTextAutoMarginLeftOrRight: "left" | "right";
     imageTextJustifyContent: string;
+    textColor: string;
 }
 
 
@@ -51,6 +52,7 @@ const ContentComponent: React.FC<_ContentProps> = ({
                                                        imageCaptionTextWidth,
                                                        imageTextAutoMarginLeftOrRight,
                                                        imageTextJustifyContent,
+                                                       textColor
                                                    }) => {
 
 
@@ -102,7 +104,7 @@ const ContentComponent: React.FC<_ContentProps> = ({
                     style={{
                         fontSize: paragraphFontSize,
                         fontWeight: paragraphFontWeight,
-                        color: COLORS.WALNUT_BROWN,
+                        color: textColor,
                     }}
                 >
                     {paragraph}
@@ -187,6 +189,7 @@ interface ContentsComponentProps {
     captionFontSize: string;
     imageCaptionTextWidths: { [caption: string]: string };
     contentRowGap: string;
+    textColor: string;
 }
 
 const ContentsComponent: React.FC<ContentsComponentProps> = ({
@@ -202,6 +205,7 @@ const ContentsComponent: React.FC<ContentsComponentProps> = ({
                                                                  captionFontSize,
                                                                  imageCaptionTextWidths,
                                                                  contentRowGap,
+                                                                 textColor
                                                              }) => {
     const imageMarginTop = itemColumn ? "27px" : "0";
 
@@ -241,7 +245,9 @@ const ContentsComponent: React.FC<ContentsComponentProps> = ({
                                      captionLineHeight={captionLineHeight} captionFontSize={captionFontSize}
                                      imageCaptionTextWidth={imageCaptionTextWidth}
                                      imageTextAutoMarginLeftOrRight={imageTextAutoMarginLeftOrRight}
-                                     imageTextJustifyContent={imageTextJustifyContent}/>
+                                     imageTextJustifyContent={imageTextJustifyContent}
+                                     textColor={textColor}
+            />
                 ;
         })
         }</div>;

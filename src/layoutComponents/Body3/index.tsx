@@ -30,6 +30,11 @@ const headerFontWeights = {
     [Device.desktop]: "700",
 };
 
+const headerColors = {
+    [Device.mobile]: COLORS.MOSSY_OLIVE,
+    [Device.tablet]: COLORS.CHARCOAL_SLATE,
+    [Device.desktop]: COLORS.CHARCOAL_SLATE,
+};
 
 const paragraphMarginTops = {
     [Device.mobile]: "35px",
@@ -54,16 +59,14 @@ const paragraphFontSizes: { [device in Device]: string } = {
 const paragraphFontWeights: { [device in Device]: string } = {
     [Device.mobile]: "600",
     [Device.tablet]: "500",
-    [Device.desktop]: "32px",
+    [Device.desktop]: "",
 };
 
-
-const headerColors = {
-    [Device.mobile]: COLORS.MOSSY_OLIVE,
-    [Device.tablet]: COLORS.CHARCOAL_SLATE,
-    [Device.desktop]: COLORS.CHARCOAL_SLATE,
+const textColors = {
+    [Device.mobile]: COLORS.WALNUT_BROWN,
+    [Device.tablet]: COLORS.MOSSY_OLIVE,
+    [Device.desktop]: COLORS.MOSSY_OLIVE,
 };
-
 
 const imageScales = {
     [Device.mobile]: 1,
@@ -212,6 +215,7 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
     const footerTextPaddingLeft = footerTextPaddingLefts[device] ?? "15%";
 
     const contentRowGap = contentRowGaps[device] ?? "15%";
+    const textColor = textColors[device] ?? COLORS.WALNUT_BROWN;
 
 
     const footerWidth = footerWidths[device] ?? "75%";
@@ -282,6 +286,7 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                                            captionFontSize={captionFontSize}
                                            imageCaptionTextWidths={imageCaptionTextWidths}
                                            contentRowGap={contentRowGap}
+                                           textColor={textColor}
                         ></ContentsComponent>
 
 
