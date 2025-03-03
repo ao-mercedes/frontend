@@ -25,6 +25,8 @@ interface _ContentProps {
     itemsFlexDirection: CSSProperty.FlexDirection;
     index: number;
     imageScale: number;
+    imageWrapperScale: number;
+    imageMarginTop: string;
 }
 
 const ContentComponent: React.FC<_ContentProps> = ({
@@ -32,7 +34,9 @@ const ContentComponent: React.FC<_ContentProps> = ({
                                                        itemsFlexDirection,
                                                        paragraphFontSize,
                                                        content,
-                                                       imageScale
+                                                       imageScale,
+                                                       imageMarginTop,
+                                                       imageWrapperScale
                                                    }) => {
 
     const [showImage, setShowImage] = React.useState(false);
@@ -46,7 +50,7 @@ const ContentComponent: React.FC<_ContentProps> = ({
                     setShowImage(entry.isIntersecting);
                 }
             },
-            {threshold: 1},
+            {threshold: 0.7},
         );
 
         const currRef = textDivRef.current;
@@ -63,8 +67,8 @@ const ContentComponent: React.FC<_ContentProps> = ({
 
     return <div className="ao-body3-pedigree-car-content" key={index}
                 style={{display: "flex", width: "100%", flexDirection: itemsFlexDirection}}>
-        <div ref={textDivRef} className="ao-body3-pedigree-car-text"
-             style={{display: "flex", width: "100%", flexDirection: "column"}}>
+        <div ref={textDivRef} className="ao-body3-pedigree-car-text-wrapper"
+             style={{display: "flex", width: "100%", flexDirection: "column",}}>
             {content.paragraphs.map((paragraph, pIdx) => {
                 return <Typography.Paragraph
                     key={`content-${index}-p-${pIdx}`}
@@ -80,11 +84,12 @@ const ContentComponent: React.FC<_ContentProps> = ({
         </div>
         <div className="ao-body3-pedigree-car-image-wrapper"
              style={{
-                 marginTop: "27px",
+                 marginTop: imageMarginTop,
                  display: "flex",
                  justifyContent: "center",
                  width: "100%",
-
+                 height: "100%",
+                 scale: imageWrapperScale,
              }}>
             <div style={{
                 display: "flex",
@@ -95,7 +100,7 @@ const ContentComponent: React.FC<_ContentProps> = ({
                 <img style={{
                     position: "relative",
                     width: showImage ? "100%" : "0%",
-                    scale: imageScale,
+                    scale: showImage ? imageScale : 0,
                     transition: showImage ? "scale 4s, width 4s ease-in, height 2s ease-in" : "",
                 }} src={content.image.url}
                      alt={content.image.alt}>
@@ -103,9 +108,9 @@ const ContentComponent: React.FC<_ContentProps> = ({
                 <div className="ao-body3-pedigree-car-image-caption-wrapper"
                      style={{
                          display: "flex",
-                         scale: imageScale,
+                         scale: showImage ? imageScale : 0,
                          width: showImage ? "100%" : "0%",
-                         transition: showImage ? "scale 4s, width 4s ease-in, height 2s ease-in" : "",
+                         transition: showImage ? "scale 4s, width 4s ease-in, height 4s ease-in" : "",
                          height: showImage ? "100%" : "0%",
                          position: "absolute",
                          overflow: "hidden",
@@ -142,21 +147,38 @@ const ContentComponent: React.FC<_ContentProps> = ({
 
 interface _ContentsProps {
     contents: ReturnType<typeof _getContents> // FIXME decouple type from resource getter
-    shouldReverseContentTextAndImage: boolean;
+    shouldReverseContentTextAndImageOnAlternateItems: boolean;
     paragraphFontSize: string
     imageScale: number;
+    imageWrapperScale: number;
+    itemColumn: boolean; // if content's item display in column
 }
 
 const ContentsComponent: React.FC<_ContentsProps> = ({
                                                          contents,
-                                                         shouldReverseContentTextAndImage,
+                                                         shouldReverseContentTextAndImageOnAlternateItems,
                                                          paragraphFontSize,
-                                                         imageScale
+                                                         imageScale,
+                                                         itemColumn,
+                                                         imageWrapperScale
                                                      }) => {
+    const imageMarginTop = itemColumn ? "27px" : "0";
+
+
     return <>
         {contents.map((content, index) => {
-            const itemsFlexDirection = (shouldReverseContentTextAndImage && (index % 2 == 1)) ? "column-reverse" : "column";
-            return <ContentComponent imageScale={imageScale} content={content} paragraphFontSize={paragraphFontSize}
+
+
+            const shouldReverse = (shouldReverseContentTextAndImageOnAlternateItems && (index % 2 == 1));
+            let itemsFlexDirection: CSSProperty.FlexDirection = "row";
+            if (itemColumn) {
+                itemsFlexDirection = shouldReverse ? "column-reverse" : "column";
+            } else {
+                itemsFlexDirection = shouldReverse ? "row-reverse" : "row";
+            }
+            return <ContentComponent imageWrapperScale={imageWrapperScale} imageMarginTop={imageMarginTop}
+                                     imageScale={imageScale} content={content}
+                                     paragraphFontSize={paragraphFontSize}
                                      itemsFlexDirection={itemsFlexDirection} index={index}/>
                 ;
         })

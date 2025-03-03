@@ -12,17 +12,31 @@ import ContentsComponent from "./contentsComponent.tsx";
 import {useEffect, useRef} from "react";
 
 
-const paragraphFontSizes: { [device in Device]: string } = {
-    [Device.mobile]: "20px",
-    [Device.tablet]: "25px",
-    [Device.desktop]: "32px",
+const marginTops = {
+    [Device.mobile]: "75px",
+    [Device.tablet]: "35px",
+    [Device.desktop]: "55px",
 };
 
 const headerFontSizes = {
     [Device.mobile]: "48px",
-    [Device.tablet]: "60px",
+    [Device.tablet]: "44px",
     [Device.desktop]: "20px",
 };
+
+const headerFontWeights = {
+    [Device.mobile]: "700",
+    [Device.tablet]: "600",
+    [Device.desktop]: "700",
+};
+
+
+const paragraphFontSizes: { [device in Device]: string } = {
+    [Device.mobile]: "20px",
+    [Device.tablet]: "18px",
+    [Device.desktop]: "32px",
+};
+
 
 const paragraphMarginTops = {
     [Device.mobile]: "35px",
@@ -30,11 +44,6 @@ const paragraphMarginTops = {
     [Device.desktop]: "35px",
 };
 
-const headerFontWeights = {
-    [Device.mobile]: "700",
-    [Device.tablet]: "700",
-    [Device.desktop]: "700",
-};
 
 const headerColors = {
     [Device.mobile]: COLORS.MOSSY_OLIVE,
@@ -42,11 +51,6 @@ const headerColors = {
     [Device.desktop]: COLORS.CHARCOAL_SLATE,
 };
 
-const marginTops = {
-    [Device.mobile]: "75px",
-    [Device.tablet]: "55px",
-    [Device.desktop]: "55px",
-};
 
 const imageScales = {
     [Device.mobile]: 1,
@@ -54,12 +58,16 @@ const imageScales = {
     [Device.desktop]: 2,
 };
 
+const imageWrapperScales = {
+    [Device.mobile]: 1,
+    [Device.tablet]: 0.8,
+    [Device.desktop]: 0.8,
+};
+
 
 export const Body3: React.FC<{ device: Device }> = ({device}) => {
-
-
     const [showBottomGuide, setShowBottomGuide] = React.useState(false);
-    const contentDivRef = useRef<HTMLDivElement | null>(null);
+    const contentsDivRef = useRef<HTMLDivElement | null>(null);
 
     // when seen a part of text, start to show image
     useEffect(() => {
@@ -72,7 +80,7 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
             {threshold: 1},
         );
 
-        const currRef = contentDivRef.current;
+        const currRef = contentsDivRef.current;
         if (currRef) {
             observer.observe(currRef);
         }
@@ -85,21 +93,21 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
     }, []);
 
 
-    const paragraphFontSize = paragraphFontSizes[device] ?? "20px";
-
-
     const marginTop = marginTops[device] ?? "55px";
     const headerColor = headerColors[device] ?? COLORS.CHARCOAL_SLATE;
     const headerFontSize = headerFontSizes[device] ?? "48px";
     const headerFontWeight = headerFontWeights[device] ?? "700";
+    const paragraphFontSize = paragraphFontSizes[device] ?? "20px";
     const paragraphMarginTop = paragraphMarginTops[device] ?? "35px";
     const imageScale = imageScales[device] ?? 1;
     const shouldReverseContentTextAndImage = device == Device.desktop || device == Device.tablet;
+    const contentItemColumn = device == Device.mobile;
 
 
     const shouldGetFirstContentOnly = device == Device.mobile;
     const contents = _getContents(shouldGetFirstContentOnly);
 
+    const imageWrapperScale = imageWrapperScales[device] ?? 1;
 
     return (
         <div
@@ -149,16 +157,17 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                         }}
                     >
                     </div>
-                    <div ref={contentDivRef}>
-                        <ContentsComponent contents={contents} imageScale={imageScale}
-                                           shouldReverseContentTextAndImage={shouldReverseContentTextAndImage}
+                    <div ref={contentsDivRef}>
+                        <ContentsComponent imageWrapperScale={imageWrapperScale} itemColumn={contentItemColumn}
+                                           contents={contents} imageScale={imageScale}
+                                           shouldReverseContentTextAndImageOnAlternateItems={shouldReverseContentTextAndImage}
                                            paragraphFontSize={paragraphFontSize}></ContentsComponent>
 
 
                     </div>
                 </div>
             </UnbrokenPage>
-            <div ref={contentDivRef}/>
+            <div ref={contentsDivRef}/>
 
             <div className={"ao-body3-footer"} style={{
                 display: "flex",
