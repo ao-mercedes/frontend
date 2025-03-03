@@ -103,6 +103,49 @@
             - [x] Text
             - [x] Animation
 
+# Changelog 3 March 2025
+
+- [ ] Body4
+    - [ ] Mobile
+        - [ ] Header
+        - [ ] 1:FrontSeatBackView
+            - [ ] background
+            - [ ] text
+            - [ ] white laser
+            - [ ] bubble
+        - [ ] 2:FrontSeatFrontView
+            - [ ] background
+            - [ ] text
+            - [ ] white laser
+            - [ ] bubble
+        - [ ] footer
+    - [ ] Tablet
+        - [ ] Header
+        - [ ] 1:FrontSeatBackView
+            - [ ] background
+            - [ ] text
+            - [ ] white laser
+            - [ ] bubble
+        - [ ] 2:FrontSeatFrontView
+            - [ ] background
+            - [ ] text
+            - [ ] white laser
+            - [ ] bubble
+        - [ ] omit footer
+    - [ ] Desktop
+        - [ ] Header
+        - [ ] 1:FrontSeatBackView
+            - [ ] background
+            - [ ] text
+            - [ ] white laser
+            - [ ] bubble
+        - [ ] 2:FrontSeatFrontView
+            - [ ] background
+            - [ ] text
+            - [ ] white laser
+            - [ ] bubble
+        - [ ] omit footer
+
 # Issues
 
 - [x] [Issue-0001] Circle Marker Obstructing Clicks
