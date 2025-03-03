@@ -5,6 +5,8 @@ import img_parallax_interior2 from "../../assets/Body4/parallax_interior2.png";
 
 import {Typography} from "antd";
 import {useEffect, useRef, useState} from "react";
+import {Parallax, ParallaxLayer} from "@react-spring/parallax";
+import styles from './index.module.css';
 
 interface ContentProps {
     imgUrl: string;
@@ -13,12 +15,63 @@ interface ContentProps {
     paragraphs: string[];
 }
 
+const alignCenter = {display: 'flex', alignItems: 'center'};
+
+
 const Content: React.FC<ContentProps> = ({
                                              imgUrl,
                                              imgWidth,
                                              transform,
                                              paragraphs
                                          }) => {
+
+
+    return <div className={"ao-body4-content"}
+                style={{
+                    display: "flex",
+                    overflow: "hidden",
+                    flexDirection: "column",
+                    width: "100%",
+                    height: "min-content",
+                    position: "relative",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}>
+        <div className={"ao-body4-content-image-wrapper"}
+             style={{display: "flex", overflow: "hidden", flexDirection: "column", width: "100%", height: "1000px"}}>
+            <img src={imgUrl} alt={""}
+                 style={{
+                     display: "flex",
+                     justifyContent: "center",
+                     alignItems: "center",
+                     width: imgWidth,
+                     height: "100%",
+                     alignSelf: "center",
+                     transform: transform,
+                 }}/>
+        </div>
+        <>
+            <Parallax pages={3}>
+                <ParallaxLayer sticky={{start: 0, end: 2}} style={{...alignCenter, justifyContent: 'flex-start'}}>
+                    <div className={`${styles.card} ${styles.sticky}`}>
+                        <p>I'm a sticky layer</p>
+                    </div>
+                </ParallaxLayer>
+
+                <ParallaxLayer offset={0} speed={1.5} style={{...alignCenter, justifyContent: 'flex-end'}}>
+                    <div className={`${styles.card} ${styles.parallax} ${styles.purple}`}>
+                        <p>I'm not</p>
+                    </div>
+                </ParallaxLayer>
+
+                <ParallaxLayer offset={2.5} speed={1.5} style={{...alignCenter, justifyContent: 'flex-end'}}>
+                    <div className={`${styles.card} ${styles.parallax} ${styles.blue}`}>
+                        <p>Neither am I</p>
+                    </div>
+                </ParallaxLayer>
+            </Parallax>
+        </>
+    </div>;
     return <div className={"ao-body4-content"}
                 style={{
                     display: "flex",
@@ -155,6 +208,8 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const headerHeight = headerHeights[device] ?? "200px";
     const imgWidth = imgWidths[device] ?? "295%";
     const imgTransform = imgTransforms[device] ?? "translateX(-12px) translateY(-12px)";
+
+
     return <div className="ao-body4"
                 style={{
                     display: "flex",
@@ -202,6 +257,36 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
         {!showFirstOnly &&
             <Content paragraphs={contentParagraphs[1]} imgWidth={imgWidth} imgUrl={img_parallax_interior2}
                      transform=""/>}
+    </div>;
+
+    return <div className="ao-body4"
+                style={{
+                    display: "flex",
+                    position: "relative",
+                    flexDirection: "column",
+                    width: "100%",
+                    overflow: "hidden",
+                    height: "min-content",
+                }}>
+        <Parallax pages={3} style={{height: "100px"}}>
+            <ParallaxLayer sticky={{start: 0, end: 2}} style={{...alignCenter, justifyContent: 'flex-start'}}>
+                <div className={`${styles.card} ${styles.sticky}`}>
+                    <p>I'm a sticky layer</p>
+                </div>
+            </ParallaxLayer>
+
+            <ParallaxLayer offset={0} speed={1.5} style={{...alignCenter, justifyContent: 'flex-end'}}>
+                <div className={`${styles.card} ${styles.parallax} ${styles.purple}`}>
+                    <p>I'm not</p>
+                </div>
+            </ParallaxLayer>
+
+            <ParallaxLayer offset={2.5} speed={1.5} style={{...alignCenter, justifyContent: 'flex-end'}}>
+                <div className={`${styles.card} ${styles.parallax} ${styles.blue}`}>
+                    <p>Neither am I</p>
+                </div>
+            </ParallaxLayer>
+        </Parallax>
     </div>;
 };
 
