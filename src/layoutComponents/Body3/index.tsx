@@ -153,6 +153,12 @@ const footerClipPaths = {
     [Device.desktop]: "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)",
 };
 
+const rightFooterHeights = {
+    [Device.mobile]: "30%",
+    [Device.tablet]: "30%",
+    [Device.desktop]: "40%",
+};
+
 
 export const Body3: React.FC<{ device: Device }> = ({device}) => {
     const [showBottomGuide, setShowBottomGuide] = React.useState(false);
@@ -216,6 +222,7 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
     const footerMarginTop = footerMarginTops[device] ?? "140px";
     const footerClipPath = footerClipPaths[device] ?? "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)";
 
+    const rightFooterHeight = rightFooterHeights[device] ?? "30%";
     return (
         <div
             className="ao-body3-container"
@@ -333,7 +340,7 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                     position: "absolute",
                     bottom: "0",
                     width: "100%",
-                    height: "30%",
+                    height: rightFooterHeight,
                     justifyContent: "center"
                 }}>
                 </div>
