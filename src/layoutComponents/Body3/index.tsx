@@ -42,7 +42,7 @@ const imageCaptionTextWidthsByDevice: {
 } = {
     [Device.mobile]: {"Mercedes-Benz SL": "65%", "Porsche 911": "65%"},
     [Device.tablet]: {"Mercedes-Benz SL": "78%", "Porsche 911": "65%"},
-    [Device.desktop]: {"Mercedes-Benz SL": "65%", "Porsche 911": "65%"},
+    [Device.desktop]: {"Mercedes-Benz SL": "67%", "Porsche 911": "65%"},
 };
 
 const paragraphFontSizes: { [device in Device]: string } = {
