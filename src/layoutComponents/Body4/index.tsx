@@ -5,6 +5,7 @@ import img_parallax_interior2 from "../../assets/Body4/parallax_interior2.png";
 
 import {Typography} from "antd";
 import {useEffect, useRef, useState} from "react";
+import {Parallax, ParallaxLayer} from '@react-spring/parallax';
 
 interface ContentProps {
     imgUrl: string;
@@ -29,46 +30,59 @@ const Content: React.FC<ContentProps> = ({
                     justifyContent: "center",
                     alignItems: "center",
                 }}>
-        <div className={"ao-body4-content-image-wrapper"}
-             style={{display: "flex", overflow: "hidden", flexDirection: "column", width: "100%", height: "1000px"}}>
-            <img src={imgUrl} alt={""}
-                 style={{
-                     display: "flex",
-                     justifyContent: "center",
-                     alignItems: "center",
-                     width: imgWidth,
-                     height: "100%",
-                     alignSelf: "center",
-                     transform: transform,
-                 }}/>
-        </div>
-        <div className={"ao-body4-content-text"} style={{
-            display: "flex",
-            position: "absolute",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "80%",
-            height: "60%",
-            overflow: "hidden",
-            flexDirection: "column",
-            backgroundColor: COLORS.PURE_WHITE,
-            opacity: 0.7,
-            padding: "0% 15% 0% 15%",
-        }}>
-            <div className={"ao-body4-content-text-paragraphs"}
-                 style={{display: "flex", flexDirection: "column", rowGap: "20px"}}>
-                {paragraphs.map((paragraph, index) => {
-                    return <Typography.Text key={index} style={{
-                        color: COLORS.WALNUT_BROWN,
-                        lineHeight: "1.4rem",
-                        fontSize: "1.2rem",
-                        fontWeight: "700",
-                    }}>
-                        {paragraph}
-                    </Typography.Text>;
-                })}
-            </div>
-        </div>
+
+        <Parallax pages={1}>
+            <ParallaxLayer>
+                <div className={"ao-body4-content-image-wrapper"}
+                     style={{
+                         display: "flex",
+                         overflow: "hidden",
+                         flexDirection: "column",
+                         width: "100%",
+                         height: "1000px"
+                     }}>
+                    <img src={imgUrl} alt={""}
+                         style={{
+                             display: "flex",
+                             justifyContent: "center",
+                             alignItems: "center",
+                             width: imgWidth,
+                             height: "100%",
+                             alignSelf: "center",
+                             transform: transform,
+                         }}/>
+                </div>
+            </ParallaxLayer>
+            <ParallaxLayer offset={0.5} speed={0.5}>
+                <div className={"ao-body4-content-text"} style={{
+                    display: "flex",
+                    position: "absolute",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "80%",
+                    height: "60%",
+                    overflow: "hidden",
+                    flexDirection: "column",
+                    backgroundColor: COLORS.PURE_WHITE,
+                    opacity: 0.7,
+                    padding: "0% 15% 0% 15%",
+                }}>
+                    <div className={"ao-body4-content-text-paragraphs"}
+                         style={{display: "flex", flexDirection: "column", rowGap: "20px"}}>
+                        {paragraphs.map((paragraph, index) => {
+                            return <Typography.Text key={index} style={{
+                                color: COLORS.WALNUT_BROWN,
+                                lineHeight: "1.4rem",
+                                fontSize: "1.2rem",
+                                fontWeight: "700",
+                            }}>
+                                {paragraph}
+                            </Typography.Text>;
+                        })}
+                    </div>
+                </div>
+            </ParallaxLayer>
+        </Parallax>
     </div>;
 };
 
