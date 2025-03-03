@@ -3,6 +3,9 @@ import {COLORS, Device} from "../../utils/constants/constants.ts";
 import img_parallax_interior1 from "../../assets/Body4/parallax_interior1_trim_transparent.png";
 import img_parallax_interior2 from "../../assets/Body4/parallax_interior2.png";
 
+import {Typography} from "antd";
+import {useEffect, useRef, useState} from "react";
+
 interface ContentProps {
     imgUrl: string;
     transform: string;
@@ -55,20 +58,40 @@ const imgTransforms = {
 
 
 export const Body4: React.FC<{ device: Device }> = ({device}) => {
+    const [showHeader, setShowHeader] = useState(false);
+    const bodyEntryDiv = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setShowHeader(entry.isIntersecting);
+                }
+            },
+            {threshold: 1},
+        );
+
+        const currRef = bodyEntryDiv.current;
+        if (currRef) {
+            observer.observe(currRef);
+        }
+
+        return () => {
+            if (currRef) {
+                observer.unobserve(currRef);
+            }
+        };
+    }, []);
+
     const showFirstOnly = device == Device.mobile;
 
-
     const headerClipPath = headerClipPaths[device] ?? "polygon(0% 0%, 100% 0%, 100% 100%, 12% 100%)";
-    // const headerPaddingTop = headerPaddingTops[device] ?? "";
-    // const headerPaddingBottom = headerPaddingBottoms[device] ?? "";
-    // const headerTextPaddingLeft = headerTextPaddingLefts[device] ?? "";
-    // const headerFontSize = headerFontSizes[device] ?? "";
-    // const headerLineHeight = headerLineHeights[device] ?? "";
 
     const headerHeight = headerHeights[device] ?? "200px";
     const imgWidth = imgWidths[device] ?? "295%";
     const imgTransform = imgTransforms[device] ?? "translateX(-12px) translateY(-12px)";
     return <div className="ao-body4" style={{display: "flex", flexDirection: "column", width: "100%"}}>
+        <div ref={bodyEntryDiv}/>
         <div className={"ao-body4-header"} style={{
             display: "flex",
             position: "absolute",
@@ -76,14 +99,29 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
             zIndex: 1000,
             width: "100%",
             justifyContent: "end",
+            transform: showHeader ? "translateX(0)" : "translateX(100%)",
+            transition: "transform 3s ease-in-out, opacity 1s ease-in-out",
         }}>
             <div className={"ao-body4-header-text"} style={{
                 display: "flex",
                 backgroundColor: COLORS.DEEP_OLIVE,
                 width: "100%",
                 clipPath: headerClipPath,
+
             }}>
-                aa
+                <Typography.Text style={{
+                    color: COLORS.WALNUT_BROWN,
+                    padding: "5% 15% 0% 15%",
+                    lineHeight: "1.4rem",
+                    fontSize: "1.2rem",
+                    fontWeight: "700",
+                }}>
+                    Modern Mercedes models have
+                    interiors designed to elicit wows from
+                    the moment you lay eyes on the
+                    cockpit, but the SL is going with a
+                    'hyperanalogue' approach.
+                </Typography.Text>
             </div>
         </div>
 
