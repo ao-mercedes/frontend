@@ -83,6 +83,12 @@ const captionFontSizes = {
     [Device.desktop]: "100%",
 };
 
+const footerTextPaddingLefts = {
+    [Device.mobile]: "15%",
+    [Device.tablet]: "8%",
+    [Device.desktop]: "10%",
+};
+
 const captionLineHeights = {
     [Device.mobile]: "2rem",
     [Device.tablet]: "1.3rem",
@@ -142,9 +148,10 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
 
     const imageWrapperWidth = imageWrapperWidths[device] ?? 1;
 
-    const captionLineHeight = captionLineHeights[device] ?? "1.5rem"; // mobile: 2
-    const captionFontSize = captionFontSizes[device] ?? "0.8rem"; // mobile: 1
-    const imageWrapperPaddingLeft = imageWrapperPaddingLefts[device] ?? "0px"; // mobile: 1
+    const captionLineHeight = captionLineHeights[device] ?? "1.5rem";
+    const captionFontSize = captionFontSizes[device] ?? "0.8rem";
+    const imageWrapperPaddingLeft = imageWrapperPaddingLefts[device] ?? "0px";
+    const footerTextPaddingLeft = footerTextPaddingLefts[device] ?? "15%";
 
 
     return (
@@ -234,7 +241,7 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                     paddingBottom: "25px",
                 }}>
                     <div style={{
-                        paddingLeft: "15%",
+                        paddingLeft: footerTextPaddingLeft,
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
