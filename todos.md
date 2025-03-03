@@ -80,28 +80,28 @@
         - [x] BottomGuide
             - [x] Text
             - [x] Animation
-    - [ ] Tablet
-        - [ ] Header
-        - [ ] Content: Porsche
-            - [ ] Text
-            - [ ] Image
-        - [ ] Content: Mercedes
-            - [ ] Text
-            - [ ] Image
-        - [ ] BottomGuide
-            - [ ] Text
-            - [ ] Animation
-    - [ ] Desktop
-        - [ ] Header
-        - [ ] Content: Porsche
-            - [ ] Text
-            - [ ] Image
-        - [ ] Content: Mercedes
-            - [ ] Text
-            - [ ] Image
-        - [ ] BottomGuide
-            - [ ] Text
-            - [ ] Animation
+    - [x] Tablet
+        - [x] Header
+        - [x] Content: Porsche
+            - [x] Text
+            - [x] Image
+        - [x] Content: Mercedes
+            - [x] Text
+            - [x] Image
+        - [x] BottomGuide
+            - [x] Text
+            - [x] Animation
+    - [x] Desktop
+        - [x] Header
+        - [x] Content: Porsche
+            - [x] Text
+            - [x] Image
+        - [x] Content: Mercedes
+            - [x] Text
+            - [x] Image
+        - [x] BottomGuide
+            - [x] Text
+            - [x] Animation
 
 # Issues
 
