@@ -51,25 +51,66 @@ const Content: React.FC<ContentProps> = ({
                  }}/>
         </div>
         <>
-            <Parallax pages={3} style={{
+            <Parallax className={"parallax"} pages={1.5} style={{
                 display: "flex",
                 position: "absolute",
                 justifyContent: "center",
                 alignItems: "center",
                 width: "90%",
-                opacity: 0.5,
-                backgroundColor: COLORS.TRUE_BLACK,
+                // opacity: 0.5,
                 flexDirection: "column",
                 padding: "0% 10% 0% 10%",
             }}>
-
-                <ParallaxLayer offset={0} speed={1.5} style={{
+                <ParallaxLayer offset={0.25} speed={1.5} style={{
                     display: "flex",
                     width: "100%",
                     top: "29%",
+                    justifyContent: "center",
                 }}>
-                    <div style={{backgroundColor: "purple", width: "100px", background: "red"}}>
-                        <p>Neither am I</p>
+                    <div className={"ao-body4-content-text-wrapper"} style={{
+                        display: "flex",
+                        position: "absolute",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "90%",
+                        height: "56%",
+                        // top: "29%",
+                        overflow: "hidden",
+                        flexDirection: "column",
+                        padding: "0% 10% 0% 10%",
+                    }}>
+                        <div className={"ao-body4-content-text-bg"} style={{
+                            display: "flex",
+                            position: "absolute",
+                            width: "100%",
+                            height: "100%",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            overflow: "hidden",
+                            flexDirection: "column",
+                            backgroundColor: COLORS.TRUE_BLACK,
+                            opacity: 0.5,
+                            zIndex: 0,
+                        }}>
+
+                        </div>
+                        <div className={"ao-body4-content-text-paragraphs"}
+                             style={{
+                                 height: "100%",
+                                 display: "flex", flexDirection: "column", rowGap: "20px",
+                                 zIndex: 1,
+                                 paddingTop: "85px",
+                             }}>
+                            {paragraphs.map((paragraph, index) => {
+                                return <Typography.Text key={index} style={{
+                                    color: COLORS.PURE_WHITE,
+                                    lineHeight: "1.6rem",
+                                    fontSize: "1.2rem",
+                                }}>
+                                    {paragraph}
+                                </Typography.Text>;
+                            })}
+                        </div>
                     </div>
                 </ParallaxLayer>
 

@@ -1,8 +1,9 @@
 /*global overwrites*/
 body {
-  margin: 0;
+    margin: 0;
 }
 
-.ao-body {
-  border: 2px solid red;
+/*FIXME don't use global presets.*/
+*::-webkit-scrollbar {
+    display: none;
 }
