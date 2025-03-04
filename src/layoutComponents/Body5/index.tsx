@@ -1,14 +1,10 @@
 import "./index.css";
+
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
-// import img_parallax_interior1 from "../../assets/body5/parallax_interior1_trim_transparent.png";
-// import img_parallax_interior2 from "../../assets/body5/parallax_interior2.png";
-//
-// import Content from "./ContentComponent.tsx";
-//
-// import {Typography} from "antd";
-// import {useEffect, useRef, useState} from "react";
-import {useEffect, useRef,} from "react";
+import img_car from "../../assets/body5/progress.png";
+
+import {useEffect, useRef, useState,} from "react";
 import {Typography} from "antd";
 import {UnbrokenPage} from "../pageSizes.tsx";
 //
@@ -165,16 +161,17 @@ const Paragraphs: React.FC<{ fontSize: string, paragraphLineHeight: string, text
 
 export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({device, viewPortWidth}) => {
     const paragraph1Ref = useRef<HTMLDivElement | null>(null);
-    const fullContentRef = useRef<HTMLDivElement | null>(null);
+    const bodyRef = useRef<HTMLDivElement | null>(null);
+    const contentRef = useRef<HTMLDivElement | null>(null);
 
     console.log(`viewPortWidth: ${JSON.stringify(viewPortWidth)}`);
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 console.log(`body5.pgref.entry: ratio=${JSON.stringify(entry.intersectionRatio)} isIntersect=${JSON.stringify(entry.isIntersecting)}`);
-                console.log(`body5.pgref.entry: ratio=${JSON.stringify(entry.intersectionRatio)}  fullContentRef.current=${fullContentRef.current}`);
-                if (entry.isIntersecting && fullContentRef.current) {
-                    fullContentRef.current.scrollIntoView({behavior: "smooth", block: "start"});
+                console.log(`body5.pgref.entry: ratio=${JSON.stringify(entry.intersectionRatio)}  fullContentRef.current=${bodyRef.current}`);
+                if (entry.isIntersecting && bodyRef.current) {
+                    bodyRef.current.scrollIntoView({behavior: "smooth", block: "start"});
                 }
             },
             {threshold: 1},
@@ -190,6 +187,23 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                 observer.unobserve(currRef);
             }
         };
+    }, []);
+
+    const [progress, setProgress] = useState(0);
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!contentRef.current) return;
+
+            const {scrollTop, scrollHeight, clientHeight} = contentRef.current;
+            const scrolled = (scrollTop / (scrollHeight - clientHeight)) * 100;
+
+            console.log(`handleScroll: scrolled=${scrolled}`);
+            setProgress(scrolled);
+        };
+
+        const contentDiv = contentRef.current;
+        contentDiv?.addEventListener("scroll", handleScroll);
+        return () => contentDiv?.removeEventListener("scroll", handleScroll);
     }, []);
 
 
@@ -211,7 +225,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
 
     return <>
         <div className="ao-body5"
-             ref={fullContentRef}
+             ref={bodyRef}
              style={{
                  display: "flex",
                  position: "relative",
@@ -243,6 +257,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                 alignItems: "flex-start",
             }}>
                 <div className="ao-body5-content"
+                     ref={contentRef}
                      style={{
                          overflow: "scroll",
                          display: "flex",
@@ -286,7 +301,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                             <iframe
                                 width={`${viewPortWidth}px`}
                                 height={`${viewPortWidth / 4 * 3}px`}
-                                src={`https://www.youtube.com/embed/I8CygBDUIBs?autoplay=1&showinfo=0&controls=0&modestbranding=1&rel=0`}
+                                src={`https://www.youtube.com/embed/I8CygBDUIBs?autoplay=0&showinfo=0&controls=0&modestbranding=1&rel=0`}
                                 title="YouTube Video"
                                 frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -320,15 +335,14 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                      style={{
                          display: "flex",
                          position: "relative",
-                         width: "100%",
                          height: "max-content",
                          opacity: 0.3,
                          justifyContent: "center",
-                         backgroundColor: "red",
+                         marginLeft: `${progress}%`,
                      }}>
                     <div className="ao-body5-car-image"
                          style={{display: "flex", height: "50px", color: "white", fontSize: "30px"}}>
-                        car
+                        <img src={img_car} alt={""}></img>
                     </div>
                 </div>
             </div>
