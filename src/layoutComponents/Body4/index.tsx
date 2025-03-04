@@ -71,15 +71,16 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
 };
 
 const ContentImage: React.FC<{
-    imgUrl: string, imgWidth: string, transform: string,
+    imageUrl: string, imageHeight: string, imageWidth: string, transform: string,
     imageMarginTop: string,
     imageMarginLeft: string, showBubble: boolean, bubbleTexts: {
         upper: string,
         lower: string,
     }
 }> = ({
-          imgUrl,
-          imgWidth,
+          imageUrl,
+          imageWidth,
+          imageHeight,
           transform,
           imageMarginTop,
           imageMarginLeft, showBubble, bubbleTexts
@@ -123,13 +124,13 @@ const ContentImage: React.FC<{
                  alignItems: "center",
                  justifyContent: "center",
              }}>
-            <img src={imgUrl} alt={""}
+            <img src={imageUrl} alt={""}
                  style={{
                      display: "flex",
                      justifyContent: "center",
                      alignItems: "center",
-                     width: imgWidth,
-                     height: "100%",
+                     width: imageWidth,
+                     height: imageHeight,
                      alignSelf: "center",
                      transform: transform,
                      marginTop: imageMarginTop,
@@ -237,9 +238,9 @@ const ContentImage: React.FC<{
 };
 
 interface ContentProps {
-    imgUrl: string;
+    imageUrl: string;
     transform: string;
-    imgWidth: string;
+    imageWidth: string;
     paragraphs: string[];
     imageMarginTop: string;
     imageMarginLeft: string;
@@ -247,16 +248,18 @@ interface ContentProps {
         upper: string,
         lower: string,
     }
+    imageHeight: string;
 }
 
 const Content: React.FC<ContentProps> = ({
-                                             imgUrl,
-                                             imgWidth,
+                                             imageUrl,
+                                             imageWidth,
+                                             imageHeight,
                                              transform,
                                              paragraphs,
                                              imageMarginTop,
                                              imageMarginLeft,
-                                             bubbleTexts
+                                             bubbleTexts,
                                          }) => {
 
     const [showBubble, setShowBubble] = useState(false);
@@ -272,7 +275,8 @@ const Content: React.FC<ContentProps> = ({
                     justifyContent: "center",
                     alignItems: "center",
                 }}>
-        <ContentImage bubbleTexts={bubbleTexts} showBubble={showBubble} imgUrl={imgUrl} imgWidth={imgWidth}
+        <ContentImage bubbleTexts={bubbleTexts} showBubble={showBubble} imageUrl={imageUrl} imageWidth={imageWidth}
+                      imageHeight={imageHeight}
                       transform={transform}
                       imageMarginTop={imageMarginTop}
                       imageMarginLeft={imageMarginLeft}
@@ -380,13 +384,13 @@ const Content: React.FC<ContentProps> = ({
                     alignItems: "center",
                 }}>
         <div className={"ao-body4-content-image-wrapper"}
-             style={{display: "flex", overflow: "hidden", flexDirection: "column", width: "100%", height: "1000px"}}>
-            <img src={imgUrl} alt={""}
+             style={{display: "flex", overflow: "hidden", flexDirection: "column", width: "100%", height: imageHeight}}>
+            <img src={imageUrl} alt={""}
                  style={{
                      display: "flex",
                      justifyContent: "center",
                      alignItems: "center",
-                     width: imgWidth,
+                     width: imageWidth,
                      height: "100%",
                      alignSelf: "center",
                      transform: transform,
@@ -452,7 +456,7 @@ const headerHeights = {
     [Device.tablet]: "76px",
     [Device.desktop]: "100px",
 };
-const imgWidths = {
+const imageWidths = {
     [Device.mobile]: "295%",
     [Device.tablet]: "100%",
     [Device.desktop]: "100%",
@@ -474,6 +478,12 @@ const imageMarginLefts = {
     [Device.mobile]: "-8%",
     [Device.tablet]: "",
     [Device.desktop]: "",
+};
+
+const imageHeights = {
+    [Device.mobile]: "1000px",
+    [Device.tablet]: "2000px",
+    [Device.desktop]: "2000px",
 };
 
 const headerWidths = {
@@ -544,10 +554,11 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const headerTextPadding = headerTextPaddings[device] ?? "5% 15% 0% 15%";
 
     const headerHeight = headerHeights[device] ?? "166px";
-    const imgWidth = imgWidths[device] ?? "295%";
+    const imageWidth = imageWidths[device] ?? "295%";
     const imgTransform = imgTransforms[device] ?? "translateX(-12px) translateY(-12px)";
     const imageMarginTop = imageMarginTops[device] ?? "-8%";
     const imageMarginLeft = imageMarginLefts[device] ?? "-8%";
+    const imageHeight = imageHeights[device] ?? "1000px";
 
     return <div className="ao-body4"
                 style={{
@@ -591,19 +602,21 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
             </div>
         </div>
 
-        <Content paragraphs={contentParagraphs[0]} bubbleTexts={contentTexts[0].bubbleTexts} imgWidth={imgWidth}
-                 imgUrl={img_parallax_interior1}
+        <Content paragraphs={contentParagraphs[0]} bubbleTexts={contentTexts[0].bubbleTexts} imageWidth={imageWidth}
+                 imageUrl={img_parallax_interior1}
                  transform={imgTransform}
                  imageMarginTop={imageMarginTop}
                  imageMarginLeft={imageMarginLeft}
+                 imageHeight={imageHeight}
 
         />
         {!showFirstOnly &&
             <Content
+                imageHeight={imageHeight}
                 imageMarginTop={imageMarginTop}
                 imageMarginLeft={imageMarginLeft}
-                paragraphs={contentParagraphs[1]} bubbleTexts={contentTexts[1].bubbleTexts} imgWidth={imgWidth}
-                imgUrl={img_parallax_interior2}
+                paragraphs={contentParagraphs[1]} bubbleTexts={contentTexts[1].bubbleTexts} imageWidth={imageWidth}
+                imageUrl={img_parallax_interior2}
                 transform=""/>}
     </div>;
 
