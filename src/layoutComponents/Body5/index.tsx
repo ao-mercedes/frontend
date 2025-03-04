@@ -161,6 +161,14 @@ const youtubeMarginBottoms = {
     [Device.desktop]: "60px",
 };
 
+// carFumesPaddingsByDevice
+// value[0] for first fume, value[1] for second fume
+const carFumesPaddingsByDevice = {
+    [Device.mobile]: [{paddingTop: "18px", paddingBottom: "29px"}, {paddingTop: "26px", paddingBottom: "10px"}],
+    [Device.tablet]: [{paddingTop: "18px", paddingBottom: "29px"}, {paddingTop: "26px", paddingBottom: "10px"}],
+    [Device.desktop]: [{paddingTop: "105px", paddingBottom: "135px"}, {paddingTop: "133px", paddingBottom: "77px"}],
+};
+
 const CarFume: React.FC<{
     paddingTop: string,
     paddingBottom: string,
@@ -269,6 +277,11 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
 
     const youtubeMarginTop = youtubeMarginTops[device] ?? "40px";
     const youtubeMarginBottom = youtubeMarginBottoms[device] ?? "20px";
+
+    const carFumesPaddings = carFumesPaddingsByDevice[device] ?? [{
+        paddingTop: "18px",
+        paddingBottom: "29px"
+    }, {paddingTop: "26px", paddingBottom: "10px"}];
     return <>
         <div className="ao-body5"
              ref={bodyRef}
@@ -378,12 +391,17 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                          style={{
                              position: "relative",
                              display: "flex",
-                             height: "50px",
+                             height: "250px",
                              color: "white",
                          }}>
                         <img style={{zIndex: 1}} src={img_car} alt={""}></img>
-                        <CarFume paddingTop={"18px"} paddingBottom={"29px"} viewPortWidth={viewPortWidth}></CarFume>
-                        <CarFume paddingTop={"26px"} paddingBottom={"10px"} viewPortWidth={viewPortWidth}></CarFume>
+
+                        <CarFume paddingTop={carFumesPaddings[0].paddingTop}
+                                 paddingBottom={carFumesPaddings[0].paddingBottom}
+                                 viewPortWidth={viewPortWidth}></CarFume>
+                        <CarFume paddingTop={carFumesPaddings[1].paddingTop}
+                                 paddingBottom={carFumesPaddings[1].paddingBottom}
+                                 viewPortWidth={viewPortWidth}></CarFume>
                     </div>
                 </div>
             </div>
