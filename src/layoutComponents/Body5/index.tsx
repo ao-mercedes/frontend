@@ -1,6 +1,6 @@
 import "./index.css";
 
-import {COLORS, Device} from "../../utils/constants/constants.ts";
+import {COLORS, Device, horizontalPaddings} from "../../utils/constants/constants.ts";
 
 import img_car from "../../assets/body5/progress.png";
 
@@ -16,10 +16,10 @@ const marginTops = {
     [Device.desktop]: "40px",
 };
 
-const pagePaddings = {
-    [Device.mobile]: "0px 70px 0px 70px",
-    [Device.tablet]: "0px 100px 0px 100px",
-    [Device.desktop]: "0px 70px 0px 70px",
+const pageHorizontalPaddingsPx = {
+    [Device.mobile]: 70,
+    [Device.tablet]: 100,
+    [Device.desktop]: 70,
 };
 const fontSizes = {
     [Device.mobile]: "1.2rem",
@@ -28,7 +28,7 @@ const fontSizes = {
 };
 const paragraphLineHeights = {
     [Device.mobile]: "1.8rem",
-    [Device.tablet]: "2rem",
+    [Device.tablet]: "1.4rem",
     [Device.desktop]: "2rem",
 };
 
@@ -122,10 +122,15 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
     }, []);
 
     const contentMarginTop = marginTops[device] ?? "80px";
-    const pagePadding = pagePaddings[device] ?? "0px 70px 0px 70px";
+
+    const pageHorizontalPaddingPx = pageHorizontalPaddingsPx[device] ?? 70;
+    const pageHorizontalPadding = `${pageHorizontalPaddingPx}px`;
     const fontSize = fontSizes[device] ?? "30px";
     const paragraphLineHeight = paragraphLineHeights[device] ?? "30px";
 
+
+    const youtubeEmbedWidth = (device == Device.mobile) ? viewPortWidth : (viewPortWidth - (pageHorizontalPaddingPx * 2));
+    const youtubeAspectRatio = device == Device.mobile ? (4 / 3) : (16 / 9);
 
     return <>
         <div className="ao-body5"
@@ -176,7 +181,8 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                         justifyContent: "flex-start",
                         alignItems: "flex-start",
                         width: "100%",
-                        padding: pagePadding,
+                        paddingLeft: pageHorizontalPadding,
+                        paddingRight: pageHorizontalPadding,
                         marginTop: contentMarginTop,
                     }}>
                         <div className="ao-body5-content-header"
@@ -196,14 +202,13 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                              display: "flex",
                              width: "100%",
                              height: "100%",
-                             backgroundColor: "orange",
                              justifyContent: "center"
                          }}>
                         <div className="ao-body5-content-youtube-embed-placeholder"
                              style={{display: "flex", justifyContent: "center", width: "100%", height: "100%"}}>
                             <iframe
-                                width={`${viewPortWidth}px`}
-                                height={`${viewPortWidth / 4 * 3}px`}
+                                width={`${youtubeEmbedWidth}px`}
+                                height={`${youtubeEmbedWidth / youtubeAspectRatio}px`}
                                 src={`https://www.youtube.com/embed/I8CygBDUIBs?autoplay=0&showinfo=0&controls=0&modestbranding=1&rel=0`}
                                 title="YouTube Video"
                                 frameBorder="0"
@@ -217,7 +222,8 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                         justifyContent: "flex-start",
                         alignItems: "flex-start",
                         width: "100%",
-                        padding: pagePadding,
+                        paddingLeft: pageHorizontalPadding,
+                        paddingRight: pageHorizontalPadding,
                         marginTop: "0px",
                     }}>
                         <Paragraphs fontSize={fontSize} paragraphLineHeight={paragraphLineHeight}
@@ -233,8 +239,21 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                          marginLeft: `${progress}%`,
                      }}>
                     <div className="ao-body5-car-image"
-                         style={{display: "flex", height: "50px", color: "white", fontSize: "30px"}}>
+                         style={{display: "flex", height: "50px", color: "white"}}>
                         <img src={img_car} alt={""}></img>
+                    </div>
+                    <div className="ao-body5-car-fumes"
+                         style={{
+                             backgroundColor: COLORS.GOLDEN_AMBER,
+                             position: "absolute",
+                             display: "flex",
+                             height: "50px",
+                             color: "white",
+                             fontSize: "30px",
+                             left: "-100%",
+                         }}>
+                        aaa
+
                     </div>
                 </div>
             </div>
