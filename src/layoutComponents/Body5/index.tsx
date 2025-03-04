@@ -13,28 +13,6 @@ import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
 import {useEffect, useRef, useState,} from "react";
 import {Typography} from "antd";
 
-const marginTops = {
-    [Device.mobile]: "80px",
-    [Device.tablet]: "45px",
-    [Device.desktop]: "40px",
-};
-
-const pageHorizontalPaddingsPx = {
-    [Device.mobile]: 70,
-    [Device.tablet]: 100,
-    [Device.desktop]: 70,
-};
-const fontSizes = {
-    [Device.mobile]: "1.2rem",
-    [Device.tablet]: "1rem",
-    [Device.desktop]: "2rem",
-};
-const paragraphLineHeights = {
-    [Device.mobile]: "1.8rem",
-    [Device.tablet]: "1.4rem",
-    [Device.desktop]: "2rem",
-};
-
 
 const textForParagraph1 = ["Are you tired of hearing about how silent EVs are? Do you crave drama and emotion? " +
 "Then you must want a car like the SL55, whose powertrain is unashamedly unadulterated.",
@@ -81,6 +59,40 @@ const textForParagraph2 = [
 ];
 
 
+const contentMarginTops = {
+    [Device.mobile]: "80px",
+    [Device.tablet]: "45px",
+    [Device.desktop]: "120px",
+};
+const contentHeaderFontSizes = {
+    [Device.mobile]: "34px",
+    [Device.tablet]: "34px",
+    [Device.desktop]: "80px",
+};
+
+const pageHorizontalPaddingsPx = {
+    [Device.mobile]: 70,
+    [Device.tablet]: 100,
+    [Device.desktop]: 640,
+};
+
+const paragraphFontSizes = {
+    [Device.mobile]: "1.2rem",
+    [Device.tablet]: "1rem",
+    [Device.desktop]: "2.1rem",
+};
+const paragraphLineHeights = {
+    [Device.mobile]: "1.8rem",
+    [Device.tablet]: "1.4rem",
+    [Device.desktop]: "2.7rem",
+};
+
+const rowGaps = {
+    [Device.mobile]: "20px",
+    [Device.tablet]: "20px",
+    [Device.desktop]: "40px",
+};
+
 const footerWidths = {
     [Device.mobile]: "95%",
     [Device.tablet]: "95%",
@@ -115,7 +127,7 @@ const footerLineHeights = {
 const footerMarginTops = {
     [Device.mobile]: "70px",
     [Device.tablet]: "10px",
-    [Device.desktop]: "140px",
+    [Device.desktop]: "0px",
 };
 
 const footerClipPaths = {
@@ -134,6 +146,19 @@ const footerTextPaddingLefts = {
     [Device.mobile]: "15%",
     [Device.tablet]: "8%",
     [Device.desktop]: "10%",
+};
+
+
+const youtubeMarginTops = {
+    [Device.mobile]: "40px",
+    [Device.tablet]: "40px",
+    [Device.desktop]: "80px",
+};
+
+const youtubeMarginBottoms = {
+    [Device.mobile]: "20px",
+    [Device.tablet]: "20px",
+    [Device.desktop]: "60px",
 };
 
 const CarFume: React.FC<{
@@ -210,16 +235,26 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
         return () => contentDiv?.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const contentMarginTop = marginTops[device] ?? "80px";
+    const contentMarginTop = contentMarginTops[device] ?? "80px";
+    const contentHeaderFontSize = contentHeaderFontSizes[device] ?? "80px";
 
     const pageHorizontalPaddingPx = pageHorizontalPaddingsPx[device] ?? 70;
     const pageHorizontalPadding = `${pageHorizontalPaddingPx}px`;
-    const fontSize = fontSizes[device] ?? "30px";
+
+    const paragraphFontSize = paragraphFontSizes[device] ?? "30px";
     const paragraphLineHeight = paragraphLineHeights[device] ?? "30px";
+    const rowGap = rowGaps[device] ?? "20px";
 
 
-    const youtubeEmbedWidth = (device == Device.mobile) ? viewPortWidth : (viewPortWidth - (pageHorizontalPaddingPx * 2));
     const youtubeAspectRatio = device == Device.mobile ? (4 / 3) : (16 / 9);
+
+    // youtube sizes:
+    // mobile: full width
+    // tablet: exclude padding
+    // desktop: exclude padding and shrink
+    const youtubeScreenSizeRatio = device == Device.desktop ? 0.75 : 1;
+    const youtubeEmbedWidth = youtubeScreenSizeRatio * ((device == Device.mobile) ? viewPortWidth : (viewPortWidth - (pageHorizontalPaddingPx * 2)));
+    const youtubeEmbedHeight = youtubeEmbedWidth / youtubeAspectRatio;
 
     const shouldShowFooter = device == Device.desktop || device == Device.tablet;
     const footerWidth = footerWidths[device] ?? "75%";
@@ -232,6 +267,8 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
     const footerTextPaddingLeft = footerTextPaddingLefts[device] ?? "15%";
     const rightFooterHeight = rightFooterHeights[device] ?? "30%";
 
+    const youtubeMarginTop = youtubeMarginTops[device] ?? "40px";
+    const youtubeMarginBottom = youtubeMarginBottoms[device] ?? "20px";
     return <>
         <div className="ao-body5"
              ref={bodyRef}
@@ -286,18 +323,18 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                     }}>
                         <div className="ao-body5-content-header"
                              style={{display: "flex", color: "white"}}>
-                            <Typography.Text style={{color: COLORS.GOLDEN_AMBER, fontSize: "34px"}}>
+                            <Typography.Text style={{color: COLORS.GOLDEN_AMBER, fontSize: contentHeaderFontSize}}>
                                 {"TIME TO DANCE"}
                             </Typography.Text>
                         </div>
                         <div ref={paragraph1Ref}></div>
-                        <Paragraphs fontSize={fontSize} paragraphLineHeight={paragraphLineHeight}
-                                    texts={textForParagraph1}/>
+                        <Paragraphs fontSize={paragraphFontSize} paragraphLineHeight={paragraphLineHeight}
+                                    texts={textForParagraph1} rowGap={rowGap}/>
                     </UnbrokenPage>
                     <div className="ao-body5-content-youtube-embed"
                          style={{
-                             marginTop: "40px",
-                             marginBottom: "20px",
+                             marginTop: youtubeMarginTop,
+                             marginBottom: youtubeMarginBottom,
                              display: "flex",
                              width: "100%",
                              height: "100%",
@@ -307,7 +344,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                              style={{display: "flex", justifyContent: "center", width: "100%", height: "100%"}}>
                             <iframe
                                 width={`${youtubeEmbedWidth}px`}
-                                height={`${youtubeEmbedWidth / youtubeAspectRatio}px`}
+                                height={`${youtubeEmbedHeight}px`}
                                 src={`https://www.youtube.com/embed/I8CygBDUIBs?autoplay=0&showinfo=0&controls=0&modestbranding=1&rel=0`}
                                 title="YouTube Video"
                                 frameBorder="0"
@@ -325,8 +362,8 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                         paddingRight: pageHorizontalPadding,
                         marginTop: "0px",
                     }}>
-                        <Paragraphs fontSize={fontSize} paragraphLineHeight={paragraphLineHeight}
-                                    texts={textForParagraph2}/>
+                        <Paragraphs fontSize={paragraphFontSize} paragraphLineHeight={paragraphLineHeight}
+                                    texts={textForParagraph2} rowGap={rowGap}/>
                     </UnbrokenPage>
                 </div>
                 <div className="ao-body5-car"

@@ -19,11 +19,17 @@ export const Paragraph: React.FC<{ paragraphLineHeight: string, text: string, fo
     </div>;
 };
 
-export const Paragraphs: React.FC<{ fontSize: string, paragraphLineHeight: string, texts: string[] }> = ({
-                                                                                                             fontSize,
-                                                                                                             paragraphLineHeight,
-                                                                                                             texts
-                                                                                                         }) => {
+export const Paragraphs: React.FC<{
+    fontSize: string,
+    paragraphLineHeight: string,
+    rowGap: string,
+    texts: string[]
+}> = ({
+          fontSize,
+          paragraphLineHeight,
+          texts,
+          rowGap
+      }) => {
     return <div className="ao-body5-content-paragraphs" style={{
         display: "flex",
         height: "max-content",
@@ -31,7 +37,7 @@ export const Paragraphs: React.FC<{ fontSize: string, paragraphLineHeight: strin
         flexDirection: "column",
         justifyContent: "center",
         paddingTop: "20px",
-        rowGap: "20px",
+        rowGap: rowGap,
     }}>
         {texts.map((text, index) => {
             return <div key={index}>
