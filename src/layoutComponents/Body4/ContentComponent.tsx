@@ -14,6 +14,7 @@ interface ContentEndMarkerProps {
 const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, threshold, endMarkerHeight}) => {
     const endOfBackGroundMarker = useRef<HTMLDivElement | null>(null);
 
+    // [Issue-0010] TODO refactor and test if can use useIntersectingRef
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {

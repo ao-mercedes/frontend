@@ -3,8 +3,9 @@ import {COLORS} from "../../utils/constants/constants.ts";
 
 import {_getContents} from "./contentInfoGetter.ts";
 
+import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
+
 import {Property as CSSProperty} from 'csstype';
-import {useEffect, useRef, useState} from "react";
 
 export interface Content {
     paragraphs: string[]
@@ -56,31 +57,7 @@ const ContentComponent: React.FC<_ContentProps> = ({
                                                    }) => {
 
 
-    const [showImage, setShowImage] = useState(false);
-    const textDivRef = useRef<HTMLDivElement | null>(null);
-
-    // when seen a part of text, start to show image
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setShowImage(entry.isIntersecting);
-                }
-            },
-            {threshold: 0.7},
-        );
-
-        const currRef = textDivRef.current;
-        if (currRef) {
-            observer.observe(currRef);
-        }
-
-        return () => {
-            if (currRef) {
-                observer.unobserve(currRef);
-            }
-        };
-    }, []);
+    const {intersects: showImage, ref: textDivRef} = useIntersectingRef(true, 0.7);
 
     const imageTextMargin = imageTextAutoMarginLeftOrRight == "left" ? {
         marginLeft: "auto",

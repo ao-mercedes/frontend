@@ -256,3 +256,7 @@ Device Size: Tablet
 Page: Body4
 
 ![](./planning/assets/issue_0009.png)
+
+- [ ] [Issue-0010] TODO refactor and test if can use `useIntersectingRef`
+
+- See Component: `ContentEndMarker`
