@@ -6,10 +6,12 @@ import img_car from "../../assets/body5/progress.png";
 
 import {UnbrokenPage} from "../pageSizes.tsx";
 import Paragraphs from "./Paragraphs.tsx";
+import BodyFooter from "../../components/BodyFooter.tsx";
+
+import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
 
 import {useEffect, useRef, useState,} from "react";
 import {Typography} from "antd";
-import BodyFooter from "../../components/BodyFooter.tsx";
 
 const marginTops = {
     [Device.mobile]: "80px",
@@ -161,6 +163,7 @@ const CarFume: React.FC<{
     </div>;
 };
 
+
 export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({device, viewPortWidth}) => {
     const paragraph1Ref = useRef<HTMLDivElement | null>(null);
     const bodyRef = useRef<HTMLDivElement | null>(null);
@@ -188,32 +191,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
         };
     }, []);
 
-    const [showBottomGuide, setShowBottomGuide] = useState(false);
-    const contentsDivRef = useRef<HTMLDivElement | null>(null);
-    // console.log(`body5 showBottomGuide: ${showBottomGuide}`);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    console.log(`body5 showBottomGuide?: ${showBottomGuide}`);
-                    setShowBottomGuide(entry.isIntersecting);
-                }
-            },
-            {threshold: 1},
-        );
-
-        const currRef = contentsDivRef.current;
-        if (currRef) {
-            observer.observe(currRef);
-        }
-
-        return () => {
-            if (currRef) {
-                observer.unobserve(currRef);
-            }
-        };
-    }, [showBottomGuide]);
+    const {intersects, ref} = useIntersectingRef(true);
 
     const [progress, setProgress] = useState(0);
     useEffect(() => {
@@ -373,12 +351,12 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                 </div>
             </div>
 
-            <div ref={contentsDivRef} style={{height: "10px", width: "100%", display: "flex"}}></div>
+            <div ref={ref} style={{height: "10px", width: "100%", display: "flex"}}></div>
             {shouldShowFooter && <div className="ao-body5-footer-wrapper" style={{
                 width: "100%", height: "100%",
             }}>
                 <BodyFooter footerMarginTop={footerMarginTop} footerWidth={footerWidth}
-                            showBottomGuide={showBottomGuide} footerClipPath={footerClipPath}
+                            showBottomGuide={intersects} footerClipPath={footerClipPath}
                             footerPaddingTop={footerPaddingTop}
                             footerPaddingBottom={footerPaddingBottom}
                             footerTextPaddingLeft={footerTextPaddingLeft}
