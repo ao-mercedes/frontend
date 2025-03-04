@@ -7,18 +7,15 @@ import img_parallax_interior2 from "../../assets/Body4/parallax_interior2.png";
 import {Typography} from "antd";
 import {useEffect, useRef, useState} from "react";
 import {Parallax, ParallaxLayer} from "@react-spring/parallax";
-import styles from './index.module.css';
 import * as React from "react";
 
 
-const alignCenter = {display: 'flex', alignItems: 'center'};
-
 interface ContentEndMarkerProps {
     handleOnIntersect: (isIntersecting: boolean) => void;
-    treshold: number;
+    threshold: number;
 }
 
-const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, treshold}) => {
+const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, threshold}) => {
     const endOfTextMarker = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -26,7 +23,7 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
             ([entry]) => {
                 handleOnIntersect(entry.isIntersecting);
             },
-            {threshold: treshold},
+            {threshold: threshold},
         );
 
         const currRef = endOfTextMarker.current;
@@ -39,7 +36,7 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
                 observer.unobserve(currRef);
             }
         };
-    }, [handleOnIntersect, treshold]);
+    }, [handleOnIntersect, threshold]);
 
     return <div className={"ao-body4-content-end-marker"}
                 style={{
@@ -247,7 +244,8 @@ interface ContentProps {
     bubbleTexts: {
         upper: string,
         lower: string,
-    }
+    };
+    contentWidth: string;
     imageHeight: string;
 }
 
@@ -260,6 +258,7 @@ const Content: React.FC<ContentProps> = ({
                                              imageMarginTop,
                                              imageMarginLeft,
                                              bubbleTexts,
+                                             contentWidth
                                          }) => {
 
     const [showBubble, setShowBubble] = useState(false);
@@ -281,13 +280,13 @@ const Content: React.FC<ContentProps> = ({
                       imageMarginTop={imageMarginTop}
                       imageMarginLeft={imageMarginLeft}
         ></ContentImage>
-        <Parallax className={"parallax"} pages={1.5}
+        <Parallax className={"ao-body4-parallax"} pages={1.5}
                   style={{
                       display: "flex",
                       position: "absolute",
                       justifyContent: "center",
                       alignItems: "center",
-                      width: "90%",
+                      width: contentWidth,
                       // opacity: 0.5,
                       flexDirection: "column",
                       padding: "0% 10% 0% 10%",
@@ -318,7 +317,7 @@ const Content: React.FC<ContentProps> = ({
                         position: "relative",
                         justifyContent: "center",
                         alignItems: "center",
-                        width: "90%",
+                        width: "100%",
                         height: "max-content",
                         // top: "29%",
                         overflow: "hidden",
@@ -362,86 +361,9 @@ const Content: React.FC<ContentProps> = ({
                 </div>
                 <ContentEndMarker handleOnIntersect={(isIntersecting) => {
                     setShowBubble(isIntersecting);
-                }} treshold={1}/>
+                }} threshold={1}/>
             </ParallaxLayer>
         </Parallax>
-
-        {/*<ParallaxLayer className={"stickkkie"} sticky={{start: 0, end: 1.5}}*/}
-        {/*               style={{display: "100%", width: "100%",}}>*/}
-
-        {/*</ParallaxLayer>*/}
-
-    </div>;
-    return <div className={"ao-body4-content"}
-                style={{
-                    display: "flex",
-                    overflow: "hidden",
-                    flexDirection: "column",
-                    width: "100%",
-                    height: "min-content",
-                    position: "relative",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}>
-        <div className={"ao-body4-content-image-wrapper"}
-             style={{display: "flex", overflow: "hidden", flexDirection: "column", width: "100%", height: imageHeight}}>
-            <img src={imageUrl} alt={""}
-                 style={{
-                     display: "flex",
-                     justifyContent: "center",
-                     alignItems: "center",
-                     width: imageWidth,
-                     height: "100%",
-                     alignSelf: "center",
-                     transform: transform,
-                 }}/>
-        </div>
-        <div className={"ao-body4-content-text-wrapper"} style={{
-            display: "flex",
-            position: "absolute",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "90%",
-            height: "56%",
-            top: "29%",
-            overflow: "hidden",
-            flexDirection: "column",
-            padding: "0% 10% 0% 10%",
-        }}>
-            <div className={"ao-body4-content-text-bg"} style={{
-                display: "flex",
-                position: "absolute",
-                width: "100%",
-                height: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-                overflow: "hidden",
-                flexDirection: "column",
-                backgroundColor: COLORS.TRUE_BLACK,
-                opacity: 0.5,
-                zIndex: 0,
-            }}>
-
-            </div>
-            <div className={"ao-body4-content-text-paragraphs"}
-                 style={{
-                     height: "100%",
-                     display: "flex", flexDirection: "column", rowGap: "20px",
-                     zIndex: 1,
-                     paddingTop: "85px",
-                 }}>
-                {paragraphs.map((paragraph, index) => {
-                    return <Typography.Text key={index} style={{
-                        color: COLORS.PURE_WHITE,
-                        lineHeight: "1.6rem",
-                        fontSize: "1.2rem",
-
-                    }}>
-                        {paragraph}
-                    </Typography.Text>;
-                })}
-            </div>
-        </div>
     </div>;
 };
 
@@ -485,6 +407,12 @@ const imageWidths = {
 const imageHeights = {
     [Device.mobile]: "1000px",
     [Device.tablet]: "850px",
+    [Device.desktop]: "2000px",
+};
+
+const contentWidths = {
+    [Device.mobile]: "90%",
+    [Device.tablet]: "73%",
     [Device.desktop]: "2000px",
 };
 
@@ -569,6 +497,7 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const imageMarginLeft = imageMarginLefts[device] ?? "-8%";
     const imageHeight = imageHeights[device] ?? "1000px";
 
+    const contentWidth = contentWidths[device] ?? "100%";
     return <div className="ao-body4"
                 style={{
                     display: "flex",
@@ -617,11 +546,13 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                  imageMarginTop={imageMarginTop}
                  imageMarginLeft={imageMarginLeft}
                  imageHeight={imageHeight}
+                 contentWidth={contentWidth}
 
         />
         {!showFirstOnly &&
             <Content
                 imageHeight={imageHeight}
+                contentWidth={contentWidth}
                 imageMarginTop={imageMarginTop}
                 imageMarginLeft={imageMarginLeft}
                 paragraphs={contentParagraphs[1]} bubbleTexts={contentTexts[1].bubbleTexts} imageWidth={imageWidth}
