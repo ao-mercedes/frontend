@@ -1,6 +1,6 @@
 import "./index.css";
 
-import {COLORS, Device, horizontalPaddings} from "../../utils/constants/constants.ts";
+import {COLORS, Device} from "../../utils/constants/constants.ts";
 
 import img_car from "../../assets/body5/progress.png";
 
@@ -76,6 +76,33 @@ const textForParagraph2 = [
     "However, 15 seconds is only possible if the virtual toggle switch doesn't slip away from your finger. " +
     "I often found myself having to re-swipe to operate the roof. Mercedes should have kept the metal switch of the previous car, which conveniently has the one-touch windows up/down toggle beside it.",
 ];
+
+const CarFume: React.FC<{
+    paddingTop: string,
+    paddingBottom: string,
+    viewPortWidth: number,
+}> = ({
+          paddingTop,
+          paddingBottom,
+          viewPortWidth
+      }) => {
+    return <div className="ao-body5-car-fumes"
+                style={{
+                    position: "absolute",
+                    right: "80%",
+                    height: "100%",
+                    paddingTop: paddingTop,
+                    paddingBottom: paddingBottom,
+                    width: (viewPortWidth + 1000) + "px",
+                }}>
+        <div style={{
+            backgroundColor: COLORS.GRAY,
+            opacity: 0.1,
+            height: "100%",
+            width: "100%",
+        }}></div>
+    </div>;
+};
 
 export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({device, viewPortWidth}) => {
     const paragraph1Ref = useRef<HTMLDivElement | null>(null);
@@ -236,25 +263,21 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                          position: "relative",
                          height: "max-content",
                          justifyContent: "center",
-                         marginLeft: `${progress}%`,
+                         left: `${progress}%`,
                      }}>
                     <div className="ao-body5-car-image"
-                         style={{display: "flex", height: "50px", color: "white"}}>
-                        <img src={img_car} alt={""}></img>
-                    </div>
-                    <div className="ao-body5-car-fumes"
                          style={{
-                             backgroundColor: COLORS.GOLDEN_AMBER,
-                             position: "absolute",
+                             position: "relative",
                              display: "flex",
                              height: "50px",
                              color: "white",
-                             fontSize: "30px",
-                             left: "-100%",
                          }}>
-                        aaa
-
+                        <img style={{zIndex: 1}} src={img_car} alt={""}></img>
+                        <CarFume paddingTop={"18px"} paddingBottom={"29px"} viewPortWidth={viewPortWidth}></CarFume>
+                        <CarFume paddingTop={"26px"} paddingBottom={"10px"} viewPortWidth={viewPortWidth}></CarFume>
                     </div>
+
+
                 </div>
             </div>
         </div>
