@@ -5,22 +5,6 @@ import {useEffect, useRef, useState} from "react";
 import {Typography} from "antd";
 
 
-interface ContentProps {
-    imageUrl: string;
-    transform: string;
-    imageWidth: string;
-    paragraphs: string[];
-    imageMarginTop: string;
-    imageMarginLeft: string;
-    bubbleTexts: {
-        upper: string,
-        lower: string,
-    };
-    contentWidth: string;
-    imageHeight: string;
-}
-
-
 interface ContentEndMarkerProps {
     handleOnIntersect: (isIntersecting: boolean) => void;
     threshold: number;
@@ -246,6 +230,25 @@ const ContentImage: React.FC<{
     </>;
 };
 
+interface ContentProps {
+    imageUrl: string;
+    transform: string;
+    imageWidth: string;
+    paragraphs: string[];
+    imageMarginTop: string;
+    imageMarginLeft: string;
+    bubbleTexts: {
+        upper: string,
+        lower: string,
+    };
+    contentWidth: string;
+    imageHeight: string;
+    contentTextBoxPaddingTop: string;
+    contentTextBoxPaddingBottom: string;
+    paragraphLineHeight: string;
+    paragraphFontSize: string;
+    paragraphFontWeight: string;
+}
 
 export const Content: React.FC<ContentProps> = ({
                                                     imageUrl,
@@ -256,7 +259,11 @@ export const Content: React.FC<ContentProps> = ({
                                                     imageMarginTop,
                                                     imageMarginLeft,
                                                     bubbleTexts,
-                                                    contentWidth
+                                                    contentWidth,
+                                                    contentTextBoxPaddingTop,
+                                                    contentTextBoxPaddingBottom,
+                                                    paragraphLineHeight,
+                                                    paragraphFontSize, paragraphFontWeight
                                                 }) => {
 
     const [showBubble, setShowBubble] = useState(false);
@@ -332,7 +339,7 @@ export const Content: React.FC<ContentProps> = ({
                             overflow: "hidden",
                             flexDirection: "column",
                             backgroundColor: COLORS.TRUE_BLACK,
-                            opacity: 0.5,
+                            opacity: 0.7,
                             zIndex: 0,
                         }}>
 
@@ -342,14 +349,15 @@ export const Content: React.FC<ContentProps> = ({
                                  height: "100%",
                                  display: "flex", flexDirection: "column", rowGap: "20px",
                                  zIndex: 1,
-                                 paddingBottom: "85px",
-                                 paddingTop: "85px",
+                                 paddingTop: contentTextBoxPaddingTop,
+                                 paddingBottom: contentTextBoxPaddingBottom,
                              }}>
                             {paragraphs.map((paragraph, index) => {
                                 return <Typography.Text key={index} style={{
                                     color: COLORS.PURE_WHITE,
-                                    lineHeight: "1.6rem",
-                                    fontSize: "1.2rem",
+                                    lineHeight: paragraphLineHeight,
+                                    fontSize: paragraphFontSize,
+                                    fontWeight: paragraphFontWeight,
                                 }}>
                                     {paragraph}
                                 </Typography.Text>;

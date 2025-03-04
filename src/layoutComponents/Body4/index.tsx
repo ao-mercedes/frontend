@@ -57,6 +57,34 @@ const contentWidths = {
     [Device.tablet]: "73%",
     [Device.desktop]: "2000px",
 };
+const contentTextBoxPaddingTops = {
+    [Device.mobile]: "85px",
+    [Device.tablet]: "45px",
+    [Device.desktop]: "50px",
+};
+const contentTextBoxPaddingBottoms = {
+    [Device.mobile]: "85px",
+    [Device.tablet]: "45px",
+    [Device.desktop]: "50px",
+};
+
+const paragraphLineHeights = {
+    [Device.mobile]: "1.4rem",
+    [Device.tablet]: "1.2rem",
+    [Device.desktop]: "1rem",
+};
+
+const paragraphFontSizes = {
+    [Device.mobile]: "1.2rem",
+    [Device.tablet]: "1rem",
+    [Device.desktop]: "1rem",
+};
+
+const paragraphFontWeights = {
+    [Device.mobile]: "",
+    [Device.tablet]: "500",
+    [Device.desktop]: "",
+};
 
 const imgTransforms = {
     [Device.mobile]: "",
@@ -140,6 +168,11 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const imageHeight = imageHeights[device] ?? "1000px";
 
     const contentWidth = contentWidths[device] ?? "100%";
+    const contentTextBoxPaddingTop = contentTextBoxPaddingTops[device] ?? "85px";
+    const contentTextBoxPaddingBottom = contentTextBoxPaddingBottoms[device] ?? "85px";
+    const paragraphLineHeight = paragraphLineHeights[device] ?? "1.4rem";
+    const paragraphFontSize = paragraphFontSizes[device] ?? "1.2rem";
+    const paragraphFontWeight = paragraphFontWeights[device] ?? "500";
     return <div className="ao-body4"
                 style={{
                     display: "flex",
@@ -189,14 +222,23 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                  imageMarginLeft={imageMarginLeft}
                  imageHeight={imageHeight}
                  contentWidth={contentWidth}
-
+                 contentTextBoxPaddingTop={contentTextBoxPaddingTop}
+                 paragraphLineHeight={paragraphLineHeight}
+                 contentTextBoxPaddingBottom={contentTextBoxPaddingBottom}
+                 paragraphFontSize={paragraphFontSize}
+                 paragraphFontWeight={paragraphFontWeight}
         />
         {!showFirstOnly &&
             <Content
+                paragraphFontWeight={paragraphFontWeight}
+                paragraphFontSize={paragraphFontSize}
+                paragraphLineHeight={paragraphLineHeight}
                 imageHeight={imageHeight}
                 contentWidth={contentWidth}
                 imageMarginTop={imageMarginTop}
                 imageMarginLeft={imageMarginLeft}
+                contentTextBoxPaddingTop={contentTextBoxPaddingTop}
+                contentTextBoxPaddingBottom={contentTextBoxPaddingBottom}
                 paragraphs={contentParagraphs[1]} bubbleTexts={contentTexts[1].bubbleTexts} imageWidth={imageWidth}
                 imageUrl={img_parallax_interior2}
                 transform=""/>}
