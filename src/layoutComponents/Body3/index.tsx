@@ -341,7 +341,7 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
 
                 <div style={{
                     display: "flex",
-                    backgroundColor: COLORS.GOLDEN_AMBER,
+                    backgroundColor: COLORS.LIGHT_BROWN,
                     position: "absolute",
                     bottom: "0",
                     width: "100%",

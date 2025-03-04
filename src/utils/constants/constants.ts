@@ -15,6 +15,7 @@ export const COLORS = {
     TRUE_BLACK: "#000000",
 
     GRAY: "#e8e8e8",
+    LIGHT_BROWN: "#d4a53f",
     HIGH_ORANGE: "#a1781d",
 } as const;
 
