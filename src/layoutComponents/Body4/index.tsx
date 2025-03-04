@@ -96,7 +96,7 @@ const paragraphFontWeights = {
 const endMarkerHeights = {
     [Device.mobile]: ["400px", "400px"],
     [Device.tablet]: ["280px", "390px"],
-    [Device.desktop]: "",
+    [Device.desktop]: ["800px", "390px"],
 };
 
 const imageTransforms = {
@@ -117,33 +117,51 @@ const imageMarginLefts = {
     [Device.desktop]: "",
 };
 
+const smallBubbleWidths = {
+    [Device.mobile]: "20px",
+    [Device.tablet]: "20px",
+    [Device.desktop]: "40px",
+};
+
 const smallBubbleLefts: { [device in Device]: string[] } = {
     [Device.mobile]: ["260px", "260px"],
     [Device.tablet]: ["410px", "310px"],
-    [Device.desktop]: ["410px", "410px"],
+    [Device.desktop]: ["1513px", "1600px"],
 };
 const smallBubbleTops: { [device in Device]: string[] } = {
     [Device.mobile]: ["100px", "100px"],
     [Device.tablet]: ["100px", "240px"],
-    [Device.desktop]: ["410px", "410px"],
+    [Device.desktop]: ["291px", "650px"],
 };
 
 const bigBubbleLengths = {
     [Device.mobile]: "300px",
     [Device.tablet]: "275px",
-    [Device.desktop]: "410px",
+    [Device.desktop]: "500px",
 };
+
+const bigBubbleFontSizes = {
+    [Device.mobile]: "1rem",
+    [Device.tablet]: "1rem",
+    [Device.desktop]: "1.8rem",
+};
+const bigBubbleTextLineHeights = {
+    [Device.mobile]: "1.2rem",
+    [Device.tablet]: "1.2rem",
+    [Device.desktop]: "2rem",
+};
+
 
 const bigBubbleTops = {
     [Device.mobile]: ["50%", "50%"],
     [Device.tablet]: ["200px", "0"],
-    [Device.desktop]: ["410px", "410px"],
+    [Device.desktop]: ["523px", "235px"],
 };
 
 const bigBubbleLefts = {
     [Device.mobile]: ["100px", "100px"],
     [Device.tablet]: ["480px", "480px"],
-    [Device.desktop]: ["410px", "410px"],
+    [Device.desktop]: ["1519px", "1858px"],
 };
 
 
@@ -220,9 +238,13 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const paragraphFontWeight = paragraphFontWeights[device] ?? "500";
 
     const endMarkerHeight = endMarkerHeights[device] ?? "400px";
+    const smallBubbleWidth = smallBubbleWidths[device] ?? "260px";
     const smallBubbleLeft = smallBubbleLefts[device] ?? "260px";
     const smallBubbleTop = smallBubbleTops[device] ?? "260px";
+
     const bigBubbleLength = bigBubbleLengths[device] ?? "300px";
+    const bigBubbleFontSize = bigBubbleFontSizes[device] ?? "1.2rem";
+    const bigBubbleTextLineHeight = bigBubbleTextLineHeights[device] ?? "1.2rem";
     const bigBubbleTop = bigBubbleTops[device] ?? "50%";
     const bigBubbleLeft = bigBubbleLefts[device] ?? "300px";
     return <div className="ao-body4"
@@ -280,12 +302,15 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                  paragraphLineHeight={paragraphLineHeight}
                  paragraphFontSize={paragraphFontSize}
                  paragraphFontWeight={paragraphFontWeight}
+                 paragraphs={contentParagraphs[0]}
                  endMarkerHeight={endMarkerHeight[0]}
                  smallBubbleLeft={smallBubbleLeft[0]}
+                 smallBubbleWidth={smallBubbleWidth}
                  smallBubbleTop={smallBubbleTop[0]}
                  bigBubbleLength={bigBubbleLength}
-                 paragraphs={contentParagraphs[0]}
                  bigBubbleTop={bigBubbleTop[0]}
+                 bigBubbleTextLineHeight={bigBubbleTextLineHeight}
+                 bigBubbleFontSize={bigBubbleFontSize}
                  bigBubbleLeft={bigBubbleLeft[0]}
         />
         {!showFirstOnly &&
@@ -294,6 +319,7 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                 bigBubbleTop={bigBubbleTop[1]}
                 bigBubbleLeft={bigBubbleLeft[1]}
                 endMarkerHeight={endMarkerHeight[1]}
+                smallBubbleWidth={smallBubbleWidth}
                 paragraphFontSize={paragraphFontSize}
                 paragraphLineHeight={paragraphLineHeight}
                 smallBubbleLeft={smallBubbleLeft[1]}
@@ -302,11 +328,13 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                 contentWidth={contentWidth}
                 imageMarginTop={imageMarginTop}
                 imageMarginLeft={imageMarginLeft}
+                bigBubbleFontSize={bigBubbleFontSize}
+                bigBubbleLength={bigBubbleLength}
+                bigBubbleTextLineHeight={bigBubbleTextLineHeight}
                 contentTextBoxPaddingTop={contentTextBoxPaddingTop}
                 contentTextBoxPaddingBottom={contentTextBoxPaddingBottom}
                 paragraphs={contentParagraphs[1]} bubbleTexts={contentTexts[1].bubbleTexts} imageWidth={imageWidth}
                 imageUrl={img_parallax_interior2}
-                bigBubbleLength={bigBubbleLength}
                 imageTransform={imageTransform}
             />}
     </div>;

@@ -78,7 +78,10 @@ const ContentImage: React.FC<{
     bigBubbleLength: string;
     bigBubbleTop: string;
     bigBubbleLeft: string;
+    smallBubbleWidth: string;
     smallBubbleTop: string;
+    bigBubbleFontSize: string;
+    bigBubbleTextLineHeight: string;
 }> = ({
           imageUrl,
           imageWidth,
@@ -87,9 +90,11 @@ const ContentImage: React.FC<{
           imageMarginTop,
           imageMarginLeft, showBubble, bubbleTexts,
           smallBubbleLeft,
+          smallBubbleWidth,
           smallBubbleTop,
           bigBubbleLength,
           bigBubbleTop,
+          bigBubbleFontSize, bigBubbleTextLineHeight,
           bigBubbleLeft
       }) => {
     const endOfBackgroundMarkerRef = useRef<HTMLDivElement | null>(null);
@@ -117,8 +122,6 @@ const ContentImage: React.FC<{
     }, []);
 
 
-    const outerBubbleFontSize = "1rem";
-    const outerBubbleTextLineHeight = "1.2rem";
     return <>
         <div className={"ao-body4-content-image-wrapper"}
             // ref={wrapperRef}
@@ -158,8 +161,8 @@ const ContentImage: React.FC<{
                 }}>
                     <div className={"ao-body4-small-bubble-wrapper ao-body4-bubble-animate"} style={{
                         backgroundColor: "red",
-                        width: "20px",
-                        height: "20px",
+                        width: smallBubbleWidth,
+                        height: smallBubbleWidth,
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
@@ -213,8 +216,8 @@ const ContentImage: React.FC<{
                             >
                                 <Typography.Text
                                     style={{
-                                        fontSize: outerBubbleFontSize,
-                                        lineHeight: outerBubbleTextLineHeight,
+                                        fontSize: bigBubbleFontSize,
+                                        lineHeight: bigBubbleTextLineHeight,
                                         display: "flex",
                                         textAlign: "center",
                                         color: COLORS.PURE_WHITE,
@@ -226,8 +229,8 @@ const ContentImage: React.FC<{
                                 <Typography.Text
                                     style={{
                                         marginTop: "35px",
-                                        fontSize: outerBubbleFontSize,
-                                        lineHeight: outerBubbleTextLineHeight,
+                                        fontSize: bigBubbleFontSize,
+                                        lineHeight: bigBubbleTextLineHeight,
                                         textAlign: "center",
                                         display: "flex",
                                         color: COLORS.PURE_WHITE,
@@ -247,28 +250,33 @@ const ContentImage: React.FC<{
 
 interface ContentProps {
     imageUrl: string;
-    bigBubbleLength: string;
-    bigBubbleTop: string;
-    bigBubbleLeft: string;
     imageTransform: string;
     imageWidth: string;
     paragraphs: string[];
     imageMarginTop: string;
     imageMarginLeft: string;
-    bubbleTexts: {
-        upper: string,
-        lower: string,
-    };
-    contentWidth: string;
     imageHeight: string;
+
+    contentWidth: string;
     contentTextBoxPaddingTop: string;
     contentTextBoxPaddingBottom: string;
     paragraphLineHeight: string;
     paragraphFontSize: string;
-    endMarkerHeight: string;
     paragraphFontWeight: string;
+
+    bubbleTexts: {
+        upper: string,
+        lower: string,
+    };
+    endMarkerHeight: string;
     smallBubbleLeft: string;
     smallBubbleTop: string;
+    smallBubbleWidth: string;
+    bigBubbleTextLineHeight: string;
+    bigBubbleLength: string;
+    bigBubbleTop: string;
+    bigBubbleLeft: string;
+    bigBubbleFontSize: string;
 }
 
 export const Content: React.FC<ContentProps> = ({
@@ -276,17 +284,18 @@ export const Content: React.FC<ContentProps> = ({
                                                     imageWidth,
                                                     imageHeight,
                                                     imageTransform,
-                                                    paragraphs,
                                                     imageMarginTop,
                                                     imageMarginLeft,
-                                                    bubbleTexts,
                                                     contentWidth,
                                                     contentTextBoxPaddingTop,
                                                     contentTextBoxPaddingBottom,
+                                                    bubbleTexts,
                                                     smallBubbleLeft,
+                                                    smallBubbleWidth,
                                                     smallBubbleTop,
                                                     bigBubbleLength, bigBubbleTop,
-                                                    bigBubbleLeft,
+                                                    bigBubbleLeft, bigBubbleFontSize, bigBubbleTextLineHeight,
+                                                    paragraphs,
                                                     paragraphLineHeight,
                                                     paragraphFontSize, paragraphFontWeight,
                                                     endMarkerHeight
@@ -305,16 +314,22 @@ export const Content: React.FC<ContentProps> = ({
                     justifyContent: "center",
                     alignItems: "center",
                 }}>
-        <ContentImage bubbleTexts={bubbleTexts} showBubble={showBubble} imageUrl={imageUrl} imageWidth={imageWidth}
+        <ContentImage showBubble={showBubble}
+                      bubbleTexts={bubbleTexts}
+                      imageUrl={imageUrl}
+                      imageWidth={imageWidth}
                       imageHeight={imageHeight}
                       imageTransform={imageTransform}
                       imageMarginTop={imageMarginTop}
                       imageMarginLeft={imageMarginLeft}
                       smallBubbleLeft={smallBubbleLeft}
+                      smallBubbleWidth={smallBubbleWidth}
                       smallBubbleTop={smallBubbleTop}
                       bigBubbleLength={bigBubbleLength}
                       bigBubbleTop={bigBubbleTop}
                       bigBubbleLeft={bigBubbleLeft}
+                      bigBubbleTextLineHeight={bigBubbleTextLineHeight}
+                      bigBubbleFontSize={bigBubbleFontSize}
         ></ContentImage>
         <Parallax className={"ao-body4-parallax"} pages={1.5}
                   style={{
