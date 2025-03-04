@@ -85,6 +85,18 @@ const paragraphLineHeights = {
     [Device.desktop]: "2rem",
 };
 
+const textForParagraph1 = ["Are you tired of hearing about how silent EVs are? Do you crave drama and emotion? " +
+"Then you must want a car like the SL55, whose powertrain is unashamedly unadulterated.", "Thumb the starter button and the twin-turbocharged, 3,982cc V8 comes alive with a deep bark. " +
+"Petrolheads within earshot can immediately tell that an eight-cylinder was just fired up. There's no mistaking this for any other type of engine.", "The 4.0-litre unit kicks out 476bhp and 700Nm of torque, the latter figure from just 2,250rpm. " +
+"Power is transferred to both axles through the 4Matic+ system with fully variable torque distribution, making this the first all-wheel drive SL."];
+
+const textForParagraph2 = [
+    "Time seems to slow down in the SL55, despite its ability to get from rest to 100km/h in 3.9 seconds. " +
+    "The acceleration is great, but losing yourself in the drive is even better. Here, I momentarily forget about the outside world. " +
+    "Savouring the car's soul-stirring abilities are more important than meetings and deadlines.",
+    "Show the SL a series of corners and it obliges your whims, with the steering wheel unexpectedly feeding back road undulations. " +
+    "The car's movements are progressive and natural. The ride, even in Sport, is pliant, yet accords enough body control on twistier paths.",];
+
 
 // const contentParagraphs = [
 //     ["Yes, there are still screens. But instead of the usual MBUX (Mercedes-Benz User Experience) setup, the 12.3-inch instrument panel is housed under a cowl, reflecting the SL's sporty roots.",
@@ -123,6 +135,31 @@ const Paragraph: React.FC<{ paragraphLineHeight: string, text: string, fontSize:
         <Typography.Text style={{color: COLORS.PURE_WHITE, fontSize: fontSize, lineHeight: paragraphLineHeight}}>
             {text}
         </Typography.Text>
+    </div>;
+};
+
+const Paragraphs: React.FC<{ fontSize: string, paragraphLineHeight: string, texts: string[] }> = ({
+                                                                                                      fontSize,
+                                                                                                      paragraphLineHeight,
+                                                                                                      texts
+                                                                                                  }) => {
+    return <div className="ao-body5-content-paragraphs" style={{
+        display: "flex",
+        height: "max-content",
+        fontSize: "30px",
+        flexDirection: "column",
+        justifyContent: "center",
+        paddingTop: "20px",
+        rowGap: "20px",
+    }}>
+        {texts.map((text, index) => {
+            return <div key={index}>
+                <Paragraph
+                    fontSize={fontSize}
+                    paragraphLineHeight={paragraphLineHeight}
+                    text={text}></Paragraph>
+            </div>;
+        })}
     </div>;
 };
 
@@ -168,6 +205,8 @@ export const Body5: React.FC<{ device: Device }> = ({device}) => {
     const pagePadding = pagePaddings[device] ?? "0px 70px 0px 70px";
     const fontSize = fontSizes[device] ?? "30px";
     const paragraphLineHeight = paragraphLineHeights[device] ?? "30px";
+
+
     return <>
         <div className="ao-body5"
              ref={fullContentRef}
@@ -219,8 +258,6 @@ export const Body5: React.FC<{ device: Device }> = ({device}) => {
                         width: "100%",
                         padding: pagePadding,
                         marginTop: contentMarginTop,
-
-                        // backgroundColor: "#4728d0",
                     }}>
                         <div className="ao-body5-content-header"
                              style={{display: "flex", color: "white"}}>
@@ -228,34 +265,8 @@ export const Body5: React.FC<{ device: Device }> = ({device}) => {
                                 {"TIME TO DANCE"}
                             </Typography.Text>
                         </div>
-                        <div className="ao-body5-content-paragraphs" style={{
-                            display: "flex",
-                            height: "max-content",
-                            fontSize: "30px",
-                            flexDirection: "column",
-                            justifyContent: "center",
-                            paddingTop: "20px",
-                            rowGap: "20px",
-                        }}>
-                            <Paragraph
-                                fontSize={fontSize}
-                                paragraphLineHeight={paragraphLineHeight}
-                                text={"Are you tired of hearing about how silent EVs are? Do you crave drama and emotion? " +
-                                    "Then you must want a car like the SL55, whose powertrain is unashamedly unadulterated."}></Paragraph>
-                            <div ref={paragraph1Ref}></div>
-                            <Paragraph
-                                fontSize={fontSize}
-                                paragraphLineHeight={paragraphLineHeight}
-                                text={"Thumb the starter button and the twin-turbocharged, 3,982cc V8 comes alive with a deep bark. " +
-                                    "Petrolheads within earshot can immediately tell that an eight-cylinder was just fired up. There's no mistaking this for any other type of engine."}></Paragraph>
-                            <Paragraph
-                                fontSize={fontSize}
-                                paragraphLineHeight={paragraphLineHeight}
-                                text={"The 4.0-litre unit kicks out 476bhp and 700Nm of torque, the latter figure from just 2,250rpm. " +
-                                    "Power is transferred to both axles through the 4Matic+ system with fully variable torque distribution, making this the first all-wheel drive SL."}></Paragraph>
-                        </div>
-
-
+                        <Paragraphs fontSize={fontSize} paragraphLineHeight={paragraphLineHeight}
+                                    texts={textForParagraph1}/>
                     </UnbrokenPage>
 
                     <div className="ao-body5-content-youtube-embed"
@@ -273,61 +284,13 @@ export const Body5: React.FC<{ device: Device }> = ({device}) => {
                     <UnbrokenPage style={{
                         flexDirection: "column",
                         justifyContent: "flex-start",
-                        backgroundColor: "#4728d0",
                         alignItems: "flex-start",
                         width: "100%",
-                        padding: "0px 100px 0px 100px",
-
+                        padding: pagePadding,
+                        marginTop: "0px",
                     }}>
-                        <div className="ao-body5-content-paragraph"
-                             style={{
-                                 display: "flex",
-                                 height: "max-content",
-                                 backgroundColor: "purple",
-                                 color: "white",
-                                 fontSize: "30px"
-                             }}>
-                            <Typography.Text style={{color: "black"}}>
-                                {"Content.Part2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-                            </Typography.Text>
-                        </div>
-                        <div className="ao-body5-content-paragraph"
-                             style={{
-                                 display: "flex",
-                                 height: "max-content",
-                                 backgroundColor: "purple",
-                                 color: "white",
-                                 fontSize: "30px"
-                             }}>
-                            <Typography.Text style={{color: "black"}}>
-                                {"Content.Part2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-                            </Typography.Text>
-                        </div>
-                        <div className="ao-body5-content-paragraph"
-                             style={{
-                                 display: "flex",
-                                 height: "max-content",
-                                 backgroundColor: "purple",
-                                 color: "white",
-                                 fontSize: "30px"
-                             }}>
-                            <Typography.Text style={{color: "black"}}>
-                                {"Content.Part2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-                            </Typography.Text>
-                        </div>
-                        <div className="ao-body5-content-paragraph"
-                             style={{
-                                 display: "flex",
-                                 height: "max-content",
-                                 backgroundColor: "purple",
-                                 color: "white",
-                                 fontSize: "30px"
-                             }}>
-                            <Typography.Text style={{color: "black"}}>
-                                {"Content.Part2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-                            </Typography.Text>
-                        </div>
-
+                        <Paragraphs fontSize={fontSize} paragraphLineHeight={paragraphLineHeight}
+                                    texts={textForParagraph2}/>
                     </UnbrokenPage>
                     {/*<div className="ao-body5-content-header"*/}
                     {/*     style={{*/}
