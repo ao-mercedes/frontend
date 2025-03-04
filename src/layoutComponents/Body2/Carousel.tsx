@@ -99,7 +99,6 @@ const _circleLaserOffsets: CircleOffsetsT = {
 };
 
 const calcCarouselCircleLaserOffsets = (device: Device, label: string | undefined) => {
-    console.log(`calcCarouselCircleLaserOffsets ${device} ${label}}`);
     const defaultOffsets = defaultCircleLaserOffsets;
     if (label == undefined) {
         return defaultOffsets;
@@ -145,7 +144,6 @@ const _outerBubbleOffsets: CircleOffsetsT = {
 
 
 const calcOuterBubbleOffsets = (device: Device, label: string | undefined) => {
-    console.log(`calcOuterBubbleOffsets ${device} ${label}}`);
     const defaultOffsets = defaultOuterBubbleOffsets;
     if (label == undefined) {
         return defaultOffsets;
@@ -371,11 +369,9 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
             return;
         }
         const _circleLaserOffsets = calcCarouselCircleLaserOffsets(device, focusedItem?.label);
-        console.log(`_circleLaserOffsets ${JSON.stringify(_circleLaserOffsets)}`);
         setCircleLaserOffsets(_circleLaserOffsets);
 
         const outerBubbleOffsets = calcOuterBubbleOffsets(device, focusedItem?.label);
-        console.log(`outerBubbleOffsets ${JSON.stringify(outerBubbleOffsets)}`);
         setOuterBubbleOffsets(outerBubbleOffsets);
     }, [device, focusedItem]);
 

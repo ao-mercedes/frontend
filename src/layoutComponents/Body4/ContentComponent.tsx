@@ -97,31 +97,6 @@ const ContentImage: React.FC<{
           bigBubbleFontSize, bigBubbleTextLineHeight,
           bigBubbleLeft
       }) => {
-    const endOfBackgroundMarkerRef = useRef<HTMLDivElement | null>(null);
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                console.log(`content image endOfTextMarker ${entry.isIntersecting}`);
-                if (entry.isIntersecting) {
-                    console.log(`intersecting content image`);
-                }
-            },
-            {threshold: 1},
-        );
-
-        const currRef = endOfBackgroundMarkerRef.current;
-        if (currRef) {
-            observer.observe(currRef);
-        }
-
-        return () => {
-            if (currRef) {
-                observer.unobserve(currRef);
-            }
-        };
-    }, []);
-
-
     return <>
         <div className={"ao-body4-content-image-wrapper"}
             // ref={wrapperRef}
@@ -146,7 +121,7 @@ const ContentImage: React.FC<{
                      marginTop: imageMarginTop,
                      marginLeft: imageMarginLeft,
                  }}/>
-            <div ref={endOfBackgroundMarkerRef} className={"ao-body4-end-bg-marker"}
+            <div className={"ao-body4-end-bg-marker"}
                  style={{display: "flex", width: "100%"}}></div>
             {showBubble &&
                 <div className={"ao-body4-bubbles-wrapper"} style={{
