@@ -4,9 +4,11 @@ import {COLORS, Device} from "../../utils/constants/constants.ts";
 
 import img_car from "../../assets/body5/progress.png";
 
+import {UnbrokenPage} from "../pageSizes.tsx";
+import Paragraphs from "./Paragraphs.tsx";
+
 import {useEffect, useRef, useState,} from "react";
 import {Typography} from "antd";
-import {UnbrokenPage} from "../pageSizes.tsx";
 
 const marginTops = {
     [Device.mobile]: "80px",
@@ -41,49 +43,6 @@ const textForParagraph2 = [
     "Savouring the car's soul-stirring abilities are more important than meetings and deadlines.",
     "Show the SL a series of corners and it obliges your whims, with the steering wheel unexpectedly feeding back road undulations. " +
     "The car's movements are progressive and natural. The ride, even in Sport, is pliant, yet accords enough body control on twistier paths.",];
-
-
-const Paragraph: React.FC<{ paragraphLineHeight: string, text: string, fontSize: string }> = ({
-                                                                                                  text,
-                                                                                                  fontSize,
-                                                                                                  paragraphLineHeight
-                                                                                              }) => {
-    return <div className="ao-body5-content-paragraph"
-                style={{
-                    display: "flex",
-                    height: "max-content",
-                    color: "white",
-                }}>
-        <Typography.Text style={{color: COLORS.PURE_WHITE, fontSize: fontSize, lineHeight: paragraphLineHeight}}>
-            {text}
-        </Typography.Text>
-    </div>;
-};
-
-const Paragraphs: React.FC<{ fontSize: string, paragraphLineHeight: string, texts: string[] }> = ({
-                                                                                                      fontSize,
-                                                                                                      paragraphLineHeight,
-                                                                                                      texts
-                                                                                                  }) => {
-    return <div className="ao-body5-content-paragraphs" style={{
-        display: "flex",
-        height: "max-content",
-        fontSize: "30px",
-        flexDirection: "column",
-        justifyContent: "center",
-        paddingTop: "20px",
-        rowGap: "20px",
-    }}>
-        {texts.map((text, index) => {
-            return <div key={index}>
-                <Paragraph
-                    fontSize={fontSize}
-                    paragraphLineHeight={paragraphLineHeight}
-                    text={text}></Paragraph>
-            </div>;
-        })}
-    </div>;
-};
 
 export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({device, viewPortWidth}) => {
     const paragraph1Ref = useRef<HTMLDivElement | null>(null);
