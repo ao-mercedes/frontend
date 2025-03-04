@@ -9,8 +9,9 @@ import ContentsComponent from "./ContentsComponent.tsx";
 import {UnbrokenPage} from "../pageSizes.tsx";
 import BodyFooter from "../../components/BodyFooter.tsx";
 
+import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
+
 import {Typography} from "antd";
-import {useEffect, useRef, useState} from "react";
 
 
 const marginTops = {
@@ -165,31 +166,7 @@ const rightFooterHeights = {
 
 
 export const Body3: React.FC<{ device: Device }> = ({device}) => {
-    const [showBottomGuide, setShowBottomGuide] = useState(false);
-    const contentsDivRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setShowBottomGuide(entry.isIntersecting);
-                }
-            },
-            {threshold: 1},
-        );
-
-        const currRef = contentsDivRef.current;
-        if (currRef) {
-            observer.observe(currRef);
-        }
-
-        return () => {
-            if (currRef) {
-                observer.unobserve(currRef);
-            }
-        };
-    }, []);
-
+    const {intersects: showBottomGuide, ref: contentsDivRef} = useIntersectingRef(true, 1);
 
     const marginTop = marginTops[device] ?? "55px";
     const headerColor = headerColors[device] ?? COLORS.CHARCOAL_SLATE;

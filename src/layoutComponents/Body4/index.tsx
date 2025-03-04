@@ -7,7 +7,7 @@ import img_parallax_interior2 from "../../assets/Body4/parallax_interior2.png";
 import Content from "./ContentComponent.tsx";
 
 import {Typography} from "antd";
-import {useEffect, useRef, useState} from "react";
+import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
 
 
 const headerClipPaths = {
@@ -189,30 +189,7 @@ const contentTexts = [
 ];
 
 export const Body4: React.FC<{ device: Device }> = ({device}) => {
-    const [showHeader, setShowHeader] = useState(false);
-    const bodyEntryDiv = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setShowHeader(entry.isIntersecting);
-                }
-            },
-            {threshold: 1},
-        );
-
-        const currRef = bodyEntryDiv.current;
-        if (currRef) {
-            observer.observe(currRef);
-        }
-
-        return () => {
-            if (currRef) {
-                observer.unobserve(currRef);
-            }
-        };
-    }, []);
+    const {intersects: showHeader, ref: bodyEntryDiv} = useIntersectingRef(true, 1);
 
     const showFirstOnly = device == Device.mobile;
 

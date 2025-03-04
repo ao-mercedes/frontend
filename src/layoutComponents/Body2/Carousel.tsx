@@ -8,8 +8,9 @@ import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 
 import Arrow from "./Arrow.tsx";
 
-import {useEffect, useMemo, useRef, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {Typography} from "antd";
+import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
 
 
 const lengths = {
@@ -204,11 +205,13 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
     const [exteriorFocusImage, setExteriorFocusImage] = useState<string | null>(
         null,
     );
-    const [startStep1Transition, setStartTransitionStep1] = useState(false);
+
+    const {intersects: startStep1Transition, ref: carouselWrapperRef} = useIntersectingRef(true, 0.5);
+
+
     const [stoppedStep1Transition, setStopTransitionStep1] = useState(false);
     const [startStep2Transition, setStartTransitionStep2] = useState(false);
     const [stoppedStep2Transition, setStopTransitionStep2] = useState(false);
-    const carouselWrapperRef = useRef<HTMLDivElement | null>(null);
 
 
     const length = lengths[device] ?? "420px";
@@ -328,29 +331,6 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
         }
         return;
     }, [imageClient, items, requestImage]);
-
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setStartTransitionStep1(entry.isIntersecting);
-                }
-            },
-            {threshold: 0.5},
-        );
-
-        const currRef = carouselWrapperRef.current;
-        if (currRef) {
-            observer.observe(currRef);
-        }
-
-        return () => {
-            if (currRef) {
-                observer.unobserve(currRef);
-            }
-        };
-    }, []);
 
 
     useEffect(() => {
