@@ -8,7 +8,7 @@ interface ArrowComponentProps {
     leansRight: boolean;
 }
 
-export const _Arrow: React.FC<ArrowComponentProps> = ({onClick, scale, img, leansRight}) => {
+export const Arrow: React.FC<ArrowComponentProps> = ({onClick, scale, img, leansRight}) => {
     return <div
         className="ao-body2-carousel-arrow-wrapper"
         style={{
@@ -46,4 +46,4 @@ export const _Arrow: React.FC<ArrowComponentProps> = ({onClick, scale, img, lean
     </div>;
 };
 
-export default _Arrow;
+export default Arrow;

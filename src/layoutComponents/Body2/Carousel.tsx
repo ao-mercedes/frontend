@@ -1,4 +1,4 @@
-import "./_Carousel.css"; // Import custom styles for animation
+import "./Carousel.css"; // Import custom styles for animation
 import img_right_arrow from "../../assets/Body2/carousel-arrow-right.svg";
 import img_left_arrow from "../../assets/Body2/carousel-arrow-left.svg";
 
@@ -6,10 +6,10 @@ import {COLORS, Device} from "../../utils/constants/constants.ts";
 
 import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 
+import Arrow from "./Arrow.tsx";
+
 import {useEffect, useMemo, useRef, useState} from "react";
 import {Typography} from "antd";
-import * as React from "react";
-import _Arrow from "./_Arrow.tsx";
 
 
 const lengths = {
@@ -49,7 +49,6 @@ const arrowScales = {
     [Device.desktop]: 3,
 };
 
-
 const arrowsContainerWidths = {
     [Device.mobile]: "100%",
     [Device.tablet]: "100%",
@@ -68,8 +67,7 @@ const outerBubbleTextLineHeights = {
     [Device.desktop]: "1.8rem",
 };
 
-
-type circleOffsetsT = {
+type CircleOffsetsT = {
     [device in Device]: {
         [index: /*carousel items position*/ string]: {
             x: string;
@@ -79,7 +77,7 @@ type circleOffsetsT = {
 };
 
 const defaultCircleLaserOffsets = {x: "0", y: "0"};
-const _circleLaserOffsets: circleOffsetsT = {
+const _circleLaserOffsets: CircleOffsetsT = {
     [Device.mobile]: {
         "bonnet": {x: "140px", y: "55px"},
         "exhaust": {x: "140px", y: "55px"},
@@ -117,13 +115,12 @@ const calcCarouselCircleLaserOffsets = (device: Device, label: string | undefine
         return defaultOffsets;
     }
 
-
-    return byIndex ? byIndex : defaultOffsets;
+    return byIndex;
 };
 
 
 const defaultOuterBubbleOffsets = {x: "0", y: "0"};
-const _outerBubbleOffsets: circleOffsetsT = {
+const _outerBubbleOffsets: CircleOffsetsT = {
     [Device.mobile]: {
         "bonnet": {x: "225px", y: "-90px"},
         "exhaust": {x: "225px", y: "-90px"},
@@ -163,8 +160,7 @@ const calcOuterBubbleOffsets = (device: Device, label: string | undefined) => {
         return defaultOffsets;
     }
 
-
-    return byIndex ? byIndex : defaultOffsets;
+    return byIndex;
 };
 
 
@@ -559,7 +555,6 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                             position: "absolute",
                             height: "100%",
                             width: "100%",
-                            // background: COLORS.GOLDEN_AMBER,
                             transform: startStep1Transition
                                 ? "translateX(0) rotate(0)"
                                 : "translateX(-200%) rotate(-270deg)",
@@ -639,13 +634,13 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                             zIndex: 1000,
                         }}
                     >
-                        <_Arrow scale={arrowScale} onClick={
+                        <Arrow scale={arrowScale} onClick={
                             () => {
                                 setFocusToCurrentNeighbour("left");
                             }
                         } img={img_left_arrow} leansRight={false}/>
 
-                        <_Arrow scale={arrowScale} onClick={
+                        <Arrow scale={arrowScale} onClick={
                             () => {
                                 setFocusToCurrentNeighbour("right");
                             }

@@ -5,7 +5,7 @@ import {COLORS, Device, horizontalPaddings} from "../../utils/constants/constant
 
 import {_getContents} from "./contentInfoGetter.ts";
 
-import ContentsComponent from "./contentsComponent.tsx";
+import ContentsComponent from "./ContentsComponent.tsx";
 import {UnbrokenPage} from "../pageSizes.tsx";
 
 import {Typography} from "antd";

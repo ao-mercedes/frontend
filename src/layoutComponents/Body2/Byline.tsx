@@ -7,9 +7,7 @@ interface ByLineComponentProps {
     tKey: string,
     tValue: string,
     fontWeight: string
-
 }
-
 
 export const ByLineComponent: React.FC<ByLineComponentProps> = ({fontSize, tKey, tValue, fontWeight}) => {
     return <div style={{display: "flex", gap: "10px"}}>

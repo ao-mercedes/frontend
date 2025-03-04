@@ -5,8 +5,8 @@ import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 import {useEffect, useState} from "react";
 import {FirstPitch} from "../../assets/textual/firstpitch.ts";
 import {Divider, Typography} from "antd";
-import CircularCarousel from "./_Carousel.tsx";
-import ByLineComponent from "./_Byline.tsx";
+import CircularCarousel from "./Carousel.tsx";
+import ByLineComponent from "./Byline.tsx";
 
 
 const paragraphFontSizes: { [device in Device]: string } = {
