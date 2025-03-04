@@ -167,7 +167,6 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
     const [showBottomGuide, setShowBottomGuide] = useState(false);
     const contentsDivRef = useRef<HTMLDivElement | null>(null);
 
-    // when seen a part of text, start to show image
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
