@@ -12,18 +12,18 @@ import {Typography} from "antd";
 
 const marginTops = {
     [Device.mobile]: "80px",
-    [Device.tablet]: "40px",
+    [Device.tablet]: "45px",
     [Device.desktop]: "40px",
 };
 
 const pagePaddings = {
     [Device.mobile]: "0px 70px 0px 70px",
-    [Device.tablet]: "0px 70px 0px 70px",
+    [Device.tablet]: "0px 100px 0px 100px",
     [Device.desktop]: "0px 70px 0px 70px",
 };
 const fontSizes = {
     [Device.mobile]: "1.2rem",
-    [Device.tablet]: "2rem",
+    [Device.tablet]: "1rem",
     [Device.desktop]: "2rem",
 };
 const paragraphLineHeights = {
@@ -32,17 +32,50 @@ const paragraphLineHeights = {
     [Device.desktop]: "2rem",
 };
 
+
 const textForParagraph1 = ["Are you tired of hearing about how silent EVs are? Do you crave drama and emotion? " +
-"Then you must want a car like the SL55, whose powertrain is unashamedly unadulterated.", "Thumb the starter button and the twin-turbocharged, 3,982cc V8 comes alive with a deep bark. " +
-"Petrolheads within earshot can immediately tell that an eight-cylinder was just fired up. There's no mistaking this for any other type of engine.", "The 4.0-litre unit kicks out 476bhp and 700Nm of torque, the latter figure from just 2,250rpm. " +
-"Power is transferred to both axles through the 4Matic+ system with fully variable torque distribution, making this the first all-wheel drive SL."];
+"Then you must want a car like the SL55, whose powertrain is unashamedly unadulterated.",
+
+    "Thumb the starter button and the twin-turbocharged, 3,982cc V8 comes alive with a deep bark. " +
+    "Petrolheads within earshot can immediately tell that an eight-cylinder was just fired up. There's no mistaking this for any other type of engine.",
+
+    "The 4.0-litre unit kicks out 476bhp and 700Nm of torque, the latter figure from just 2,250rpm. " +
+    "Power is transferred to both axles through the 4Matic+ system with fully variable torque distribution, making this the first all-wheel drive SL.",
+
+    "The most ideal mode for the SL55 is Individual, so you can customise attributes such as the engine, dampers, traction control, and exhaust. " +
+    "Setting the first two to Sport and the other two to Advanced and Powerful is about right. I also left the nine-speed automatic gearbox in manual mode.",
+
+    "Right off the bat, the V8 eagerly shows how tractable and rev-happy it is. " +
+    "The engine, along with the exhaust, sounds glorious in second gear as the tachometer needle swings towards 7,000rpm. It gets real addictive real quick.",
+
+    "The SL might be a sleek grand tourer, but it sounds like an American muscle car when driven hard. " +
+    "Emission regulations are calling for the internal combustion engine to be phased out, but this V8 is giving them two middle fingers while yelling back, 'Hell no, I won't go!'",
+
+    "Even while idling, the V8's pulsing is palpable. " +
+    "Depending how you flex your right foot, the exhaust will blare anything from low and throaty notes to a fullon throat-clearing roar. Conducting this orchestra is fun, and anticipating tunnels and underpasses is even more exciting.",
+];
+
 
 const textForParagraph2 = [
     "Time seems to slow down in the SL55, despite its ability to get from rest to 100km/h in 3.9 seconds. " +
     "The acceleration is great, but losing yourself in the drive is even better. Here, I momentarily forget about the outside world. " +
     "Savouring the car's soul-stirring abilities are more important than meetings and deadlines.",
+
     "Show the SL a series of corners and it obliges your whims, with the steering wheel unexpectedly feeding back road undulations. " +
-    "The car's movements are progressive and natural. The ride, even in Sport, is pliant, yet accords enough body control on twistier paths.",];
+    "The car's movements are progressive and natural. The ride, even in Sport, is pliant, yet accords enough body control on twistier paths.",
+
+    "And when it comes to stopping, those dinner plate-size brake rotors give you plenty of confidence. The SL weighs nearly two tonnes, but it doesn't feel like it. " +
+    "Only when parking does the car annoy me. Rear-wheel steering is standard, but given the wide turning circle, I swear it doesn't work.",
+
+    "The SL has nine speeds, but I only use four of them, as the motor's vocals at high rpms are addictive. " +
+    "Thus, with engine speeds remaining relatively high, a litre of unleaded allows me to cover just over two kilometres. Oops.",
+
+    "After two decades, the SL has reverted to a fabric roof as it is lighter and takes up less boot space when opened. " +
+    "It can be opened and closed in 15 seconds while the car is driven at up to 60km/h.",
+
+    "However, 15 seconds is only possible if the virtual toggle switch doesn't slip away from your finger. " +
+    "I often found myself having to re-swipe to operate the roof. Mercedes should have kept the metal switch of the previous car, which conveniently has the one-touch windows up/down toggle beside it.",
+];
 
 export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({device, viewPortWidth}) => {
     const paragraph1Ref = useRef<HTMLDivElement | null>(null);
@@ -88,7 +121,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
         return () => contentDiv?.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const contentMarginTop = marginTops[device] ?? "100px";
+    const contentMarginTop = marginTops[device] ?? "80px";
     const pagePadding = pagePaddings[device] ?? "0px 70px 0px 70px";
     const fontSize = fontSizes[device] ?? "30px";
     const paragraphLineHeight = paragraphLineHeights[device] ?? "30px";
