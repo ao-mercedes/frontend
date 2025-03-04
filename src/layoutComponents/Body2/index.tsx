@@ -1,13 +1,15 @@
 import "./index.css";
+
 import {COLORS, Device, horizontalPaddings} from "../../utils/constants/constants.ts";
+import {FirstPitch} from "../../assets/textual/firstpitch.ts";
 import {UnbrokenPage} from "../pageSizes.tsx";
 import {ImageClient} from "../../assets/client/ImageClient/client.ts";
-import {useEffect, useState} from "react";
-import {FirstPitch} from "../../assets/textual/firstpitch.ts";
-import {Divider, Typography} from "antd";
+
 import CircularCarousel from "./Carousel.tsx";
 import ByLineComponent from "./Byline.tsx";
 
+import {Divider, Typography} from "antd";
+import {useEffect, useState} from "react";
 
 const paragraphFontSizes: { [device in Device]: string } = {
     [Device.mobile]: "20px",

@@ -148,8 +148,7 @@
 
 # Issues
 
-- [x] [Issue-0001] Circle Marker Obstructing Clicks
-
+- [x] [Issue-0001] [Component] Circle Marker Obstructing Clicks
     - ClassName Ref: `focus-center-circle-mark-wrapper` \
       On `Body2`'s `Carousel`, the circle marker is blocking mouse clicks on Carousel Dots.
       This is due to circle marker having an absolute position.
@@ -168,7 +167,7 @@
                 }
 ```
 
-- [ ] [Issue-0003] Lines are not working
+- [ ] [Issue-0003] [Component] Lines are not working
     - branch:
       `(body2-carousel-lines)`
     - svg lines are not in the correct position. need to research
@@ -181,7 +180,7 @@
     (x,y) --------------------------------------------- (x+L,y+W,right)
 ```
 
-= [ ] [Issue-0006] Same state rerendering
+= [ ] [Issue-0006] [Component::Rendering] Same state rerendering
 
 - Component `Body2.Carousel`
 - [ ] When the focused item and the next focus item is the same, an unnecessary trigger of `setFocusItem` is executed.
@@ -189,7 +188,7 @@
   same
   as `items.focusIdx`
 
-- [ ] [Issue-0007] Large Chunk on Build
+- [ ] [Issue-0007] [Performace] Large Chunk on Build
 
 when running `pnpm build`, the warning appears:
 
@@ -199,3 +198,33 @@ when running `pnpm build`, the warning appears:
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 ```
+
+- [ ] [Issue-0008] [DevOps] pre-commit hook linting continues when error
+
+Sample when execute `./pre-commit`:
+
+Error:
+
+```
+/Users/univ/asiaone-technical-assessment/mercedes-frontend/src/layoutComponents/Body4/index.tsx
+  83:40  error  'bubbleText' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.
+```
+
+Commit still success:
+
+```
+[body4 7eb538b] body4: big bubble styling
+ 2 files changed, 85 insertions(+), 33 deletions(-)
+ create mode 100644 src/layoutComponents/Body4/index.css
+```
+
+- [ ] [Issue-0009] [Component::Display] Image shows partial text
+
+Device Size: Tablet
+Page: Body4
+
+![](./planning/assets/issue_0009.png)

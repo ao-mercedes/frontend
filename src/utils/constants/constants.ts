@@ -17,6 +17,7 @@ export const COLORS = {
     GRAY: "#e8e8e8",
     LIGHT_BROWN: "#d4a53f",
     HIGH_ORANGE: "#a1781d",
+    DEEP_OLIVE: "#d0a33a",
 } as const;
 
 

@@ -2,7 +2,10 @@
 
 # Lint
 pnpm lint
-
+if [ $? -eq 1 ]; then
+  echo "Command failed. Aborting commit."
+  exit 1
+fi
 ###### EXAMPLE #####
 
 #
