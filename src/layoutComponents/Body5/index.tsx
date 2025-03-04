@@ -8,60 +8,60 @@ import {COLORS, Device} from "../../utils/constants/constants.ts";
 //
 // import {Typography} from "antd";
 // import {useEffect, useRef, useState} from "react";
-import {useState} from "react";
+import {useEffect, useRef,} from "react";
 import {Typography} from "antd";
 import {UnbrokenPage} from "../pageSizes.tsx";
-
-
-const footerMarginTops = {
-    [Device.mobile]: "70px",
-    [Device.tablet]: "70px",
-    [Device.desktop]: "140px",
-};
-
-const footerTextPaddingLefts = {
-    [Device.mobile]: "15%",
-    [Device.tablet]: "8%",
-    [Device.desktop]: "10%",
-};
-
-
-const footerPaddingBottoms = {
-    [Device.mobile]: "25px",
-    [Device.tablet]: "25px",
-    [Device.desktop]: "25px",
-};
-const footerWidths = {
-    [Device.mobile]: "95%",
-    [Device.tablet]: "95%",
-    [Device.desktop]: "75%",
-};
-const footerClipPaths = {
-    [Device.mobile]: "polygon(0% 0%, 90% 0%, 100% 100%, 0% 100%)",
-    [Device.tablet]: "polygon(0% 0%, 95% 0%, 100% 100%, 0% 100%)",
-    [Device.desktop]: "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)",
-};
-const footerPaddingTops = {
-    [Device.mobile]: "25px",
-    [Device.tablet]: "25px",
-    [Device.desktop]: "25px",
-};
-const footerLineHeights = {
-    [Device.mobile]: "2.5rem",
-    [Device.tablet]: "2.5rem",
-    [Device.desktop]: "5rem",
-};
-const footerFontSizes = {
-    [Device.mobile]: "2.3rem",
-    [Device.tablet]: "2.3rem",
-    [Device.desktop]: "5rem",
-};
-
-const rightFooterHeights = {
-    [Device.mobile]: "30%",
-    [Device.tablet]: "40%",
-    [Device.desktop]: "40%",
-};
+//
+//
+// const footerMarginTops = {
+//     [Device.mobile]: "70px",
+//     [Device.tablet]: "70px",
+//     [Device.desktop]: "140px",
+// };
+//
+// const footerTextPaddingLefts = {
+//     [Device.mobile]: "15%",
+//     [Device.tablet]: "8%",
+//     [Device.desktop]: "10%",
+// };
+//
+//
+// const footerPaddingBottoms = {
+//     [Device.mobile]: "25px",
+//     [Device.tablet]: "25px",
+//     [Device.desktop]: "25px",
+// };
+// const footerWidths = {
+//     [Device.mobile]: "95%",
+//     [Device.tablet]: "95%",
+//     [Device.desktop]: "75%",
+// };
+// const footerClipPaths = {
+//     [Device.mobile]: "polygon(0% 0%, 90% 0%, 100% 100%, 0% 100%)",
+//     [Device.tablet]: "polygon(0% 0%, 95% 0%, 100% 100%, 0% 100%)",
+//     [Device.desktop]: "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)",
+// };
+// const footerPaddingTops = {
+//     [Device.mobile]: "25px",
+//     [Device.tablet]: "25px",
+//     [Device.desktop]: "25px",
+// };
+// const footerLineHeights = {
+//     [Device.mobile]: "2.5rem",
+//     [Device.tablet]: "2.5rem",
+//     [Device.desktop]: "5rem",
+// };
+// const footerFontSizes = {
+//     [Device.mobile]: "2.3rem",
+//     [Device.tablet]: "2.3rem",
+//     [Device.desktop]: "5rem",
+// };
+//
+// const rightFooterHeights = {
+//     [Device.mobile]: "30%",
+//     [Device.tablet]: "40%",
+//     [Device.desktop]: "40%",
+// };
 
 const marginTops = {
     [Device.mobile]: "80px",
@@ -126,45 +126,43 @@ const Paragraph: React.FC<{ paragraphLineHeight: string, text: string, fontSize:
     </div>;
 };
 
-export const body5: React.FC<{ device: Device }> = ({device}) => {
-    // const [showCar, setShowCar] = useState(false);
-    // const [showBottomGuide, setShowBottomGuide] = useState(false);
+export const Body5: React.FC<{ device: Device }> = ({device}) => {
+    const paragraph1Ref = useRef<HTMLDivElement | null>(null);
+    const fullContentRef = useRef<HTMLDivElement | null>(null);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                console.log(`body5.pgref.entry: ratio=${JSON.stringify(entry.intersectionRatio)} isIntersect=${JSON.stringify(entry.isIntersecting)}`);
+                console.log(`body5.pgref.entry: ratio=${JSON.stringify(entry.intersectionRatio)}  fullContentRef.current=${fullContentRef.current}`);
+                if (entry.isIntersecting && fullContentRef.current) {
+                    fullContentRef.current.scrollIntoView({behavior: "smooth", block: "start"});
+                }
+            },
+            {threshold: 1},
+        );
 
-    // const endOfMainBody = useRef<HTMLDivElement | null>(null);
-    //
-    // useEffect(() => {
-    //     const observer = new IntersectionObserver(
-    //         ([entry]) => {
-    //             if (entry.isIntersecting) {
-    //                 setShowCar(entry.isIntersecting);
-    //
-    //             }
-    //         },
-    //         {threshold: 1},
-    //     );
-    //
-    //     const currRef = endOfMainBody.current;
-    //     if (currRef) {
-    //         observer.observe(currRef);
-    //     }
-    //
-    //     return () => {
-    //         if (currRef) {
-    //             observer.unobserve(currRef);
-    //         }
-    //     };
-    // }, []);
+        const currRef = paragraph1Ref.current;
+        if (currRef) {
+            observer.observe(currRef);
+        }
+
+        return () => {
+            if (currRef) {
+                observer.unobserve(currRef);
+            }
+        };
+    }, []);
 
 
-    const footerMarginTop = footerMarginTops[device] ?? "140px";
-    const footerWidth = footerWidths[device] ?? "75%";
-    const footerClipPath = footerClipPaths[device] ?? "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)";
-    const footerPaddingTop = footerPaddingTops[device] ?? "25px";
-    const footerTextPaddingLeft = footerTextPaddingLefts[device] ?? "15%";
-    const footerPaddingBottom = footerPaddingBottoms[device] ?? "25px";
-    const footerLineHeight = footerLineHeights[device] ?? "5rem";
-    const footerFontSize = footerFontSizes[device] ?? "5rem";
-    const rightFooterHeight = rightFooterHeights[device] ?? "30%";
+    // const footerMarginTop = footerMarginTops[device] ?? "140px";
+    // const footerWidth = footerWidths[device] ?? "75%";
+    // const footerClipPath = footerClipPaths[device] ?? "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)";
+    // const footerPaddingTop = footerPaddingTops[device] ?? "25px";
+    // const footerTextPaddingLeft = footerTextPaddingLefts[device] ?? "15%";
+    // const footerPaddingBottom = footerPaddingBottoms[device] ?? "25px";
+    // const footerLineHeight = footerLineHeights[device] ?? "5rem";
+    // const footerFontSize = footerFontSizes[device] ?? "5rem";
+    // const rightFooterHeight = rightFooterHeights[device] ?? "30%";
 
     const contentMarginTop = marginTops[device] ?? "100px";
     const pagePadding = pagePaddings[device] ?? "0px 70px 0px 70px";
@@ -172,6 +170,7 @@ export const body5: React.FC<{ device: Device }> = ({device}) => {
     const paragraphLineHeight = paragraphLineHeights[device] ?? "30px";
     return <>
         <div className="ao-body5"
+             ref={fullContentRef}
              style={{
                  display: "flex",
                  position: "relative",
@@ -243,6 +242,7 @@ export const body5: React.FC<{ device: Device }> = ({device}) => {
                                 paragraphLineHeight={paragraphLineHeight}
                                 text={"Are you tired of hearing about how silent EVs are? Do you crave drama and emotion? " +
                                     "Then you must want a car like the SL55, whose powertrain is unashamedly unadulterated."}></Paragraph>
+                            <div ref={paragraph1Ref}></div>
                             <Paragraph
                                 fontSize={fontSize}
                                 paragraphLineHeight={paragraphLineHeight}
@@ -420,4 +420,4 @@ export const body5: React.FC<{ device: Device }> = ({device}) => {
     </>;
 };
 
-export default body5;
+export default Body5;
