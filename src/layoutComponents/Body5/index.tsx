@@ -7,57 +7,6 @@ import img_car from "../../assets/body5/progress.png";
 import {useEffect, useRef, useState,} from "react";
 import {Typography} from "antd";
 import {UnbrokenPage} from "../pageSizes.tsx";
-//
-//
-// const footerMarginTops = {
-//     [Device.mobile]: "70px",
-//     [Device.tablet]: "70px",
-//     [Device.desktop]: "140px",
-// };
-//
-// const footerTextPaddingLefts = {
-//     [Device.mobile]: "15%",
-//     [Device.tablet]: "8%",
-//     [Device.desktop]: "10%",
-// };
-//
-//
-// const footerPaddingBottoms = {
-//     [Device.mobile]: "25px",
-//     [Device.tablet]: "25px",
-//     [Device.desktop]: "25px",
-// };
-// const footerWidths = {
-//     [Device.mobile]: "95%",
-//     [Device.tablet]: "95%",
-//     [Device.desktop]: "75%",
-// };
-// const footerClipPaths = {
-//     [Device.mobile]: "polygon(0% 0%, 90% 0%, 100% 100%, 0% 100%)",
-//     [Device.tablet]: "polygon(0% 0%, 95% 0%, 100% 100%, 0% 100%)",
-//     [Device.desktop]: "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)",
-// };
-// const footerPaddingTops = {
-//     [Device.mobile]: "25px",
-//     [Device.tablet]: "25px",
-//     [Device.desktop]: "25px",
-// };
-// const footerLineHeights = {
-//     [Device.mobile]: "2.5rem",
-//     [Device.tablet]: "2.5rem",
-//     [Device.desktop]: "5rem",
-// };
-// const footerFontSizes = {
-//     [Device.mobile]: "2.3rem",
-//     [Device.tablet]: "2.3rem",
-//     [Device.desktop]: "5rem",
-// };
-//
-// const rightFooterHeights = {
-//     [Device.mobile]: "30%",
-//     [Device.tablet]: "40%",
-//     [Device.desktop]: "40%",
-// };
 
 const marginTops = {
     [Device.mobile]: "80px",
@@ -93,29 +42,6 @@ const textForParagraph2 = [
     "Show the SL a series of corners and it obliges your whims, with the steering wheel unexpectedly feeding back road undulations. " +
     "The car's movements are progressive and natural. The ride, even in Sport, is pliant, yet accords enough body control on twistier paths.",];
 
-
-// const contentParagraphs = [
-//     ["Yes, there are still screens. But instead of the usual MBUX (Mercedes-Benz User Experience) setup, the 12.3-inch instrument panel is housed under a cowl, reflecting the SL's sporty roots.",
-//         "Dominating the dashboard is the tablet-like 11.9-inch infotainment display, whose tilt angle can be adjusted from 12 degrees to 32 degrees at a touch of a button. It helps minimise screen glare when driving with the top down."],
-//     ["For the first time in the SL's history, the car has rear seats. They can supposedly accommodate occupants up to 1.5m tall, but the backrests are so upright they seem like they are canted forward.",
-//         "Also, strangely absent on the test unit are soft-close doors and 'pushers' that bring the seat belts closer to the front passengers."]
-// ];
-//
-// const contentTexts = [
-//     {
-//         paragraphs: contentParagraphs[0],
-//         bubbleTexts: {
-//             upper: "Snazzy cockpit features mood lighting and tablet like infotainment screen, but the heat from the engine can make occupants uncomfortable.",
-//             lower: "PHOTO: sgCarMart"
-//         }
-//     }, {
-//         paragraphs: contentParagraphs[1],
-//         bubbleTexts: {
-//             upper: "It looks uncomfortable from this angle, but Mercedes says the backseats can accommodate passengers up to 1.5m tall..",
-//             lower: "PHOTO: sgCarMart"
-//         }
-//     }
-// ];
 
 const Paragraph: React.FC<{ paragraphLineHeight: string, text: string, fontSize: string }> = ({
                                                                                                   text,
@@ -164,12 +90,9 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
     const bodyRef = useRef<HTMLDivElement | null>(null);
     const contentRef = useRef<HTMLDivElement | null>(null);
 
-    console.log(`viewPortWidth: ${JSON.stringify(viewPortWidth)}`);
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                console.log(`body5.pgref.entry: ratio=${JSON.stringify(entry.intersectionRatio)} isIntersect=${JSON.stringify(entry.isIntersecting)}`);
-                console.log(`body5.pgref.entry: ratio=${JSON.stringify(entry.intersectionRatio)}  fullContentRef.current=${bodyRef.current}`);
                 if (entry.isIntersecting && bodyRef.current) {
                     bodyRef.current.scrollIntoView({behavior: "smooth", block: "start"});
                 }
@@ -206,17 +129,6 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
         return () => contentDiv?.removeEventListener("scroll", handleScroll);
     }, []);
 
-
-    // const footerMarginTop = footerMarginTops[device] ?? "140px";
-    // const footerWidth = footerWidths[device] ?? "75%";
-    // const footerClipPath = footerClipPaths[device] ?? "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)";
-    // const footerPaddingTop = footerPaddingTops[device] ?? "25px";
-    // const footerTextPaddingLeft = footerTextPaddingLefts[device] ?? "15%";
-    // const footerPaddingBottom = footerPaddingBottoms[device] ?? "25px";
-    // const footerLineHeight = footerLineHeights[device] ?? "5rem";
-    // const footerFontSize = footerFontSizes[device] ?? "5rem";
-    // const rightFooterHeight = rightFooterHeights[device] ?? "30%";
-
     const contentMarginTop = marginTops[device] ?? "100px";
     const pagePadding = pagePaddings[device] ?? "0px 70px 0px 70px";
     const fontSize = fontSizes[device] ?? "30px";
@@ -245,7 +157,6 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                 height: "100%",
                 justifyContent: "flex-end",
                 alignItems: "flex-start",
-                // backgroundColor: "red",
             }}></div>
             <div className="ao-body5-content-wrapper" style={{
                 display: "flex",
@@ -336,65 +247,6 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                 </div>
             </div>
         </div>
-        {/*<div ref={endOfMainBody}/
-        >*/}
-        {/*<div className={"ao-body5-footer"} style={{*/}
-        {/*    display: "flex",*/}
-        {/*    position: "relative",*/}
-        {/*    height: "max-content",*/}
-        {/*    marginTop: footerMarginTop,*/}
-        {/*}}>*/}
-        {/*    <div style={{*/}
-        {/*        display: "flex",*/}
-        {/*        width: footerWidth,*/}
-        {/*        justifyContent: "center",*/}
-        {/*        overflow: "hidden",*/}
-        {/*        transition: "transform 3s ease-in-out, opacity 1s ease-in-out",*/}
-        {/*        // transform: showBottomGuide ? "translateX(0)" : "translateX(-100%)",*/}
-        {/*        transform: "translateX(0)",*/}
-        {/*        clipPath: footerClipPath,*/}
-        {/*        alignItems: "center",*/}
-        {/*        height: "fit-content",*/}
-        {/*        zIndex: 1000,*/}
-        {/*        backgroundColor: COLORS.HIGH_ORANGE,*/}
-        {/*        paddingTop: footerPaddingTop,*/}
-        {/*        paddingBottom: footerPaddingBottom,*/}
-        {/*    }}>*/}
-        {/*        <div style={{*/}
-        {/*            paddingLeft: footerTextPaddingLeft,*/}
-        {/*            display: "flex",*/}
-        {/*            flexDirection: "column",*/}
-        {/*            alignItems: "center",*/}
-        {/*            justifyContent: "center",*/}
-        {/*        }}>*/}
-        {/*            <Typography.Text style={{*/}
-        {/*                display: "flex",*/}
-        {/*                flexDirection: "column",*/}
-        {/*                alignItems: "center",*/}
-        {/*                justifyContent: "center",*/}
-        {/*                color: COLORS.PURE_WHITE,*/}
-        {/*                fontSize: footerFontSize,*/}
-        {/*                fontWeight: "500",*/}
-        {/*                lineHeight: footerLineHeight,*/}
-        {/*                wordBreak: "break-word",*/}
-        {/*            }}>*/}
-        {/*                Different interior approach*/}
-        {/*            </Typography.Text>*/}
-        {/*        </div>*/}
-        {/*    </div>*/}
-
-
-        {/*</div>*/}
-        {/*<div className={"ao-body5-end-border"} style={{*/}
-        {/*    display: "flex",*/}
-        {/*    backgroundColor: COLORS.LIGHT_BROWN,*/}
-        {/*    position: "absolute",*/}
-        {/*    bottom: "0",*/}
-        {/*    width: "100%",*/}
-        {/*    height: rightFooterHeight,*/}
-        {/*    justifyContent: "center"*/}
-        {/*}}>*/}
-        {/*</div>*/}
     </>;
 };
 
