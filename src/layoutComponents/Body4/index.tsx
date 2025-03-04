@@ -451,15 +451,41 @@ const headerClipPaths = {
     [Device.tablet]: "polygon(0% 0%, 100% 0%, 100% 100%, 6% 100%)",
     [Device.desktop]: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
 };
+
 const headerHeights = {
     [Device.mobile]: "166px",
-    [Device.tablet]: "76px",
+    [Device.tablet]: "110px",
     [Device.desktop]: "100px",
 };
+const headerLineHeights = {
+    [Device.mobile]: "1.4rem",
+    [Device.tablet]: "1.2rem",
+    [Device.desktop]: "100px",
+};
+
+const headerWidths = {
+    [Device.mobile]: "100%",
+    [Device.tablet]: "87%",
+    [Device.desktop]: "",
+};
+
+const headerTextPaddings = {
+    [Device.mobile]: "5% 15% 0% 15%",
+    [Device.tablet]: "4% 1% 0% 10%",
+    [Device.desktop]: "",
+};
+
+
 const imageWidths = {
     [Device.mobile]: "295%",
-    [Device.tablet]: "100%",
+    [Device.tablet]: "min-content",
     [Device.desktop]: "100%",
+};
+
+const imageHeights = {
+    [Device.mobile]: "1000px",
+    [Device.tablet]: "850px",
+    [Device.desktop]: "2000px",
 };
 
 const imgTransforms = {
@@ -477,24 +503,6 @@ const imageMarginTops = {
 const imageMarginLefts = {
     [Device.mobile]: "-8%",
     [Device.tablet]: "",
-    [Device.desktop]: "",
-};
-
-const imageHeights = {
-    [Device.mobile]: "1000px",
-    [Device.tablet]: "2000px",
-    [Device.desktop]: "2000px",
-};
-
-const headerWidths = {
-    [Device.mobile]: "100%",
-    [Device.tablet]: "87",
-    [Device.desktop]: "",
-};
-
-const headerTextPaddings = {
-    [Device.mobile]: "5% 15% 0% 15%",
-    [Device.tablet]: "2% 1% 0% 10%",
     [Device.desktop]: "",
 };
 
@@ -552,8 +560,9 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const headerClipPath = headerClipPaths[device] ?? "polygon(0% 0%, 100% 0%, 100% 100%, 12% 100%)";
     const headerWidth = headerWidths[device] ?? "100%";
     const headerTextPadding = headerTextPaddings[device] ?? "5% 15% 0% 15%";
-
     const headerHeight = headerHeights[device] ?? "166px";
+    const headerLineHeight = headerLineHeights[device] ?? "1.4rem";
+
     const imageWidth = imageWidths[device] ?? "295%";
     const imgTransform = imgTransforms[device] ?? "translateX(-12px) translateY(-12px)";
     const imageMarginTop = imageMarginTops[device] ?? "-8%";
@@ -589,7 +598,7 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                 <Typography.Text style={{
                     color: COLORS.WALNUT_BROWN,
                     padding: headerTextPadding,
-                    lineHeight: "1.4rem",
+                    lineHeight: headerLineHeight,
                     fontSize: "1.2rem",
                     fontWeight: "700",
                 }}>
@@ -618,37 +627,6 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                 paragraphs={contentParagraphs[1]} bubbleTexts={contentTexts[1].bubbleTexts} imageWidth={imageWidth}
                 imageUrl={img_parallax_interior2}
                 transform=""/>}
-    </div>;
-
-    return <div className="ao-body4"
-                style={{
-                    display: "flex",
-                    position: "relative",
-                    flexDirection: "column",
-                    width: "100%",
-                    overflow: "hidden",
-                    height: "min-content",
-                }}>
-        <Parallax pages={3} style={{height: "100px"}}>
-            <ParallaxLayer sticky={{start: 0, end: 2}}
-                           style={{...alignCenter, backgroundColor: "black", justifyContent: 'flex-start'}}>
-                <div className={`${styles.card} ${styles.sticky}`}>
-                    <p>I'm a sticky layer</p>
-                </div>
-            </ParallaxLayer>
-
-            <ParallaxLayer offset={0} speed={1.5} style={{...alignCenter, justifyContent: 'flex-end'}}>
-                <div className={`${styles.card} ${styles.parallax} ${styles.purple}`}>
-                    <p>I'm not</p>
-                </div>
-            </ParallaxLayer>
-
-            <ParallaxLayer offset={2.5} speed={1.5} style={{...alignCenter, justifyContent: 'flex-end'}}>
-                <div className={`${styles.card} ${styles.parallax} ${styles.blue}`}>
-                    <p>Neither am I</p>
-                </div>
-            </ParallaxLayer>
-        </Parallax>
     </div>;
 };
 
