@@ -320,23 +320,12 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                         <Paragraphs fontSize={fontSize} paragraphLineHeight={paragraphLineHeight}
                                     texts={textForParagraph2}/>
                     </UnbrokenPage>
-                    {/*<div className="ao-body5-content-header"*/}
-                    {/*     style={{*/}
-                    {/*         display: "flex",*/}
-                    {/*         justifyContent: "center",*/}
-                    {/*         width: "100%",*/}
-                    {/*         backgroundColor: "yellow",*/}
-                    {/*         opacity: 0.3*/}
-                    {/*     }}>*/}
-                    {/*</div>*/}
                 </div>
-
                 <div className="ao-body5-car"
                      style={{
                          display: "flex",
                          position: "relative",
                          height: "max-content",
-                         opacity: 0.3,
                          justifyContent: "center",
                          marginLeft: `${progress}%`,
                      }}>
@@ -346,7 +335,6 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                     </div>
                 </div>
             </div>
-
         </div>
         {/*<div ref={endOfMainBody}/
         >*/}
