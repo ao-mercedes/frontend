@@ -13,30 +13,36 @@ import {useEffect, useRef, useState} from "react";
 const headerClipPaths = {
     [Device.mobile]: "polygon(0% 0%, 100% 0%, 100% 100%, 12% 100%)",
     [Device.tablet]: "polygon(0% 0%, 100% 0%, 100% 100%, 6% 100%)",
-    [Device.desktop]: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+    [Device.desktop]: "polygon(0% 0%, 100% 0%, 100% 100%, 4% 100%)",
 };
 
 const headerHeights = {
     [Device.mobile]: "166px",
     [Device.tablet]: "110px",
-    [Device.desktop]: "100px",
+    [Device.desktop]: "210px",
 };
+
 const headerLineHeights = {
     [Device.mobile]: "1.4rem",
     [Device.tablet]: "1.2rem",
-    [Device.desktop]: "100px",
+    [Device.desktop]: "2.6rem",
+};
+const headerFontSizes = {
+    [Device.mobile]: "1.2rem",
+    [Device.tablet]: "1.2rem",
+    [Device.desktop]: "2.4rem",
 };
 
 const headerWidths = {
     [Device.mobile]: "100%",
     [Device.tablet]: "87%",
-    [Device.desktop]: "",
+    [Device.desktop]: "72%",
 };
 
 const headerTextPaddings = {
     [Device.mobile]: "5% 15% 0% 15%",
     [Device.tablet]: "4% 1% 0% 10%",
-    [Device.desktop]: "",
+    [Device.desktop]: "2% 0% 0% 10%",
 };
 
 
@@ -196,6 +202,7 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const headerTextPadding = headerTextPaddings[device] ?? "5% 15% 0% 15%";
     const headerHeight = headerHeights[device] ?? "166px";
     const headerLineHeight = headerLineHeights[device] ?? "1.4rem";
+    const headerFontSize = headerFontSizes[device] ?? "1.2rem";
 
     const imageWidth = imageWidths[device] ?? "295%";
     const imageTransform = imageTransforms[device] ?? "translateX(-12px) translateY(-12px)";
@@ -206,9 +213,11 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const contentWidth = contentWidths[device] ?? "100%";
     const contentTextBoxPaddingTop = contentTextBoxPaddingTops[device] ?? "85px";
     const contentTextBoxPaddingBottom = contentTextBoxPaddingBottoms[device] ?? "85px";
+
     const paragraphLineHeight = paragraphLineHeights[device] ?? "1.4rem";
     const paragraphFontSize = paragraphFontSizes[device] ?? "1.2rem";
     const paragraphFontWeight = paragraphFontWeights[device] ?? "500";
+
     const endMarkerHeight = endMarkerHeights[device] ?? "400px";
     const smallBubbleLeft = smallBubbleLefts[device] ?? "260px";
     const smallBubbleTop = smallBubbleTops[device] ?? "260px";
@@ -245,7 +254,7 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                     color: COLORS.WALNUT_BROWN,
                     padding: headerTextPadding,
                     lineHeight: headerLineHeight,
-                    fontSize: "1.2rem",
+                    fontSize: headerFontSize,
                     fontWeight: "700",
                 }}>
                     Modern Mercedes models have
