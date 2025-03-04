@@ -74,13 +74,16 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
 const ContentImage: React.FC<{
     imgUrl: string, imgWidth: string, transform: string,
     imageMarginTop: string,
-    imageMarginLeft: string, showBubble: boolean, bubbleText: string
+    imageMarginLeft: string, showBubble: boolean, bubbleTexts: {
+        upper: string,
+        lower: string,
+    }
 }> = ({
           imgUrl,
           imgWidth,
           transform,
           imageMarginTop,
-          imageMarginLeft, showBubble, bubbleText
+          imageMarginLeft, showBubble, bubbleTexts
       }) => {
     const endOfBackgroundMarkerRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
@@ -209,7 +212,8 @@ const ContentImage: React.FC<{
                                         color: COLORS.PURE_WHITE,
                                     }}
                                 >
-                                    {"Snazzy cockpit features mood lighting and tablet like infotainment screen, but the heat from the engine can make occupants uncomfortable."}
+                                    {bubbleTexts.upper}
+
                                 </Typography.Text>
                                 <Typography.Text
                                     style={{
@@ -221,7 +225,8 @@ const ContentImage: React.FC<{
                                         color: COLORS.PURE_WHITE,
                                     }}
                                 >
-                                    {"PHOTO: sgCarMart"}
+
+                                    {bubbleTexts.lower}
                                 </Typography.Text>
                             </div>
                         </div>
@@ -239,6 +244,10 @@ interface ContentProps {
     paragraphs: string[];
     imageMarginTop: string;
     imageMarginLeft: string;
+    bubbleTexts: {
+        upper: string,
+        lower: string,
+    }
 }
 
 const Content: React.FC<ContentProps> = ({
@@ -247,7 +256,8 @@ const Content: React.FC<ContentProps> = ({
                                              transform,
                                              paragraphs,
                                              imageMarginTop,
-                                             imageMarginLeft
+                                             imageMarginLeft,
+                                             bubbleTexts
                                          }) => {
 
     const [showBubble, setShowBubble] = useState(false);
@@ -263,7 +273,8 @@ const Content: React.FC<ContentProps> = ({
                     justifyContent: "center",
                     alignItems: "center",
                 }}>
-        <ContentImage bubbleText={""} showBubble={showBubble} imgUrl={imgUrl} imgWidth={imgWidth} transform={transform}
+        <ContentImage bubbleTexts={bubbleTexts} showBubble={showBubble} imgUrl={imgUrl} imgWidth={imgWidth}
+                      transform={transform}
                       imageMarginTop={imageMarginTop}
                       imageMarginLeft={imageMarginLeft}
         ></ContentImage>
@@ -473,6 +484,22 @@ const contentParagraphs = [
     ["For the first time in the SL's history, the car has rear seats. They can supposedly accommodate occupants up to 1.5m tall, but the backrests are so upright they seem like they are canted forward.", "Also, strangely absent on the test unit are soft-close doors and 'pushers' that bring the seat belts closer to the front passengers."]
 ];
 
+const contentTexts = [
+    {
+        paragraphs: contentParagraphs[0],
+        bubbleTexts: {
+            upper: "Snazzy cockpit features mood lighting and tablet like infotainment screen, but the heat from the engine can make occupants uncomfortable.",
+            lower: "PHOTO: sgCarMart"
+        }
+    }, {
+        paragraphs: contentParagraphs[1],
+        bubbleTexts: {
+            upper: "It looks uncomfortable from this angle, but Mercedes says the backseats can accommodate passengers up to 1.5m tall..",
+            lower: "PHOTO: sgCarMart"
+        }
+    }
+];
+
 export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const [showHeader, setShowHeader] = useState(false);
     const bodyEntryDiv = useRef<HTMLDivElement | null>(null);
@@ -552,7 +579,8 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
             </div>
         </div>
 
-        <Content paragraphs={contentParagraphs[0]} imgWidth={imgWidth} imgUrl={img_parallax_interior1}
+        <Content paragraphs={contentParagraphs[0]} bubbleTexts={contentTexts[0].bubbleTexts} imgWidth={imgWidth}
+                 imgUrl={img_parallax_interior1}
                  transform={imgTransform}
                  imageMarginTop={imageMarginTop}
                  imageMarginLeft={imageMarginLeft}
@@ -562,7 +590,8 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
             <Content
                 imageMarginTop={imageMarginTop}
                 imageMarginLeft={imageMarginLeft}
-                paragraphs={contentParagraphs[1]} imgWidth={imgWidth} imgUrl={img_parallax_interior2}
+                paragraphs={contentParagraphs[1]} bubbleTexts={contentTexts[1].bubbleTexts} imgWidth={imgWidth}
+                imgUrl={img_parallax_interior2}
                 transform=""/>}
     </div>;
 
