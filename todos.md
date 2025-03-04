@@ -199,3 +199,26 @@ when running `pnpm build`, the warning appears:
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 ```
+
+- [ ] [Issue-0008] DevOps: pre-commit hook linting continues when error
+
+Sample when execute `./pre-commit`:
+
+Error:
+
+```
+/Users/univ/asiaone-technical-assessment/mercedes-frontend/src/layoutComponents/Body4/index.tsx
+  83:40  error  'bubbleText' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+
+ ELIFECYCLE  Command failed with exit code 1.
+```
+
+Commit still success:
+
+```
+[body4 7eb538b] body4: big bubble styling
+ 2 files changed, 85 insertions(+), 33 deletions(-)
+ create mode 100644 src/layoutComponents/Body4/index.css
+```
