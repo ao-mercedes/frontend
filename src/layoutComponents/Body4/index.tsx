@@ -8,14 +8,6 @@ import {useEffect, useRef, useState} from "react";
 import {Parallax, ParallaxLayer} from "@react-spring/parallax";
 import styles from './index.module.css';
 
-interface ContentProps {
-    imgUrl: string;
-    transform: string;
-    imgWidth: string;
-    paragraphs: string[];
-    imageMarginTop: string;
-    imageMarginBottom: string;
-}
 
 const alignCenter = {display: 'flex', alignItems: 'center'};
 
@@ -85,13 +77,13 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
 const ContentImage: React.FC<{
     imgUrl: string, imgWidth: string, transform: string,
     imageMarginTop: string,
-    imageMarginBottom: string,
+    imageMarginLeft: string,
 }> = ({
           imgUrl,
           imgWidth,
           transform,
           imageMarginTop,
-          imageMarginBottom
+          imageMarginLeft
       }) => {
     // const endOfTextMarker = useRef<HTMLDivElement | null>(null);
     // useEffect(() => {
@@ -152,7 +144,7 @@ const ContentImage: React.FC<{
                      alignSelf: "center",
                      transform: transform,
                      marginTop: imageMarginTop,
-                     marginBottom: imageMarginBottom,
+                     marginLeft: imageMarginLeft,
                  }}/>
             <div style={{
                 backgroundColor: "black",
@@ -170,13 +162,22 @@ const ContentImage: React.FC<{
     </>;
 };
 
+interface ContentProps {
+    imgUrl: string;
+    transform: string;
+    imgWidth: string;
+    paragraphs: string[];
+    imageMarginTop: string;
+    imageMarginLeft: string;
+}
+
 const Content: React.FC<ContentProps> = ({
                                              imgUrl,
                                              imgWidth,
                                              transform,
                                              paragraphs,
                                              imageMarginTop,
-                                             imageMarginBottom
+                                             imageMarginLeft
                                          }) => {
 
     const [showBubble, setShowBubble] = useState(false);
@@ -194,7 +195,7 @@ const Content: React.FC<ContentProps> = ({
                 }}>
         <ContentImage imgUrl={imgUrl} imgWidth={imgWidth} transform={transform}
                       imageMarginTop={imageMarginTop}
-                      imageMarginBottom={imageMarginBottom}
+                      imageMarginLeft={imageMarginLeft}
         ></ContentImage>
         <Parallax className={"parallax"} pages={1.5}
                   style={{
@@ -391,7 +392,7 @@ const imageMarginTops = {
     [Device.desktop]: "",
 };
 
-const imageMarginBottoms = {
+const imageMarginLefts = {
     [Device.mobile]: "-8%",
     [Device.tablet]: "",
     [Device.desktop]: "",
@@ -438,7 +439,7 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const imgWidth = imgWidths[device] ?? "295%";
     const imgTransform = imgTransforms[device] ?? "translateX(-12px) translateY(-12px)";
     const imageMarginTop = imageMarginTops[device] ?? "-8%";
-    const imageMarginBottom = imageMarginBottoms[device] ?? "-8%";
+    const imageMarginLeft = imageMarginLefts[device] ?? "-8%";
 
 
     return <div className="ao-body4"
@@ -485,16 +486,14 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
 
         <Content paragraphs={contentParagraphs[0]} imgWidth={imgWidth} imgUrl={img_parallax_interior1}
                  transform={imgTransform}
-                 marginTop={imageMarginTop}
-                 marginBottom={imageMarginBottom}
+                 imageMarginTop={imageMarginTop}
+                 imageMarginLeft={imageMarginLeft}
 
         />
         {!showFirstOnly &&
             <Content
-
-                marginTop={imageMarginTop}
-                marginBottom={imageMarginBottom}
-
+                imageMarginTop={imageMarginTop}
+                imageMarginLeft={imageMarginLeft}
                 paragraphs={contentParagraphs[1]} imgWidth={imgWidth} imgUrl={img_parallax_interior2}
                 transform=""/>}
     </div>;
