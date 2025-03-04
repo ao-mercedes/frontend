@@ -89,7 +89,7 @@ const paragraphFontWeights = {
 
 const endMarkerHeights = {
     [Device.mobile]: ["400px", "400px"],
-    [Device.tablet]: ["280px", "400px"],
+    [Device.tablet]: ["280px", "390px"],
     [Device.desktop]: "",
 };
 
