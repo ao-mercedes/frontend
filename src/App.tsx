@@ -11,9 +11,9 @@ import Body5 from "./layoutComponents/Body5";
 import HamburgerNavigationMenu from "./layoutComponents/HamburgerNavigationMenu";
 
 import {useDevice} from "./hooks/useDevice.ts";
+import {useViewPortWidth} from "./hooks/useViewPortWidth.tsx";
 
 import {ConfigProvider, Layout} from "antd";
-
 
 const Body6: React.FC<{ children: React.ReactNode }> = ({children}) => (
     <div className="body6 ao-body">{children}</div>
@@ -31,6 +31,8 @@ const DEVICE_SIZE_BREAKPOINT = {
 
 function App() {
     const device = useDevice(DEVICE_SIZE_BREAKPOINT);
+    const viewPortWidth = useViewPortWidth();
+
     return (
         <>
             <ConfigProvider theme={defaultTheme()}>
@@ -50,7 +52,7 @@ function App() {
                     <Body2 device={device}/>
                     <Body3 device={device}/>
                     <Body4 device={device}/>
-                    <Body5 device={device}></Body5>
+                    <Body5 device={device} viewPortWidth={viewPortWidth}></Body5>
                     <Body6>content</Body6>
                     <Body7>content</Body7>
                     <Footer>footer</Footer>

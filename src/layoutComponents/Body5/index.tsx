@@ -163,9 +163,11 @@ const Paragraphs: React.FC<{ fontSize: string, paragraphLineHeight: string, text
     </div>;
 };
 
-export const Body5: React.FC<{ device: Device }> = ({device}) => {
+export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({device, viewPortWidth}) => {
     const paragraph1Ref = useRef<HTMLDivElement | null>(null);
     const fullContentRef = useRef<HTMLDivElement | null>(null);
+
+    console.log(`viewPortWidth: ${JSON.stringify(viewPortWidth)}`);
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -265,20 +267,31 @@ export const Body5: React.FC<{ device: Device }> = ({device}) => {
                                 {"TIME TO DANCE"}
                             </Typography.Text>
                         </div>
+                        <div ref={paragraph1Ref}></div>
                         <Paragraphs fontSize={fontSize} paragraphLineHeight={paragraphLineHeight}
                                     texts={textForParagraph1}/>
                     </UnbrokenPage>
-
                     <div className="ao-body5-content-youtube-embed"
                          style={{
+                             marginTop: "40px",
+                             marginBottom: "20px",
                              display: "flex",
                              width: "100%",
                              height: "100%",
                              backgroundColor: "orange",
                              justifyContent: "center"
                          }}>
-                        <div className="ao-body5-content-youtube-embed-placeholder">
-                            Youtube
+                        <div className="ao-body5-content-youtube-embed-placeholder"
+                             style={{display: "flex", justifyContent: "center", width: "100%", height: "100%"}}>
+                            <iframe
+                                width={`${viewPortWidth}px`}
+                                height={`${viewPortWidth / 4 * 3}px`}
+                                src={`https://www.youtube.com/embed/I8CygBDUIBs?autoplay=1&showinfo=0&controls=0&modestbranding=1&rel=0`}
+                                title="YouTube Video"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
                         </div>
                     </div>
                     <UnbrokenPage style={{
