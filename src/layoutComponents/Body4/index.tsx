@@ -61,29 +61,29 @@ const imageHeights = {
 const contentWidths = {
     [Device.mobile]: "90%",
     [Device.tablet]: "73%",
-    [Device.desktop]: "2000px",
+    [Device.desktop]: "63%",
 };
 const contentTextBoxPaddingTops = {
     [Device.mobile]: "85px",
     [Device.tablet]: "45px",
-    [Device.desktop]: "50px",
+    [Device.desktop]: "150px",
 };
 const contentTextBoxPaddingBottoms = {
     [Device.mobile]: "85px",
     [Device.tablet]: "45px",
-    [Device.desktop]: "50px",
+    [Device.desktop]: "150px",
 };
 
 const paragraphLineHeights = {
     [Device.mobile]: "1.4rem",
     [Device.tablet]: "1.2rem",
-    [Device.desktop]: "1rem",
+    [Device.desktop]: "2.3rem",
 };
 
 const paragraphFontSizes = {
     [Device.mobile]: "1.2rem",
     [Device.tablet]: "1rem",
-    [Device.desktop]: "1rem",
+    [Device.desktop]: "2rem",
 };
 
 const paragraphFontWeights = {
@@ -148,9 +148,10 @@ const bigBubbleLefts = {
 
 
 const contentParagraphs = [
-    ["Yes, there are still screens. But instead of the usual MBUX (Mercedes-Benz User Experience) setup, the 12.3-inch instrument panel is housed under a cowl, reflecting the SL's sporty roots.", "Dominating the dashboard is the\n" +
-    "tablet-like 11.9-inch display, whose tilt angle can adjusted from 12 degrees to degrees at a touch of a button. It helps minimise screen glare driving with the top down."],
-    ["For the first time in the SL's history, the car has rear seats. They can supposedly accommodate occupants up to 1.5m tall, but the backrests are so upright they seem like they are canted forward.", "Also, strangely absent on the test unit are soft-close doors and 'pushers' that bring the seat belts closer to the front passengers."]
+    ["Yes, there are still screens. But instead of the usual MBUX (Mercedes-Benz User Experience) setup, the 12.3-inch instrument panel is housed under a cowl, reflecting the SL's sporty roots.",
+        "Dominating the dashboard is the tablet-like 11.9-inch infotainment display, whose tilt angle can be adjusted from 12 degrees to 32 degrees at a touch of a button. It helps minimise screen glare when driving with the top down."],
+    ["For the first time in the SL's history, the car has rear seats. They can supposedly accommodate occupants up to 1.5m tall, but the backrests are so upright they seem like they are canted forward.",
+        "Also, strangely absent on the test unit are soft-close doors and 'pushers' that bring the seat belts closer to the front passengers."]
 ];
 
 const contentTexts = [
