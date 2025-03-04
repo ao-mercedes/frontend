@@ -1,10 +1,10 @@
 # Changelog 27 February 2025
 
 - [x] Wireframe
-- [ ] Body1 (masthead, entry point)
+- [x] Body1 (masthead, entry point)
     - [x] layering
     - [x] scroll guide
-- [ ] Navigation Hamburger
+- [x] Navigation Hamburger
     - [x] Modal pin top right
     - [x] Expandable
     - [x] Mobile
@@ -32,7 +32,7 @@
 # Changelog 28 February 2025 - 2 March 2025
 
 - [ ] Body2 - First Pitch
-    - [ ] Download images and text content
+    - [x] Download images and text content
     - [ ] Components (From top to bottom) - Mobile
         - [ ] Container flex
             - [x] Byline
@@ -107,44 +107,72 @@
 
 - [ ] Body4
     - [ ] Mobile
-        - [ ] Header
+        - [x] Header
         - [ ] 1:FrontSeatBackView
-            - [ ] background
-            - [ ] text
-            - [ ] white laser
-            - [ ] bubble
+            - [x] background
+            - [x] text
+            - [x] white bubble
+            - [x] black bubble
+            - [ ] lines
         - [ ] 2:FrontSeatFrontView
-            - [ ] background
-            - [ ] text
-            - [ ] white laser
-            - [ ] bubble
-        - [ ] footer
+            - [x] background
+            - [x] text
+            - [x] white bubble
+            - [x] black bubble
+            - [ ] lines
     - [ ] Tablet
-        - [ ] Header
+        - [x] Header
         - [ ] 1:FrontSeatBackView
-            - [ ] background
-            - [ ] text
-            - [ ] white laser
-            - [ ] bubble
+            - [x] background
+            - [x] text
+            - [x] white bubble
+            - [x] black bubble
+            - [ ] lines
         - [ ] 2:FrontSeatFrontView
-            - [ ] background
-            - [ ] text
-            - [ ] white laser
-            - [ ] bubble
-        - [ ] omit footer
+            - [x] background
+            - [x] text
+            - [x] white bubble
+            - [x] black bubble
+            - [ ] lines
     - [ ] Desktop
-        - [ ] Header
+        - [x] Header
         - [ ] 1:FrontSeatBackView
-            - [ ] background
-            - [ ] text
-            - [ ] white laser
-            - [ ] bubble
+            - [x] background
+            - [x] text
+            - [x] white laser
+            - [x] bubble
+            - [ ] lines
         - [ ] 2:FrontSeatFrontView
-            - [ ] background
-            - [ ] text
-            - [ ] white laser
-            - [ ] bubble
-        - [ ] omit footer
+            - [x] background
+            - [x] text
+            - [x] white laser
+            - [x] bubble
+            - [ ] lines
+
+# Changelog 4 March 2025
+
+- [ ] Body5
+    - [ ] Mobile
+        - [ ] Content (Full Height)
+            - [ ] Content 1
+            - [ ] Youtube
+            - [ ] Content 2
+            - [ ] With yellow car fixed at bottom
+        - [ ] Footer
+    - [ ] Tablet
+        - [ ] Content (Full Height)
+            - [ ] Content 1
+            - [ ] Youtube
+            - [ ] Content 2
+            - [ ] With yellow car fixed at bottom
+        - [ ] Footer
+    - [ ] Desktop
+        - [ ] Content (Full Height)
+            - [ ] Content 1
+            - [ ] Youtube
+            - [ ] Content 2
+            - [ ] With yellow car fixed at bottom
+        - [ ] Footer
 
 # Issues
 
