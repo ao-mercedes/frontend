@@ -67,7 +67,7 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
 
 
 const ContentImage: React.FC<{
-    imageUrl: string, imageHeight: string, imageWidth: string, transform: string,
+    imageUrl: string, imageHeight: string, imageWidth: string, imageTransform: string,
     imageMarginTop: string,
     imageMarginLeft: string, showBubble: boolean, bubbleTexts: {
         upper: string,
@@ -77,14 +77,16 @@ const ContentImage: React.FC<{
     bigBubbleLength: string;
     bigBubbleTop: string;
     bigBubbleLeft: string;
+    smallBubbleTop: string;
 }> = ({
           imageUrl,
           imageWidth,
           imageHeight,
-          transform,
+          imageTransform,
           imageMarginTop,
           imageMarginLeft, showBubble, bubbleTexts,
           smallBubbleLeft,
+          smallBubbleTop,
           bigBubbleLength,
           bigBubbleTop,
           bigBubbleLeft
@@ -136,7 +138,7 @@ const ContentImage: React.FC<{
                      width: imageWidth,
                      height: imageHeight,
                      alignSelf: "center",
-                     transform: transform,
+                     transform: imageTransform,
                      marginTop: imageMarginTop,
                      marginLeft: imageMarginLeft,
                  }}/>
@@ -162,7 +164,7 @@ const ContentImage: React.FC<{
                         alignItems: "center",
                         position: "absolute",
                         left: smallBubbleLeft,
-                        top: "100px",
+                        top: smallBubbleTop,
                         borderRadius: "50%",
                         background: COLORS.PURE_WHITE,
                     }}>
@@ -247,7 +249,7 @@ interface ContentProps {
     bigBubbleLength: string;
     bigBubbleTop: string;
     bigBubbleLeft: string;
-    transform: string;
+    imageTransform: string;
     imageWidth: string;
     paragraphs: string[];
     imageMarginTop: string;
@@ -265,13 +267,14 @@ interface ContentProps {
     endMarkerHeight: string;
     paragraphFontWeight: string;
     smallBubbleLeft: string;
+    smallBubbleTop: string;
 }
 
 export const Content: React.FC<ContentProps> = ({
                                                     imageUrl,
                                                     imageWidth,
                                                     imageHeight,
-                                                    transform,
+                                                    imageTransform,
                                                     paragraphs,
                                                     imageMarginTop,
                                                     imageMarginLeft,
@@ -280,6 +283,7 @@ export const Content: React.FC<ContentProps> = ({
                                                     contentTextBoxPaddingTop,
                                                     contentTextBoxPaddingBottom,
                                                     smallBubbleLeft,
+                                                    smallBubbleTop,
                                                     bigBubbleLength, bigBubbleTop,
                                                     bigBubbleLeft,
                                                     paragraphLineHeight,
@@ -302,10 +306,11 @@ export const Content: React.FC<ContentProps> = ({
                 }}>
         <ContentImage bubbleTexts={bubbleTexts} showBubble={showBubble} imageUrl={imageUrl} imageWidth={imageWidth}
                       imageHeight={imageHeight}
-                      transform={transform}
+                      imageTransform={imageTransform}
                       imageMarginTop={imageMarginTop}
                       imageMarginLeft={imageMarginLeft}
                       smallBubbleLeft={smallBubbleLeft}
+                      smallBubbleTop={smallBubbleTop}
                       bigBubbleLength={bigBubbleLength}
                       bigBubbleTop={bigBubbleTop}
                       bigBubbleLeft={bigBubbleLeft}

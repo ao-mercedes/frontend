@@ -221,3 +221,10 @@ Commit still success:
  2 files changed, 85 insertions(+), 33 deletions(-)
  create mode 100644 src/layoutComponents/Body4/index.css
 ```
+
+- [ ] [Issue-0009] [Component::Display] Image shows partial text
+
+Device Size: Tablet
+Page: Body4
+
+![](./planning/assets/issue_0009.png)
