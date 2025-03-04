@@ -24,7 +24,6 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                console.log(`endOfTextMarker ${entry.isIntersecting}`);
                 handleOnIntersect(entry.isIntersecting);
             },
             {threshold: treshold},
@@ -445,7 +444,7 @@ const Content: React.FC<ContentProps> = ({
 
 const headerClipPaths = {
     [Device.mobile]: "polygon(0% 0%, 100% 0%, 100% 100%, 12% 100%)",
-    [Device.tablet]: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+    [Device.tablet]: "polygon(0% 0%, 100% 0%, 100% 100%, 6% 100%)",
     [Device.desktop]: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
 };
 const headerHeights = {
@@ -474,6 +473,18 @@ const imageMarginTops = {
 const imageMarginLefts = {
     [Device.mobile]: "-8%",
     [Device.tablet]: "",
+    [Device.desktop]: "",
+};
+
+const headerWidths = {
+    [Device.mobile]: "100%",
+    [Device.tablet]: "87",
+    [Device.desktop]: "",
+};
+
+const headerTextPaddings = {
+    [Device.mobile]: "5% 15% 0% 15%",
+    [Device.tablet]: "2% 1% 0% 10%",
     [Device.desktop]: "",
 };
 
@@ -529,13 +540,14 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const showFirstOnly = device == Device.mobile;
 
     const headerClipPath = headerClipPaths[device] ?? "polygon(0% 0%, 100% 0%, 100% 100%, 12% 100%)";
+    const headerWidth = headerWidths[device] ?? "100%";
+    const headerTextPadding = headerTextPaddings[device] ?? "5% 15% 0% 15%";
 
     const headerHeight = headerHeights[device] ?? "200px";
     const imgWidth = imgWidths[device] ?? "295%";
     const imgTransform = imgTransforms[device] ?? "translateX(-12px) translateY(-12px)";
     const imageMarginTop = imageMarginTops[device] ?? "-8%";
     const imageMarginLeft = imageMarginLefts[device] ?? "-8%";
-
 
     return <div className="ao-body4"
                 style={{
@@ -559,13 +571,13 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
             <div className={"ao-body4-header-text"} style={{
                 display: "flex",
                 backgroundColor: COLORS.DEEP_OLIVE,
-                width: "100%",
+                width: headerWidth,
                 clipPath: headerClipPath,
 
             }}>
                 <Typography.Text style={{
                     color: COLORS.WALNUT_BROWN,
-                    padding: "5% 15% 0% 15%",
+                    padding: headerTextPadding,
                     lineHeight: "1.4rem",
                     fontSize: "1.2rem",
                     fontWeight: "700",
