@@ -7,6 +7,7 @@ import {_getContents} from "./contentInfoGetter.ts";
 
 import ContentsComponent from "./ContentsComponent.tsx";
 import {UnbrokenPage} from "../pageSizes.tsx";
+import BodyFooter from "../../components/BodyFooter.tsx";
 
 import {Typography} from "antd";
 import {useEffect, useRef, useState} from "react";
@@ -293,62 +294,13 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
                 </div>
             </UnbrokenPage>
             <div ref={contentsDivRef}/>
-
-            <div className={"ao-body3-footer"} style={{
-                display: "flex",
-                position: "relative",
-                height: "max-content",
-                marginTop: footerMarginTop,
-            }}>
-                <div style={{
-                    display: "flex",
-                    width: footerWidth,
-                    justifyContent: "center",
-                    overflow: "hidden",
-                    transition: "transform 3s ease-in-out, opacity 1s ease-in-out",
-                    transform: showBottomGuide ? "translateX(0)" : "translateX(-100%)",
-                    clipPath: footerClipPath,
-                    alignItems: "center",
-                    height: "fit-content",
-                    zIndex: 1000,
-                    backgroundColor: COLORS.HIGH_ORANGE,
-                    paddingTop: footerPaddingTop,
-                    paddingBottom: footerPaddingBottom,
-                }}>
-                    <div style={{
-                        paddingLeft: footerTextPaddingLeft,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}>
-                        <Typography.Text style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            color: COLORS.PURE_WHITE,
-                            fontSize: footerFontSize,
-                            fontWeight: "500",
-                            lineHeight: footerLineHeight,
-                            wordBreak: "break-word",
-                        }}>
-                            Different interior approach
-                        </Typography.Text>
-                    </div>
-                </div>
-
-                <div className={"ao-body3-end-border"} style={{
-                    display: "flex",
-                    backgroundColor: COLORS.LIGHT_BROWN,
-                    position: "absolute",
-                    bottom: "0",
-                    width: "100%",
-                    height: rightFooterHeight,
-                    justifyContent: "center"
-                }}>
-                </div>
-            </div>
+            <BodyFooter className={"ao-body3-footer"} footerMarginTop={footerMarginTop} footerWidth={footerWidth}
+                        showBottomGuide={showBottomGuide}
+                        footerClipPath={footerClipPath} footerPaddingTop={footerPaddingTop}
+                        footerPaddingBottom={footerPaddingBottom} footerTextPaddingLeft={footerTextPaddingLeft}
+                        footerFontSize={footerFontSize} footerLineHeight={footerLineHeight}
+                        rightFooterHeight={rightFooterHeight}
+                        text={"Different interior approach"}/>
         </div>
     );
 };
