@@ -9,6 +9,7 @@ import Paragraphs from "./Paragraphs.tsx";
 
 import {useEffect, useRef, useState,} from "react";
 import {Typography} from "antd";
+import BodyFooter from "../../components/BodyFooter.tsx";
 
 const marginTops = {
     [Device.mobile]: "80px",
@@ -77,6 +78,62 @@ const textForParagraph2 = [
     "I often found myself having to re-swipe to operate the roof. Mercedes should have kept the metal switch of the previous car, which conveniently has the one-touch windows up/down toggle beside it.",
 ];
 
+
+const footerWidths = {
+    [Device.mobile]: "95%",
+    [Device.tablet]: "95%",
+    [Device.desktop]: "75%",
+};
+
+const footerPaddingBottoms = {
+    [Device.mobile]: "25px",
+    [Device.tablet]: "25px",
+    [Device.desktop]: "25px",
+};
+
+const footerPaddingTops = {
+    [Device.mobile]: "25px",
+    [Device.tablet]: "25px",
+    [Device.desktop]: "25px",
+};
+
+const footerFontSizes = {
+    [Device.mobile]: "2.3rem",
+    [Device.tablet]: "2.3rem",
+    [Device.desktop]: "5rem",
+};
+
+
+const footerLineHeights = {
+    [Device.mobile]: "2.5rem",
+    [Device.tablet]: "2.5rem",
+    [Device.desktop]: "5rem",
+};
+
+const footerMarginTops = {
+    [Device.mobile]: "70px",
+    [Device.tablet]: "10px",
+    [Device.desktop]: "140px",
+};
+
+const footerClipPaths = {
+    [Device.mobile]: "polygon(0% 0%, 90% 0%, 100% 100%, 0% 100%)",
+    [Device.tablet]: "polygon(0% 0%, 95% 0%, 100% 100%, 0% 100%)",
+    [Device.desktop]: "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)",
+};
+
+const rightFooterHeights = {
+    [Device.mobile]: "30%",
+    [Device.tablet]: "40%",
+    [Device.desktop]: "40%",
+};
+
+const footerTextPaddingLefts = {
+    [Device.mobile]: "15%",
+    [Device.tablet]: "8%",
+    [Device.desktop]: "10%",
+};
+
 const CarFume: React.FC<{
     paddingTop: string,
     paddingBottom: string,
@@ -131,6 +188,33 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
         };
     }, []);
 
+    const [showBottomGuide, setShowBottomGuide] = useState(false);
+    const contentsDivRef = useRef<HTMLDivElement | null>(null);
+    // console.log(`body5 showBottomGuide: ${showBottomGuide}`);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    console.log(`body5 showBottomGuide?: ${showBottomGuide}`);
+                    setShowBottomGuide(entry.isIntersecting);
+                }
+            },
+            {threshold: 1},
+        );
+
+        const currRef = contentsDivRef.current;
+        if (currRef) {
+            observer.observe(currRef);
+        }
+
+        return () => {
+            if (currRef) {
+                observer.unobserve(currRef);
+            }
+        };
+    }, [showBottomGuide]);
+
     const [progress, setProgress] = useState(0);
     useEffect(() => {
         const handleScroll = () => {
@@ -139,7 +223,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
             const {scrollTop, scrollHeight, clientHeight} = contentRef.current;
             const scrolled = (scrollTop / (scrollHeight - clientHeight)) * 100;
 
-            console.log(`handleScroll: scrolled=${scrolled}`);
+            // console.log(`handleScroll: scrolled=${scrolled}`);
             setProgress(scrolled);
         };
 
@@ -159,6 +243,17 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
     const youtubeEmbedWidth = (device == Device.mobile) ? viewPortWidth : (viewPortWidth - (pageHorizontalPaddingPx * 2));
     const youtubeAspectRatio = device == Device.mobile ? (4 / 3) : (16 / 9);
 
+    const shouldShowFooter = device == Device.desktop || device == Device.tablet;
+    const footerWidth = footerWidths[device] ?? "75%";
+    const footerPaddingBottom = footerPaddingBottoms[device] ?? "25px";
+    const footerPaddingTop = footerPaddingTops[device] ?? "25px";
+    const footerFontSize = footerFontSizes[device] ?? "5rem";
+    const footerLineHeight = footerLineHeights[device] ?? "5rem";
+    const footerMarginTop = footerMarginTops[device] ?? "140px";
+    const footerClipPath = footerClipPaths[device] ?? "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)";
+    const footerTextPaddingLeft = footerTextPaddingLefts[device] ?? "15%";
+    const rightFooterHeight = rightFooterHeights[device] ?? "30%";
+
     return <>
         <div className="ao-body5"
              ref={bodyRef}
@@ -168,7 +263,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                  flexDirection: "column",
                  width: "100%",
                  overflow: "auto",
-                 height: "100vh",
+                 height: "min-content",
                  justifyContent: "flex-end",
                  alignItems: "flex-start",
              }}>
@@ -187,7 +282,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                 position: "relative",
                 flexDirection: "column",
                 width: "100%",
-                height: "100%",
+                height: "100vh",
                 justifyContent: "flex-end",
                 alignItems: "flex-start",
             }}>
@@ -201,7 +296,6 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                          justifyContent: "flex-start",
                          alignItems: "center",
                          width: "100%",
-                         // backgroundColor: "yellow",
                      }}>
                     <UnbrokenPage style={{
                         flexDirection: "column",
@@ -276,11 +370,25 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                         <CarFume paddingTop={"18px"} paddingBottom={"29px"} viewPortWidth={viewPortWidth}></CarFume>
                         <CarFume paddingTop={"26px"} paddingBottom={"10px"} viewPortWidth={viewPortWidth}></CarFume>
                     </div>
-
-
                 </div>
             </div>
+
+            <div ref={contentsDivRef} style={{height: "10px", width: "100%", display: "flex"}}></div>
+            {shouldShowFooter && <div className="ao-body5-footer-wrapper" style={{
+                width: "100%", height: "100%",
+            }}>
+                <BodyFooter footerMarginTop={footerMarginTop} footerWidth={footerWidth}
+                            showBottomGuide={showBottomGuide} footerClipPath={footerClipPath}
+                            footerPaddingTop={footerPaddingTop}
+                            footerPaddingBottom={footerPaddingBottom}
+                            footerTextPaddingLeft={footerTextPaddingLeft}
+                            footerFontSize={footerFontSize} footerLineHeight={footerLineHeight}
+                            rightFooterHeight={rightFooterHeight} text={"Flawed, yet unforgettable"}
+                            className={"ao-body5-footer"}/>
+            </div>}
         </div>
+
+
     </>;
 };
 

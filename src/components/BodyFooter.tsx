@@ -45,7 +45,7 @@ export const BodyFooter: React.FC<BodyFooterProps> = (
             width: footerWidth,
             justifyContent: "center",
             overflow: "hidden",
-            transition: "transform 3s ease-in-out, opacity 1s ease-in-out",
+            transition: "transform 3s ease-in-out, opacity 3s ease-in-out",
             transform: showBottomGuide ? "translateX(0)" : "translateX(-100%)",
             clipPath: footerClipPath,
             alignItems: "center",

@@ -101,12 +101,6 @@ const imageWrapperPaddingLefts = {
 };
 
 
-const footerTextPaddingLefts = {
-    [Device.mobile]: "15%",
-    [Device.tablet]: "8%",
-    [Device.desktop]: "10%",
-};
-
 const contentRowGaps = {
     [Device.mobile]: "0px",
     [Device.tablet]: "10px",
@@ -143,6 +137,12 @@ const footerLineHeights = {
     [Device.mobile]: "2.5rem",
     [Device.tablet]: "2.5rem",
     [Device.desktop]: "5rem",
+};
+
+const footerTextPaddingLefts = {
+    [Device.mobile]: "15%",
+    [Device.tablet]: "8%",
+    [Device.desktop]: "10%",
 };
 
 const footerMarginTops = {
@@ -212,21 +212,21 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
     const captionLineHeight = imageCaptionLineHeights[device] ?? "1.5rem";
     const captionFontSize = imageCaptionFontSizes[device] ?? "0.8rem";
     const imageWrapperPaddingLeft = imageWrapperPaddingLefts[device] ?? "0px";
-    const footerTextPaddingLeft = footerTextPaddingLefts[device] ?? "15%";
 
     const contentRowGap = contentRowGaps[device] ?? "15%";
     const textColor = textColors[device] ?? COLORS.WALNUT_BROWN;
 
 
     const footerWidth = footerWidths[device] ?? "75%";
+    const footerTextPaddingLeft = footerTextPaddingLefts[device] ?? "15%";
     const footerPaddingBottom = footerPaddingBottoms[device] ?? "25px";
     const footerPaddingTop = footerPaddingTops[device] ?? "25px";
     const footerFontSize = footerFontSizes[device] ?? "5rem";
     const footerLineHeight = footerLineHeights[device] ?? "5rem";
     const footerMarginTop = footerMarginTops[device] ?? "140px";
     const footerClipPath = footerClipPaths[device] ?? "polygon(0% 0%, 97% 0%, 100% 100%, 0% 100%)";
-
     const rightFooterHeight = rightFooterHeights[device] ?? "30%";
+
     return (
         <div
             className="ao-body3-container"
