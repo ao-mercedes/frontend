@@ -1,3 +1,4 @@
+import "./index.css";
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
 import img_parallax_interior1 from "../../assets/Body4/parallax_interior1_trim_transparent.png";
@@ -7,6 +8,7 @@ import {Typography} from "antd";
 import {useEffect, useRef, useState} from "react";
 import {Parallax, ParallaxLayer} from "@react-spring/parallax";
 import styles from './index.module.css';
+import * as React from "react";
 
 
 const alignCenter = {display: 'flex', alignItems: 'center'};
@@ -61,7 +63,6 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
             alignItems: "center",
             overflow: "hidden",
             flexDirection: "column",
-            backgroundColor: COLORS.PURE_WHITE,
             opacity: 0.5,
             zIndex: 0,
         }}>
@@ -73,13 +74,13 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
 const ContentImage: React.FC<{
     imgUrl: string, imgWidth: string, transform: string,
     imageMarginTop: string,
-    imageMarginLeft: string, showBubble: boolean
+    imageMarginLeft: string, showBubble: boolean, bubbleText: string
 }> = ({
           imgUrl,
           imgWidth,
           transform,
           imageMarginTop,
-          imageMarginLeft, showBubble
+          imageMarginLeft, showBubble, bubbleText
       }) => {
     const endOfBackgroundMarkerRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
@@ -104,22 +105,10 @@ const ContentImage: React.FC<{
             }
         };
     }, []);
-    // const wrapperRef = useRef<HTMLDivElement | null>(null);
-    // const imgRef = useRef<HTMLDivElement | null>(null);
-    //
-    // const [parentHeight, setParentHeight] = useState("1000px");
-
-    // useEffect(() => {
-    //     if (imgRef.current && wrapperRef.current) {
-    //         const newHeight = imgRef.current.getBoundingClientRect().height;
-    //         const wrapperHeight = wrapperRef.current.getBoundingClientRect().height;
-    //         console.log(` newHeight ${newHeight}px`);
-    //         console.log(` wrapperHeight ${wrapperHeight}px`);
-    //         // setParentHeight(`${wrapperHeight - newHeight}px`);
-    //     }
-    // }, [transform]); // Runs when transform changes
 
 
+    const outerBubbleFontSize = "1rem";
+    const outerBubbleTextLineHeight = "1.2rem";
     return <>
         <div className={"ao-body4-content-image-wrapper"}
             // ref={wrapperRef}
@@ -146,28 +135,77 @@ const ContentImage: React.FC<{
                  }}/>
             <div ref={endOfBackgroundMarkerRef} className={"ao-body4-end-bg-marker"}
                  style={{display: "flex", width: "100%"}}></div>
-            <div className={"ao-body4-bubble-wrapper"} style={{
-                width: "40%",
-                opacity: 0.5,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                position: "absolute",
-                top: "40%",
-            }}>
-                {showBubble && <div className={"ao-body4-bubble"} style={{
-                    backgroundColor: "red",
+            {showBubble &&
+                <div className={"ao-body4-bubbles-wrapper"} style={{
                     width: "100%",
-                    opacity: 0.5,
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "center",
+                    // alignItems: "center",
                     position: "absolute",
+                    height: "500px",
                     top: "40%",
+                    // background: "white",
                 }}>
-                    <p>I'm a sticky layer</p>
+                    <div className={"ao-body4-big-bubble-wrapper"} style={{
+                        backgroundColor: "red",
+                        width: "300px",
+                        height: "300px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        position: "absolute",
+                        transform: "translateY(250px)",
+                        borderRadius: "50%",
+                        background: COLORS.STEEL_BLUE,
+                        top: "50%",
+
+                    }}>
+                        <div style={{
+                            display: "flex",
+                            alignItems: "center",
+                            width: "100%",
+                            height: "100%",
+                            justifyContent: "center",
+                        }}>
+
+                            <div
+                                className="carousel-outer-bubble-textuals"
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    width: "70%",
+                                    height: "70%",
+                                }}
+                            >
+                                <Typography.Text
+                                    style={{
+                                        fontSize: outerBubbleFontSize,
+                                        lineHeight: outerBubbleTextLineHeight,
+                                        display: "flex",
+                                        textAlign: "center",
+                                        color: COLORS.PURE_WHITE,
+                                    }}
+                                >
+                                    {"Snazzy cockpit features mood lighting and tablet like infotainment screen, but the heat from the engine can make occupants uncomfortable."}
+                                </Typography.Text>
+                                <Typography.Text
+                                    style={{
+                                        marginTop: "35px",
+                                        fontSize: outerBubbleFontSize,
+                                        lineHeight: outerBubbleTextLineHeight,
+                                        textAlign: "center",
+                                        display: "flex",
+                                        color: COLORS.PURE_WHITE,
+                                    }}
+                                >
+                                    {"PHOTO: sgCarMart"}
+                                </Typography.Text>
+                            </div>
+                        </div>
+                    </div>
                 </div>}
-            </div>
         </div>
 
     </>;
@@ -204,7 +242,7 @@ const Content: React.FC<ContentProps> = ({
                     justifyContent: "center",
                     alignItems: "center",
                 }}>
-        <ContentImage showBubble={showBubble} imgUrl={imgUrl} imgWidth={imgWidth} transform={transform}
+        <ContentImage bubbleText={""} showBubble={showBubble} imgUrl={imgUrl} imgWidth={imgWidth} transform={transform}
                       imageMarginTop={imageMarginTop}
                       imageMarginLeft={imageMarginLeft}
         ></ContentImage>
