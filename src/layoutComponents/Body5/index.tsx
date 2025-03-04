@@ -191,7 +191,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
         };
     }, []);
 
-    const {intersects, ref} = useIntersectingRef(true);
+    const {intersects, ref} = useIntersectingRef(true, 1);
 
     const [progress, setProgress] = useState(0);
     useEffect(() => {
