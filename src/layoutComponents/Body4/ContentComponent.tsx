@@ -12,7 +12,7 @@ interface ContentEndMarkerProps {
 }
 
 const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, threshold, endMarkerHeight}) => {
-    const endOfTextMarker = useRef<HTMLDivElement | null>(null);
+    const endOfBackGroundMarker = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -22,7 +22,7 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
             {threshold: threshold},
         );
 
-        const currRef = endOfTextMarker.current;
+        const currRef = endOfBackGroundMarker.current;
         if (currRef) {
             observer.observe(currRef);
         }
@@ -61,7 +61,8 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
             zIndex: 0,
         }}>
         </div>
-        <div ref={endOfTextMarker} className={"ao-body4-end-bg-marker"} style={{display: "flex", width: "100%"}}></div>
+        <div ref={endOfBackGroundMarker} className={"ao-body4-end-bg-marker"}
+             style={{display: "flex", width: "100%"}}></div>
     </div>;
 };
 

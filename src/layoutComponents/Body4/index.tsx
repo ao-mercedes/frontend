@@ -88,8 +88,8 @@ const paragraphFontWeights = {
 
 
 const endMarkerHeights = {
-    [Device.mobile]: "400px",
-    [Device.tablet]: "280px",
+    [Device.mobile]: ["400px", "400px"],
+    [Device.tablet]: ["280px", "400px"],
     [Device.desktop]: "",
 };
 
@@ -270,7 +270,7 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                  paragraphLineHeight={paragraphLineHeight}
                  paragraphFontSize={paragraphFontSize}
                  paragraphFontWeight={paragraphFontWeight}
-                 endMarkerHeight={endMarkerHeight}
+                 endMarkerHeight={endMarkerHeight[0]}
                  smallBubbleLeft={smallBubbleLeft[0]}
                  smallBubbleTop={smallBubbleTop[0]}
                  bigBubbleLength={bigBubbleLength}
@@ -283,7 +283,7 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                 paragraphFontWeight={paragraphFontWeight}
                 bigBubbleTop={bigBubbleTop[1]}
                 bigBubbleLeft={bigBubbleLeft[1]}
-                endMarkerHeight={endMarkerHeight}
+                endMarkerHeight={endMarkerHeight[1]}
                 paragraphFontSize={paragraphFontSize}
                 paragraphLineHeight={paragraphLineHeight}
                 smallBubbleLeft={smallBubbleLeft[1]}
