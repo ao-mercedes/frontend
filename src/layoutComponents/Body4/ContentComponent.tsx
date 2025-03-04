@@ -8,9 +8,10 @@ import {Typography} from "antd";
 interface ContentEndMarkerProps {
     handleOnIntersect: (isIntersecting: boolean) => void;
     threshold: number;
+    endMarkerHeight: string;
 }
 
-const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, threshold}) => {
+const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, threshold, endMarkerHeight}) => {
     const endOfTextMarker = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -39,11 +40,13 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
                     position: "relative",
                     justifyContent: "flex-start",
                     alignItems: "center",
-                    width: "90%",
-                    height: "100%",
-                    flexGrow: 1,
+                    width: "100%",
+                    height: endMarkerHeight,
                     overflow: "hidden",
                     flexDirection: "column",
+                    // debug
+                    // backgroundColor: COLORS.PURE_WHITE,
+                    // opacity: 0.5,
                 }}>
         <div className={"ao-body4-content-end-marker-bg"} style={{
             display: "flex",
@@ -69,14 +72,22 @@ const ContentImage: React.FC<{
     imageMarginLeft: string, showBubble: boolean, bubbleTexts: {
         upper: string,
         lower: string,
-    }
+    };
+    smallBubbleLeft: string;
+    bigBubbleLength: string;
+    bigBubbleTop: string;
+    bigBubbleLeft: string;
 }> = ({
           imageUrl,
           imageWidth,
           imageHeight,
           transform,
           imageMarginTop,
-          imageMarginLeft, showBubble, bubbleTexts
+          imageMarginLeft, showBubble, bubbleTexts,
+          smallBubbleLeft,
+          bigBubbleLength,
+          bigBubbleTop,
+          bigBubbleLeft
       }) => {
     const endOfBackgroundMarkerRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
@@ -150,7 +161,7 @@ const ContentImage: React.FC<{
                         justifyContent: "center",
                         alignItems: "center",
                         position: "absolute",
-                        left: "260px",
+                        left: smallBubbleLeft,
                         top: "100px",
                         borderRadius: "50%",
                         background: COLORS.PURE_WHITE,
@@ -167,15 +178,16 @@ const ContentImage: React.FC<{
 
                     <div className={"ao-body4-big-bubble-wrapper ao-body4-bubble-animate"} style={{
                         backgroundColor: "red",
-                        width: "300px",
-                        height: "300px",
+                        width: bigBubbleLength,
+                        height: bigBubbleLength,
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
                         position: "absolute",
                         borderRadius: "50%",
                         background: COLORS.STEEL_BLUE,
-                        top: "50%",
+                        top: bigBubbleTop,
+                        left: bigBubbleLeft,
                     }}>
                         <div style={{
                             display: "flex",
@@ -232,6 +244,9 @@ const ContentImage: React.FC<{
 
 interface ContentProps {
     imageUrl: string;
+    bigBubbleLength: string;
+    bigBubbleTop: string;
+    bigBubbleLeft: string;
     transform: string;
     imageWidth: string;
     paragraphs: string[];
@@ -247,7 +262,9 @@ interface ContentProps {
     contentTextBoxPaddingBottom: string;
     paragraphLineHeight: string;
     paragraphFontSize: string;
+    endMarkerHeight: string;
     paragraphFontWeight: string;
+    smallBubbleLeft: string;
 }
 
 export const Content: React.FC<ContentProps> = ({
@@ -262,8 +279,12 @@ export const Content: React.FC<ContentProps> = ({
                                                     contentWidth,
                                                     contentTextBoxPaddingTop,
                                                     contentTextBoxPaddingBottom,
+                                                    smallBubbleLeft,
+                                                    bigBubbleLength, bigBubbleTop,
+                                                    bigBubbleLeft,
                                                     paragraphLineHeight,
-                                                    paragraphFontSize, paragraphFontWeight
+                                                    paragraphFontSize, paragraphFontWeight,
+                                                    endMarkerHeight
                                                 }) => {
 
     const [showBubble, setShowBubble] = useState(false);
@@ -284,6 +305,10 @@ export const Content: React.FC<ContentProps> = ({
                       transform={transform}
                       imageMarginTop={imageMarginTop}
                       imageMarginLeft={imageMarginLeft}
+                      smallBubbleLeft={smallBubbleLeft}
+                      bigBubbleLength={bigBubbleLength}
+                      bigBubbleTop={bigBubbleTop}
+                      bigBubbleLeft={bigBubbleLeft}
         ></ContentImage>
         <Parallax className={"ao-body4-parallax"} pages={1.5}
                   style={{
@@ -367,7 +392,10 @@ export const Content: React.FC<ContentProps> = ({
                 </div>
                 <ContentEndMarker handleOnIntersect={(isIntersecting) => {
                     setShowBubble(isIntersecting);
-                }} threshold={1}/>
+                }}
+                                  threshold={1}
+                                  endMarkerHeight={endMarkerHeight}
+                />
             </ParallaxLayer>
         </Parallax>
     </div>;
