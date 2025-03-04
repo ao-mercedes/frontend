@@ -12,7 +12,7 @@ import styles from './index.module.css';
 const alignCenter = {display: 'flex', alignItems: 'center'};
 
 interface ContentEndMarkerProps {
-    handleOnIntersect: () => void;
+    handleOnIntersect: (isIntersecting: boolean) => void;
     treshold: number;
 }
 
@@ -23,10 +23,7 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
         const observer = new IntersectionObserver(
             ([entry]) => {
                 console.log(`endOfTextMarker ${entry.isIntersecting}`);
-
-                if (entry.isIntersecting) {
-                    handleOnIntersect();
-                }
+                handleOnIntersect(entry.isIntersecting);
             },
             {threshold: treshold},
         );
@@ -44,22 +41,20 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
     }, [handleOnIntersect, treshold]);
 
     return <div className={"ao-body4-content-end-marker"}
-                ref={endOfTextMarker}
                 style={{
                     display: "flex",
                     position: "relative",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     alignItems: "center",
                     width: "90%",
-                    height: "56%",
+                    height: "100%",
                     flexGrow: 1,
                     overflow: "hidden",
                     flexDirection: "column",
-                    padding: "0% 10% 0% 10%",
                 }}>
         <div className={"ao-body4-content-end-marker-bg"} style={{
             display: "flex",
-            position: "absolute",
+            position: "relative",
             width: "100%",
             height: "100%",
             justifyContent: "center",
@@ -71,43 +66,44 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
             zIndex: 0,
         }}>
         </div>
+        <div ref={endOfTextMarker} className={"ao-body4-end-bg-marker"} style={{display: "flex", width: "100%"}}></div>
     </div>;
 };
 
 const ContentImage: React.FC<{
     imgUrl: string, imgWidth: string, transform: string,
     imageMarginTop: string,
-    imageMarginLeft: string,
+    imageMarginLeft: string, showBubble: boolean
 }> = ({
           imgUrl,
           imgWidth,
           transform,
           imageMarginTop,
-          imageMarginLeft
+          imageMarginLeft, showBubble
       }) => {
-    // const endOfTextMarker = useRef<HTMLDivElement | null>(null);
-    // useEffect(() => {
-    //     const observer = new IntersectionObserver(
-    //         ([entry]) => {
-    //             console.log(`content image endOfTextMarker ${entry.isIntersecting}`);
-    //             if (entry.isIntersecting) {
-    //                 console.log(`intersecting content image`);
-    //             }
-    //         },
-    //         {threshold: 0.7},
-    //     );
-    //
-    //     const currRef = endOfTextMarker.current;
-    //     if (currRef) {
-    //         observer.observe(currRef);
-    //     }
-    //
-    //     return () => {
-    //         if (currRef) {
-    //             observer.unobserve(currRef);
-    //         }
-    //     };
-    // }, []);
+    const endOfBackgroundMarkerRef = useRef<HTMLDivElement | null>(null);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                console.log(`content image endOfTextMarker ${entry.isIntersecting}`);
+                if (entry.isIntersecting) {
+                    console.log(`intersecting content image`);
+                }
+            },
+            {threshold: 1},
+        );
+
+        const currRef = endOfBackgroundMarkerRef.current;
+        if (currRef) {
+            observer.observe(currRef);
+        }
+
+        return () => {
+            if (currRef) {
+                observer.unobserve(currRef);
+            }
+        };
+    }, []);
     // const wrapperRef = useRef<HTMLDivElement | null>(null);
     // const imgRef = useRef<HTMLDivElement | null>(null);
     //
@@ -132,7 +128,9 @@ const ContentImage: React.FC<{
                  overflow: "hidden",
                  flexDirection: "column",
                  width: "100%",
-                 height: "1000px"
+                 height: "max-content",
+                 alignItems: "center",
+                 justifyContent: "center",
              }}>
             <img src={imgUrl} alt={""}
                  style={{
@@ -146,16 +144,29 @@ const ContentImage: React.FC<{
                      marginTop: imageMarginTop,
                      marginLeft: imageMarginLeft,
                  }}/>
-            <div style={{
-                backgroundColor: "black",
-                width: "100%",
+            <div ref={endOfBackgroundMarkerRef} className={"ao-body4-end-bg-marker"}
+                 style={{display: "flex", width: "100%"}}></div>
+            <div className={"ao-body4-bubble-wrapper"} style={{
+                width: "40%",
                 opacity: 0.5,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                position: "absolute"
+                position: "absolute",
+                top: "40%",
             }}>
-                <p>I'm a sticky layer</p>
+                {showBubble && <div className={"ao-body4-bubble"} style={{
+                    backgroundColor: "red",
+                    width: "100%",
+                    opacity: 0.5,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    position: "absolute",
+                    top: "40%",
+                }}>
+                    <p>I'm a sticky layer</p>
+                </div>}
             </div>
         </div>
 
@@ -193,7 +204,7 @@ const Content: React.FC<ContentProps> = ({
                     justifyContent: "center",
                     alignItems: "center",
                 }}>
-        <ContentImage imgUrl={imgUrl} imgWidth={imgWidth} transform={transform}
+        <ContentImage showBubble={showBubble} imgUrl={imgUrl} imgWidth={imgWidth} transform={transform}
                       imageMarginTop={imageMarginTop}
                       imageMarginLeft={imageMarginLeft}
         ></ContentImage>
@@ -220,12 +231,12 @@ const Content: React.FC<ContentProps> = ({
                                alignItems: "center",
                            }}>
                 <div className={"ao-body4-content-parallax-layer"}
-
                      style={{
                          display: "flex",
+
                          flexDirection: "column",
                          width: "100%",
-                         height: "100%",
+                         height: "auto",
                          justifyContent: "center", alignItems: "center",
                          position: "relative",
                      }}>
@@ -276,12 +287,10 @@ const Content: React.FC<ContentProps> = ({
                         </div>
                     </div>
                 </div>
-                <ContentEndMarker handleOnIntersect={() => {
-                    setShowBubble(true);
-                }} treshold={0}/>
+                <ContentEndMarker handleOnIntersect={(isIntersecting) => {
+                    setShowBubble(isIntersecting);
+                }} treshold={1}/>
             </ParallaxLayer>
-
-
         </Parallax>
 
         {/*<ParallaxLayer className={"stickkkie"} sticky={{start: 0, end: 1.5}}*/}
