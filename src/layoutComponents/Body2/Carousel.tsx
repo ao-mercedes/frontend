@@ -200,6 +200,37 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
     // update all items -> update focus item -> update img
     const [items, setItems] = useState<ItemDataWithMetadata[]>([]);
 
+    const [focusedItem, setFocusedItem] = useState<ItemData | null>(null);
+    const [exteriorFocusImage, setExteriorFocusImage] = useState<string | null>(
+        null,
+    );
+    const [startStep1Transition, setStartTransitionStep1] = useState(false);
+    const [stoppedStep1Transition, setStopTransitionStep1] = useState(false);
+    const [startStep2Transition, setStartTransitionStep2] = useState(false);
+    const [stoppedStep2Transition, setStopTransitionStep2] = useState(false);
+    const carouselWrapperRef = useRef<HTMLDivElement | null>(null);
+
+
+    const length = lengths[device] ?? "420px";
+    const step1DurationSeconds = 1;
+    const step2DurationSeconds = 2;
+    const carouselTransitionStep1 = startStep1Transition
+        ? `transform ${step1DurationSeconds}s ease-in`
+        : "";
+
+    const [circleLaserOffsets, setCircleLaserOffsets] = useState(defaultCircleLaserOffsets);
+    const [outerBubbleOffsets, setOuterBubbleOffsets] = useState(defaultOuterBubbleOffsets);
+    const laserSize = laserSizes[device] ?? "18px";
+    const outerBubbleSize = outerBubbleSizes[device] ?? "200px";
+    const borderRingPct = borderRingPcts[device] ?? "90%";
+
+
+    const dotLengthOptions = dotLengthOptionsByDevice[device] ?? {default: "10px", focused: "10px"};
+    const arrowScale = arrowScales[device] ?? 1;
+    const arrowsContainerWidth = arrowsContainerWidths[device] ?? "96%";
+    const outerBubbleFontSize = outerBubbleFontSizes[device] ?? "0.8rem";
+    const outerBubbleTextLineHeight = outerBubbleTextLineHeights[device] ?? "0.8rem";
+
     useEffect(() => {
         setItems(() => {
             if (data == undefined) {
@@ -227,10 +258,6 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
         });
     }, [data]);
 
-    const [focusedItem, setFocusedItem] = useState<ItemData | null>(null);
-    const [exteriorFocusImage, setExteriorFocusImage] = useState<string | null>(
-        null,
-    );
 
     const setFocusByDataId = (data_id: number) => {
         setItems((items) => {
@@ -303,14 +330,6 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
     }, [imageClient, items, requestImage]);
 
 
-    const length = lengths[device] ?? "420px";
-
-    const [startStep1Transition, setStartTransitionStep1] = useState(false);
-    const [stoppedStep1Transition, setStopTransitionStep1] = useState(false);
-    const [startStep2Transition, setStartTransitionStep2] = useState(false);
-    const [stoppedStep2Transition, setStopTransitionStep2] = useState(false);
-    const carouselWrapperRef = useRef<HTMLDivElement | null>(null);
-
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -333,8 +352,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
         };
     }, []);
 
-    const step1DurationSeconds = 1;
-    const step2DurationSeconds = 2;
+
     useEffect(() => {
         if (startStep1Transition) {
             setTimeout(() => {
@@ -357,12 +375,6 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
         }
     }, [startStep2Transition]);
 
-    const carouselTransitionStep1 = startStep1Transition
-        ? `transform ${step1DurationSeconds}s ease-in`
-        : "";
-
-    const [circleLaserOffsets, setCircleLaserOffsets] = useState(defaultCircleLaserOffsets);
-    const [outerBubbleOffsets, setOuterBubbleOffsets] = useState(defaultOuterBubbleOffsets);
 
     useEffect(() => {
         if (device == null || focusedItem == undefined) {
@@ -376,16 +388,6 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
     }, [device, focusedItem]);
 
 
-    const laserSize = laserSizes[device] ?? "18px";
-    const outerBubbleSize = outerBubbleSizes[device] ?? "200px";
-    const borderRingPct = borderRingPcts[device] ?? "90%";
-
-
-    const dotLengthOptions = dotLengthOptionsByDevice[device] ?? {default: "10px", focused: "10px"};
-    const arrowScale = arrowScales[device] ?? 1;
-    const arrowsContainerWidth = arrowsContainerWidths[device] ?? "96%";
-    const outerBubbleFontSize = outerBubbleFontSizes[device] ?? "0.8rem";
-    const outerBubbleTextLineHeight = outerBubbleTextLineHeights[device] ?? "0.8rem";
     return (
         <div
             className="carousel-container"
