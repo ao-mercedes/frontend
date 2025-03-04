@@ -148,8 +148,7 @@
 
 # Issues
 
-- [x] [Issue-0001] Circle Marker Obstructing Clicks
-
+- [x] [Issue-0001] [Component] Circle Marker Obstructing Clicks
     - ClassName Ref: `focus-center-circle-mark-wrapper` \
       On `Body2`'s `Carousel`, the circle marker is blocking mouse clicks on Carousel Dots.
       This is due to circle marker having an absolute position.
@@ -168,7 +167,7 @@
                 }
 ```
 
-- [ ] [Issue-0003] Lines are not working
+- [ ] [Issue-0003] [Component] Lines are not working
     - branch:
       `(body2-carousel-lines)`
     - svg lines are not in the correct position. need to research
@@ -181,7 +180,7 @@
     (x,y) --------------------------------------------- (x+L,y+W,right)
 ```
 
-= [ ] [Issue-0006] Same state rerendering
+= [ ] [Issue-0006] [Component::Rendering] Same state rerendering
 
 - Component `Body2.Carousel`
 - [ ] When the focused item and the next focus item is the same, an unnecessary trigger of `setFocusItem` is executed.
@@ -189,7 +188,7 @@
   same
   as `items.focusIdx`
 
-- [ ] [Issue-0007] Large Chunk on Build
+- [ ] [Issue-0007] [Performace] Large Chunk on Build
 
 when running `pnpm build`, the warning appears:
 
@@ -200,7 +199,7 @@ when running `pnpm build`, the warning appears:
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
 ```
 
-- [ ] [Issue-0008] DevOps: pre-commit hook linting continues when error
+- [ ] [Issue-0008] [DevOps] pre-commit hook linting continues when error
 
 Sample when execute `./pre-commit`:
 
