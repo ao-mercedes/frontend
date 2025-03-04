@@ -146,6 +146,29 @@ const ContentImage: React.FC<{
                     top: "40%",
                     // background: "white",
                 }}>
+                    <div className={"ao-body4-small-bubble-wrapper"} style={{
+                        backgroundColor: "red",
+                        width: "20px",
+                        height: "20px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        position: "absolute",
+                        transform: "translateX(35px) translateY(80px)",
+                        borderRadius: "50%",
+                        background: COLORS.PURE_WHITE,
+
+                    }}>
+                        <div style={{
+                            display: "flex",
+                            alignItems: "center",
+                            width: "100%",
+                            height: "100%",
+                            justifyContent: "center",
+                        }}>
+                        </div>
+                    </div>
+
                     <div className={"ao-body4-big-bubble-wrapper"} style={{
                         backgroundColor: "red",
                         width: "300px",
