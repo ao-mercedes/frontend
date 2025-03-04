@@ -449,7 +449,7 @@ const headerClipPaths = {
 };
 const headerHeights = {
     [Device.mobile]: "166px",
-    [Device.tablet]: "100px",
+    [Device.tablet]: "76px",
     [Device.desktop]: "100px",
 };
 const imgWidths = {
@@ -543,7 +543,7 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const headerWidth = headerWidths[device] ?? "100%";
     const headerTextPadding = headerTextPaddings[device] ?? "5% 15% 0% 15%";
 
-    const headerHeight = headerHeights[device] ?? "200px";
+    const headerHeight = headerHeights[device] ?? "166px";
     const imgWidth = imgWidths[device] ?? "295%";
     const imgTransform = imgTransforms[device] ?? "translateX(-12px) translateY(-12px)";
     const imageMarginTop = imageMarginTops[device] ?? "-8%";
