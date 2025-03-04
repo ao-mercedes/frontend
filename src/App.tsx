@@ -7,21 +7,19 @@ import Body1 from "./layoutComponents/Body1";
 import Body2 from "./layoutComponents/Body2";
 import Body3 from "./layoutComponents/Body3";
 import Body4 from "./layoutComponents/Body4";
+import Body5 from "./layoutComponents/Body5";
 import HamburgerNavigationMenu from "./layoutComponents/HamburgerNavigationMenu";
 
 import {useDevice} from "./hooks/useDevice.ts";
+import {useViewPortWidth} from "./hooks/useViewPortWidth.tsx";
 
 import {ConfigProvider, Layout} from "antd";
 
-
-const Body5: React.FC<{ children: React.ReactNode }> = ({children}) => (
-    <div className="body5 ao-body">{children}</div>
-);
 const Body6: React.FC<{ children: React.ReactNode }> = ({children}) => (
     <div className="body6 ao-body">{children}</div>
 );
 const Body7: React.FC<{ children: React.ReactNode }> = ({children}) => (
-    <div className="body6 ao-body">{children}</div>
+    <div className="body7 ao-body">{children}</div>
 );
 const {Footer} = Layout;
 
@@ -33,6 +31,8 @@ const DEVICE_SIZE_BREAKPOINT = {
 
 function App() {
     const device = useDevice(DEVICE_SIZE_BREAKPOINT);
+    const viewPortWidth = useViewPortWidth();
+
     return (
         <>
             <ConfigProvider theme={defaultTheme()}>
@@ -52,7 +52,7 @@ function App() {
                     <Body2 device={device}/>
                     <Body3 device={device}/>
                     <Body4 device={device}/>
-                    <Body5>content</Body5>
+                    <Body5 device={device} viewPortWidth={viewPortWidth}></Body5>
                     <Body6>content</Body6>
                     <Body7>content</Body7>
                     <Footer>footer</Footer>
