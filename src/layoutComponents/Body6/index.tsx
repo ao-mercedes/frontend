@@ -80,6 +80,12 @@ const paragraphFontSizes = {
     [Device.desktop]: "2.1rem",
 };
 
+const marginTops = {
+    [Device.mobile]: "50px",
+    [Device.tablet]: "120px",
+    [Device.desktop]: "350px",
+};
+
 const texts = [
     "The SL55 is not perfect. Its ergonomics could be better, its rear wheel steering system further improved, and the boot should be bigger. I am puzzled at the lack of soft closing doors, and really, given the price tag, it s outrageous that carbon ceramic brakes aren t standard.",
     "The engines heat also soaks into the cabin once it and the air con are switched off. I excuse this by calling it the 'SL's warm embrace', but I am irked because the air con can t seem to cool the cabin on a hot day.",
@@ -143,7 +149,6 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
 
     const showHeader = bodyEntered && (device == Device.tablet || device == Device.desktop);
 
-
     const headerHeight = headerHeights[device] ?? "166px";
     const headerTextPadding = headerTextPaddings[device] ?? "5% 15% 0% 15%";
     const headerLineHeight = headerLineHeights[device] ?? "1.4rem";
@@ -162,6 +167,9 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
 
     const summaryHeight = 620;
     const summaryDivSideRadius = summaryHeight / 2;
+
+    const marginTop = marginTops[device] ?? "350px";
+    const shouldShowHeaderAndParagraph = device == Device.desktop || device == Device.tablet;
     return <div className="ao-body6"
                 style={{
                     display: "flex",
@@ -173,37 +181,33 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
                     backgroundColor: COLORS.GRAY,
                 }}>
         <div ref={bodyEntryDiv}/>
-        <BodyHeader className={"ao-body6-header"} showHeader={showHeader} headerHeight={headerHeight}
-                    headerWidth={headerWidth}
-                    headerClipPath={headerClipPath} headerTextPadding={headerTextPadding}
-                    headerLineHeight={headerLineHeight} headerFontSize={headerFontSize}
-                    text={"The SL55 is not perfect. Its ergonomics could be better, its rear wheel steering system further improved, and the boot should be bigger."}
-        />
-        <UnbrokenPage style={{
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            width: "100%",
-            paddingLeft: pageHorizontalPadding,
-            paddingRight: pageHorizontalPadding,
-            marginTop: "350px",
-        }}>
-            <Paragraphs fontSize={paragraphFontSize} paragraphLineHeight={paragraphLineHeight}
-                        texts={texts} rowGap={rowGap} color={color} fontWeight={fontWeight}/>
-        </UnbrokenPage>
+        {shouldShowHeaderAndParagraph && <>
+            <BodyHeader className={"ao-body6-header"} showHeader={showHeader} headerHeight={headerHeight}
+                        headerWidth={headerWidth}
+                        headerClipPath={headerClipPath} headerTextPadding={headerTextPadding}
+                        headerLineHeight={headerLineHeight} headerFontSize={headerFontSize}
+                        text={"The SL55 is not perfect. Its ergonomics could be better, its rear wheel steering system further improved, and the boot should be bigger."}
+            />
+            <UnbrokenPage style={{
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+                width: "100%",
+                paddingLeft: pageHorizontalPadding,
+                paddingRight: pageHorizontalPadding,
+                marginTop: marginTop,
+            }}>
+                <Paragraphs fontSize={paragraphFontSize} paragraphLineHeight={paragraphLineHeight}
+                            texts={texts} rowGap={rowGap} color={color} fontWeight={fontWeight}/>
+            </UnbrokenPage></>}
 
-        <ImageContentsGrid contentDatas={contentDatas}/>
-        <Summaries summaryHeight={summaryHeight} summaryDivSideRadius={summaryDivSideRadius}
-                   summaryDatas={summaryDatas}/>
+
+        {/* FIXME Only show Summaries on desktop for now, yet to work on mobile/tablet*/}
+        {device == Device.desktop && <>
+            <ImageContentsGrid contentDatas={contentDatas}/>
+            <Summaries summaryHeight={summaryHeight} summaryDivSideRadius={summaryDivSideRadius}
+                       summaryDatas={summaryDatas}/></>}
     </div>;
 };
 
 export default Body6;
-
-// const expS = {
-//     border: "4px solid transparent",
-//     borderRadius: "20px",
-//     background: "linear-gradient(to right, white, white), linear-gradient(to right, red , blue)",
-//     backgroundClip: "padding-box, border-box",
-//     backgroundOrigin: "padding-box, border-box",
-// };
