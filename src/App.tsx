@@ -16,7 +16,6 @@ import {useViewPortWidth} from "./hooks/useViewPortWidth.tsx";
 
 import {ConfigProvider, Layout} from "antd";
 
-
 const {Footer} = Layout;
 
 const DEVICE_SIZE_BREAKPOINT = {

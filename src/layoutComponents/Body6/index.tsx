@@ -98,33 +98,33 @@ const texts = [
 
 const contentDatas = [
     {
-        imageUrl: img_flawed_left1,
+        image: {url: img_flawed_left1, alt: "Feature of information screen in a sports car"},
         credit: "sgCarMart",
         text: "SL comes with a 'free' IWC timepiece with a stopwatch feature for recording lap times."
     },
 
     {
-        imageUrl: img_flawed_right1,
+        image: {url: img_flawed_right1, alt: "Engine of a car"},
         credit: "sgCarMart",
         text: `"Full-fat" AMG models continue to have engines assembled by a single engineer, whose signature adorns the engine cover.`
     },
     {
-        imageUrl: img_flawed_left2,
+        image: {url: img_flawed_left2, alt: "Feature of information screen in a sports car"},
         credit: "sgCarMart",
         text: "The SL 55 can adapt to your personal driving style all you need to do is adjust these parameters."
     },
     {
-        imageUrl: img_flawed_right2,
+        image: {url: img_flawed_right2, alt: "View of a sport car with a soothing backdrop"},
         credit: "sgCarMart",
         text: "We're not sure if the next SL will be available with a V8 or even an internal combustion engine, so savour this one while it's still around."
     },
     {
-        imageUrl: img_flawed_left3,
+        image: {url: img_flawed_left3, alt: "Opened soft-top of a car"},
         credit: "sgCarMart",
         text: "The soft-top actually opens and closes quickly provided the virtual toggle doesn't slip away from your finger, of course."
     },
     {
-        imageUrl: img_flawed_right3,
+        image: {url:img_flawed_right3 , alt: "View of an open-top car with a driver"},
         credit: "sgCarMart",
         text: "The SL's dual-nature enables it to be a cruiser when you're chilling, or a bruiser when you're feeling fiery."
     },
@@ -134,12 +134,12 @@ const contentDatas = [
 const summaryDatas: SummaryDataT[] = [
     {
         title: "What We Like",
-        imageUrl: img_summary_left,
+        image: {url:img_summary_left ,alt: "Front outline of car"},
         texts: ["Rapid performance", "Loud V8 and throaty exhaust", "Pliant ride", "Cruising ability", "Might be the last SL with a V8", "Still feels special"]
     },
     {
         title: "What We Dislike",
-        imageUrl: img_summary_right,
+        image: {url:img_summary_right,alt: "Back outline of car" },
         texts: ["Ridiculous $1 million price tag", "Non-existent rear-wheel", "steering", "No soft-closing doors", "Seriously overpriced"]
     }
 ];

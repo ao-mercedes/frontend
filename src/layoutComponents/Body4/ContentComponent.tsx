@@ -69,32 +69,33 @@ const ContentEndMarker: React.FC<ContentEndMarkerProps> = ({handleOnIntersect, t
 
 
 const ContentImage: React.FC<{
-    imageUrl: string, imageHeight: string, imageWidth: string, imageTransform: string,
+    imageUrl: string,
+    imageHeight: string,
+    imageWidth: string,
+    imageTransform: string,
     imageMarginTop: string,
-    imageMarginLeft: string, showBubble: boolean, bubbleTexts: {
+    imageMarginLeft: string,
+    imageAlt: string,
+    showBubble: boolean, bubbleTexts: {
         upper: string,
         lower: string,
-    };
-    smallBubbleLeft: string;
-    bigBubbleLength: string;
-    bigBubbleTop: string;
-    bigBubbleLeft: string;
-    smallBubbleWidth: string;
-    smallBubbleTop: string;
-    bigBubbleFontSize: string;
-    bigBubbleTextLineHeight: string;
+    },
+    smallBubbleLeft: string,
+    bigBubbleLength: string,
+    bigBubbleTop: string,
+    bigBubbleLeft: string,
+    smallBubbleWidth: string,
+    smallBubbleTop: string,
+    bigBubbleFontSize: string,
+    bigBubbleTextLineHeight: string,
 }> = ({
-          imageUrl,
-          imageWidth,
-          imageHeight,
-          imageTransform,
-          imageMarginTop,
-          imageMarginLeft, showBubble, bubbleTexts,
-          smallBubbleLeft,
-          smallBubbleWidth,
+          imageUrl, imageWidth,
+          imageHeight, imageTransform, imageMarginTop,
+          imageMarginLeft, imageAlt,
+          showBubble, bubbleTexts,
+          smallBubbleLeft, smallBubbleWidth,
           smallBubbleTop,
-          bigBubbleLength,
-          bigBubbleTop,
+          bigBubbleLength, bigBubbleTop,
           bigBubbleFontSize, bigBubbleTextLineHeight,
           bigBubbleLeft
       }) => {
@@ -110,7 +111,7 @@ const ContentImage: React.FC<{
                  alignItems: "center",
                  justifyContent: "center",
              }}>
-            <img src={imageUrl} alt={""}
+            <img src={imageUrl} alt={imageAlt}
                  style={{
                      display: "flex",
                      justifyContent: "center",
@@ -232,6 +233,7 @@ interface ContentProps {
     imageMarginTop: string;
     imageMarginLeft: string;
     imageHeight: string;
+    imageAlt: string;
 
     contentWidth: string;
     contentTextBoxPaddingTop: string;
@@ -259,7 +261,7 @@ export const Content: React.FC<ContentProps> = ({
                                                     imageUrl,
                                                     imageWidth,
                                                     imageHeight,
-                                                    imageTransform,
+                                                    imageTransform, imageAlt,
                                                     imageMarginTop,
                                                     imageMarginLeft,
                                                     contentWidth,
@@ -295,6 +297,7 @@ export const Content: React.FC<ContentProps> = ({
                       imageUrl={imageUrl}
                       imageWidth={imageWidth}
                       imageHeight={imageHeight}
+                      imageAlt={imageAlt}
                       imageTransform={imageTransform}
                       imageMarginTop={imageMarginTop}
                       imageMarginLeft={imageMarginLeft}
@@ -305,8 +308,7 @@ export const Content: React.FC<ContentProps> = ({
                       bigBubbleTop={bigBubbleTop}
                       bigBubbleLeft={bigBubbleLeft}
                       bigBubbleTextLineHeight={bigBubbleTextLineHeight}
-                      bigBubbleFontSize={bigBubbleFontSize}
-        ></ContentImage>
+                      bigBubbleFontSize={bigBubbleFontSize}></ContentImage>
         <Parallax className={"ao-body4-parallax"} pages={1.5}
                   style={{
                       display: "flex",

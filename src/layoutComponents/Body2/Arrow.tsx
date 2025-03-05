@@ -39,7 +39,7 @@ export const Arrow: React.FC<ArrowComponentProps> = ({onClick, scale, img, leans
                     alignItems: "center",
                 }}
                 src={img}
-                alt={""}
+                alt={"Navigate to adjacent item"}
                 onClick={onClick}
             />
         </div>

@@ -183,7 +183,7 @@ export const HamburgerNavigationMenu = ({
             >
                 <img
                     src={options.useBlackIcons ? item.iconUrlBlack : item.iconUrl}
-                    alt={""}
+                    alt={`Share link option for ${item.label}`}
                     style={{
                         width: "100%",
                         height: "100%",
@@ -293,7 +293,7 @@ export const HamburgerNavigationMenu = ({
                         >
                             <img
                                 src={icon_nav_share}
-                                alt={""}
+                                alt={"Show share links"}
                                 style={{
                                     width: "80%",
                                     height: "100%",

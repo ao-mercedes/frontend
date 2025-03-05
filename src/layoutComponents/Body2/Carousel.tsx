@@ -202,7 +202,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
     const [items, setItems] = useState<ItemDataWithMetadata[]>([]);
 
     const [focusedItem, setFocusedItem] = useState<ItemData | null>(null);
-    const [exteriorFocusImage, setExteriorFocusImage] = useState<string | null>(
+    const [exteriorFocusImage, setExteriorFocusImage] = useState<{url:string, alt:string} | null>(
         null,
     );
 
@@ -308,7 +308,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
     const requestImage = useMemo(() => {
         return async (imgRef: string) => {
             if (imageClient == null || imgRef == null) {
-                return "";
+                return { url: "notfound", alt: "Default image not found"};
             }
             return imageClient.getImage(imgRef);
         };
@@ -428,8 +428,8 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                         width: borderRingPct,
                         height: borderRingPct,
                     }}
-                    src={exteriorFocusImage ?? undefined}
-                    alt={""}
+                    src={exteriorFocusImage?.url ?? undefined}
+                    alt={exteriorFocusImage?.alt ?? ""}
                 ></img>
                 {stoppedStep1Transition &&
                     <>

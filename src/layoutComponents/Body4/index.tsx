@@ -241,9 +241,10 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                     headerLineHeight={headerLineHeight} headerFontSize={headerFontSize}
                     text={"Modern Mercedes models have interiors designed to elicit wows from the moment you lay eyes on the cockpit, but the SL is going with a 'hyperanalogue' approach."}/>
 
-        <Content bubbleTexts={contentTexts[0].bubbleTexts}
+        <Content
                  imageWidth={imageWidth}
                  imageUrl={img_parallax_interior1}
+                 imageAlt={"A sports car's cockpit features mood lighting and tablet like infotainment screen"}
                  imageTransform={imageTransform}
                  imageMarginTop={imageMarginTop}
                  imageMarginLeft={imageMarginLeft}
@@ -254,6 +255,7 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                  paragraphLineHeight={paragraphLineHeight}
                  paragraphFontSize={paragraphFontSize}
                  paragraphFontWeight={paragraphFontWeight}
+                 bubbleTexts={contentTexts[0].bubbleTexts}
                  paragraphs={contentParagraphs[0]}
                  endMarkerHeight={endMarkerHeight[0]}
                  smallBubbleLeft={smallBubbleLeft[0]}
@@ -267,27 +269,32 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
         />
         {!showFirstOnly &&
             <Content
-                paragraphFontWeight={paragraphFontWeight}
-                bigBubbleTop={bigBubbleTop[1]}
-                bigBubbleLeft={bigBubbleLeft[1]}
-                endMarkerHeight={endMarkerHeight[1]}
-                smallBubbleWidth={smallBubbleWidth}
-                paragraphFontSize={paragraphFontSize}
-                paragraphLineHeight={paragraphLineHeight}
-                smallBubbleLeft={smallBubbleLeft[1]}
-                smallBubbleTop={smallBubbleTop[1]}
-                imageHeight={imageHeight}
-                contentWidth={contentWidth}
                 imageMarginTop={imageMarginTop}
                 imageMarginLeft={imageMarginLeft}
-                bigBubbleFontSize={bigBubbleFontSize}
-                bigBubbleLength={bigBubbleLength}
-                bigBubbleTextLineHeight={bigBubbleTextLineHeight}
-                contentTextBoxPaddingTop={contentTextBoxPaddingTop}
-                contentTextBoxPaddingBottom={contentTextBoxPaddingBottom}
-                paragraphs={contentParagraphs[1]} bubbleTexts={contentTexts[1].bubbleTexts} imageWidth={imageWidth}
-                imageUrl={img_parallax_interior2}
                 imageTransform={imageTransform}
+                imageHeight={imageHeight}
+                imageUrl={img_parallax_interior2}
+                imageAlt={"Backseat of a modern sports car"}
+                imageWidth={imageWidth}
+
+                paragraphFontSize={paragraphFontSize}
+                paragraphFontWeight={paragraphFontWeight}
+                paragraphLineHeight={paragraphLineHeight}
+                paragraphs={contentParagraphs[1]} bubbleTexts={contentTexts[1].bubbleTexts}
+                contentWidth={contentWidth}
+                contentTextBoxPaddingBottom={contentTextBoxPaddingBottom}
+                contentTextBoxPaddingTop={contentTextBoxPaddingTop}
+
+                bigBubbleTop={bigBubbleTop[1]}
+                bigBubbleLeft={bigBubbleLeft[1]}
+                bigBubbleLength={bigBubbleLength}
+                bigBubbleFontSize={bigBubbleFontSize}
+                bigBubbleTextLineHeight={bigBubbleTextLineHeight}
+
+                smallBubbleWidth={smallBubbleWidth}
+                smallBubbleTop={smallBubbleTop[1]}
+                smallBubbleLeft={smallBubbleLeft[1]}
+                endMarkerHeight={endMarkerHeight[1]}
             />}
     </div>;
 };

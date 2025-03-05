@@ -1,15 +1,14 @@
 import {COLORS} from "../../utils/constants/constants.ts";
 
+import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
 
 import {Typography} from "antd";
 import {Property} from "csstype";
-import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
-
 type FlexDirection = Property.FlexDirection;
 
 export type SummaryDataT = {
     title: string;
-    imageUrl: string;
+    image: {url: string, alt: string};
     texts: string[];
 };
 
@@ -21,7 +20,8 @@ const Summary: React.FC<{
     reverse?: boolean,
     hasIntersected: boolean
 }> = ({summaryHeight, summaryDivSideRadius, summaryData, reverse, hasIntersected}) => {
-    const {imageUrl, texts, title} = summaryData;
+    const {image, texts, title} = summaryData;
+    const {url: imageUrl, alt: imageAlt} = image;
 
 
     const summaryStyle: {
@@ -65,7 +65,7 @@ const Summary: React.FC<{
                     transition: "transform 2s",
                 }}>
         <div className="ao-body6-summary-image" style={{display: "flex", alignItems: "center", flexShrink: 0}}>
-            <img src={imageUrl} style={{height: "90%"}}/>
+            <img src={imageUrl} alt={imageAlt} style={{height: "90%"}}/>
         </div>
         <div className="ao-body6-summary-text-wrapper" style={{
             display: "flex",

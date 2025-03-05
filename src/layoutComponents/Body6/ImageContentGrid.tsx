@@ -1,8 +1,10 @@
-import * as React from "react";
-import {useEffect, useState} from "react";
-import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
-import {COLORS} from "../../utils/constants/constants.ts";
 import icon_cross from "../../assets/body6/cross_icon.png";
+
+import {COLORS} from "../../utils/constants/constants.ts";
+
+import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
+
+import {useEffect, useState} from "react";
 import {Typography} from "antd";
 import {Property as CSSProperty} from 'csstype';
 
@@ -10,11 +12,10 @@ type TextAlign = CSSProperty.TextAlign;
 
 
 interface ContentData {
-    imageUrl: string,
+    image: { url: string, alt: string },
     credit: string,
     text: string
 }
-
 
 const ImageContent: React.FC<{
     shouldReverse: boolean,
@@ -22,11 +23,13 @@ const ImageContent: React.FC<{
     contentId: number,
     text: string,
     imageUrl: string,
+    imageAlt: string,
     credit: string
 }> = ({
           shouldReverse,
           contentId,
-          imageUrl, text,
+          imageUrl, imageAlt,
+          text,
           credit
       }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -116,9 +119,10 @@ const ImageContent: React.FC<{
                 justifyContent: "flex-end",
                 position: "relative",
                 alignItems: "flex-end",
-                width: "100%", height: "100px",}}
+                width: "100%", height: "100px",
+            }}
                  onClick={() => setShowModal(false)}>
-                <img src={icon_cross} alt={""}/>
+                <img src={icon_cross} alt={"click to exit modal"}/>
             </div>
             <div className={"ao-body6-content-modal-content"} style={{
                 display: "flex",
@@ -127,7 +131,7 @@ const ImageContent: React.FC<{
                 flexDirection: "column",
                 width: "80%", height: "min-content",
             }}>
-                <img style={{scale: 1}} src={imageUrl} alt={""}/>
+                <img style={{scale: 1}} src={imageUrl} alt={imageAlt}/>
                 <Typography.Text style={{...modalTextStyle, marginTop: "30px"}}>
                     {text}
                 </Typography.Text>
@@ -252,7 +256,8 @@ const ImageContents: React.FC<{ contentDatas: ContentData[] }> = ({contentDatas}
         {contentDatas.map((content, i) => {
             const shouldReverse = i % 2 == 1;
             const imageScale = 0.9;
-            return <ImageContent key={i} imageUrl={content.imageUrl} credit={content.credit} text={content.text}
+            return <ImageContent key={i} imageUrl={content.image.url} imageAlt={content.image.alt}
+                                 credit={content.credit} text={content.text}
                                  shouldReverse={shouldReverse} imageScale={imageScale} contentId={i}/>;
         })}
     </div>;

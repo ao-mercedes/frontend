@@ -97,7 +97,7 @@ export const _ScrollGuide: React.FC<{ device: Device }> = ({device}) => {
                     ...scrollGuideArrowStyle,
                 }}
                 src={img_arrowdown}
-                alt={""}
+                alt={"Go to next item"}
             ></img>
         </div>
     );

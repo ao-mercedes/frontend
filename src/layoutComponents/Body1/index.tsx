@@ -50,7 +50,7 @@ export const Body1: React.FC<{ device: Device }> = ({device}) => {
         <img
             style={{...ringStyle, position: "absolute"}}
             src={img_mastheadring}
-            alt={""}
+            alt={"A masthead of a brand new sports car"}
         ></img>
     );
 
@@ -61,7 +61,7 @@ export const Body1: React.FC<{ device: Device }> = ({device}) => {
             }
             style={{...ringStyle, zIndex: 500, position: "absolute"}}
             src={img_mastheadringrotate}
-            alt={""}
+            alt={"Display"}
         ></img>
     );
 
@@ -112,7 +112,7 @@ export const Body1: React.FC<{ device: Device }> = ({device}) => {
                 src={
                     device == Device.mobile ? img_mastheadbackmobile : img_mastheadback
                 }
-                alt={""}
+                alt={"Masthead of a brand new sports car"}
             ></img>
             {/*rings*/}
             <div
@@ -137,7 +137,7 @@ export const Body1: React.FC<{ device: Device }> = ({device}) => {
                 src={
                     device == Device.mobile ? img_mastheadfrontmobile : img_mastheadfront
                 }
-                alt={""}
+                alt={"Masthead of a brand new sports car"}
             ></img>
             <div
                 className="ao-title"
