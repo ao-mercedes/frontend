@@ -16,7 +16,7 @@ import {useViewPortWidth} from "./hooks/useViewPortWidth.tsx";
 
 import {ConfigProvider, Layout} from "antd";
 
-const {Footer} = Layout;
+// const {Footer} = Layout;
 
 const DEVICE_SIZE_BREAKPOINT = {
     mobile: {width: 480}, // 480 X 640
@@ -49,7 +49,7 @@ function App() {
                     <Body4 device={device}/>
                     <Body5 device={device} viewPortWidth={viewPortWidth}></Body5>
                     <Body6 device={device}/>
-                    <Footer>footer</Footer>
+                    {/*<Footer>footer</Footer>*/}
                 </Layout>
             </ConfigProvider>
         </>
