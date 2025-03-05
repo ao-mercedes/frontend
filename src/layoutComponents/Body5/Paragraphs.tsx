@@ -13,7 +13,6 @@ export const Paragraph: React.FC<{
           color
       }) => {
 
-    console.log(`Paragraph.color ${color}`);
     return <div className="ao-body5-content-paragraph"
                 style={{
                     display: "flex",
@@ -41,15 +40,16 @@ export const Paragraphs: React.FC<{
           rowGap,
       }) => {
 
-    return <div className="ao-body5-content-paragraphs" style={{
-        display: "flex",
-        height: "max-content",
-        fontSize: "30px",
-        flexDirection: "column",
-        justifyContent: "center",
-        paddingTop: "20px",
-        rowGap: rowGap,
-    }}>
+    return <div className="ao-body5-content-paragraphs"
+                style={{
+                    display: "flex",
+                    height: "max-content",
+                    fontSize: "30px",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    paddingTop: "20px",
+                    rowGap: rowGap,
+                }}>
         {texts.map((text, index) => {
             return <div key={index}>
                 <Paragraph

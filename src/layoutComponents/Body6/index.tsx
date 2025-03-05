@@ -1,11 +1,16 @@
 import "./index.css";
 
-import {COLORS, Device} from "../../utils/constants/constants.ts";
-import BodyHeader from "../../components/BodyHeader.tsx";
-import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
-import {UnbrokenPage} from "../pageSizes.tsx";
-import Paragraphs from "../Body5/Paragraphs.tsx";
+import img_flawed_left from "../../assets/Body6/Flawed_left1.png";
 
+import {COLORS, Device} from "../../utils/constants/constants.ts";
+
+import BodyHeader from "../../components/BodyHeader.tsx";
+import Paragraphs from "../Body5/Paragraphs.tsx";
+import {UnbrokenPage} from "../pageSizes.tsx";
+
+import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
+
+import {useState} from "react";
 
 const headerClipPaths = {
     [Device.mobile]: "polygon(0% 0%, 100% 0%, 100% 100%, 12% 100%)",
@@ -75,8 +80,111 @@ const texts = [
     "What matters most, though, is that driving it reminds me that life isn t just about work. And in it, I am also freed from sustainabilitys constant clamour. The SL refreshes my soul how can I not love it so?",
 ];
 
+const ImageContent: React.FC<{
+    shouldReverse: boolean,
+    imageScale: number,
+    contentId: number,
+}> = ({
+          shouldReverse,
+          contentId
+      }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+
+    console.log("isHovered", isHovered);
+    return <div key={`${contentId}${contentId}`}
+                style={{
+                    // backgroundColor: "blue",
+                    display: "flex",
+                    flexDirection: shouldReverse ? "row-reverse" : "row",
+                    justifyContent: "flex-end",
+                    alignItems: "flex-end",
+                    height: "700px",
+                }}>
+        <div className={"ao-body6-gray-bubble-mobile"} style={{
+            display: "flex",
+            flex: 5,
+            height: "min-content",
+            alignSelf: "flex-start",
+            justifyContent: shouldReverse ? "flex-start" : "flex-end",
+        }}>
+            <div style={{
+                display: "flex",
+                height: "400px",
+                backgroundColor: COLORS.STEEL_BLUE,
+                width: "400px",
+                // transform: "translateY(-100px)",
+                borderRadius: "50%",
+            }}>
+            </div>
+        </div>
+        <div className={"ao-body6-inner-gap-mobile"} style={{
+            display: "flex",
+            width: "100px",
+        }}/>
+        <div className={"ao-body6-image-bubble-mobile"} style={{
+            display: "flex",
+            flex: 5,
+            justifyContent: "center",
+            height: "600px",
+            width: "600px",
+            position: "relative",
+        }}
+
+        >
+            {isHovered && <>
+                {/*<div className={"ao-body6-image-border-1"} style={{*/}
+                {/*    display: "flex",*/}
+                {/*    width: "100%",*/}
+                {/*    position: "absolute",*/}
+                {/*    justifyContent: "center",*/}
+                {/*    background: `linear-gradient(to bottom, ${COLORS.BURNISHED_GOLD}, ${COLORS.WALNUT_BROWN})`,*/}
+                {/*    // justifyContent: shouldReverse ? "flex-start" : "flex-end",*/}
+                {/*    // backgroundColor: "green",*/}
+                {/*    height: "100%",*/}
+                {/*    borderRadius: "50%",*/}
+                {/*    pointerEvents: "none",*/}
+                {/*}}>*/}
+                {/*</div>*/}
+                <div className={"ao-body6-image-border-2"} style={{
+                    scale: 1.1,
+                    zIndex: 5,
+                    display: "flex",
+                    width: "100%",
+                    position: "absolute",
+                    justifyContent: "center",
+                    height: "100%",
+                    borderRadius: "50%",
+                    opacity: 0.9,
+                    pointerEvents: "none",
+
+                    border: `60px solid ${COLORS.BURNISHED_GOLD}`,
+                }}>
+
+
+                </div>
+            </>}
+            <img style={{
+                zIndex: 1,
+            }} src={img_flawed_left} alt={""}
+                 onMouseEnter={() => {
+                     setIsHovered(true);
+                 }}
+                 onMouseLeave={() => setIsHovered(false)}
+            />
+        </div>
+        <div className={"ao-body6-outer-gap"} style={{
+            display: "flex",
+            width: "30px",
+        }}/>
+    </div>;
+};
+
 export const Body6: React.FC<{ device: Device, }> = ({device}) => {
-    const {intersects: showHeader, ref: bodyEntryDiv} = useIntersectingRef(true, 1);
+    const {intersects: bodyEntered, ref: bodyEntryDiv} = useIntersectingRef(true, 1);
+
+    const showHeader = bodyEntered && (device == Device.tablet || device == Device.desktop);
+
 
     const headerHeight = headerHeights[device] ?? "166px";
     const headerTextPadding = headerTextPaddings[device] ?? "5% 15% 0% 15%";
@@ -102,9 +210,11 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
                     overflow: "auto",
                     height: "min-content",
                     backgroundColor: COLORS.GRAY,
-                }}>
+                }}
+
+    >
         <div ref={bodyEntryDiv}/>
-        <BodyHeader className={"ao-body5-header"} showHeader={showHeader} headerHeight={headerHeight}
+        <BodyHeader className={"ao-body6-header"} showHeader={showHeader} headerHeight={headerHeight}
                     headerWidth={headerWidth}
                     headerClipPath={headerClipPath} headerTextPadding={headerTextPadding}
                     headerLineHeight={headerLineHeight} headerFontSize={headerFontSize}
@@ -123,7 +233,45 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
                         texts={texts} rowGap={rowGap} color={color} fontWeight={fontWeight}/>
         </UnbrokenPage>
 
+        <div className={"ao-body6-bubbles-mobile"} style={{
+            display: "flex",
+            position: "relative",
+            width: "80%",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignSelf: "center",
+            alignItems: "center",
+            // backgroundColor: "red",
+        }}>
+            <div
+                className={"ao-body6-bubbles-mobile-grid"}
+                style={{
+                    display: "grid",
+                    position: "relative",
+                    width: "min-content",
+                    gridTemplateColumns: "repeat(2, 1fr)",
+                    rowGap: "20px",
+                }}>
+
+                {[1, 2, 3, 4].map((_, i) => {
+                    const shouldReverse = i % 2 == 1;
+                    const imageScale = 0.9;
+
+                    return <ImageContent shouldReverse={shouldReverse} imageScale={imageScale} contentId={i}/>;
+                })}
+            </div>
+
+        </div>
+
     </div>;
 };
 
 export default Body6;
+
+// const expS = {
+//     border: "4px solid transparent",
+//     borderRadius: "20px",
+//     background: "linear-gradient(to right, white, white), linear-gradient(to right, red , blue)",
+//     backgroundClip: "padding-box, border-box",
+//     backgroundOrigin: "padding-box, border-box",
+// };

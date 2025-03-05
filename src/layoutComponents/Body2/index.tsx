@@ -68,7 +68,6 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
         }
     }, [imageClient]);
 
-    /* FIXME update state on device change only. */
     const headerBylineFontSize = headerBylineFontSizes[device] ?? "18px";
     const headerDateFontSize = headerDateFontSizes[device] ?? "14px";
     const paragraphFontSize = paragraphFontSizes[device] ?? "20px";
