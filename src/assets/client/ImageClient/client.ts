@@ -1,7 +1,7 @@
-import img_carousel1 from "../../../assets/Body2/carousel-1.png";
-import img_carousel2 from "../../../assets/Body2/carousel-2.png";
-import img_carousel3 from "../../../assets/Body2/carousel-3.png";
-import img_carousel4 from "../../../assets/Body2/carousel-4.png";
+import img_carousel1 from "../../Body2/carousel-1.png";
+import img_carousel2 from "../../Body2/carousel-2.png";
+import img_carousel3 from "../../Body2/carousel-3.png";
+import img_carousel4 from "../../Body2/carousel-4.png";
 
 export interface IImageClient {
     getImage(label: string): string;
