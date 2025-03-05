@@ -423,7 +423,7 @@ const CircularCarousel: React.FC<CircularCarouselProps> = ({
                     style={{
                         transform: startStep1Transition
                             ? "translateX(0) rotate(0)"
-                            : "translateX(-200%) rotate(-270deg)",
+                            : "translateX(-220%) rotate(-270deg)",
                         transition: carouselTransitionStep1,
                         width: borderRingPct,
                         height: borderRingPct,
