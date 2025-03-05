@@ -1,19 +1,25 @@
-import {COLORS} from "../../utils/constants/constants.ts";
-
 import {Typography} from "antd";
 
-export const Paragraph: React.FC<{ paragraphLineHeight: string, text: string, fontSize: string }> = ({
-                                                                                                         text,
-                                                                                                         fontSize,
-                                                                                                         paragraphLineHeight
-                                                                                                     }) => {
+export const Paragraph: React.FC<{
+    lineHeight: string,
+    fontWeight: string,
+    text: string,
+    color: string,
+    fontSize: string
+}> = ({
+          text,
+          fontSize, fontWeight,
+          lineHeight,
+          color
+      }) => {
+
     return <div className="ao-body5-content-paragraph"
                 style={{
                     display: "flex",
                     height: "max-content",
-                    color: "white",
                 }}>
-        <Typography.Text style={{color: COLORS.PURE_WHITE, fontSize: fontSize, lineHeight: paragraphLineHeight}}>
+        <Typography.Text
+            style={{fontWeight: fontWeight, color: color, fontSize: fontSize, lineHeight: lineHeight}}>
             {text}
         </Typography.Text>
     </div>;
@@ -21,30 +27,36 @@ export const Paragraph: React.FC<{ paragraphLineHeight: string, text: string, fo
 
 export const Paragraphs: React.FC<{
     fontSize: string,
+    fontWeight: string,
     paragraphLineHeight: string,
     rowGap: string,
-    texts: string[]
+    texts: string[],
+    color: string,
 }> = ({
-          fontSize,
+          fontSize, fontWeight,
+          color,
           paragraphLineHeight,
           texts,
-          rowGap
+          rowGap,
       }) => {
-    return <div className="ao-body5-content-paragraphs" style={{
-        display: "flex",
-        height: "max-content",
-        fontSize: "30px",
-        flexDirection: "column",
-        justifyContent: "center",
-        paddingTop: "20px",
-        rowGap: rowGap,
-    }}>
+
+    return <div className="ao-body5-content-paragraphs"
+                style={{
+                    display: "flex",
+                    height: "max-content",
+                    fontSize: "30px",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    paddingTop: "20px",
+                    rowGap: rowGap,
+                }}>
         {texts.map((text, index) => {
             return <div key={index}>
                 <Paragraph
                     fontSize={fontSize}
-                    paragraphLineHeight={paragraphLineHeight}
-                    text={text}></Paragraph>
+                    fontWeight={fontWeight}
+                    lineHeight={paragraphLineHeight}
+                    text={text} color={color}></Paragraph>
             </div>;
         })}
     </div>;

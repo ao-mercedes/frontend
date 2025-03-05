@@ -55,8 +55,6 @@ const ContentComponent: React.FC<_ContentProps> = ({
                                                        imageTextJustifyContent,
                                                        textColor
                                                    }) => {
-
-
     const {intersects: showImage, ref: textDivRef} = useIntersectingRef(true, 0.7);
 
     const imageTextMargin = imageTextAutoMarginLeftOrRight == "left" ? {
@@ -67,7 +65,6 @@ const ContentComponent: React.FC<_ContentProps> = ({
 
     const imagePaddingStyle = imageWrapperPadding.direction == "left" ? {
         paddingLeft: imageWrapperPadding.value,
-
     } : imageWrapperPadding.direction == "right" ? {
         paddingRight: imageWrapperPadding.value,
     } : {};
@@ -150,7 +147,6 @@ const ContentComponent: React.FC<_ContentProps> = ({
                 </div>
             </div>
         </div>
-
     </div>;
 };
 

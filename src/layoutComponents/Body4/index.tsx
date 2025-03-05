@@ -1,12 +1,13 @@
 import "./index.css";
-import {COLORS, Device} from "../../utils/constants/constants.ts";
 
 import img_parallax_interior1 from "../../assets/Body4/parallax_interior1_trim_transparent.png";
 import img_parallax_interior2 from "../../assets/Body4/parallax_interior2.png";
 
-import Content from "./ContentComponent.tsx";
+import {Device} from "../../utils/constants/constants.ts";
 
-import {Typography} from "antd";
+import Content from "./ContentComponent.tsx";
+import BodyHeader from "../../components/BodyHeader.tsx";
+
 import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
 
 
@@ -188,6 +189,7 @@ const contentTexts = [
     }
 ];
 
+
 export const Body4: React.FC<{ device: Device }> = ({device}) => {
     const {intersects: showHeader, ref: bodyEntryDiv} = useIntersectingRef(true, 1);
 
@@ -233,38 +235,11 @@ export const Body4: React.FC<{ device: Device }> = ({device}) => {
                     overflow: "hidden"
                 }}>
         <div ref={bodyEntryDiv}/>
-        <div className={"ao-body4-header"} style={{
-            display: "flex",
-            position: "absolute",
-            height: headerHeight,
-            zIndex: 1000,
-            width: "100%",
-            justifyContent: "end",
-            transform: showHeader ? "translateX(0)" : "translateX(100%)",
-            transition: "transform 3s ease-in-out, opacity 1s ease-in-out",
-        }}>
-            <div className={"ao-body4-header-text"} style={{
-                display: "flex",
-                backgroundColor: COLORS.DEEP_OLIVE,
-                width: headerWidth,
-                clipPath: headerClipPath,
-
-            }}>
-                <Typography.Text style={{
-                    color: COLORS.WALNUT_BROWN,
-                    padding: headerTextPadding,
-                    lineHeight: headerLineHeight,
-                    fontSize: headerFontSize,
-                    fontWeight: "700",
-                }}>
-                    Modern Mercedes models have
-                    interiors designed to elicit wows from
-                    the moment you lay eyes on the
-                    cockpit, but the SL is going with a
-                    'hyperanalogue' approach.
-                </Typography.Text>
-            </div>
-        </div>
+        <BodyHeader className={"ao-body4-header"} showHeader={showHeader} headerHeight={headerHeight}
+                    headerWidth={headerWidth}
+                    headerClipPath={headerClipPath} headerTextPadding={headerTextPadding}
+                    headerLineHeight={headerLineHeight} headerFontSize={headerFontSize}
+                    text={"Modern Mercedes models have interiors designed to elicit wows from the moment you lay eyes on the cockpit, but the SL is going with a 'hyperanalogue' approach."}/>
 
         <Content bubbleTexts={contentTexts[0].bubbleTexts}
                  imageWidth={imageWidth}

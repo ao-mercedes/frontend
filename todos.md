@@ -296,9 +296,26 @@ Page: Body4
 
 ![](./planning/assets/issue_0009.png)
 
-- [ ] [Issue-0010] [Refactor::Hooks] TODO refactor and test if can use `useIntersectingRef`
+- [ ] [Issue-0010] TODO refactor and test if can use `useIntersectingRef` for Component: `Body4`::`ContentEndMarker`
 
-- See Component: `ContentEndMarker`
+- [ ] [Issue-0011] [Component::Display] ContentImage border color is not gradient.
+
+- Device: Desktop
+- Component: `Body6`::`ImageContent`, event: hover
+- Problem:
+
+When hovering over image of content, the border color should be with gradient ascent.
+
+- Want:
+    - image size remains
+    - border overlaps inner and outer
+    - border color gradient brown -> gold
+
+- Got:
+    - image size remains
+    - border overlaps inner and outer
+    - border color gradient brown
+      ![](./planning/assets/issue_0011.png)
 
 - [ ] [Issue-0012] [Component::Display] Missing advertisement image for tablet and mobile
 
