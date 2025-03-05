@@ -229,6 +229,8 @@ when running `pnpm build`, the warning appears:
 
 - [ ] [Issue-0008] [DevOps] pre-commit hook linting continues when error
 
+This will cause false positives during CI/CD where the release process will run a malformed artefact.
+
 Sample when execute `./pre-commit`:
 
 Error:
@@ -257,6 +259,13 @@ Page: Body4
 
 ![](./planning/assets/issue_0009.png)
 
-- [ ] [Issue-0010] TODO refactor and test if can use `useIntersectingRef`
+- [ ] [Issue-0010] [Refactor::Hooks] TODO refactor and test if can use `useIntersectingRef`
 
 - See Component: `ContentEndMarker`
+
+- [ ] [Issue-0012] [Component::Display] Missing advertisement image for tablet and mobile
+
+Advertisement image is missing from provided materials.
+
+Device: Tablet, Mobile
+Component: `Body6`
