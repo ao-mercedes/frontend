@@ -3,6 +3,7 @@ import {COLORS} from "../../utils/constants/constants.ts";
 
 import {Typography} from "antd";
 import {Property} from "csstype";
+import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
 
 type FlexDirection = Property.FlexDirection;
 
@@ -17,34 +18,32 @@ const Summary: React.FC<{
     summaryHeight: number,
     summaryDivSideRadius: number,
     summaryData: SummaryDataT,
-    reverse?: boolean
-}> = ({summaryHeight, summaryDivSideRadius, summaryData, reverse}) => {
+    reverse?: boolean,
+    hasIntersected: boolean
+}> = ({summaryHeight, summaryDivSideRadius, summaryData, reverse, hasIntersected}) => {
     const {imageUrl, texts, title} = summaryData;
+
 
     const summaryStyle: {
         flexDirection: FlexDirection;
-        marginRight: string;
         borderTopRightRadius: string;
         borderBottomRightRadius: string
         transform: string;
     } | {
         flexDirection: FlexDirection;
-        marginLeft: string;
         borderTopLeftRadius: string;
         borderBottomLeftRadius: string;
         transform: string;
     } = reverse ? {
         flexDirection: "row-reverse",
-        marginLeft: "20px",
         borderTopLeftRadius: `${summaryDivSideRadius}px`,
         borderBottomLeftRadius: `${summaryDivSideRadius}px`,
-        transform: "translateX(10px)",
+        transform: hasIntersected ? "translateX(20px)" : "translateX(1500px)",
     } : {
         flexDirection: "row",
-        marginRight: "20px",
         borderTopRightRadius: `${summaryDivSideRadius}px`,
         borderBottomRightRadius: `${summaryDivSideRadius}px`,
-        transform: "translateX(-10px)",
+        transform: hasIntersected ? "translateX(-20px)" : "translateX(-1500px)",
     };
 
 
@@ -63,6 +62,7 @@ const Summary: React.FC<{
                     width: "100%",
                     backgroundColor: COLORS.BURNISHED_GOLD,
                     ...summaryStyle,
+                    transition: "transform 2s",
                 }}>
         <div className="ao-body6-summary-image" style={{display: "flex", alignItems: "center", flexShrink: 0}}>
             <img src={imageUrl} style={{height: "90%"}}/>
@@ -121,6 +121,8 @@ export const Summaries: React.FC<{
     summaryDivSideRadius: number,
     summaryDatas: SummaryDataT[]
 }> = ({summaryDivSideRadius, summaryHeight, summaryDatas}) => {
+    const {intersects: hasIntersected, ref: contentRef} = useIntersectingRef(false, 0.1);
+
     return <div className="ao-body6-summaries" style={{
         display: "flex",
         width: "100%",
@@ -128,10 +130,14 @@ export const Summaries: React.FC<{
         position: "relative",
         gridTemplateColumns: "repeat(2, 1fr)",
         marginTop: "120px",
-    }}>
+    }}
+                ref={contentRef}
+    >
         <Summary summaryHeight={summaryHeight} summaryDivSideRadius={summaryDivSideRadius}
+                 hasIntersected={hasIntersected}
                  summaryData={summaryDatas[0]} reverse={false}/>
         <Summary summaryHeight={summaryHeight} summaryDivSideRadius={summaryDivSideRadius}
+                 hasIntersected={hasIntersected}
                  summaryData={summaryDatas[1]} reverse={true}/>
 
 
