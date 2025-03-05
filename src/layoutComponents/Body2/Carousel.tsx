@@ -1,6 +1,6 @@
 import "./Carousel.css"; // Import custom styles for animation
-import img_right_arrow from "../../assets/Body2/carousel-arrow-right.svg";
-import img_left_arrow from "../../assets/Body2/carousel-arrow-left.svg";
+import img_right_arrow from "../../assets/body2/carousel-arrow-right.svg";
+import img_left_arrow from "../../assets/body2/carousel-arrow-left.svg";
 
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 

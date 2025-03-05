@@ -1,5 +1,5 @@
-import img_porsche from "../../assets/Body3/pedigree_porsche.png";
-import img_mercedes_benz from "../../assets/Body3/pedigree_mercedes_benz_sl.png";
+import img_porsche from "../../assets/body3/pedigree_porsche.png";
+import img_mercedes_benz from "../../assets/body3/pedigree_mercedes_benz_sl.png";
 
 
 export const _getContents = (shouldGetFirstOnly: boolean) => {
