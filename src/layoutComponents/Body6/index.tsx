@@ -15,7 +15,7 @@ import {UnbrokenPage} from "../pageSizes.tsx";
 
 import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Typography} from "antd";
 import {Property as CSSProperty} from 'csstype';
 
@@ -103,6 +103,7 @@ const ImageContent: React.FC<{
           credit
       }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const {intersects: hasIntersected, ref: contentRef} = useIntersectingRef(false, 0.5);
 
     const textStyle: {
         display: string,
@@ -121,18 +122,41 @@ const ImageContent: React.FC<{
         textAlign: "center",
         lineHeight: "1.8rem",
     };
-    return <div key={`${contentId}${contentId}`}
-                style={{
-                    // backgroundColor: "blue",
-                    display: "flex",
-                    flexDirection: shouldReverse ? "row-reverse" : "row",
-                    justifyContent: "flex-end",
-                    alignItems: "flex-end",
-                    height: "700px",
-                }}>
-        <div className={"ao-body6-gray-bubble-mobile"} style={{
+    const firstTransitionDuration = 2;
+
+    const [firstTransitionStopped, setFirstTransitionStopped] = useState(false);
+    console.log(`firstTransitionStopped ${firstTransitionStopped}`);
+    useEffect(() => {
+        if (hasIntersected) {
+            setTimeout(() => {
+                setFirstTransitionStopped(true);
+            }, firstTransitionDuration * 1000);
+        } else {
+            setFirstTransitionStopped(false);
+        }
+    }, [hasIntersected]);
+
+    const imageTranslateX = (shouldReverse ? 1 : -1) * 233; // move away from screen
+
+    return <div
+        className={"ao-body6-bubbles-mobile-grid-item"}
+        key={`${contentId}${contentId}`}
+        style={{
+            // backgroundColor: "blue",
             display: "flex",
-            flex: 5,
+            flexDirection: shouldReverse ? "row-reverse" : "row",
+            justifyContent: "flex-end",
+            alignItems: "flex-end",
+            height: "700px",
+        }}
+        ref={contentRef}
+
+    >
+        <div
+            className={"ao-body6-gray-bubble-mobile"} style={{
+            scale: firstTransitionStopped ? 1 : 0,
+            transition: "scale 3s",
+            display: "flex",
             height: "min-content",
             alignSelf: "flex-start",
             justifyContent: shouldReverse ? "flex-start" : "flex-end",
@@ -175,6 +199,8 @@ const ImageContent: React.FC<{
             height: "600px",
             width: "600px",
             position: "relative",
+            transform: hasIntersected ? "" : `translateX(${imageTranslateX}%)`,
+            transition: `transform ${firstTransitionDuration}s ease-in-out`,
         }}>
             {isHovered && <>
                 {/*FIXME: [Issue-0011]*/}
@@ -341,7 +367,7 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
                     const shouldReverse = i % 2 == 1;
                     const imageScale = 0.9;
 
-                    return <ImageContent imageUrl={content.imageUrl} credit={content.credit} text={content.text}
+                    return <ImageContent key={i} imageUrl={content.imageUrl} credit={content.credit} text={content.text}
                                          shouldReverse={shouldReverse} imageScale={imageScale} contentId={i}/>;
                 })}
             </div>
