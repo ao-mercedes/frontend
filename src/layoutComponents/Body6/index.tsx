@@ -1,14 +1,14 @@
 import "./index.css";
 
-import img_flawed_left1 from "../../assets/Body6/Flawed_left1.png";
-import img_flawed_left2 from "../../assets/Body6/Flawed_left2.png";
-import img_flawed_left3 from "../../assets/Body6/Flawed_left3.png";
-import img_flawed_right1 from "../../assets/Body6/Flawed_right1.png";
-import img_flawed_right2 from "../../assets/Body6/Flawed_right2.png";
-import img_flawed_right3 from "../../assets/Body6/Flawed_right3.png";
-import img_summary_left from "../../assets/Body6/footer_left_what_we_like.png";
-import img_summary_right from "../../assets/Body6/footer_right_what_we_dislike.png";
-import img_bottom_advertisement from "../../assets/Body6/bottom_advertisement.png";
+import img_flawed_left1 from "../../assets1/Body6/Flawed_left1.png";
+import img_flawed_left2 from "../../assets1/Body6/Flawed_left2.png";
+import img_flawed_left3 from "../../assets1/Body6/Flawed_left3.png";
+import img_flawed_right1 from "../../assets1/Body6/Flawed_right1.png";
+import img_flawed_right2 from "../../assets1/Body6/Flawed_right2.png";
+import img_flawed_right3 from "../../assets1/Body6/Flawed_right3.png";
+import img_summary_left from "../../assets1/Body6/footer_left_what_we_like.png";
+import img_summary_right from "../../assets1/Body6/footer_right_what_we_dislike.png";
+import img_bottom_advertisement from "../../assets1/Body6/bottom_advertisement.png";
 
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 

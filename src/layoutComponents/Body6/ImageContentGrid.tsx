@@ -2,7 +2,7 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
 import {COLORS} from "../../utils/constants/constants.ts";
-import icon_cross from "../../assets/Body6/cross_icon.png";
+import icon_cross from "../../assets1/Body6/cross_icon.png";
 import {Typography} from "antd";
 import {Property as CSSProperty} from 'csstype';
 
