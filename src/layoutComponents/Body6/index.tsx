@@ -1,6 +1,11 @@
 import "./index.css";
 
-import img_flawed_left from "../../assets/Body6/Flawed_left1.png";
+import img_flawed_left1 from "../../assets/Body6/Flawed_left1.png";
+import img_flawed_left2 from "../../assets/Body6/Flawed_left2.png";
+import img_flawed_left3 from "../../assets/Body6/Flawed_left3.png";
+import img_flawed_right1 from "../../assets/Body6/Flawed_right1.png";
+import img_flawed_right2 from "../../assets/Body6/Flawed_right2.png";
+import img_flawed_right3 from "../../assets/Body6/Flawed_right3.png";
 
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
@@ -11,6 +16,10 @@ import {UnbrokenPage} from "../pageSizes.tsx";
 import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
 
 import {useState} from "react";
+import {Typography} from "antd";
+import {Property as CSSProperty} from 'csstype';
+
+type TextAlign = CSSProperty.TextAlign;
 
 const headerClipPaths = {
     [Device.mobile]: "polygon(0% 0%, 100% 0%, 100% 100%, 12% 100%)",
@@ -84,14 +93,34 @@ const ImageContent: React.FC<{
     shouldReverse: boolean,
     imageScale: number,
     contentId: number,
+    text: string,
+    imageUrl: string,
+    credit: string
 }> = ({
           shouldReverse,
-          contentId
+          contentId,
+          imageUrl, text,
+          credit
       }) => {
     const [isHovered, setIsHovered] = useState(false);
 
-
-    console.log("isHovered", isHovered);
+    const textStyle: {
+        display: string,
+        justifyContent: string,
+        alignItems: string,
+        fontSize: string,
+        color: string,
+        textAlign: TextAlign,
+        lineHeight: string,
+    } = {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: "1.4rem",
+        color: COLORS.PURE_WHITE,
+        textAlign: "center",
+        lineHeight: "1.8rem",
+    };
     return <div key={`${contentId}${contentId}`}
                 style={{
                     // backgroundColor: "blue",
@@ -115,7 +144,24 @@ const ImageContent: React.FC<{
                 width: "400px",
                 // transform: "translateY(-100px)",
                 borderRadius: "50%",
+                position: "relative",
+                justifyContent: "center",
             }}>
+                <div className={"ao-body6-gray-bubble-text"}
+                     style={{
+                         display: "flex",
+                         width: "62%",
+                         flexDirection: "column",
+                         justifyContent: "center",
+                         alignItems: "center",
+                     }}>
+                    <Typography.Text style={{...textStyle}}>
+                        {text}
+                    </Typography.Text>
+                    <Typography.Text style={{...textStyle, marginTop: "30px"}}>
+                        {credit}
+                    </Typography.Text>
+                </div>
             </div>
         </div>
         <div className={"ao-body6-inner-gap-mobile"} style={{
@@ -129,10 +175,9 @@ const ImageContent: React.FC<{
             height: "600px",
             width: "600px",
             position: "relative",
-        }}
-
-        >
+        }}>
             {isHovered && <>
+                {/*FIXME: [Issue-0011]*/}
                 {/*<div className={"ao-body6-image-border-1"} style={{*/}
                 {/*    display: "flex",*/}
                 {/*    width: "100%",*/}
@@ -166,7 +211,7 @@ const ImageContent: React.FC<{
             </>}
             <img style={{
                 zIndex: 1,
-            }} src={img_flawed_left} alt={""}
+            }} src={imageUrl} alt={""}
                  onMouseEnter={() => {
                      setIsHovered(true);
                  }}
@@ -179,6 +224,42 @@ const ImageContent: React.FC<{
         }}/>
     </div>;
 };
+
+
+const contentDatas = [
+    {
+        imageUrl: img_flawed_left1,
+        credit: "sgCarMart",
+        text: "SL comes with a 'free' IWC timepiece with a stopwatch feature for recording lap times."
+    },
+
+    {
+        imageUrl: img_flawed_right1,
+        credit: "sgCarMart",
+        text: `"Full-fat" AMG models continue to have engines assembled by a single engineer, whose signature adorns the engine cover.`
+    },
+    {
+        imageUrl: img_flawed_left2,
+        credit: "sgCarMart",
+        text: "The SL 55 can adapt to your personal driving style all you need to do is adjust these parameters."
+    },
+    {
+        imageUrl: img_flawed_right2,
+        credit: "sgCarMart",
+        text: "We're not sure if the next SL will be available with a V8 or even an internal combustion engine, so savour this one while it's still around."
+    },
+    {
+        imageUrl: img_flawed_left3,
+        credit: "sgCarMart",
+        text: "The soft-top actually opens and closes quickly provided the virtual toggle doesn't slip away from your finger, of course."
+    },
+    {
+        imageUrl: img_flawed_right3,
+        credit: "sgCarMart",
+        text: "The SL's dual-nature enables it to be a cruiser when you're chilling, or a bruiser when you're feeling fiery."
+    },
+];
+
 
 export const Body6: React.FC<{ device: Device, }> = ({device}) => {
     const {intersects: bodyEntered, ref: bodyEntryDiv} = useIntersectingRef(true, 1);
@@ -201,6 +282,7 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
 
     const color = COLORS.WALNUT_BROWN;
     const fontWeight = "600";
+
     return <div className="ao-body6"
                 style={{
                     display: "flex",
@@ -241,6 +323,8 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
             justifyContent: "center",
             alignSelf: "center",
             alignItems: "center",
+            marginTop: "150px",
+
             // backgroundColor: "red",
         }}>
             <div
@@ -253,11 +337,12 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
                     rowGap: "20px",
                 }}>
 
-                {[1, 2, 3, 4].map((_, i) => {
+                {contentDatas.map((content, i) => {
                     const shouldReverse = i % 2 == 1;
                     const imageScale = 0.9;
 
-                    return <ImageContent shouldReverse={shouldReverse} imageScale={imageScale} contentId={i}/>;
+                    return <ImageContent imageUrl={content.imageUrl} credit={content.credit} text={content.text}
+                                         shouldReverse={shouldReverse} imageScale={imageScale} contentId={i}/>;
                 })}
             </div>
 
