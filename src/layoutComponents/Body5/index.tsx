@@ -313,6 +313,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                 height: "100vh",
                 justifyContent: "flex-end",
                 alignItems: "flex-start",
+                overflowX: "hidden",
             }}>
                 <div className="ao-body5-content"
                      ref={contentRef}
