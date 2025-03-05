@@ -174,6 +174,43 @@
             - [ ] With yellow car fixed at bottom
         - [ ] Footer
 
+# Changelog 5-6 March 2025
+
+- [ ] Body6
+    - [ ] Desktop
+        - [ ] Content (Full Height)
+            - [x] Header
+            - [x] Paragraphs
+            - [x] Bubbles
+                - [x] Modal
+                - [x] Animation/Transitions
+                - [ ] Lines
+            - [x] Summary
+                - [ ] Animation/Transitions
+            - [x] Advertisement
+    - [ ] Tablet
+        - [ ] Content (Full Height)
+            - [x] Header
+            - [x] Paragraphs
+            - [ ] Bubbles
+                - [ ] Modal
+                - [ ] Animation/Transitions
+                - [ ] Lines
+            - [ ] Summary
+                - [ ] Animation/Transitions
+            - [ ] Advertisement
+    - [ ] Mobile
+        - [ ] Content (Full Height)
+            - [ ] Header
+            - [x] Paragraphs
+            - [ ] Bubbles
+                - [ ] Modal
+                - [ ] Animation/Transitions
+                - [ ] Lines
+            - [ ] Summary
+                - [ ] Animation/Transitions
+            - [ ] Advertisement
+
 # Issues
 
 - [x] [Issue-0001] [Component] Circle Marker Obstructing Clicks
