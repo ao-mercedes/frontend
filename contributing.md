@@ -2,4 +2,4 @@
 
 ## Package manager
 
-use `pnpm install`.
+use `pnpm` with `vite` for development, packaging and linting.
