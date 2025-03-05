@@ -6,6 +6,7 @@ import img_flawed_left3 from "../../assets/Body6/Flawed_left3.png";
 import img_flawed_right1 from "../../assets/Body6/Flawed_right1.png";
 import img_flawed_right2 from "../../assets/Body6/Flawed_right2.png";
 import img_flawed_right3 from "../../assets/Body6/Flawed_right3.png";
+import icon_cross from "../../assets/Body6/cross_icon.png";
 
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
@@ -104,7 +105,8 @@ const ImageContent: React.FC<{
       }) => {
     const [isHovered, setIsHovered] = useState(false);
     const {intersects: hasIntersected, ref: contentRef} = useIntersectingRef(false, 0.5);
-
+    const [firstTransitionStopped, setFirstTransitionStopped] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const textStyle: {
         display: string,
         justifyContent: string,
@@ -122,9 +124,22 @@ const ImageContent: React.FC<{
         textAlign: "center",
         lineHeight: "1.8rem",
     };
+
+    const modalTextStyle: {
+        display: string,
+        alignItems: string,
+        fontSize: string,
+        color: string,
+        lineHeight: string,
+    } = {
+        display: "flex",
+        alignItems: "center",
+        fontSize: "1.2rem",
+        color: COLORS.PURE_WHITE,
+        lineHeight: "1.8rem",
+    };
     const firstTransitionDuration = 2;
 
-    const [firstTransitionStopped, setFirstTransitionStopped] = useState(false);
     console.log(`firstTransitionStopped ${firstTransitionStopped}`);
     useEffect(() => {
         if (hasIntersected) {
@@ -138,6 +153,7 @@ const ImageContent: React.FC<{
 
     const imageTranslateX = (shouldReverse ? 1 : -1) * 233; // move away from screen
 
+    const modalOrientation = shouldReverse ? {right: "100%"} : {left: "100%"};
     return <div
         className={"ao-body6-bubbles-mobile-grid-item"}
         key={`${contentId}${contentId}`}
@@ -148,10 +164,54 @@ const ImageContent: React.FC<{
             justifyContent: "flex-end",
             alignItems: "flex-end",
             height: "700px",
+            position: "relative",
         }}
         ref={contentRef}
 
     >
+        {showModal && <div className={"ao-body6-content-modal"}
+                           style={{
+                               zIndex: 9999,
+                               position: "absolute",
+                               background: COLORS.CHARCOAL_SLATE,
+                               ...modalOrientation,
+                               top: "20%",
+                               height: "max-content",
+                               width: "400px",
+                               display: "flex",
+                               flexDirection: "column",
+                               justifyContent: "flex-start",
+                               alignItems: "center",
+                               paddingBottom: "100px",
+                           }}
+                           onClick={() => setShowModal(false)}
+        >
+
+            <div className={"ao-body6-content-modal-cross"} style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                position: "relative",
+                alignItems: "flex-end",
+                width: "100%", height: "100px",
+            }}>
+                <img src={icon_cross} alt={""}/>
+            </div>
+            <div className={"ao-body6-content-modal-content"} style={{
+                display: "flex",
+                justifyContent: "center",
+                position: "relative",
+                flexDirection: "column",
+                width: "80%", height: "min-content",
+            }}>
+                <img style={{scale: 1}} src={imageUrl} alt={""}/>
+                <Typography.Text style={{...modalTextStyle, marginTop: "30px"}}>
+                    {text}
+                </Typography.Text>
+                <Typography.Text style={{...modalTextStyle, marginTop: "30px", color: COLORS.GOLDEN_AMBER}}>
+                    {`${credit}`}
+                </Typography.Text>
+            </div>
+        </div>}
         <div
             className={"ao-body6-gray-bubble-mobile"} style={{
             scale: firstTransitionStopped ? 1 : 0,
@@ -166,7 +226,6 @@ const ImageContent: React.FC<{
                 height: "400px",
                 backgroundColor: COLORS.STEEL_BLUE,
                 width: "400px",
-                // transform: "translateY(-100px)",
                 borderRadius: "50%",
                 position: "relative",
                 justifyContent: "center",
@@ -183,7 +242,7 @@ const ImageContent: React.FC<{
                         {text}
                     </Typography.Text>
                     <Typography.Text style={{...textStyle, marginTop: "30px"}}>
-                        {credit}
+                        {`PHOTO: ${credit}`}
                     </Typography.Text>
                 </div>
             </div>
@@ -228,11 +287,8 @@ const ImageContent: React.FC<{
                     borderRadius: "50%",
                     opacity: 0.9,
                     pointerEvents: "none",
-
                     border: `60px solid ${COLORS.BURNISHED_GOLD}`,
                 }}>
-
-
                 </div>
             </>}
             <img style={{
@@ -242,6 +298,9 @@ const ImageContent: React.FC<{
                      setIsHovered(true);
                  }}
                  onMouseLeave={() => setIsHovered(false)}
+                 onClick={() => {
+                     setShowModal((is => !is));
+                 }}
             />
         </div>
         <div className={"ao-body6-outer-gap"} style={{
