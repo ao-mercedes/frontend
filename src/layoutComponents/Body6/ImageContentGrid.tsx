@@ -109,17 +109,15 @@ const ImageContent: React.FC<{
                                justifyContent: "flex-start",
                                alignItems: "center",
                                paddingBottom: "100px",
-                           }}
-                           onClick={() => setShowModal(false)}
-        >
+                           }}>
 
             <div className={"ao-body6-content-modal-cross"} style={{
                 display: "flex",
                 justifyContent: "flex-end",
                 position: "relative",
                 alignItems: "flex-end",
-                width: "100%", height: "100px",
-            }}>
+                width: "100%", height: "100px",}}
+                 onClick={() => setShowModal(false)}>
                 <img src={icon_cross} alt={""}/>
             </div>
             <div className={"ao-body6-content-modal-content"} style={{
