@@ -2,7 +2,7 @@ import "./index.css";
 
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
-import img_car from "../../assets1/body5/progress.png";
+import img_car from "../../assets/body5/progress.png";
 
 import {UnbrokenPage} from "../pageSizes.tsx";
 import Paragraphs from "./Paragraphs.tsx";

@@ -1,7 +1,7 @@
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
-import {titleScrollGuideText} from "../../assets1/textual/intro.ts";
-import img_arrowdown from "../../assets1/Body1/main-arrow-down.svg";
+import {titleScrollGuideText} from "../../assets/textual/intro.ts";
+import img_arrowdown from "../../assets/Body1/main-arrow-down.svg";
 
 import {Typography} from "antd";
 

@@ -1,19 +1,19 @@
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
-import icon_nav_arrow_up from "../../assets1/Navbar/nav-arrow-up.svg";
-import icon_nav_share from "../../assets1/Navbar/nav-share.svg";
-import icon_nav_hamburger from "../../assets1/Navbar/nav-hamburger.svg";
-import icon_nav_telegram from "../../assets1/Navbar/nav-telegram.svg";
-import icon_nav_whatsapp from "../../assets1/Navbar/nav-whatsapp.svg";
-import icon_nav_facebook from "../../assets1/Navbar/nav-facebook.svg";
-import icon_nav_twitter from "../../assets1/Navbar/nav-twitter.svg";
-import icon_nav_instagram from "../../assets1/Navbar/nav-instagram.svg";
+import icon_nav_arrow_up from "../../assets/Navbar/nav-arrow-up.svg";
+import icon_nav_share from "../../assets/Navbar/nav-share.svg";
+import icon_nav_hamburger from "../../assets/Navbar/nav-hamburger.svg";
+import icon_nav_telegram from "../../assets/Navbar/nav-telegram.svg";
+import icon_nav_whatsapp from "../../assets/Navbar/nav-whatsapp.svg";
+import icon_nav_facebook from "../../assets/Navbar/nav-facebook.svg";
+import icon_nav_twitter from "../../assets/Navbar/nav-twitter.svg";
+import icon_nav_instagram from "../../assets/Navbar/nav-instagram.svg";
 
-import icon_nav_telegram_black from "../../assets1/Navbar/nav-telegram-black.svg";
-import icon_nav_whatsapp_black from "../../assets1/Navbar/nav-whatsapp-black.svg";
-import icon_nav_facebook_black from "../../assets1/Navbar/nav-facebook-black.svg";
-import icon_nav_twitter_black from "../../assets1/Navbar/nav-twitter-black.svg";
-import icon_nav_instagram_black from "../../assets1/Navbar/nav-instagram-black.svg";
+import icon_nav_telegram_black from "../../assets/Navbar/nav-telegram-black.svg";
+import icon_nav_whatsapp_black from "../../assets/Navbar/nav-whatsapp-black.svg";
+import icon_nav_facebook_black from "../../assets/Navbar/nav-facebook-black.svg";
+import icon_nav_twitter_black from "../../assets/Navbar/nav-twitter-black.svg";
+import icon_nav_instagram_black from "../../assets/Navbar/nav-instagram-black.svg";
 
 import {useState} from "react";
 

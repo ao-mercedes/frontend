@@ -1,9 +1,9 @@
 import "./index.css";
 
 import {COLORS, Device, horizontalPaddings} from "../../utils/constants/constants.ts";
-import {FirstPitch} from "../../assets1/textual/firstpitch.ts";
+import {FirstPitch} from "../../assets/textual/firstpitch.ts";
 import {UnbrokenPage} from "../pageSizes.tsx";
-import {ImageClient} from "../../assets1/client/ImageClient/client.ts";
+import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 
 import CircularCarousel from "./Carousel.tsx";
 import ByLineComponent from "./Byline.tsx";

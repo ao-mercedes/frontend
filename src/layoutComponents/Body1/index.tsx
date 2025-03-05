@@ -1,12 +1,12 @@
 import "./index.css";
 
-import img_mastheadback from "../../assets1/Body1/masthead_back_img.jpg";
-import img_mastheadbackmobile from "../../assets1/Body1/mobile_masthead_back_img.jpg";
-import img_mastheadring from "../../assets1/Body1/masthead_ring.svg";
-import img_mastheadfront from "../../assets1/Body1/masthead_fore_img.png";
-import img_mastheadfrontmobile from "../../assets1/Body1/mobile_masthead_fore_img.png";
-import img_mastheadringrotate from "../../assets1/Body1/masthead_ring_rotate.svg";
-import {title} from "../../assets1/textual/intro.ts";
+import img_mastheadback from "../../assets/Body1/masthead_back_img.jpg";
+import img_mastheadbackmobile from "../../assets/Body1/mobile_masthead_back_img.jpg";
+import img_mastheadring from "../../assets/Body1/masthead_ring.svg";
+import img_mastheadfront from "../../assets/Body1/masthead_fore_img.png";
+import img_mastheadfrontmobile from "../../assets/Body1/mobile_masthead_fore_img.png";
+import img_mastheadringrotate from "../../assets/Body1/masthead_ring_rotate.svg";
+import {title} from "../../assets/textual/intro.ts";
 
 import _ScrollGuide from "./_scrollGuide.tsx";
 
