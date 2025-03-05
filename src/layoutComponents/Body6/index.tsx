@@ -6,6 +6,8 @@ import img_flawed_left3 from "../../assets/Body6/Flawed_left3.png";
 import img_flawed_right1 from "../../assets/Body6/Flawed_right1.png";
 import img_flawed_right2 from "../../assets/Body6/Flawed_right2.png";
 import img_flawed_right3 from "../../assets/Body6/Flawed_right3.png";
+import img_summary_left from "../../assets/Body6/footer_left_what_we_like.png";
+import img_summary_right from "../../assets/Body6/footer_right_what_we_dislike.png";
 
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
@@ -15,6 +17,7 @@ import {UnbrokenPage} from "../pageSizes.tsx";
 
 import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
 import ImageContentsGrid from "./ImageContentGrid.tsx";
+import {Summaries, SummaryDataT} from "./Summaries.tsx";
 
 
 const headerClipPaths = {
@@ -121,6 +124,20 @@ const contentDatas = [
 ];
 
 
+const summaryDatas: SummaryDataT[] = [
+    {
+        title: "What We Like",
+        imageUrl: img_summary_left,
+        texts: ["Rapid performance", "Loud V8 and throaty exhaust", "Pliant ride", "Cruising ability", "Might be the last SL with a V8", "Still feels special"]
+    },
+    {
+        title: "What We Dislike",
+        imageUrl: img_summary_right,
+        texts: ["Ridiculous $1 million price tag", "Non-existent rear-wheel", "steering", "No soft-closing doors", "Seriously overpriced"]
+    }
+];
+
+
 export const Body6: React.FC<{ device: Device, }> = ({device}) => {
     const {intersects: bodyEntered, ref: bodyEntryDiv} = useIntersectingRef(true, 1);
 
@@ -143,6 +160,8 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
     const color = COLORS.WALNUT_BROWN;
     const fontWeight = "600";
 
+    const summaryHeight = 620;
+    const summaryDivSideRadius = summaryHeight / 2;
     return <div className="ao-body6"
                 style={{
                     display: "flex",
@@ -174,6 +193,8 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
         </UnbrokenPage>
 
         <ImageContentsGrid contentDatas={contentDatas}/>
+        <Summaries summaryHeight={summaryHeight} summaryDivSideRadius={summaryDivSideRadius}
+                   summaryDatas={summaryDatas}/>
     </div>;
 };
 
