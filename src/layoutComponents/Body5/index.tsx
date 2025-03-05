@@ -282,6 +282,8 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
         paddingTop: "18px",
         paddingBottom: "29px"
     }, {paddingTop: "26px", paddingBottom: "10px"}];
+    const color = COLORS.PURE_WHITE;
+    const paragraphFontWeight = "";
     return <>
         <div className="ao-body5"
              ref={bodyRef}
@@ -342,7 +344,8 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                         </div>
                         <div ref={paragraph1Ref}></div>
                         <Paragraphs fontSize={paragraphFontSize} paragraphLineHeight={paragraphLineHeight}
-                                    texts={textForParagraph1} rowGap={rowGap}/>
+                                    texts={textForParagraph1} rowGap={rowGap} color={color}
+                                    fontWeight={paragraphFontWeight}/>
                     </UnbrokenPage>
                     <div className="ao-body5-content-youtube-embed"
                          style={{
@@ -376,7 +379,8 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                         marginTop: "0px",
                     }}>
                         <Paragraphs fontSize={paragraphFontSize} paragraphLineHeight={paragraphLineHeight}
-                                    texts={textForParagraph2} rowGap={rowGap}/>
+                                    texts={textForParagraph2} rowGap={rowGap} color={color}
+                                    fontWeight={paragraphFontWeight}/>
                     </UnbrokenPage>
                 </div>
                 <div className="ao-body5-car"

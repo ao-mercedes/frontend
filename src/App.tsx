@@ -4,10 +4,10 @@ import "./App.css";
 import {defaultTheme} from "./layoutComponents/themeDefault.ts";
 
 import HamburgerNavigationMenu from "./layoutComponents/HamburgerNavigationMenu";
-import Body1 from "./layoutComponents/Body1";
-import Body2 from "./layoutComponents/Body2";
-import Body3 from "./layoutComponents/Body3";
-import Body4 from "./layoutComponents/Body4";
+// import Body1 from "./layoutComponents/Body1";
+// import Body2 from "./layoutComponents/Body2";
+// import Body3 from "./layoutComponents/Body3";
+// import Body4 from "./layoutComponents/Body4";
 import Body5 from "./layoutComponents/Body5";
 import Body6 from "./layoutComponents/Body6";
 
@@ -44,10 +44,10 @@ function App() {
                     <HamburgerNavigationMenu device={device}/>
                 </div>
                 <Layout>
-                    <Body1 device={device}/>
-                    <Body2 device={device}/>
-                    <Body3 device={device}/>
-                    <Body4 device={device}/>
+                    {/*<Body1 device={device}/>*/}
+                    {/*<Body2 device={device}/>*/}
+                    {/*<Body3 device={device}/>*/}
+                    {/*<Body4 device={device}/>*/}
                     <Body5 device={device} viewPortWidth={viewPortWidth}></Body5>
                     <Body6 device={device}/>
                     <Footer>footer</Footer>

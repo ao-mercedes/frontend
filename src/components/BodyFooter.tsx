@@ -78,7 +78,7 @@ export const BodyFooter: React.FC<BodyFooterProps> = (
             </div>
         </div>
 
-        <div className={"ao-body3-end-border"} style={{
+        <div className={"ao-body-header-end-border"} style={{
             display: "flex",
             backgroundColor: COLORS.LIGHT_BROWN,
             position: "absolute",
