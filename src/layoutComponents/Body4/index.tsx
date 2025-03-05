@@ -1,7 +1,7 @@
 import "./index.css";
 
-import img_parallax_interior1 from "../../assets/body4/parallax_interior1_trim_transparent.png";
-import img_parallax_interior2 from "../../assets/body4/parallax_interior2.png";
+import img_parallax_interior1 from "../../assets/body4/parallax_interior1_trim_transparent.webp";
+import img_parallax_interior2 from "../../assets/body4/parallax_interior2.webp";
 
 import {Device} from "../../utils/constants/constants.ts";
 

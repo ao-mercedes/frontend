@@ -1,9 +1,9 @@
 import "./index.css";
 
-import img_mastheadback from "../../assets/body1/masthead_back_img.jpg";
+import img_mastheadback from "../../assets/body1/masthead_back_img.webp";
 import img_mastheadbackmobile from "../../assets/body1/mobile_masthead_back_img.jpg";
 import img_mastheadring from "../../assets/body1/masthead_ring.svg";
-import img_mastheadfront from "../../assets/body1/masthead_fore_img.png";
+import img_mastheadfront from "../../assets/body1/masthead_fore_img.webp";
 import img_mastheadfrontmobile from "../../assets/body1/mobile_masthead_fore_img.png";
 import img_mastheadringrotate from "../../assets/body1/masthead_ring_rotate.svg";
 import {title} from "../../assets/textual/intro.ts";
