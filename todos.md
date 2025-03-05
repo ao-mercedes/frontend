@@ -152,27 +152,27 @@
 # Changelog 4 March 2025
 
 - [ ] Body5
-    - [ ] Mobile
-        - [ ] Content (Full Height)
-            - [ ] Content 1
-            - [ ] Youtube
-            - [ ] Content 2
-            - [ ] With yellow car fixed at bottom
-        - [ ] Footer
-    - [ ] Tablet
-        - [ ] Content (Full Height)
-            - [ ] Content 1
-            - [ ] Youtube
-            - [ ] Content 2
-            - [ ] With yellow car fixed at bottom
-        - [ ] Footer
-    - [ ] Desktop
-        - [ ] Content (Full Height)
-            - [ ] Content 1
-            - [ ] Youtube
-            - [ ] Content 2
-            - [ ] With yellow car fixed at bottom
-        - [ ] Footer
+    - [x] Mobile
+        - [x] Content (Full Height)
+            - [x] Content 1
+            - [x] Youtube
+            - [x] Content 2
+            - [x] With yellow car fixed at bottom
+        - [x] Footer
+    - [x] Tablet
+        - [x] Content (Full Height)
+            - [x] Content 1
+            - [x] Youtube
+            - [x] Content 2
+            - [x] With yellow car fixed at bottom
+        - [x] Footer
+    - [x] Desktop
+        - [x] Content (Full Height)
+            - [x] Content 1
+            - [x] Youtube
+            - [x] Content 2
+            - [x] With yellow car fixed at bottom
+        - [x] Footer
 
 # Changelog 5-6 March 2025
 
