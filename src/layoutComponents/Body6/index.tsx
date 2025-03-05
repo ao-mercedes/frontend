@@ -8,6 +8,7 @@ import img_flawed_right2 from "../../assets/Body6/Flawed_right2.png";
 import img_flawed_right3 from "../../assets/Body6/Flawed_right3.png";
 import img_summary_left from "../../assets/Body6/footer_left_what_we_like.png";
 import img_summary_right from "../../assets/Body6/footer_right_what_we_dislike.png";
+import img_bottom_advertisement from "../../assets/Body6/bottom_advertisement.png";
 
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
@@ -207,6 +208,20 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
             <ImageContentsGrid contentDatas={contentDatas}/>
             <Summaries summaryHeight={summaryHeight} summaryDivSideRadius={summaryDivSideRadius}
                        summaryDatas={summaryDatas}/></>}
+
+
+        {/* FIXME Missing image for advertisement*/}
+        {device == Device.desktop && <div className="ao-body6-bottom-advertisement" style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "700px",
+            marginTop: "50px",
+            backgroundColor: COLORS.GRAY
+        }}>
+            <img src={img_bottom_advertisement} alt="bottom advertisement" style={{height: "100%"}}/>
+        </div>}
     </div>;
 };
 
