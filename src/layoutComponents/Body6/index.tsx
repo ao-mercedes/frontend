@@ -374,12 +374,10 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
                     position: "relative",
                     flexDirection: "column",
                     width: "100%",
-                    overflow: "auto",
+                    overflow: "hidden",
                     height: "min-content",
                     backgroundColor: COLORS.GRAY,
-                }}
-
-    >
+                }}>
         <div ref={bodyEntryDiv}/>
         <BodyHeader className={"ao-body6-header"} showHeader={showHeader} headerHeight={headerHeight}
                     headerWidth={headerWidth}
