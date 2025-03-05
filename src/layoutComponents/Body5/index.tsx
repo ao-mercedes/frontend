@@ -161,6 +161,12 @@ const youtubeMarginBottoms = {
     [Device.desktop]: "60px",
 };
 
+const carImageHeights = {
+    [Device.mobile]: "50px",
+    [Device.tablet]: "50px",
+    [Device.desktop]: "250px",
+};
+
 // carFumesPaddingsByDevice
 // value[0] for first fume, value[1] for second fume
 const carFumesPaddingsByDevice = {
@@ -284,6 +290,8 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
     }, {paddingTop: "26px", paddingBottom: "10px"}];
     const color = COLORS.PURE_WHITE;
     const paragraphFontWeight = "";
+
+    const carImageHeight = carImageHeights[device] ?? "50px";
     return <>
         <div className="ao-body5"
              ref={bodyRef}
@@ -396,7 +404,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                          style={{
                              position: "relative",
                              display: "flex",
-                             height: "250px",
+                             height: carImageHeight,
                              color: "white",
                          }}>
                         <img style={{zIndex: 1}} src={img_car} alt={""}></img>
