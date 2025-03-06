@@ -6,10 +6,6 @@ import {defaultTheme} from "./layoutComponents/themeDefault.ts";
 import HamburgerNavigationMenu from "./layoutComponents/HamburgerNavigationMenu";
 import Body1 from "./layoutComponents/Body1";
 import Body2 from "./layoutComponents/Body2";
-// import Body3 from "./layoutComponents/Body3";
-// import Body4 from "./layoutComponents/Body4";
-// import Body5 from "./layoutComponents/Body5";
-// import Body6 from "./layoutComponents/Body6";
 
 import {useDevice} from "./hooks/useDevice.ts";
 import {useViewPortWidth} from "./hooks/useViewPortWidth.tsx";
