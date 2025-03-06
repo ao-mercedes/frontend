@@ -18,7 +18,7 @@ import icon_nav_instagram_black from "../../assets/Navbar/nav-instagram-black.sv
 import {useState} from "react";
 
 interface HamburgerNavigationMenuProps {
-    device?: Device;
+    device: Device;
 }
 
 interface Options {

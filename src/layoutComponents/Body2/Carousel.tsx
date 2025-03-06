@@ -183,8 +183,8 @@ interface ItemDataWithMetadata extends ItemData {
 
 
 interface CircularCarouselProps {
-    data?: ItemData[];
-    imageClient?: ImageClient | null;
+    data: ItemData[];
+    imageClient: ImageClient | null;
     device: Device;
     paddingTop: string;
     paddingBottom: string;

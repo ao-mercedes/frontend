@@ -14,7 +14,7 @@ import {COLORS, Device} from "../../utils/constants/constants.ts";
 
 import BodyHeader from "../../components/BodyHeader.tsx";
 import Paragraphs from "../Body5/Paragraphs.tsx";
-import {UnbrokenPage} from "../pageSizes.tsx";
+import {VerticalPage} from "../pageSizes.tsx";
 
 import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
 import ImageContentsGrid from "./ImageContentGrid.tsx";
@@ -189,7 +189,7 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
                         headerLineHeight={headerLineHeight} headerFontSize={headerFontSize}
                         text={"The SL55 is not perfect. Its ergonomics could be better, its rear wheel steering system further improved, and the boot should be bigger."}
             />
-            <UnbrokenPage style={{
+            <VerticalPage style={{
                 flexDirection: "column",
                 justifyContent: "flex-start",
                 alignItems: "flex-start",
@@ -200,7 +200,7 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
             }}>
                 <Paragraphs fontSize={paragraphFontSize} paragraphLineHeight={paragraphLineHeight}
                             texts={texts} rowGap={rowGap} color={color} fontWeight={fontWeight}/>
-            </UnbrokenPage></>}
+            </VerticalPage></>}
 
 
         {/* FIXME Only show Summaries on desktop for now, yet to work on mobile/tablet*/}

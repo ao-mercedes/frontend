@@ -4,7 +4,7 @@ import {COLORS, Device} from "../../utils/constants/constants.ts";
 
 import img_car from "../../assets/body5/progress.png";
 
-import {UnbrokenPage} from "../pageSizes.tsx";
+import {VerticalPage} from "../pageSizes.tsx";
 import Paragraphs from "./Paragraphs.tsx";
 import BodyFooter from "../../components/BodyFooter.tsx";
 
@@ -336,7 +336,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                          alignItems: "center",
                          width: "100%",
                      }}>
-                    <UnbrokenPage style={{
+                    <VerticalPage style={{
                         flexDirection: "column",
                         justifyContent: "flex-start",
                         alignItems: "flex-start",
@@ -355,7 +355,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                         <Paragraphs fontSize={paragraphFontSize} paragraphLineHeight={paragraphLineHeight}
                                     texts={textForParagraph1} rowGap={rowGap} color={color}
                                     fontWeight={paragraphFontWeight}/>
-                    </UnbrokenPage>
+                    </VerticalPage>
                     <div className="ao-body5-content-youtube-embed"
                          style={{
                              marginTop: youtubeMarginTop,
@@ -378,7 +378,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                             ></iframe>
                         </div>
                     </div>
-                    <UnbrokenPage style={{
+                    <VerticalPage style={{
                         flexDirection: "column",
                         justifyContent: "flex-start",
                         alignItems: "flex-start",
@@ -390,7 +390,7 @@ export const Body5: React.FC<{ device: Device, viewPortWidth: number }> = ({devi
                         <Paragraphs fontSize={paragraphFontSize} paragraphLineHeight={paragraphLineHeight}
                                     texts={textForParagraph2} rowGap={rowGap} color={color}
                                     fontWeight={paragraphFontWeight}/>
-                    </UnbrokenPage>
+                    </VerticalPage>
                 </div>
                 <div className="ao-body5-car"
                      style={{

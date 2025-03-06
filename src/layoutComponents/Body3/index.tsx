@@ -6,7 +6,7 @@ import {COLORS, Device, horizontalPaddings} from "../../utils/constants/constant
 import {_getContents} from "./contentInfoGetter.ts";
 
 import ContentsComponent from "./ContentsComponent.tsx";
-import {UnbrokenPage} from "../pageSizes.tsx";
+import {VerticalPage} from "../pageSizes.tsx";
 import BodyFooter from "../../components/BodyFooter.tsx";
 
 import {useIntersectingRef} from "../../hooks/useIntersectingRef.tsx";
@@ -209,7 +209,7 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
             className="ao-body3-container"
             style={{backgroundColor: COLORS.GRAY}}
         >
-            <UnbrokenPage style={{
+            <VerticalPage style={{
                 paddingLeft: horizontalPaddings[device],
                 paddingRight: horizontalPaddings[device],
             }}>
@@ -269,7 +269,7 @@ export const Body3: React.FC<{ device: Device }> = ({device}) => {
 
                     </div>
                 </div>
-            </UnbrokenPage>
+            </VerticalPage>
             <div ref={contentsDivRef}/>
             <BodyFooter className={"ao-body3-footer"} footerMarginTop={footerMarginTop} footerWidth={footerWidth}
                         showBottomGuide={showBottomGuide}

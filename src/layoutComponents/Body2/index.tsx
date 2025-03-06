@@ -2,7 +2,7 @@ import "./index.css";
 
 import {COLORS, Device, horizontalPaddings} from "../../utils/constants/constants.ts";
 import {FirstPitch} from "../../assets/textual/firstpitch.ts";
-import {UnbrokenPage} from "../pageSizes.tsx";
+import {VerticalPage} from "../pageSizes.tsx";
 import {ImageClient} from "../../assets/client/ImageClient/client.ts";
 
 import CircularCarousel from "./Carousel.tsx";
@@ -92,7 +92,7 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
             className="ao-body2-container"
             style={{backgroundColor: COLORS.CHARCOAL_SLATE}}
         >
-            <UnbrokenPage style={{
+            <VerticalPage style={{
                 paddingLeft: horizontalPaddings[device],
                 paddingRight: horizontalPaddings[device],
             }}>
@@ -195,7 +195,7 @@ export const Body2: React.FC<{ device: Device }> = ({device}) => {
                         </div>
                     </div>
                 </div>
-            </UnbrokenPage>
+            </VerticalPage>
             <div
                 className="ao-body2-carousel-container"
                 style={{width: "100%", display: "flex"}}

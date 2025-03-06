@@ -17,7 +17,7 @@ const Summary: React.FC<{
     summaryHeight: number,
     summaryDivSideRadius: number,
     summaryData: SummaryDataT,
-    reverse?: boolean,
+    reverse: boolean,
     hasIntersected: boolean
 }> = ({summaryHeight, summaryDivSideRadius, summaryData, reverse, hasIntersected}) => {
     const {image, texts, title} = summaryData;
