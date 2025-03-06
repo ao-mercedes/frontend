@@ -9,6 +9,7 @@ import img_flawed_right3 from "../../assets/body6/Flawed_right3.png";
 import img_summary_left from "../../assets/body6/footer_left_what_we_like.png";
 import img_summary_right from "../../assets/body6/footer_right_what_we_dislike.png";
 import img_bottom_advertisement from "../../assets/body6/bottom_advertisement.png";
+import img_bottom_advertisement_square from "../../assets/body6/advertisement_square.png";
 
 import {COLORS, Device} from "../../utils/constants/constants.ts";
 
@@ -124,7 +125,7 @@ const contentDatas = [
         text: "The soft-top actually opens and closes quickly provided the virtual toggle doesn't slip away from your finger, of course."
     },
     {
-        image: {url:img_flawed_right3 , alt: "View of an open-top car with a driver"},
+        image: {url: img_flawed_right3, alt: "View of an open-top car with a driver"},
         credit: "sgCarMart",
         text: "The SL's dual-nature enables it to be a cruiser when you're chilling, or a bruiser when you're feeling fiery."
     },
@@ -134,16 +135,34 @@ const contentDatas = [
 const summaryDatas: SummaryDataT[] = [
     {
         title: "What We Like",
-        image: {url:img_summary_left ,alt: "Front outline of car"},
+        image: {url: img_summary_left, alt: "Front outline of car"},
         texts: ["Rapid performance", "Loud V8 and throaty exhaust", "Pliant ride", "Cruising ability", "Might be the last SL with a V8", "Still feels special"]
     },
     {
         title: "What We Dislike",
-        image: {url:img_summary_right,alt: "Back outline of car" },
+        image: {url: img_summary_right, alt: "Back outline of car"},
         texts: ["Ridiculous $1 million price tag", "Non-existent rear-wheel", "steering", "No soft-closing doors", "Seriously overpriced"]
     }
 ];
 
+
+const advertisementImageUrls = {
+    [Device.desktop]: img_bottom_advertisement,
+    [Device.tablet]: img_bottom_advertisement_square,
+    [Device.mobile]: img_bottom_advertisement_square,
+};
+
+const advertisementHeights = {
+    [Device.desktop]: "700px",
+    [Device.tablet]: "280px",
+    [Device.mobile]: "340px",
+};
+
+const marginBottoms = {
+    [Device.desktop]: "100px",
+    [Device.tablet]:"50px",
+    [Device.mobile]: "30px",
+};
 
 export const Body6: React.FC<{ device: Device, }> = ({device}) => {
     const {intersects: bodyEntered, ref: bodyEntryDiv} = useIntersectingRef(true, 1);
@@ -170,7 +189,11 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
     const summaryDivSideRadius = summaryHeight / 2;
 
     const marginTop = marginTops[device] ?? "350px";
+
+    const advertisementImageUrl = advertisementImageUrls[device];
     const shouldShowHeaderAndParagraph = device == Device.desktop || device == Device.tablet;
+    const advertisementHeight = advertisementHeights[device];
+    const marginBottom = marginBottoms[device];
     return <div className="ao-body6"
                 style={{
                     display: "flex",
@@ -211,17 +234,17 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
 
 
         {/* FIXME Missing image for advertisement*/}
-        {device == Device.desktop && <div className="ao-body6-bottom-advertisement" style={{
+        {<div className="ao-body6-bottom-advertisement" style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             width: "100%",
-            height: "700px",
+            height: advertisementHeight,
             marginTop: "50px",
-            marginBottom: "100px",
+            marginBottom: marginBottom,
             backgroundColor: COLORS.GRAY
         }}>
-            <img src={img_bottom_advertisement} alt="bottom advertisement" style={{height: "100%"}}/>
+            <img src={advertisementImageUrl} alt="bottom advertisement" style={{height: "100%"}}/>
         </div>}
     </div>;
 };

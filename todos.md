@@ -198,7 +198,7 @@
                 - [ ] Lines
             - [ ] Summary
                 - [ ] Animation/Transitions
-            - [ ] Advertisement
+            - [x] Advertisement
     - [ ] Mobile
         - [ ] Content (Full Height)
             - [ ] Header
@@ -209,7 +209,7 @@
                 - [ ] Lines
             - [ ] Summary
                 - [ ] Animation/Transitions
-            - [ ] Advertisement
+            - [x] Advertisement
           
 - [ ] Footer
   - [x] Mobile
@@ -321,13 +321,14 @@ When hovering over image of content, the border color should be with gradient as
     - border color gradient brown
       ![](./planning/assets/issue_0011.png)
 
-- [ ] [Issue-0012] [Component::Display] Missing advertisement image for tablet and mobile
+- [x] [Issue-0012] [Component::Display] Missing advertisement image for tablet and mobile
 
 Advertisement image is missing from provided materials.
 
 Device: Tablet, Mobile
 Component: `Body6`
 
+- Fixed using screenshot of mockup.   
 
 - [ ] [Issue-0012] [Component::Display] Missing footer image for tablet
 
