@@ -6,17 +6,22 @@ import {defaultTheme} from "./layoutComponents/themeDefault.ts";
 import HamburgerNavigationMenu from "./layoutComponents/HamburgerNavigationMenu";
 import Body1 from "./layoutComponents/Body1";
 import Body2 from "./layoutComponents/Body2";
-import Body3 from "./layoutComponents/Body3";
-import Body4 from "./layoutComponents/Body4";
-import Body5 from "./layoutComponents/Body5";
-import Body6 from "./layoutComponents/Body6";
+// import Body3 from "./layoutComponents/Body3";
+// import Body4 from "./layoutComponents/Body4";
+// import Body5 from "./layoutComponents/Body5";
+// import Body6 from "./layoutComponents/Body6";
 
 import {useDevice} from "./hooks/useDevice.ts";
 import {useViewPortWidth} from "./hooks/useViewPortWidth.tsx";
 
 import {ConfigProvider, Layout} from "antd";
 import {useTimeout} from "./hooks/useTimeout.tsx";
+import { lazy} from "react";
 
+const Body3 = lazy(() => import( "./layoutComponents/Body3"));
+const Body4 = lazy(() => import( "./layoutComponents/Body4"));
+const Body5 = lazy(() => import( "./layoutComponents/Body5"));
+const Body6 = lazy(() => import( "./layoutComponents/Body6"));
 // const {Footer} = Layout;
 
 const DEVICE_SIZE_BREAKPOINT = {
