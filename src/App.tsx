@@ -15,6 +15,7 @@ import {useDevice} from "./hooks/useDevice.ts";
 import {useViewPortWidth} from "./hooks/useViewPortWidth.tsx";
 
 import {ConfigProvider, Layout} from "antd";
+import {useEffect, useState, } from "react";
 
 // const {Footer} = Layout;
 
@@ -24,10 +25,23 @@ const DEVICE_SIZE_BREAKPOINT = {
     desktop: {width: 2960}, // 2960 x 1440
 };
 
+
+const useTimeout = (millseconds: number) => {
+    const [loadRemaining, setLoadRemaining] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setLoadRemaining(true);
+        }, millseconds);
+    },[millseconds]);
+
+    return loadRemaining;
+};
+
 function App() {
     const device = useDevice(DEVICE_SIZE_BREAKPOINT);
     const viewPortWidth = useViewPortWidth();
 
+    const loadRemaining = useTimeout(2000);
     return (
         <>
             <ConfigProvider theme={defaultTheme()}>
@@ -45,10 +59,11 @@ function App() {
                 <Layout>
                     <Body1 device={device}/>
                     <Body2 device={device}/>
-                    <Body3 device={device}/>
-                    <Body4 device={device}/>
-                    <Body5 device={device} viewPortWidth={viewPortWidth}></Body5>
-                    <Body6 device={device}/>
+                    {loadRemaining && <>
+                        <Body3 device={device}/>
+                        <Body4 device={device}/>
+                        <Body5 device={device} viewPortWidth={viewPortWidth}></Body5>
+                        <Body6 device={device}/></>}
                     {/*<Footer>footer</Footer>*/}
                 </Layout>
             </ConfigProvider>
