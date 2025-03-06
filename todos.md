@@ -212,9 +212,9 @@
             - [ ] Advertisement
           
 - [ ] Footer
-  - [ ] Mobile
+  - [x] Mobile
   - [ ] Tablet
-  - [ ] Desktop
+  - [x] Desktop
 # Issues
 
 - [x] [Issue-0001] [Component] Circle Marker Obstructing Clicks
