@@ -186,7 +186,7 @@
                 - [x] Animation/Transitions
                 - [ ] Lines
             - [x] Summary
-                - [ ] Animation/Transitions
+                - [x] Animation/Transitions
             - [x] Advertisement
     - [ ] Tablet
         - [ ] Content (Full Height)
@@ -210,7 +210,11 @@
             - [ ] Summary
                 - [ ] Animation/Transitions
             - [ ] Advertisement
-
+          
+- [ ] Footer
+  - [ ] Mobile
+  - [ ] Tablet
+  - [ ] Desktop
 # Issues
 
 - [x] [Issue-0001] [Component] Circle Marker Obstructing Clicks
@@ -323,3 +327,11 @@ Advertisement image is missing from provided materials.
 
 Device: Tablet, Mobile
 Component: `Body6`
+
+
+- [ ] [Issue-0012] [Component::Display] Missing footer image for mobile
+
+image is missing from provided materials.
+
+Device: Mobile
+Component: `Footer`
