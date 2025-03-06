@@ -15,7 +15,7 @@ import {useDevice} from "./hooks/useDevice.ts";
 import {useViewPortWidth} from "./hooks/useViewPortWidth.tsx";
 
 import {ConfigProvider, Layout} from "antd";
-import {useEffect, useState, } from "react";
+import {useTimeout} from "./hooks/useTimeout.tsx";
 
 // const {Footer} = Layout;
 
@@ -26,22 +26,12 @@ const DEVICE_SIZE_BREAKPOINT = {
 };
 
 
-const useTimeout = (millseconds: number) => {
-    const [loadRemaining, setLoadRemaining] = useState(false);
-    useEffect(() => {
-        setTimeout(() => {
-            setLoadRemaining(true);
-        }, millseconds);
-    },[millseconds]);
-
-    return loadRemaining;
-};
 
 function App() {
     const device = useDevice(DEVICE_SIZE_BREAKPOINT);
     const viewPortWidth = useViewPortWidth();
 
-    const loadRemaining = useTimeout(2000);
+    const loadRemaining = useTimeout(1000);
     return (
         <>
             <ConfigProvider theme={defaultTheme()}>
