@@ -47,13 +47,13 @@ function App() {
                     <HamburgerNavigationMenu device={device}/>
                 </div>
                 <Layout>
-                    {/*<Body1 device={device}/>*/}
-                    {/*<Body2 device={device}/>*/}
-                    {/*{loadRemaining && <>*/}
-                    {/*    <Body3 device={device}/>*/}
-                    {/*    <Body4 device={device}/>*/}
-                    {/*    <Body5 device={device} viewPortWidth={viewPortWidth}></Body5>*/}
-                    {/*    <Body6 device={device}/></>}*/}
+                    <Body1 device={device}/>
+                    <Body2 device={device}/>
+                    {loadRemaining && <>
+                        <Body3 device={device}/>
+                        <Body4 device={device}/>
+                        <Body5 device={device} viewPortWidth={viewPortWidth}></Body5>
+                        <Body6 device={device}/></>}
                     <Footer device={device}></Footer>
                 </Layout>
             </ConfigProvider>
