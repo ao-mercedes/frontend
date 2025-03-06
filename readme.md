@@ -2,7 +2,7 @@
 
 # Docs
 
-https://docs.google.com/document/d/1adFfQQlst-ht9zMst_CbSHiaUQ2Ehhy7AIh-sgPGLjE/edit?usp=sharing
+https://drive.google.com/file/d/1U1Ob_-7fI1rwT0kaXkxnMpxCIwzSKxNo/view?usp=drive_link
 
 # Development
 
