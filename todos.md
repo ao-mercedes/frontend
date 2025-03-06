@@ -329,7 +329,7 @@ Device: Tablet, Mobile
 Component: `Body6`
 
 
-- [ ] [Issue-0012] [Component::Display] Missing footer image for mobile
+- [ ] [Issue-0012] [Component::Display] Missing footer image for tablet
 
 image is missing from provided materials.
 

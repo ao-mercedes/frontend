@@ -218,6 +218,7 @@ export const Body6: React.FC<{ device: Device, }> = ({device}) => {
             width: "100%",
             height: "700px",
             marginTop: "50px",
+            marginBottom: "100px",
             backgroundColor: COLORS.GRAY
         }}>
             <img src={img_bottom_advertisement} alt="bottom advertisement" style={{height: "100%"}}/>

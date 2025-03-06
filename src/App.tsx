@@ -12,20 +12,19 @@ import {useViewPortWidth} from "./hooks/useViewPortWidth.tsx";
 
 import {ConfigProvider, Layout} from "antd";
 import {useTimeout} from "./hooks/useTimeout.tsx";
-import { lazy} from "react";
+import {lazy} from "react";
+import Footer from "./layoutComponents/Footer";
 
 const Body3 = lazy(() => import( "./layoutComponents/Body3"));
 const Body4 = lazy(() => import( "./layoutComponents/Body4"));
 const Body5 = lazy(() => import( "./layoutComponents/Body5"));
 const Body6 = lazy(() => import( "./layoutComponents/Body6"));
-// const {Footer} = Layout;
 
 const DEVICE_SIZE_BREAKPOINT = {
     mobile: {width: 480}, // 480 X 640
     tablet: {width: 800}, // 800 X 600
     desktop: {width: 2960}, // 2960 x 1440
 };
-
 
 
 function App() {
@@ -55,7 +54,7 @@ function App() {
                         <Body4 device={device}/>
                         <Body5 device={device} viewPortWidth={viewPortWidth}></Body5>
                         <Body6 device={device}/></>}
-                    {/*<Footer>footer</Footer>*/}
+                    <Footer device={device}></Footer>
                 </Layout>
             </ConfigProvider>
         </>
